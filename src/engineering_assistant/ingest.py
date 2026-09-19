@@ -1597,24 +1597,59 @@ def auto_ocr_document(
     }
 
 
-def search(workspace: Path, course: str, query: str, limit: int = 8) -> list[dict[str, Any]]:
-    """Search active extracted blocks in one course's catalog."""
+# What the host should do when a search returns no results.  Each one says
+# what is actually true, because the three misses call for different actions
+# and the wrong one wastes a student's time or invents a source.
+_SEARCH_NEXT = {
+    "no_match": (
+        "This course's indexed text was searched and does not contain these terms. "
+        "Try different or fewer terms, or ask the student for the handout. Do not "
+        "substitute another course's material and do not answer from general knowledge."
+    ),
+    "nothing_indexed": (
+        "This course has documents but no searchable text: every one is inactive, "
+        "errored, or awaiting OCR, so nothing was searched and this is not evidence "
+        "of absence. Run `ocr-status --course COURSE_ID` to see what is pending."
+    ),
+    "no_catalog": (
+        "No documents have been ingested for this course, so nothing was searched and "
+        "this says nothing about what the course contains. Run `ingest` first, or ask "
+        "the student for the material."
+    ),
+}
+
+
+def search(workspace: Path, course: str, query: str, limit: int = 8) -> dict[str, Any]:
+    """Search active extracted blocks in one course's catalog.
+
+    Returns an envelope, never a bare list.  A bare ``[]`` said only "no
+    results" and said it in the same shape a hit arrives in, which leaves a
+    host free to read it as "nothing exists" and answer from general
+    knowledge.  Those are different facts: text was searched and these terms
+    are not in it, or nothing was ever indexed to search.  The status
+    distinguishes them, ``blocks_searched`` shows the work, and a miss carries
+    no results key at all, so it cannot be mistaken for one.
+    """
     course = _slug(course)
-    if limit <= 0 or not isinstance(query, str) or not query.strip():
-        return []
+    if not isinstance(query, str) or not query.strip():
+        raise ValueError("search needs a query; an empty one would match everything or nothing by accident")
+    if limit <= 0:
+        raise ValueError("search needs a positive limit")
     catalog = _read_catalog(Path(workspace) / "courses" / course / "catalog.json")
     terms = [term.casefold() for term in query.split() if term.strip()]
-    if not terms:
-        return []
     results: list[tuple[int, int, dict[str, Any]]] = []
+    documents_searched = 0
+    blocks_searched = 0
     for document_order, document in enumerate(catalog.get("documents", [])):
         if not isinstance(document, dict) or document.get("active", True) is False:
             continue
         if document.get("status") not in {"extracted", "partial", "needs_ocr"}:
             continue
+        documents_searched += 1
         for block_order, block in enumerate(document.get("blocks", [])):
             if not isinstance(block, dict) or block.get("active", True) is False:
                 continue
+            blocks_searched += 1
             text_value = str(block.get("text", ""))
             text_hash = hashlib.sha256(text_value.encode("utf-8")).hexdigest()
             lowered = text_value.casefold()
@@ -1639,7 +1674,26 @@ def search(workspace: Path, course: str, query: str, limit: int = 8) -> list[dic
                 )
             )
     results.sort(key=lambda item: (item[0], item[1]))
-    return [item[2] for item in results[:limit]]
+    searched = {
+        "course": course,
+        "query": query,
+        "documents_searched": documents_searched,
+        "blocks_searched": blocks_searched,
+    }
+    if results:
+        return {"status": "found", **searched, "results": [item[2] for item in results[:limit]]}
+    # A miss is not one fact.  Distinguishing them is the point: "this course
+    # has text and these terms are not in it" is evidence about the course,
+    # and "nothing here has been indexed" is evidence about the workspace.
+    # Answering the second as though it were the first is how a host ends up
+    # filling the silence from general knowledge.
+    if not catalog.get("documents"):
+        status = "no_catalog"
+    elif blocks_searched == 0:
+        status = "nothing_indexed"
+    else:
+        status = "no_match"
+    return {"status": status, **searched, "next": _SEARCH_NEXT[status]}
 
 
 __all__ = [

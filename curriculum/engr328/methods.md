@@ -71,7 +71,11 @@ EES is the expected tool for any lab analysis beyond simple plots. The manuals a
 
 ## Homework
 
-Weekly sets are submitted in the assigned order. Non-EES problems are worked by hand; the archive shows them written directly on the printed prompt, but this is observed, not specified. Some prompts supply the expected answer; reproduce it or explain the difference. There is no written page-format specification for homework, so do not invent one.
+Weekly sets are submitted in the assigned order. Some prompts supply the expected answer; reproduce it or explain the difference. There is no written page-format specification for homework, so do not invent one.
+
+**The tool choice is not EES-or-hand.** Problems the set does not assign to EES are often worked by hand, and the archive shows those written directly on the printed prompt. That is observed, not specified, and it is not the only alternative: the archive also shows a spreadsheet used to tabulate and plot results the solver produced, and a CAD thermal simulation used to re-solve a conduction problem that had already been solved numerically. Where a problem is solved more than one way, print each solve and compare them; do not let one silently replace the other. Follow whatever the set assigns, and where it assigns nothing, choose. (The simulation file is filed with the following week's set but is a steady-state run dated between the two, so which set it belonged to is ambiguous.)
+
+**The sets go well beyond the two labs**, over radiation surface properties, two-dimensional steady and transient conduction, boiling, and radiation enclosure networks. Every method in this pack is a lab method or the general shape of an EES homework solution, so no method is stated for those topics. That gap is unmined, not unfillable: instructor problem statements for most weeks of the term exist in the student's course archive and have not been read into this pack yet. `pack.json` records the table and example labels the course's own working files cite. Those files do not name the textbook, so the labels are left unresolved there, and they are not unique across the books this course pair uses. Do not resolve a label against a book the student has not confirmed, and do not cite a value read from one.
 
 ## Exemplars
 

@@ -15,7 +15,8 @@ from .evidence import review_evidence
 from .evaluation import evaluate_manifest
 from .doctor import diagnose
 from .review import review_work
-from .curriculum import DEFAULT_CURRICULUM,RENDERING_FIELDS,coverage_report,load_packs,load_tool_packs,pack_for_course,pack_style
+from .curriculum import DEFAULT_CURRICULUM,RENDERING_FIELDS,CurriculumError,coverage_report,load_packs,load_tool_packs,pack_for_course,pack_style
+from . import pack_query
 
 def _json_input(path:Path,max_bytes:int|None=None)->dict:
  if not path.is_file() or path.is_symlink() or not permitted_source(path): raise ValueError('JSON input must be a permitted regular file')
@@ -48,6 +49,11 @@ def main(argv=None):
  q=sub.add_parser('evaluate'); q.add_argument('manifest',type=Path); q.add_argument('--out',type=Path)
  q=sub.add_parser('doctor'); q.add_argument('--project-root',type=Path,default=Path('.'))
  q=sub.add_parser('courses'); q.add_argument('--curriculum',type=Path,default=DEFAULT_CURRICULUM)
+ q=sub.add_parser('pack',help='ask a shipped course pack a question instead of reading it; every answer carries a status, and only "found" carries a rule'); q.add_argument('--curriculum',type=Path,default=DEFAULT_CURRICULUM); k=q.add_subparsers(dest='pack_cmd',required=True)
+ s=k.add_parser('find',help='resolve a course code, title or id to pack ids'); s.add_argument('text')
+ s=k.add_parser('show',help='what one pack covers, how well, and the name of every node in it'); s.add_argument('ref',help='a pack id, or tool:<id> for a shared tool pack')
+ s=k.add_parser('get',help='exact nodes by address, each with its basis'); s.add_argument('ref'); s.add_argument('addresses',nargs='+',help='for example format.figures or methods.<id>'); s.add_argument('--max-bytes',type=int,default=pack_query.DEFAULT_MAX_BYTES,help='the most this call may return; a node over it returns its children instead')
+ k.add_parser('list',help='one line per installed pack')
  q=sub.add_parser('review',help='check a student\'s own finished work step by step, and name the likely slip'); q.add_argument('steps',type=Path); q.add_argument('--course',help='a pack id; its magnitude ranges are checked where a step names one')
  q=sub.add_parser('adapt'); q.add_argument('current',type=Path); q.add_argument('prior',type=Path); q.add_argument('--out',type=Path); q.add_argument('--name'); q.add_argument('--student-id')
  q=sub.add_parser('init'); q.add_argument('--name'); q.add_argument('--student-id')
@@ -131,6 +137,18 @@ def main(argv=None):
    # Shipped-pack coverage, not workspace state: what this install can honestly
    # claim about a course before the student has ingested anything.
    out=coverage_report(load_packs(args.curriculum),load_tool_packs(args.curriculum))
+  elif args.cmd=='pack':
+   try:
+    if args.pack_cmd=='find': out=pack_query.find(args.text,args.curriculum)
+    elif args.pack_cmd=='show': out=pack_query.show(args.ref,args.curriculum)
+    elif args.pack_cmd=='get': out=pack_query.get(args.ref,args.addresses,args.curriculum,args.max_bytes)
+    else: out=pack_query.list_packs(args.curriculum)
+   # A pack that fails its own checks is refused, never reported as absent:
+   # "no pack for that course" would be a false statement about a broken one.
+   except CurriculumError as exc: raise ValueError(str(exc)) from exc
+   # Compact, because the host pays for every byte of this, and the exit code
+   # follows the status: a truthful "nothing for that" is not a failure.
+   print(json.dumps(out,separators=(',',':'))); return pack_query.exit_code(out)
   elif args.cmd=='adapt':
    current=_json_input(args.current); prior=_json_input(args.prior); out=build_adaptation_manifest(current,prior,{'name':args.name,'student_id':args.student_id})
    if args.out:

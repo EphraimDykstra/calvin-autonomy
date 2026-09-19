@@ -110,7 +110,8 @@ class SetupTests(unittest.TestCase):
                 env={**__import__('os').environ, 'PYTHONPATH': str(REPO_ROOT / 'src')},
             )
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-            run_root = Path(t) / 'workspace' / 'assignments' / 'synthetic-run-1'
+            # Runs sit under their course, so five courses stay five folders.
+            run_root = Path(t) / 'workspace' / 'assignments' / 'synthetic-101' / 'synthetic-run-1'
             state = json.loads((run_root / 'run.json').read_text())
             self.assertEqual(state['stage'], 'ready')
             # The deliverable the plan declared exists and is a real PDF.

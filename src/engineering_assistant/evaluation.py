@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from .common import digest, now
-from .runtime import load_run, run_dir, status_run
+from .runtime import load_run, status_run, validate_run_id
 from .verification import validate_verification_report
 
 
@@ -65,7 +65,7 @@ def validate_evaluation_manifest(manifest: Mapping[str, Any]) -> dict[str, Any]:
         if not isinstance(run_ref, str) or not run_ref.strip():
             raise ValueError(f"{label} needs a non-empty run_ref")
         # Validate run IDs through the same boundary used by the runtime.
-        run_dir(Path("."), run_ref)
+        validate_run_id(run_ref)
         identifiers.append(identifier)
         run_refs.append(run_ref)
 

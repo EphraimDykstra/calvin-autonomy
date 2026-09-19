@@ -39,7 +39,7 @@ class IdentityPolicyTests(unittest.TestCase):
             source.write_text("requirements", encoding="utf-8")
             state = start_run(root / "workspace", "run-1", "demo", source, display_name="Alice Example", student_id="S-123")
             self.assertEqual(state["identity"]["display_name"], "Alice Example")
-            self.assertEqual(json.loads((root / "workspace/assignments/run-1/run.json").read_text())["identity"]["student_id"], "S-123")
+            self.assertEqual(json.loads((root / "workspace/assignments/demo/run-1/run.json").read_text())["identity"]["student_id"], "S-123")
 
     def test_reusable_metadata_removes_names_and_ids(self):
         metadata = {"author": "Alice Example", "student_id": "S-123", "file": "Alice Example-report.pdf", "safe": "reviewed"}

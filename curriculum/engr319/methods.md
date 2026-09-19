@@ -4,7 +4,9 @@ ENGR 319 is the junior thermal-fluids course that comes directly before ENGR 328
 
 ## Course policy comes first
 
-The archived syllabus for Fall 2025 included a generative-AI policy. Syllabi have since been revised, and the current terms are unknown. Before doing any graded work for this course, show the student `course_policy` from `pack.json` and ask them to get an answer from the professor that is specific to the assignment in front of them. When they have one, record it in `professor_answer`. Until then, treat the policy as unknown, not as permissive.
+**Computer problems: do not help.** The computer-problem prompt prohibits AI assistance in its own words. It calls the problem a test, open book and open note but not open to other groups, and cites the engineering department's academic honesty policy. Decline to produce, check, correct or unblock any part of a computer problem, including a draft, a partial model, a check of the student's own numbers, or help getting unstuck. Say why in one or two sentences and do not lecture. The one thing that lifts it is the student's own current prompt for that assignment showing no such prohibition; their assurance alone does not. This is the prompt speaking for itself and is not read across to labs or homework. Details in `assignment_families`, `computer-problem`, `ai_use`.
+
+For the rest of the course, the archived syllabus for Fall 2025 included a generative-AI policy. Syllabi have since been revised, and the current terms are unknown. Before doing any graded work for this course, show the student `course_policy` from `pack.json` and ask them to get an answer from the professor that is specific to the assignment in front of them. When they have one, record it in `professor_answer`. Until then, treat the policy as unknown, not as permissive.
 
 ## What the deliverable is
 
@@ -26,7 +28,7 @@ Writing is third person and concise. Leave out narration of what the group did w
 ## Tooling: two different rules
 
 - **Labs: Excel for the math, Word for the memo.** The lab guidelines tell students not to do hand calculations and to put the repetitive math in a spreadsheet.
-- **Computer problems: EES preferred.** The second computer-problem prompt names EES as the preferred tool and accepts Mathcad, MATLAB, or Excel. It requires one property source throughout: either the tool's built-in property functions or the textbook tables, never mixed. The commented computations go in an appendix. The completed computer problems in the archive used Excel with textbook tables, which is allowed. The first computer-problem prompt is an image-only scan, so its rules are assumed to match and are not confirmed.
+- **Computer problems: EES preferred.** Both prompts name EES as preferred and both require one property source throughout, either the tool's built-in property functions or the textbook tables, never mixed. Their accepted lists differ: the first accepts Excel or MathCad, the second also accepts MATLAB, so follow the prompt for the assignment at hand rather than a merged list. The first also allows hand calculation as a check but grades only work done in the chosen application. The commented computations go in an appendix. The completed computer problems in the archive used Excel with textbook tables, which is allowed. (Note that the prohibition above governs whether to help with these at all.)
 
 Encoding "319 is Excel-only" would be wrong. On computer problems it would push a student against the professor's stated preference.
 

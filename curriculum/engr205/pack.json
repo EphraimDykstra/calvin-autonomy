@@ -258,6 +258,7 @@
     }
   ],
   "exam_profile": {
+    "confidence": "stated",
     "status": "thin: test placement and chapter coverage from the schedule, one equation sheet, and three instructor remarks (two lecture slides and the concrete sheet). Nothing about the questions themselves is documented.",
     "basis": "the instructor's course schedule, one instructor equation sheet, the chapter 6 and chapter 18 lecture slides, and the concrete 2 report sheet. No test paper, answer key, quiz, or grading sheet survives.",
     "assessments": [
@@ -271,10 +272,10 @@
       "equation_sheet": "One four-page sheet survives. Every page is headed for Test 2, but its equations run from chapter 2 through chapter 18 and its file name says Final Exam, so it is most likely the final's sheet with a header carried over from Test 2. It is equations only, with no words, grouped by chapter and keyed to the textbook's equation numbers. It adds an SI prefix table, a small table of constants and conversions (Avogadro's number, electron charge, Boltzmann's constant, the Faraday constant, the gas constant, and the kelvin conversion), the coordination number and radius ratio table, and a table of ionic radii.",
       "not_documented": "Whether Tests 1 to 3 had sheets of their own, and whether a student-made sheet was allowed."
     },
-    "question_shape_seen": [
-      {"type": "select one, select all that apply, and true or false", "source": "the concrete 2 preparation questions, which the sheet itself says would make great quiz or test questions"},
-      {"type": "explain why in a sentence or two", "source": "the same sheet pairs its choice items with short explanations"},
-      {"type": "worked calculation with the given values listed and marked on a graph", "source": "the chapter 6 lecture example, which says listing values with units helps with partial credit"}
+    "question_shape": [
+      {"type": "select one, select all that apply, and true or false", "from_exam": false, "source": "the concrete 2 preparation questions, which the sheet itself says would make great quiz or test questions"},
+      {"type": "explain why in a sentence or two", "from_exam": false, "source": "the same sheet pairs its choice items with short explanations"},
+      {"type": "worked calculation with the given values listed and marked on a graph", "from_exam": false, "source": "the chapter 6 lecture example, which says listing values with units helps with partial credit"}
     ],
     "instructor_remarks": [
       "Chapter 18 slide: focus on the concepts from class and the equations used in homework.",

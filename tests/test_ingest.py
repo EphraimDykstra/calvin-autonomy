@@ -84,8 +84,8 @@ class IngestTests(unittest.TestCase):
         self.assertEqual(len(catalog["documents"]), 2)
         active = [doc for doc in catalog["documents"] if doc.get("active", True)]
         self.assertEqual(len(active), 1)
-        self.assertEqual(search(self.workspace, "demo", "new design")[0]["text"], "new design detail")
-        self.assertEqual(search(self.workspace, "demo", "old design"), [])
+        self.assertEqual(search(self.workspace, "demo", "new design")["results"][0]["text"], "new design detail")
+        self.assertEqual(search(self.workspace, "demo", "old design")["status"], "no_match")
         course_root = self.workspace / "courses" / "demo"
         self.assertTrue(all((course_root / doc["source_copy"]).exists() for doc in catalog["documents"] if doc.get("source_copy")))
 
@@ -157,7 +157,7 @@ class IngestTests(unittest.TestCase):
         self.assertEqual(document["status"], "needs_ocr")
         self.assertEqual(document["needs_ocr_pages"], [2])
         self.assertEqual(document["blocks"][0]["locator"], "page:1")
-        self.assertEqual(search(self.workspace, "demo", "Native assignment")[0]["locator"], "page:1")
+        self.assertEqual(search(self.workspace, "demo", "Native assignment")["results"][0]["locator"], "page:1")
         manifest = json.loads(
             (self.workspace / "courses" / "demo" / document["ocr_review_path"]).read_text(encoding="utf-8")
         )
@@ -197,7 +197,7 @@ class IngestTests(unittest.TestCase):
         stored_path = self.workspace / "courses" / "demo" / completed["ocr_import"]["path"]
         self.assertTrue(stored_path.is_file())
         self.assertEqual(hashlib.sha256(stored_path.read_bytes()).hexdigest(), completed["ocr_import"]["file_sha256"])
-        result = search(self.workspace, "demo", "convection coefficient")[0]
+        result = search(self.workspace, "demo", "convection coefficient")["results"][0]
         self.assertEqual(result["review_status"], "unreviewed")
         review_evidence(
             self.workspace,
@@ -206,7 +206,7 @@ class IngestTests(unittest.TestCase):
             result["locator"],
             "Compared the imported text against page 2 of the source PDF.",
         )
-        self.assertEqual(search(self.workspace, "demo", "convection coefficient")[0]["review_status"], "reviewed")
+        self.assertEqual(search(self.workspace, "demo", "convection coefficient")["results"][0]["review_status"], "reviewed")
         self.assertEqual(ocr_status(self.workspace, "demo")["status"], "clear")
 
     def test_ocr_import_rejects_bad_coverage_stale_hash_blank_text_and_truncation(self):
@@ -373,14 +373,14 @@ class IngestTests(unittest.TestCase):
         other.mkdir()
         (other / "two.md").write_text("shared term", encoding="utf-8")
         ingest(other, self.workspace, "other")
-        result = search(self.workspace, "demo", "shared")
+        result = search(self.workspace, "demo", "shared")["results"]
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0]["relative_path"], "one.md")
         self.assertEqual(result[0]["locator"], "line:1")
         self.assertEqual(result[0]["review_status"], "unreviewed")
         review_evidence(self.workspace,"demo",result[0]["document_id"],result[0]["locator"],"Reviewed the exact source line in context.")
-        self.assertEqual(search(self.workspace,"demo","shared")[0]["review_status"],"reviewed")
-        self.assertEqual(search(self.workspace, "demo", "missing"), [])
+        self.assertEqual(search(self.workspace,"demo","shared")["results"][0]["review_status"],"reviewed")
+        self.assertEqual(search(self.workspace, "demo", "missing")["status"], "no_match")
 
 
 class AutomaticOcrTests(unittest.TestCase):
@@ -556,7 +556,7 @@ class AutomaticOcrTests(unittest.TestCase):
         # The adapter must not have written into the evidence review registry.
         self.assertFalse((self.workspace / "courses" / "demo" / "reviews.json").exists())
         self.assertEqual(completed["ocr_import"]["review_status"], "unreviewed")
-        hit = search(self.workspace, "demo", "steady-state heat flux")[0]
+        hit = search(self.workspace, "demo", "steady-state heat flux")["results"][0]
         self.assertEqual(hit["review_status"], "unreviewed")
 
         # An explicit human visual review is the only thing that changes this.
@@ -568,7 +568,7 @@ class AutomaticOcrTests(unittest.TestCase):
             "Compared the OCR text character by character against the source image.",
         )
         self.assertEqual(
-            search(self.workspace, "demo", "steady-state heat flux")[0]["review_status"],
+            search(self.workspace, "demo", "steady-state heat flux")["results"][0]["review_status"],
             "reviewed",
         )
 
@@ -901,7 +901,14 @@ class HostileSourceTests(unittest.TestCase):
         self.assertEqual(document["status"], "error")
         self.assertEqual(document["blocks"], [])
         self.assertIn("U+202E", document["error"])
-        self.assertEqual(search(self.workspace, "demo", "MPa"), [])
+        # Not "no_match": the hostile text was never indexed, so a search says
+        # nothing was searched rather than that the course lacks the term.
+        # The old bare [] could not tell those apart, which is the confusion
+        # that matters most on a source that was rejected for lying.
+        missed = search(self.workspace, "demo", "MPa")
+        self.assertEqual(missed["status"], "nothing_indexed")
+        self.assertEqual(missed["blocks_searched"], 0)
+        self.assertNotIn("results", missed)
 
     def test_ocr_import_rejects_bidirectional_overrides(self):
         from PIL import Image

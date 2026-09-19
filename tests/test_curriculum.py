@@ -10,10 +10,13 @@ from pathlib import Path
 from engineering_assistant.cli import main
 from engineering_assistant.curriculum import (
     CurriculumError,
+    PACK_TOP_LEVEL_KEYS,
     SCHEMA_VERSION,
+    TOOL_PACK_TOP_LEVEL_KEYS,
     coverage_report,
     load_pack,
     load_packs,
+    load_tool_pack,
 )
 
 
@@ -318,6 +321,90 @@ class CoursesCommandTests(unittest.TestCase):
         code, report = self._run(self.root / "absent")
         self.assertEqual(code, 0)
         self.assertEqual(report["course_count"], 0)
+
+
+class TopLevelKeyTests(unittest.TestCase):
+    """A new top-level block must be declared, not merely written.
+
+    An exam profile shipped describing a course's assessments and the loader
+    ignored it, because an unknown top-level key was silently kept.  A block
+    that arrives without a schema arrives without a check, and the pack then
+    carries a claim nothing in the project is holding to anything.
+    """
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self._tmp.name)
+        self.addCleanup(self._tmp.cleanup)
+
+    def _write(self, pack, name="pack.json"):
+        path = self.root / name
+        path.write_text(json.dumps(pack), encoding="utf-8")
+        return path
+
+    def _tool_pack(self, **overrides):
+        pack = {
+            "schema_version": SCHEMA_VERSION,
+            "pack": {"id": "ees", "title": "Example Tool"},
+            "coverage": {
+                "conventions": "partial",
+                "methods": "none",
+                "pitfalls": "none",
+                "notes": "Only conventions are evidenced.",
+            },
+            "conventions": [],
+            "methods": [],
+            "exemplars": [],
+        }
+        pack.update(overrides)
+        return pack
+
+    def test_an_undeclared_top_level_block_is_refused(self):
+        with self.assertRaises(CurriculumError) as caught:
+            load_pack(self._write(_pack(exam_schedule={"final": "week 16"})))
+        message = str(caught.exception)
+        # The contributor has to learn the rule from the error, not by
+        # reading the loader to find out why their pack stopped loading.
+        self.assertIn("'exam_schedule'", message)
+        self.assertIn("requires a schema change", message)
+
+    def test_every_declared_block_still_loads(self):
+        # The set is only safe because it was taken from the packs that ship.
+        # This is the half that would break them if a key were left out.
+        pack = _pack(
+            gaps=[],
+            magnitudes=[],
+            evidence_tiers={},
+            related_packs=[],
+            not_covered=[],
+            attestation={},
+        )
+        self.assertEqual(load_pack(self._write(pack))["course"]["code"], "ENGR 000")
+
+    def test_a_tool_pack_keeps_its_own_key_set(self):
+        # A tool pack answers different questions and carries different
+        # blocks.  Holding it to the course set would refuse every tool pack
+        # in the tree, and holding a course pack to the tool set would refuse
+        # every course pack.
+        loaded = load_tool_pack(self._write(self._tool_pack()))
+        self.assertEqual(loaded["pack"]["id"], "ees")
+
+    def test_a_course_block_in_a_tool_pack_is_refused(self):
+        with self.assertRaises(CurriculumError) as caught:
+            load_tool_pack(self._write(self._tool_pack(course_policy={})))
+        self.assertIn("'course_policy'", str(caught.exception))
+
+    def test_a_tool_block_in_a_course_pack_is_refused(self):
+        with self.assertRaises(CurriculumError) as caught:
+            load_pack(self._write(_pack(conventions=[])))
+        self.assertIn("'conventions'", str(caught.exception))
+
+    def test_the_two_key_sets_stay_distinct(self):
+        # If the sets ever merge, both refusals above pass for the wrong
+        # reason and neither pack type is really being checked.
+        self.assertNotEqual(PACK_TOP_LEVEL_KEYS, TOOL_PACK_TOP_LEVEL_KEYS)
+        self.assertNotIn("course_policy", TOOL_PACK_TOP_LEVEL_KEYS)
+        self.assertNotIn("conventions", PACK_TOP_LEVEL_KEYS)
 
 
 if __name__ == "__main__":

@@ -13,14 +13,17 @@ import math
 import unittest
 from pathlib import Path
 
+from engineering_assistant.curriculum import MAGNITUDE_BASIS_KINDS
+
 
 CURRICULUM = Path(__file__).resolve().parents[1] / "curriculum"
 
 REQUIRED = ("quantity", "unit", "typical_range", "basis", "note")
 
-# The basis has to say which kind of bound this is.  Physics dressed as course
-# convention is the specific false claim the field must not make.
-BASIS_KINDS = ("Physical plausibility", "Handout", "Course method")
+# The loader owns both of these now.  Imported rather than restated, because
+# two spellings of one rule is how a pack ends up satisfying the copy that was
+# not the one being enforced.
+BASIS_KINDS = MAGNITUDE_BASIS_KINDS
 
 
 def _entries():

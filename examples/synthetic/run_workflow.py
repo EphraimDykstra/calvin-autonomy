@@ -93,7 +93,10 @@ class Driver:
         return json.loads(result.stdout) if result.stdout.strip() else {}
 
     def run_root(self) -> Path:
-        return self.workspace / "assignments" / self.run_id
+        # Runs are course-scoped, so a student taking five courses does not get
+        # one flat pile.  This driver shells out to the CLI on purpose, so it
+        # spells the layout rather than importing the package to resolve it.
+        return self.workspace / "assignments" / self.course / self.run_id
 
     # -- workflow ---------------------------------------------------------
     def ingest_course_material(self) -> dict:

@@ -116,3 +116,28 @@ class RepositorySlugTests(unittest.TestCase):
         self.assertTrue(check_distribution.PERMITTED_NAME_STRINGS)
         for entry in check_distribution.PERMITTED_NAME_STRINGS:
             self.assertRegex(entry, r"^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$")
+
+
+class PathInsteadOfNamesTests(unittest.TestCase):
+    """The variable holds names. A path to the file that holds them looks like
+    one harmless name, matches nothing, and the gate goes green having checked
+    nobody. That mistake reached three worker briefs before it was caught."""
+
+    def test_a_path_to_the_name_file_is_refused(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "forbidden-names.txt"
+            path.write_text("Aldenham;Bexworth\n", encoding="utf-8")
+            with self.assertRaises(ValueError) as caught:
+                check_distribution.forbidden_names_from_env({ENV: str(path)})
+            self.assertIn("$(cat", str(caught.exception))
+
+    def test_a_path_that_does_not_exist_is_still_refused(self):
+        # The typo case: a stale path scans one nonsense name and passes.
+        with self.assertRaises(ValueError):
+            check_distribution.forbidden_names_from_env({ENV: "~/dev/calvin-autonomy/.calvin-autonomy/forbidden-names.txt"})
+
+    def test_real_names_still_load(self):
+        self.assertEqual(
+            check_distribution.forbidden_names_from_env({ENV: "Aldenham;Bexworth\nCorvane"}),
+            ["Aldenham", "Bexworth", "Corvane"],
+        )

@@ -1,6 +1,6 @@
 # ENGR 202 (Statics and Dynamics): what this pack knows
 
-Nothing about how this course sets, presents, or grades work. The folder holds the publisher's textbook, the publisher's instructor solutions manual (proprietary, deliberately not used), and one image-only personal cheat sheet. There is no syllabus, prompt, or completed homework.
+Nothing about how this course sets, presents, or grades work. The folder holds the publisher's textbook and one image-only personal cheat sheet. Listing this course's folder in the student's iCloud term archive and his university OneDrive in September 2026 turned up no syllabus, prompt, or completed homework. That is what was searched; the course's online platform was not reachable, and material that only ever lived there would not appear in either archive.
 
 ## What to tell the student
 
@@ -14,5 +14,5 @@ Nothing about how this course sets, presents, or grades work. The folder holds t
 
 ## Do not
 
-- Infer a format from the textbook or the solutions manual.
-- Reproduce solutions-manual content.
+- Infer a format from the textbook, or from any solutions material a student supplies.
+- Reproduce publisher material of any kind.

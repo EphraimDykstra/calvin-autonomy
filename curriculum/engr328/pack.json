@@ -13,7 +13,7 @@
     "format": "high",
     "methods": "high",
     "assignments": "partial",
-    "notes": "No graded copy, instructor annotation or syllabus survives in the archive, so every 'what good looks like' entry is derived from the professor's written handouts and lab manuals rather than from a marked-up submission. The student submissions backing them are reported by their author to have scored highly, which is the strongest evidence available here and is weaker than a graded artifact; they also break several written rules (page limits, title-page numbering), and the handout wins where they disagree. Homework format is inferred from handwritten scans, and margin size has no evidence at all."
+    "notes": "Coverage is high for the two labs and for report format, and thin for homework: the sets reach across several heat-transfer topics whose instructor problem statements have not been read into this pack, so it states no solution method for any of them (see not_covered). No graded copy, instructor annotation or syllabus survives in the archive, so every 'what good looks like' entry is derived from the professor's written handouts and lab manuals rather than from a marked-up submission. The student submissions backing them are reported by their author to have scored highly, which is the strongest evidence available here and is weaker than a graded artifact; they also break several written rules (page limits, title-page numbering), and the handout wins where they disagree. Homework format is inferred from handwritten scans, and margin size has no evidence at all."
   },
   "course_policy": {
     "source": "none found (no syllabus in the archive)",
@@ -661,10 +661,11 @@
           "id": "weekly-set",
           "must_contain": [
             "problems in the assigned order",
-            "non-EES problems worked by hand, observed written directly on the printed prompt",
-            "printed EES code with key answers visible, for problems the set assigns to EES"
+            "printed EES code with key answers visible, for problems the set assigns to EES",
+            "for a problem solved in more than one tool, each solve printed and the results compared rather than one silently replacing the other"
           ],
-          "evidence_note": "The per-set header instructions are the only written spec. Completed non-EES work exists only as handwritten scans with no text layer; the handwriting is the student's own, not instructor feedback."
+          "tool_note": "Hand work is common for problems the set does not assign to EES, and the archive shows those written directly on the printed prompt. It is not the only alternative to EES, so do not treat the choice as EES-or-hand. The archive also shows a spreadsheet used to tabulate and plot results a solver produced, and a CAD thermal simulation used to re-solve a conduction problem that had already been solved numerically. Follow whatever the set assigns; where it assigns nothing, the tool is the student's choice.",
+          "evidence_note": "The per-set header instructions are the only written spec. Completed non-EES work exists only as handwritten scans with no text layer; the handwriting is the student's own, not instructor feedback. The multi-tool pattern is observed in the student's own files, not stated in any instructor document. One of those files is a simulation of a part that a numerical solve elsewhere in the archive also covers, but it is a steady-state run filed with the following week's set and dated between the two, so which set it was submitted with is ambiguous."
         }
       ],
       "deliverables": [
@@ -674,6 +675,18 @@
         "Each EES problem prints its givens with units, its solution blocks in problem-part order, and the requested answers as key variables.",
         "Where the prompt supplies an answer, the solution reproduces it or explains the difference."
       ],
+      "textbook_references": {
+        "book_identified": false,
+        "book_note": "The labels below were collected from the student's own working files, and none of those files names the textbook by title or edition, so the labels are not resolved to a book here. That is the limit of what was searched, not a claim that the archive identifies no book; the course document set has not been read for this purpose. Table and example labels are not unique across the books this course pair uses: the same label denotes different tables in different books. Never resolve one of these labels against a book the student has not confirmed, and never cite a value read from one.",
+        "cited_by_course_files": [
+          "Table 10-3, for the surface-fluid combination constant and the fluid exponent in the nucleate-boiling correlation",
+          "Table 10-4, for the critical-heat-flux constant of a small horizontal cylinder",
+          "Table 13-1, for the view factor between coaxial parallel disks",
+          "a worked example in chapter 13, reused by the course as a radiation-network demonstration"
+        ],
+        "chapters_seen": "Homework sets span radiation surface properties, two-dimensional conduction, boiling, and radiation enclosure networks; the chapter numbers attached to those topics in the course's own files are 10 for boiling and 13 for radiation.",
+        "basis": "Labels quoted in the course's own working files. The labels are recorded as the course wrote them; no textbook was opened to check them, and no value was copied from one."
+      },
       "exemplars": []
     }
   ],
@@ -683,6 +696,7 @@
   "not_covered": [
     "Exams: only scope sheets exist in the archive and exams produce no take-home deliverable.",
     "Homework page format: no written specification and no machine-readable completed hand solutions.",
+    "Homework solution methods: the sets range well beyond the two labs, over radiation surface properties, two-dimensional steady and transient conduction, boiling, and radiation enclosure networks. Every method entry in this pack is a lab method or the general shape of an EES homework solution, so this pack states no method for those topics. Treat that as absent, not as covered by the lab methods. The gap is unmined rather than unfillable: instructor problem statements for most weeks of the term do exist in the student's course archive, with readable text, and have not been read into this pack yet.",
     "Instructor feedback or grades on any submission."
   ],
   "attestation": {

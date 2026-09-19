@@ -10,7 +10,7 @@ Solve with the course method and assumptions, using scripts for numerical calcul
 Start from the JSON structures in `.calvin-autonomy/templates/`. Structure the current assignment with `assignment.json` before matching; every field must come from the current assignment or reviewed same-course evidence. Register a reviewed course profile before the first assignment; its evidence must resolve against the same-course catalog. A complete command sequence is:
 
 1. `.calvin-autonomy/bin/coursework --workspace workspace ingest COURSE_MATERIALS --course COURSE_ID`
-2. `.calvin-autonomy/bin/coursework --workspace workspace search "assignment topic and method" --course COURSE_ID`
+2. `.calvin-autonomy/bin/coursework --workspace workspace search "assignment topic and method" --course COURSE_ID`. Read `status` before anything else. A search that found nothing carries no `results`, and only `no_match` means the course's own material was searched and does not contain it; `nothing_indexed` and `no_catalog` mean nothing was searched, so neither is evidence that the material does not exist. Follow the `next` field rather than filling the gap from general knowledge.
 3. After reviewing an unreviewed controlling source, `.calvin-autonomy/bin/coursework --workspace workspace evidence-review --course COURSE_ID --document-id DOCUMENT_ID --locator LOCATOR --notes "CONCRETE REVIEW NOTES"`
 4. `.calvin-autonomy/bin/coursework --workspace workspace profile-set COURSE_PROFILE.json --course COURSE_ID`, then copy the hash from `profile-show --course COURSE_ID` into the plan
 5. `.calvin-autonomy/bin/coursework --workspace workspace start ASSIGNMENT_FILE --course COURSE_ID --run-id RUN_ID`

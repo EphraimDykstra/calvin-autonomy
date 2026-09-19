@@ -70,6 +70,10 @@ _REGISTRY: dict[str, tuple[float, tuple, float | None]] = {
     "ft": (0.3048, _LENGTH, None),
     # time
     "s": (1.0, _TIME, None),
+    # "us" is the ASCII spelling of the microsecond, the way "deltaC" spells a
+    # Celsius difference: course files are plain text and do not carry the
+    # micro sign reliably.
+    "us": (1e-6, _TIME, None),
     "min": (60.0, _TIME, None),
     "h": (3600.0, _TIME, None),
     "hr": (3600.0, _TIME, None),
@@ -127,8 +131,23 @@ _REGISTRY: dict[str, tuple[float, tuple, float | None]] = {
     "ohms": (1.0, _RESISTANCE, None),
     # frequency and rotation
     "Hz": (1.0, _d(T=-1), None),
+    "kHz": (1e3, _d(T=-1), None),
     "RPM": (2 * math.pi / 60.0, _d(T=-1), None),
 }
+
+# The decibel is deliberately absent, and this note is here so it is not added
+# as an oversight.  dB is logarithmic, and every unit here is (factor,
+# dimension, offset) read linearly as value*factor + offset, so registering it
+# would make wrong conversions look right: 20 dB would convert to 20 V/V
+# rather than 10, and 6 dB to 600 percent.  Those two could be stopped with a
+# guard in `convert`, like the one that refuses a temperature difference on an
+# offset scale.  The one that cannot be stopped here is arithmetic: a review
+# takes an input's unit standalone and adds it linearly, so "3 dB + 3 dB = 6
+# dB" would be checked as correct, and the dimension comparison that would
+# have to catch it lives in review.py and calculations.py, not in this file.
+# Refusing dB is therefore the honest answer until it can be given a dimension
+# nothing else matches; a unit that parses and then converts wrongly is worse
+# than one that does not parse.
 
 _TOKEN = r"[A-Za-z%][A-Za-z0-9_%]*(?:\^-?\d+(?:\.\d+)?)?"
 _SIDE = re.compile(rf"{_TOKEN}(?:[-*]{_TOKEN})*")

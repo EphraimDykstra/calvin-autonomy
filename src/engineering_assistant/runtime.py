@@ -3,17 +3,107 @@ from __future__ import annotations
 import json
 import zipfile
 from pathlib import Path
-from .common import atomic_json, digest, now, sha256, permitted_source, safe_relative
+from .common import atomic_json, digest, now, sha256, permitted_source, safe_relative, slug
 from .identity import run_identity
 from .evidence import NO_COURSE_EVIDENCE, resolve_evidence
 from .course_profile import load_course_profile
 from .verification import validate_verification_report
 from .ingest import extract_source_blocks
 
-def run_dir(workspace: Path, run_id: str) -> Path:
+RUNS_DIRNAME='assignments'
+
+def validate_run_id(run_id: str) -> str:
     if not isinstance(run_id,str) or not run_id or '/' in run_id or '\\' in run_id or run_id.startswith('.'):
         raise ValueError('invalid run id')
-    return Path(workspace)/'assignments'/run_id
+    return run_id
+
+# Characters that mean something to a filename pattern.  Nothing on the run-id
+# path globs any more, so an existing run named with one still loads; these are
+# refused only when a new id is minted, so the project stops creating ids that
+# read as patterns to whatever handles them next.
+PATTERN_CHARACTERS='*?['
+
+def validate_new_run_id(run_id: str) -> str:
+    """Validate an id for a run being created.
+
+    Stricter than `validate_run_id` on purpose, and used only at `start`.
+    Loading stays permissive because there is no migration: a run already named
+    `lab[1]` must keep opening, and tightening the read path would orphan it.
+    """
+    validate_run_id(run_id)
+    found=[c for c in PATTERN_CHARACTERS if c in run_id]
+    if found:
+        raise ValueError(
+            f"run id may not contain {' or '.join(repr(c) for c in found)}: "
+            "those characters read as a filename pattern rather than a name. "
+            "Use letters, digits, dashes or underscores."
+        )
+    return run_id
+
+def runs_root(workspace: Path) -> Path:
+    return Path(workspace)/RUNS_DIRNAME
+
+def course_dir(workspace: Path, course: str) -> Path:
+    """The one folder a course's runs live in: <workspace>/assignments/<course>.
+
+    Always derived from the workspace and never named by the student, so it
+    inherits the workspace's own refusal to sit inside the Claude Code plugin
+    store, which is replaced on update.  ``slug`` rejects separators, traversal
+    and leading dots, so no course string can place runs outside the workspace.
+    """
+    return runs_root(workspace)/slug(course)
+
+def workspace_of(run_root: Path) -> Path:
+    """The workspace holding a run, at either supported depth.
+
+    Checked nested-first so a course legitimately called ``assignments`` still
+    resolves.  Anything deriving a workspace by counting parents breaks silently
+    when the depth changes, which is why this is one function rather than an
+    expression repeated at each call site.
+    """
+    run_root=Path(run_root)
+    if run_root.parent.parent.name==RUNS_DIRNAME: return run_root.parent.parent.parent
+    return run_root.parent.parent
+
+def run_dir(workspace: Path, run_id: str, course: str | None = None) -> Path:
+    """Where a run lives.  With a course, where a new one is created.
+
+    Downstream commands do not take a course and must not have to: the student
+    names a run, and the run id alone finds it.
+    """
+    validate_run_id(run_id)
+    if course is not None: return course_dir(workspace,course)/run_id
+    return _resolve_run_dir(workspace,run_id)
+
+def _resolve_run_dir(workspace: Path, run_id: str) -> Path:
+    """Locate an existing run without being told its course.
+
+    Two layouts are supported deliberately and both must stay:
+
+      <workspace>/assignments/<course>/<run_id>/run.json   current
+      <workspace>/assignments/<run_id>/run.json            written before runs
+                                                           were course-scoped
+
+    The fall-through to the flat path is not a leftover.  It is the only thing
+    keeping runs a student made before this change loadable: there is no
+    migration, so those runs stay where they are forever.  Remove it and they
+    are orphaned silently, with no error to notice.  It doubles as the path a
+    genuinely missing run is reported against, which is why deleting it looks
+    harmless and is not: tests/test_course_folders.py covers the behaviour.
+
+    The search covers this one workspace's own assignment folders and nothing
+    else.  It never looks outside the workspace and never scans the machine.
+    A run id present under two courses is an error naming both, never a guess.
+    """
+    root=runs_root(workspace)
+    # Matched by name, never by glob.  A run id reaches this as data, and
+    # `*`, `?` and `[` are legal in one: passing it to glob would let `lab*`
+    # silently resolve to another course's `lab-3` and then be written back
+    # under that run's own id.  iterdir has no pattern semantics.
+    matches=sorted(d/run_id for d in root.iterdir() if d.is_dir() and (d/run_id/'run.json').is_file()) if root.is_dir() else []
+    if len(matches)>1:
+        raise ValueError(f"run id {run_id!r} exists in more than one course ({', '.join(p.parent.name for p in matches)}); the run id must be unique")
+    return matches[0] if matches else root/run_id
 
 def start_run(
     workspace: Path,
@@ -30,8 +120,15 @@ def start_run(
     The identity is stored only in this run's state.  Course catalogs and
     reusable matching examples never receive it.
     """
-    root=run_dir(workspace,run_id)
-    if (root/'run.json').exists(): raise ValueError('run id already exists')
+    # Minting an id, so the stricter rule applies here and nowhere else.
+    validate_new_run_id(run_id)
+    # A new run is bound to its course folder here, from the course the caller
+    # already had to supply.  Nothing else in the pipeline asks for it again.
+    root=run_dir(workspace,run_id,course)
+    # Checked through the resolver rather than against this course's folder
+    # alone: an id already used by another course, or by a run made before runs
+    # were course-scoped, would leave both unfindable by id.  Refuse it instead.
+    if (_resolve_run_dir(workspace,run_id)/'run.json').is_file(): raise ValueError('run id already exists')
     root.mkdir(parents=True,exist_ok=True)
     if not input_path.is_file() or input_path.is_symlink() or not permitted_source(input_path): raise ValueError('assignment must be a permitted regular file')
     target=root/'input'/input_path.name; target.parent.mkdir(parents=True,exist_ok=True)
@@ -70,7 +167,7 @@ def _note_discarded(state:dict,operation:str,names,extra=())->list[str]:
 
 def _course_evidence_blockers(state:dict,root:Path)->list[str]:
     """Resolve plan evidence against the current assignment or course catalog."""
-    workspace=root.parent.parent
+    workspace=workspace_of(root)
     return [
         f"plan {message}"
         for message in resolve_evidence(
@@ -295,7 +392,7 @@ def readiness(state:dict, root:Path | None=None)->dict:
             blockers.append(message)
             if message==f'plan {NO_COURSE_EVIDENCE}': course_gaps.add(message)
         try:
-            profile=load_course_profile(root.parent.parent,state.get('course',''))
+            profile=load_course_profile(workspace_of(root),state.get('course',''))
             if state.get('plan',{}).get('course_profile_sha256')!=digest(profile):
                 blockers.append('plan course profile is missing or stale')
         except FileNotFoundError:

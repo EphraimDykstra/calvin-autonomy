@@ -13,6 +13,7 @@ refused rather than loaded with a permissive default.
 from __future__ import annotations
 
 import json
+import math
 import re
 from pathlib import Path
 from typing import Any
@@ -48,6 +49,46 @@ SHARED_DIR = "_shared"
 DEFAULT_CURRICULUM = Path(__file__).resolve().parents[2] / "curriculum"
 
 _REQUIRED_TOP_LEVEL = ("schema_version", "coverage", "course_policy")
+
+# Every top-level block a course pack may carry.  An exam profile shipped
+# unvalidated because this set did not exist: an unknown key was silently
+# kept, so a new block arrived with no schema, no check and no reviewer
+# deciding it was sound.  Closing the set does not validate the blocks
+# already in it; it makes the next one a deliberate change.
+PACK_TOP_LEVEL_KEYS = frozenset({
+    "schema_version", "course", "coverage", "course_policy",
+    "assignment_families", "format", "methods", "gaps", "magnitudes",
+    "exam_profile", "evidence_tiers", "related_packs", "not_covered",
+    "attestation",
+})
+
+# A tool pack describes a tool, not a course, so it carries a different set.
+# Holding it to the course set would refuse every tool pack that ships.
+TOOL_PACK_TOP_LEVEL_KEYS = frozenset({
+    "schema_version", "pack", "coverage", "conventions", "methods", "exemplars",
+})
+
+# A magnitude entry is a plausibility bound, and every field of it is load
+# bearing at review time: review.py finds an entry by `quantity`, converts the
+# student's answer into `unit`, and tests it against `typical_range`.
+MAGNITUDE_KEYS = frozenset({"quantity", "unit", "typical_range", "basis", "note"})
+
+# The basis has to say which kind of bound this is.  Physics dressed as course
+# convention is the specific false claim this field must not make: a student
+# told the course requires a value learns a rule that does not exist, and one
+# told physics permits a value learns the opposite.
+MAGNITUDE_BASIS_KINDS = ("Physical plausibility", "Handout", "Course method")
+
+
+def _check_top_level_keys(pack: dict[str, Any], allowed: frozenset[str], where: str) -> None:
+    unknown = sorted(set(pack) - allowed)
+    if unknown:
+        listed = ", ".join(repr(key) for key in unknown)
+        raise CurriculumError(
+            f"{where}: unknown top-level key{'s' * (len(unknown) != 1)} {listed}; "
+            "adding a top-level block requires a schema change that declares the "
+            "key and checks what it holds, or it ships with nothing validating it"
+        )
 
 
 class CurriculumError(Exception):
@@ -178,6 +219,298 @@ def _check_pipeline_support(pack: dict[str, Any], where: str) -> None:
             )
 
 
+# ---------------------------------------------------------------------------
+# Exam profiles.
+#
+# A profile describes the SHAPE of a course's assessments: how many problems,
+# what each one is about, how points fall, how long, what aids are allowed,
+# what the exam's own instructions demand.  It never holds content.  Not a
+# problem statement, not a number out of a problem, not an answer, not a
+# paraphrase close enough to rebuild one.
+#
+# The boundary is enforced structurally, by a closed key set at every level.
+# That is a real mechanism and a limited one: it makes a field named for
+# content impossible to add without a schema change a reviewer sees, and it
+# cannot tell that honest prose has been used to smuggle a question in.
+# Reading a profile is still a review step; the loader guarantees the shape.
+
+# What the profile's claims rest on.  Parallel to POLICY_CONFIDENCE, and for
+# the same reason: a claim that cannot be stated as documented must say so
+# rather than read as documented.
+EXAM_CONFIDENCE = frozenset({"stated", "inferred", "unverified"})
+
+# The blocks that assert something about a real assessment.  A profile whose
+# material has not been established as genuine may not make these claims: a
+# file named like a real final turned out to be machine-generated practice,
+# and its shape claims would have been false in every particular.
+EXAM_SHAPE_CLAIMS = ("assessments", "aids_provided", "question_shape")
+
+EXAM_PROFILE_KEYS = frozenset({
+    "basis", "status", "confidence", "not_documented",
+    "assessments", "aids_provided", "question_shape", "instructor_remarks",
+    "quizzes", "stated_rules", "pre_submission_checklist",
+    "practice_generation_note",
+})
+
+# ``id`` and ``source`` are required; the rest are checked when stated.
+EXAM_ASSESSMENT_KEYS = frozenset({
+    "id", "source", "placement", "chapters", "topics",
+    "question_count", "points", "time_limit", "note",
+})
+
+EXAM_AIDS_KEYS = frozenset({
+    "equation_sheet", "calculator", "open_note", "time_limit", "not_documented",
+})
+
+EXAM_QUESTION_SHAPE_KEYS = frozenset({"type", "source", "from_exam", "note"})
+
+# Topics and question types are labels, not prose.  A bound on a label is a
+# structural limit, unlike a word list, and a label is where "a problem about
+# a 2 m bar loaded to 40 kN" would first try to fit.
+SHAPE_LABEL_MAX = 160
+
+
+def _closed_keys(mapping: dict[str, Any], allowed: frozenset[str], where: str) -> None:
+    """Refuse a key the schema does not know.
+
+    An unknown key is how an exam profile shipped unvalidated in the first
+    place, and for this block it is the exact failure to prevent: an unknown
+    key is where a problem statement or an answer would arrive.
+    """
+    unknown = sorted(set(mapping) - allowed)
+    if unknown:
+        listed = ", ".join(repr(key) for key in unknown)
+        raise CurriculumError(
+            f"{where}: unknown key{'s' * (len(unknown) != 1)} {listed}; "
+            "an exam profile holds shape, never content"
+        )
+
+
+def _require_text(mapping: dict[str, Any], key: str, where: str) -> None:
+    value = mapping.get(key)
+    if not isinstance(value, str) or not value.strip():
+        raise CurriculumError(f"{where}: needs a non-empty {key}")
+
+
+def _check_stated_text(mapping: dict[str, Any], keys, where: str) -> None:
+    """A field that is present must say something.
+
+    An unknown value is omitted, or named in not_documented.  An empty string
+    claims neither, and reads downstream as an answered question.
+    """
+    for key in keys:
+        if key in mapping:
+            _require_text(mapping, key, f"{where}: {key}")
+
+
+def _check_label_list(value: Any, where: str) -> None:
+    if not isinstance(value, list):
+        raise CurriculumError(f"{where} must be a list")
+    for item in value:
+        if not isinstance(item, str) or not item.strip():
+            raise CurriculumError(f"{where}: every entry must be a non-empty string")
+        if len(item) > SHAPE_LABEL_MAX:
+            raise CurriculumError(
+                f"{where}: an entry is longer than {SHAPE_LABEL_MAX} characters; "
+                "these are labels, and a profile never carries a question"
+            )
+
+
+def _check_exam_assessment(entry: Any, where: str) -> None:
+    entry = _require_mapping(entry, where)
+    _closed_keys(entry, EXAM_ASSESSMENT_KEYS, where)
+    # Every assessment names its own provenance, at the granularity the
+    # evidence has.  A profile-level basis cannot say which document placed
+    # which test.
+    for key in ("id", "source"):
+        _require_text(entry, key, f"{where}: {key}")
+    _check_stated_text(entry, ("placement", "chapters", "points", "time_limit", "note"), where)
+    if "topics" in entry:
+        _check_label_list(entry["topics"], f"{where}: topics")
+    # A count reads either way in the evidence: "5" on a cover sheet, "five
+    # problems, one per chapter" in a slide.  Both are honest; a blank is not.
+    if "question_count" in entry:
+        count = entry["question_count"]
+        counted = isinstance(count, int) and not isinstance(count, bool) and count > 0
+        described = isinstance(count, str) and bool(count.strip())
+        if not (counted or described):
+            raise CurriculumError(
+                f"{where}: question_count must be a positive integer or a non-empty string"
+            )
+
+
+def _check_question_shape(entry: Any, where: str) -> None:
+    entry = _require_mapping(entry, where)
+    _closed_keys(entry, EXAM_QUESTION_SHAPE_KEYS, where)
+    for key in ("type", "source"):
+        _require_text(entry, key, f"{where}: {key}")
+    _check_label_list([entry["type"]], f"{where}: type")
+    _check_stated_text(entry, ("note",), where)
+    # A shape drawn from a lecture example or a lab sheet is not a shape seen
+    # on an exam.  Both are worth recording and they are different claims, so
+    # the distinction is a required field rather than a naming convention that
+    # erodes the first time someone mines a real test.
+    if not isinstance(entry.get("from_exam"), bool):
+        raise CurriculumError(
+            f"{where}: from_exam must be true or false; a shape seen in course "
+            "materials is not a shape seen on an exam"
+        )
+
+
+def _check_exam_profile(pack: dict[str, Any], where: str) -> None:
+    """Hold an exam profile to its own claims, or refuse the pack.
+
+    The block is optional: most courses have no exam evidence, and an absent
+    profile is an honest absence.  A profile that is present is checked in
+    full.  Ignoring it, which is what happened before this existed, leaves
+    data claiming to describe an exam with nothing establishing that the
+    claim is honest.
+    """
+    if "exam_profile" not in pack:
+        return
+    where = f"{where}: exam_profile"
+    profile = _require_mapping(pack["exam_profile"], where)
+    _closed_keys(profile, EXAM_PROFILE_KEYS, where)
+
+    # An unsourced profile is impossible by construction: basis is required,
+    # and must say what the profile rests on.
+    for key in ("basis", "status"):
+        _require_text(profile, key, f"{where}: {key}")
+
+    confidence = profile.get("confidence")
+    if confidence not in EXAM_CONFIDENCE:
+        allowed = ", ".join(sorted(EXAM_CONFIDENCE))
+        raise CurriculumError(
+            f"{where}: confidence is {confidence!r}, expected one of {allowed}"
+        )
+
+    # not_documented is required, and required to name something.  A field
+    # left absent reads as zero rather than as unknown, which is how a profile
+    # quietly overclaims.  An empty list is a claim of completeness with
+    # nothing behind it.
+    not_documented = profile.get("not_documented")
+    _check_label_list(not_documented, f"{where}: not_documented")
+    if not not_documented:
+        raise CurriculumError(
+            f"{where}: not_documented must name at least one thing the evidence "
+            "does not establish"
+        )
+
+    # The consequence rule.  Unverified material may be recorded, but it may
+    # not describe an assessment: that is the whole lesson of a plausible
+    # looking exam file that no instructor ever issued.
+    if confidence == "unverified":
+        for block in EXAM_SHAPE_CLAIMS:
+            if profile.get(block):
+                raise CurriculumError(
+                    f"{where}: confidence is 'unverified' but it carries {block}; "
+                    "material that cannot be established as genuine describes no exam"
+                )
+
+    _check_stated_text(profile, ("quizzes", "practice_generation_note"), where)
+    for key in ("instructor_remarks", "stated_rules", "pre_submission_checklist"):
+        if key in profile:
+            value = profile[key]
+            if not isinstance(value, list):
+                raise CurriculumError(f"{where}: {key} must be a list")
+            for index, item in enumerate(value):
+                if not isinstance(item, str) or not item.strip():
+                    raise CurriculumError(
+                        f"{where}: {key}[{index}] must be a non-empty string"
+                    )
+
+    for index, entry in enumerate(profile.get("assessments", []) or []):
+        _check_exam_assessment(entry, f"{where}: assessments[{index}]")
+
+    if "aids_provided" in profile:
+        aids = _require_mapping(profile["aids_provided"], f"{where}: aids_provided")
+        _closed_keys(aids, EXAM_AIDS_KEYS, f"{where}: aids_provided")
+        _check_stated_text(aids, sorted(EXAM_AIDS_KEYS), f"{where}: aids_provided")
+
+    for index, entry in enumerate(profile.get("question_shape", []) or []):
+        _check_question_shape(entry, f"{where}: question_shape[{index}]")
+
+
+def _check_magnitudes(pack: dict[str, Any], where: str) -> None:
+    """Hold every plausibility range to what a review will ask of it.
+
+    A range is a magnitude check, not a course rule.  A strain entered as 5
+    where 0.05 belongs is a valid dimensionless number that passes every
+    arithmetic and unit check, so only magnitude sense catches it.  That is
+    what makes the ranges worth shipping, and it is also what makes a bad one
+    dangerous: a host would flag a correct answer, and a student taught by
+    false alarms learns to ignore the check.
+
+    Checked here rather than only over the packs in this tree, because a pack
+    a student or a contributor adds is exactly the one no shipped-pack test
+    ever sees.
+    """
+    if "magnitudes" not in pack:
+        return
+    entries = pack["magnitudes"]
+    if not isinstance(entries, list):
+        raise CurriculumError(f"{where}: magnitudes must be a list")
+
+    # Imported here so loading a pack does not depend on the unit engine
+    # until there is actually a unit to read.
+    from .units import UnitError, parse_unit
+
+    seen: dict[str, int] = {}
+    for index, entry in enumerate(entries):
+        at = f"{where}: magnitudes[{index}]"
+        entry = _require_mapping(entry, at)
+        _closed_keys(entry, MAGNITUDE_KEYS, at)
+        for key in ("quantity", "unit", "basis", "note"):
+            _require_text(entry, key, f"{at}: {key}")
+
+        quantity = entry["quantity"]
+        at = f"{where}: magnitudes[{index}] ({quantity})"
+        # review.py takes the first entry whose quantity matches, so a second
+        # entry of the same name is unreachable: a range someone wrote, and
+        # believes is being applied, that never runs.
+        if quantity in seen:
+            raise CurriculumError(
+                f"{at}: quantity repeats magnitudes[{seen[quantity]}]; a review reads "
+                "the first match, so the later range would never be applied"
+            )
+        seen[quantity] = index
+
+        if not entry["basis"].startswith(MAGNITUDE_BASIS_KINDS):
+            kinds = ", ".join(repr(kind) for kind in MAGNITUDE_BASIS_KINDS)
+            raise CurriculumError(
+                f"{at}: basis must open with one of {kinds}; a bound has to say "
+                "whether physics or the course is what sets it"
+            )
+
+        bounds = entry["typical_range"]
+        if not isinstance(bounds, list) or len(bounds) != 2:
+            raise CurriculumError(f"{at}: typical_range must be a list of two numbers")
+        low, high = bounds
+        for bound in bounds:
+            if isinstance(bound, bool) or not isinstance(bound, (int, float)) or not math.isfinite(bound):
+                raise CurriculumError(f"{at}: typical_range bounds must be finite numbers")
+        # An inverted range is the dangerous direction: `low <= value <= high`
+        # is then false for every value, so a correct answer is flagged and
+        # the check teaches a student to ignore it.
+        if low >= high:
+            raise CurriculumError(
+                f"{at}: typical_range is {low} to {high}; an inverted or empty range "
+                "flags every answer, including the right one"
+            )
+
+        try:
+            parse_unit(entry["unit"])
+        except UnitError as exc:
+            # The pack may be right and the registry short.  Say so: a real
+            # bound deleted to get a pack loading is worse than a missing unit.
+            raise CurriculumError(
+                f"{at}: unit {entry['unit']!r} is not one the unit engine reads, so a "
+                f"review of this quantity would fail for the student instead of "
+                f"checking their answer ({exc}). Add the unit to the registry if the "
+                "bound is right."
+            ) from exc
+
+
 def load_pack(path: Path) -> dict[str, Any]:
     """Return the pack at ``path``, or raise ``CurriculumError``."""
     path = Path(path)
@@ -197,6 +530,8 @@ def load_pack(path: Path) -> dict[str, Any]:
         if key not in pack:
             raise CurriculumError(f"{where}: is missing required key '{key}'")
 
+    _check_top_level_keys(pack, PACK_TOP_LEVEL_KEYS, where)
+
     version = pack["schema_version"]
     if version != SCHEMA_VERSION:
         raise CurriculumError(
@@ -207,6 +542,8 @@ def load_pack(path: Path) -> dict[str, Any]:
     _check_policy(pack["course_policy"], where)
     _check_pipeline_support(pack, where)
     _check_rendering(pack, where)
+    _check_exam_profile(pack, where)
+    _check_magnitudes(pack, where)
     return pack
 
 
@@ -227,6 +564,7 @@ def load_tool_pack(path: Path) -> dict[str, Any]:
         raise CurriculumError(f"{where}: is not valid JSON: {exc}") from exc
 
     pack = _require_mapping(pack, where)
+    _check_top_level_keys(pack, TOOL_PACK_TOP_LEVEL_KEYS, where)
     if pack.get("schema_version") != SCHEMA_VERSION:
         raise CurriculumError(
             f"{where}: schema_version is {pack.get('schema_version')!r}, "
@@ -254,6 +592,113 @@ def load_tool_pack(path: Path) -> dict[str, Any]:
         if not (path.parent / name).is_file():
             raise CurriculumError(f"{where}: exemplar file is missing: {name}")
     return pack
+
+
+# A textbook index is shared reference material: neither a course nor a tool,
+# and two courses may use one book.  It sits two levels under _shared with its
+# own file name, so neither pack glob can mistake it for a pack.
+BOOKS_DIR = "textbooks"
+BOOK_FILE = "book.json"
+
+BOOK_TOP_LEVEL_KEYS = frozenset({
+    "schema_version", "book", "pointer_policy", "addressing", "chapters", "appendix",
+})
+
+
+def _attached_packs(course: str, root: Path) -> list[str]:
+    """The installed packs a book's course entry reaches.
+
+    A book serves a course number, and one number can have a lecture pack and
+    a lab pack, so ``engr204`` reaches ``engr204`` and ``engr204-lab``.
+    """
+    return sorted(
+        pack_file.parent.name
+        for pack_file in Path(root).glob("*/pack.json")
+        if pack_file.parent.name == course or pack_file.parent.name.startswith(f"{course}-")
+    )
+
+
+def load_book(path: Path) -> dict[str, Any]:
+    """Return the textbook index at ``path``, or raise ``CurriculumError``.
+
+    The course-to-book edge lives here and nowhere else, so this is where it is
+    checked: a course entry that reaches no installed pack is a book that never
+    appears on its course's card, and nothing downstream would say so.
+    """
+    path = Path(path)
+    where = f"{path.parent.name}/{path.name}"
+    try:
+        book = json.loads(path.read_text(encoding="utf-8"))
+    except OSError as exc:
+        raise CurriculumError(f"{where}: cannot be read: {exc}") from exc
+    except json.JSONDecodeError as exc:
+        raise CurriculumError(f"{where}: is not valid JSON: {exc}") from exc
+
+    book = _require_mapping(book, where)
+    _check_top_level_keys(book, BOOK_TOP_LEVEL_KEYS, where)
+    if book.get("schema_version") != SCHEMA_VERSION:
+        raise CurriculumError(
+            f"{where}: schema_version is {book.get('schema_version')!r}, this build reads {SCHEMA_VERSION}"
+        )
+
+    record = _require_mapping(book.get("book"), f"{where}: book")
+    if record.get("id") != path.parent.name:
+        raise CurriculumError(
+            f"{where}: book.id is {record.get('id')!r} but its directory is {path.parent.name!r}; "
+            "a reference resolves by directory, so the two must not differ"
+        )
+    # No author is required: a citation may withhold one on purpose.
+    if not isinstance(record.get("citation"), str) or not record["citation"].strip():
+        raise CurriculumError(f"{where}: book needs a citation")
+    # The policy is the book's honesty statement, as coverage.notes is a pack's:
+    # an index that does not say it cannot check a value reads as one that can.
+    for field in ("pointer_policy", "addressing"):
+        if not isinstance(book.get(field), str) or not book[field].strip():
+            raise CurriculumError(f"{where}: {field} must say what this index can and cannot tell a student")
+
+    courses = record.get("courses")
+    if not isinstance(courses, list) or not courses or not all(isinstance(c, str) and c for c in courses):
+        raise CurriculumError(f"{where}: book.courses must name at least one course")
+    curriculum_root = path.parents[3]
+    for course in courses:
+        if not _attached_packs(course, curriculum_root):
+            raise CurriculumError(
+                f"{where}: book.courses names {course!r}, which matches no installed pack "
+                f"({course} or {course}-*); the book would never appear on a course's card"
+            )
+
+    for key, items in book.items():
+        if not isinstance(items, list):
+            continue
+        seen: set[str] = set()
+        for item in items:
+            item = _require_mapping(item, f"{where}: an entry in {key}")
+            item_id = item.get("id")
+            if not isinstance(item_id, str) or not item_id:
+                raise CurriculumError(f"{where}: an entry in {key} has no id")
+            if "." in item_id:
+                raise CurriculumError(
+                    f"{where}: {key} id {item_id!r} contains '.', which separates the parts of an "
+                    "address, so the entry could never be fetched"
+                )
+            if item_id in seen:
+                raise CurriculumError(f"{where}: {key} id {item_id!r} appears more than once")
+            seen.add(item_id)
+            if not isinstance(item.get("title"), str) or not item["title"].strip():
+                raise CurriculumError(f"{where}: {key}.{item_id} needs a title")
+            if not any(isinstance(item.get(k), str) and item[k].strip() for k in ("basis", "source")):
+                raise CurriculumError(f"{where}: {key}.{item_id} needs a basis saying how the pointer was verified")
+    return book
+
+
+def books_for_pack(pack_id: str, root: Path) -> list[str]:
+    """The ids of the books whose course entries reach ``pack_id``."""
+    found = []
+    for book_file in sorted((Path(root) / SHARED_DIR / BOOKS_DIR).glob(f"*/{BOOK_FILE}")):
+        courses = load_book(book_file)["book"]["courses"]
+        if any(pack_id in _attached_packs(course, root) for course in courses):
+            found.append(book_file.parent.name)
+    return found
 
 
 def load_tool_packs(root: Path) -> dict[str, dict[str, Any]]:
@@ -413,6 +858,16 @@ __all__ = [
     "TOOL_COVERAGE_DIMENSIONS",
     "COVERAGE_LEVELS",
     "POLICY_CONFIDENCE",
+    "EXAM_CONFIDENCE",
+    "BOOKS_DIR",
+    "BOOK_FILE",
+    "BOOK_TOP_LEVEL_KEYS",
+    "books_for_pack",
+    "load_book",
+    "PACK_TOP_LEVEL_KEYS",
+    "TOOL_PACK_TOP_LEVEL_KEYS",
+    "MAGNITUDE_KEYS",
+    "MAGNITUDE_BASIS_KINDS",
     "SCHEMA_VERSION",
     "CurriculumError",
     "coverage_report",

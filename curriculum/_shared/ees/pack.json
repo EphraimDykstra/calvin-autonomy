@@ -312,7 +312,7 @@
         "A guess near absolute zero sends property calls out of range and returns a mathematical but unphysical answer.",
         "Any thermo result below 200 K is suspect; EES properties are poorly defined there."
       ],
-      "basis": "ENGR 328 homework 7 and 11 sheets (limits, guesses); homework 12 sheet (emissivity); ENGR 333 final-exam handout (guesses over limits, block inconsistency)."
+      "basis": "ENGR 328 homework 7 and 11 sheets (limits, guesses); homework 12 sheet and an ENGR 328 lecture slide deck on radiation enclosure networks, two independent instructor sources for the emissivity substitution, the deck also giving the reason (the surface resistance goes to zero for a blackbody surface, so the nodal balance divides by zero); ENGR 333 final-exam handout (guesses over limits, block inconsistency)."
     },
     {
       "id": "magnitude-check",

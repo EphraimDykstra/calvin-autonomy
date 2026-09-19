@@ -103,10 +103,10 @@ def audit(root, forbidden_names=()):
         if p.is_file():
             try: text=p.read_text(errors='ignore')
             except OSError: continue
-            if re.search(r'/Users/[^\s"\']+',text): errors.append(f'personal path in {rel}')
-            scannable=_without_permitted(text)
-            if any(name.casefold() in scannable.casefold() for name in forbidden_names if isinstance(name,str) and name.strip()):
-                errors.append(f'forbidden name in {rel}')
+            # Same matcher as the pull-request text scan; see text_findings.
+            kinds={kind for kind,_ in text_findings(text,forbidden_names)}
+            if 'personal path' in kinds: errors.append(f'personal path in {rel}')
+            if 'forbidden name' in kinds: errors.append(f'forbidden name in {rel}')
             if rel.as_posix() in PLUGIN_MANIFESTS:
                 try:
                     problems=plugin_manifest_errors(rel.as_posix(), json.loads(text), forbidden_names)
@@ -147,8 +147,48 @@ def _without_permitted(text,permitted=None):
         text=text.replace(entry,'')
     return text
 
+PERSONAL_PATH=re.compile(r'/Users/[^\s"\']+')
+
+def text_findings(text,forbidden_names=()):
+    """Personal paths and forbidden names in one piece of text.
+
+    The one matcher.  `audit` scans tracked files and check_pr_text.py scans
+    a pull request's title, body and commit messages, and they have to agree:
+    two matchers drift, and the half that is wrong is the half nobody is
+    watching.
+
+    Returns a list of (kind, offset).  Never the matched text: a finding is
+    reported into a build log, and a log that names the name has published
+    exactly what the scan exists to keep out.
+    """
+    findings=[('personal path',m.start()) for m in PERSONAL_PATH.finditer(text)]
+    scannable=_without_permitted(text).casefold()
+    for name in forbidden_names:
+        if not isinstance(name,str) or not name.strip(): continue
+        position=scannable.find(name.casefold())
+        if position>=0: findings.append(('forbidden name',position))
+    return findings
+
+# The variable holds the names themselves, and a path to the file that holds
+# them looks exactly like one harmless name: it matches nothing, the scan
+# reports "1 name, clean", and the gate goes green having checked nobody.
+# Coordinators have written the wrong invocation into briefs more than once,
+# so refuse the mistake rather than trusting everyone to notice the count.
+def _refuse_a_path(raw):
+    one=raw.strip()
+    if not one or ';' in one or '\n' in one:
+        return
+    looks_like_path=one.startswith(('/','~','./','../')) or one.endswith(('.txt','.json','.env'))
+    if looks_like_path or Path(one).expanduser().exists():
+        raise ValueError(
+            f'{NAMES_ENV} holds the names themselves, semicolon separated, not a path to them. '
+            f'Got something that looks like a file: {one!r}. Read the file into the variable '
+            f'instead, as {NAMES_ENV}="$(cat <file>)", or the scan checks one nonsense name and '
+            'passes having checked nobody.')
+
 def forbidden_names_from_env(environ=None):
     raw=(os.environ if environ is None else environ).get(NAMES_ENV,'')
+    _refuse_a_path(raw)
     names=[n.strip() for n in re.split(r'[;\n]',raw) if n.strip()]
     for n in names: require_redactable(n,f'a name in {NAMES_ENV}')
     return names

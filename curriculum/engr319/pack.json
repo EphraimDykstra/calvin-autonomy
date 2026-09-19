@@ -11,7 +11,7 @@
     "format": "high",
     "methods": "high",
     "assignments": "partial",
-    "notes": "Lab memos and computer-problem reports are covered by a written instructor memo spec, two readable lab prompts, and completed examples, but homework survives only as prompts with bare answers, both exams and equation sheets are image-only scans, and the first computer-problem prompt is a scan, so its tool rules are inferred from the second."
+    "notes": "Lab memos and computer-problem reports are covered by a written instructor memo spec, two readable lab prompts, both computer-problem prompts, and completed examples. The first computer-problem prompt is an image-only scan with no text layer; it was read as an image, so its tool rules are now confirmed rather than inferred from the second. Homework survives only as prompts with bare answers in the location searched. Exams and equation sheets are image-only scans and are out of scope."
   },
   "course_policy": {
     "source": "syllabus (archived)",
@@ -21,7 +21,8 @@
     "permitted": [],
     "prohibited": [],
     "student_asked": null,
-    "professor_answer": null
+    "professor_answer": null,
+    "notes": "Course-wide policy is unknown and stays that way. One assignment family is not unknown: see assignment_families, computer-problem, ai_use, where the prompt itself prohibits AI assistance and the pack requires a hard stop. That is assignment-specific evidence and is not read across to labs or homework. A host reading this block must check that family before helping with a computer problem."
   },
   "format": {
     "deliverable": "technical memo",
@@ -140,8 +141,14 @@
     },
     "tooling": {
       "labs": "Excel for all data reduction and calculation, Word (equation editor) for the memo. The prompt discourages hand calculation.",
-      "computer_problems": "Any computational tool; the prompt names EES as preferred, with Mathcad, MATLAB, or Excel accepted. Use one property source throughout: either the tool's built-in property functions or the textbook tables, never both.",
-      "computer_problems_confidence": "stated in the second computer-problem prompt; the first prompt is an image-only scan and is assumed, not confirmed, to match",
+      "computer_problems": "EES preferred. Use one property source throughout: either the tool's built-in property functions or the textbook tables, never both. Both prompts state the preference and the no-mixing rule in their own words, so both are confirmed rather than inferred.",
+      "computer_problems_accepted_tools": {
+        "first_prompt": ["EES (preferred)", "Excel", "MathCad"],
+        "second_prompt": ["EES (preferred)", "Mathcad", "MATLAB", "Excel"],
+        "note": "The two prompts give different accepted lists: only the second names MATLAB. This is a real divergence between assignments, not an error, so it is recorded per prompt rather than merged. Follow the list in the prompt for the assignment at hand, and where it is silent, prefer EES.",
+        "hand_calculation": "The first prompt allows hand calculation as a check but grades only work done in the chosen application."
+      },
+      "computer_problems_confidence": "both prompts read directly; the first is an image-only scan with no text layer and was read as an image",
       "property_tables": "Cengel textbook appendix tables (SI and English), cited as the source when used",
       "source": "lab prompt + computer-problem prompt"
     },
@@ -290,8 +297,23 @@
         "State properties for a cycle are tabulated per state point with units, and the cycle is shown on a T-s or P-h diagram.",
         "The appendix computations are commented well enough to follow without the software."
       ],
+      "ai_use": {
+        "status": "prohibited",
+        "severity": "hard_stop",
+        "summary": "In the observed term the computer-problem prompt itself prohibited AI assistance. It framed the problem as a test, open book and open note but not open to other groups, and cited the engineering department's academic honesty policy, stating that violations would be prosecuted.",
+        "applies_to": "Every assignment in this family, including a draft, a partial model, a check of the student's own numbers, a rewrite of their text, and any help getting unstuck.",
+        "default_when_unknown": "Treat a computer problem in this course as prohibited unless the student's own current prompt for that assignment shows no such prohibition. The prohibition was read off one term's prompt; assume it carries forward, because being wrong in the restrictive direction costs the student nothing they cannot recover by showing the prompt.",
+        "required_behaviour": [
+          "Decline to produce, check, correct or unblock any part of the work for this family.",
+          "Say why in one or two sentences. Do not lecture, moralise, or repeat the refusal.",
+          "Name the one thing that lifts it: the student's own current prompt for this assignment showing no AI prohibition. The student's assurance on its own does not lift it; the prompt does.",
+          "Declining is not conditional on being asked directly. It applies when the request is framed as formatting, as a check, or as a question about method."
+        ],
+        "not_generalised": "This is the computer-problem prompt speaking for itself. It says nothing about labs or homework in this course, and it is not read across to them. See course_policy, which stays unknown for the course as a whole.",
+        "basis": "The first computer-problem prompt, an instructor document, read directly. The prompt is an image-only scan with no text layer and was read as an image."
+      },
       "exemplars": ["computer-problem-shape"],
-      "basis": "second computer-problem prompt (readable), first prompt (image-only scan), two completed group reports"
+      "basis": "both computer-problem prompts read directly (the first as an image, the second as text), and two completed group reports"
     },
     {
       "id": "weekly-homework",

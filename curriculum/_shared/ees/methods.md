@@ -144,7 +144,7 @@ Its personal tone rules (jokes, running asides) are also dropped. They are not c
 
 All rules come from these documents, cited by type. Nothing below is quoted beyond a few words, and no numbers come from submitted work.
 
-- **ENGR 328 lecture handouts:** the cycles-in-EES slide, the numerical-methods-in-EES handouts (1D and 2D), and the transient-conduction handout. These are the professor's own idiom and are weighted most heavily.
+- **ENGR 328 lecture handouts:** the cycles-in-EES slide, the numerical-methods-in-EES handouts (1D and 2D), the transient-conduction handout, and a radiation-enclosure-network deck whose worked solution is stated to come from EES. These are the professor's own idiom and are weighted most heavily.
 - **ENGR 328 homework sheets (weeks 1-12):** where EES is allowed, printout requirements, formation enthalpy and ideal-gas naming, element balances, guesses and limits, boiling-problem troubleshooting, and emissivity and `sigma#`.
 - **ENGR 328 A/C laboratory manual:** unit tags on formula constants, the psychrometric-function appendix, `x=0` versus tap water, and the R134a energy rate.
 - **ENGR 328 IC engine laboratory manual:** let EES convert units and look up properties, element balances, coefficient letters, `n-Octane`, formation enthalpy, mass versus molar mixing, and `N-m` versus `Nm` (a case-insensitive nanometre trap).

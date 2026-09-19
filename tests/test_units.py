@@ -70,6 +70,24 @@ class ParseUnitTests(unittest.TestCase):
             with self.subTest(unit=unit):
                 self.assertEqual(dimension_of(unit), dimension_of("Pa"))
 
+    def test_kilohertz_and_microseconds_read(self):
+        # Both were found missing while adding the magnitudes loader check:
+        # ordinary prefixed units that a signals or timing bound would use,
+        # refused only because nothing had needed them yet.
+        self.assertEqual(dimension_of("kHz"), dimension_of("Hz"))
+        self.assertEqual(dimension_of("us"), dimension_of("s"))
+        self.assertAlmostEqual(convert(2, "kHz", "Hz"), 2000.0)
+        self.assertAlmostEqual(convert(1500, "us", "s"), 0.0015)
+
+    def test_the_decibel_stays_refused(self):
+        # Logarithmic, and every unit here is read linearly as
+        # value*factor + offset.  Registering it would make 20 dB convert to
+        # 20 V/V rather than 10, and would let a review check "3 dB + 3 dB =
+        # 6 dB" as correct arithmetic.  Refusing is the honest answer until
+        # dB can be given a dimension nothing else matches.
+        with self.assertRaises(UnitError):
+            parse_unit("dB")
+
     def test_unknown_unit_is_refused_rather_than_guessed(self):
         # "KW" could be kilowatt or kelvin-watt.  Guessing is how a wrong
         # conversion looks correct, so an unrecognised unit refuses.
