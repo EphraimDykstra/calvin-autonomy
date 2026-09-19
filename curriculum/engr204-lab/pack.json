@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "engr204-lab",
+    "code": "ENGR 204 Lab",
+    "title": "Circuit Analysis and Electronics Laboratory",
+    "professor": null,
+    "terms_observed": ["Spring 2025"]
+  },
+  "coverage": {
+    "format": "high",
+    "methods": "partial",
+    "assignments": "partial",
+    "notes": "The formal lab report is well specified by the department report standards and an instructor-written report template with embedded guidance, but only one completed formal report exists, the short-form reports rest on two submissions with the instructor template missing, the weekly digital-logic worksheets carry handwritten answers with no text layer, and no syllabus was found."
+  },
+  "course_policy": {
+    "source": "none found",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this course was found in the archive.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "format": {
+    "deliverable": "formal engineering lab report (analog labs); short-form lab report (design-project labs)",
+    "precedence": [
+      "the specific lab assignment",
+      "the instructor's report template and the guidance text inside it",
+      "the department report standards appended to the lab assignment",
+      "patterns observed in completed submissions"
+    ],
+    "page": {
+      "size": "letter",
+      "margins_in": 1,
+      "margin_note": "At least 1 inch on every side; figures and tables stay inside the margins.",
+      "source": "department standards + report template"
+    },
+    "typography": {
+      "line_spacing": 2.0,
+      "paragraph_separation": "Every paragraph break is visible: either an indented first line or an extra blank line.",
+      "large_table_exception": "In appendices, a smaller font is acceptable to keep a wide table on one page if it stays legible.",
+      "source": "report template"
+    },
+    "title_page": {
+      "required": true,
+      "fields": ["title", "author", "date", "course and lab section", "instructor", "experiment partner"],
+      "carries_abstract": false,
+      "source": "department standards + observed"
+    },
+    "abstract": {
+      "placement": "own page after the title page (the department standard allows the title page, but the observed convention is a separate page)",
+      "length": "one paragraph",
+      "content": "brief introduction, the kinds of experiments performed, and a summary of results without detailed numeric data",
+      "forbidden": ["references to figures or tables"],
+      "section_numbered": false,
+      "source": "department standards"
+    },
+    "page_numbering": {
+      "first_numbered_page": "the abstract page is page 1",
+      "appendices": "same margin and numbering rules as the body",
+      "source": "report template"
+    },
+    "body": {
+      "section_numbering": "outline style, up to three levels (1., 1.1, 1.2.1), built with Word heading styles",
+      "sections_template": [
+        "1. Introduction and Goals",
+        "1.1 Goals and Objectives",
+        "1.2 Background and Context",
+        "2. Experimental Procedure",
+        "2.1 Equipment Used",
+        "2.2 Experimental Setup",
+        "3. Experimental Results",
+        "3.1 Recorded Data",
+        "3.2 Data Analysis",
+        "4. Conclusion",
+        "Appendices"
+      ],
+      "sections_note": "The template's sections are a model. Different sections are acceptable when the author has a clear reason for them.",
+      "required_elements": ["purpose", "theory or analytical explanation", "analysis of results", "statement of accuracy and conclusions"],
+      "length": "Should not exceed about 8-10 written pages. The strongest reports run about 5 pages of text, excluding graphs, sketches, and tables.",
+      "no_flipping": "Figures necessary to follow the analysis stay in the body, not the appendices.",
+      "source": "department standards + report template"
+    },
+    "equations": {
+      "typeset_with": "Word equation editor",
+      "placement": "in the body, carried over from the pre-lab work",
+      "numbering_observed": "labeled Equation N in the lab templates",
+      "source": "lab assignment + pre-lab template"
+    },
+    "figures": {
+      "caption_position": "below",
+      "caption_pattern": "Figure N followed by a descriptive title",
+      "numbering": "sequential, each referenced by number in the text",
+      "plot_rules": [
+        "no title text inside the graph; the caption titles it",
+        "measured data as markers only, not connected by lines",
+        "simulation and equation data as smooth lines with no markers (solid, dashed, dotted)",
+        "every axis labeled with variable and units",
+        "logarithmic frequency axis for frequency sweeps",
+        "axis limits matched to the data range",
+        "a legend identifying every trace",
+        "distinguishable in black-and-white print"
+      ],
+      "schematics": "circuit diagrams from PSpice pasted into the body as captioned figures",
+      "source": "department standards + lab assignment"
+    },
+    "tables": {
+      "caption_position": "above",
+      "caption_pattern": "Table N followed by a descriptive title",
+      "rules": ["units on every quantity", "display precision set to a reasonable number of significant digits; ordinary notation is preferred over scientific when it stays readable"],
+      "source": "department standards + lab assignment"
+    },
+    "appendices": {
+      "contents": ["raw data", "sample calculations", "spreadsheet model tables", "PSpice exported data", "the source-resistance measurement procedure"],
+      "rules": [
+        "each appendix is referred to from the body",
+        "large tables fit the page width rather than splitting across pages"
+      ],
+      "delivery": "appendices uploaded as a separate PDF alongside the Word report",
+      "source": "department standards + report template + lab assignment"
+    },
+    "voice": {
+      "person": "The department default is third person and past tense for what was done. The instructor template prefers active voice where possible without I or we, and allows we or I only as a last resort.",
+      "tense": "Past for procedure, present for discussing results, future for future work; one tense per paragraph.",
+      "style": "Report what was done. Do not rewrite the lab manual as instructions to the reader.",
+      "source": "department standards + report template"
+    },
+    "units_and_numbers": {
+      "units_everywhere": true,
+      "significant_digits": "set display precision to a reasonable number of significant digits; prefer ordinary notation over scientific when it stays readable",
+      "source": "department standards + lab assignment"
+    },
+    "terminology": {
+      "software_first_reference": "Give the simulator's full trademarked name on first reference and the short name after that, consistently capitalized.",
+      "source": "lab assignment"
+    },
+    "tooling": {
+      "calculation": "Excel for equation-based models and measured-data reduction",
+      "simulation": "Cadence PSpice (Schematics) for ideal and realistic circuit models",
+      "writing": "Microsoft Word with the equation editor",
+      "source": "lab assignment"
+    },
+    "submission": {
+      "draft": "A good draft goes to lab for peer review against a rubric, in three printed copies with the name page omitted. The draft .docx is also uploaded.",
+      "final": "Word report plus an appendices PDF",
+      "file_naming": "[StudentName]_Report_204L[section letter].docx",
+      "individual_work": "Measured data may be shared with a lab partner. Graphs, tables, analysis, and prose are individual.",
+      "source": "lab assignment + report template"
+    }
+  },
+  "methods": [
+    {
+      "id": "model-simulation-measurement-comparison",
+      "title": "Three-way comparison: equation model, simulation, measurement",
+      "when": "Analog labs that predict a frequency response (resonance, filters, amplifiers) and then measure it.",
+      "steps": [
+        "Measure the actual component values (DMM for R, bridge for L and small C) before modeling.",
+        "Build the equation model in Excel from the transfer function, in an ideal version and a realistic one that includes source and parasitic resistances, using the measured values.",
+        "Simulate the same ideal and realistic circuits in PSpice and copy the trace data into the spreadsheet.",
+        "Measure output amplitude across the sweep, with extra points near the feature of interest (resonance or corner).",
+        "Convert every data set to gain on the same basis (V/V or dB = 20 log10 of Vout/Vin).",
+        "Plot all sets on one log-frequency graph: measured data as markers, models as lines.",
+        "Discuss each comparison the assignment enumerates in its own paragraph."
+      ],
+      "pitfalls": [
+        "Leaving nominal-value models in the final report after the lab says to use measured values only.",
+        "Taking input amplitude from the function generator display instead of the oscilloscope.",
+        "Confusing peak and peak-to-peak amplitude when setting or reading the input.",
+        "Several ground points in the circuit, which can short components.",
+        "Overlapping traces left unexplained; say so in the text when two models coincide."
+      ]
+    },
+    {
+      "id": "source-resistance",
+      "title": "Function-generator output resistance",
+      "when": "Any lab where the source's internal resistance enters the realistic model.",
+      "steps": [
+        "Measure the open-circuit output with the oscilloscope.",
+        "Load the source with a known measured resistor and measure the loaded voltage.",
+        "Solve the voltage divider for the internal resistance.",
+        "Repeat on the specific bench generator in use, because units differ.",
+        "Summarize the method in the body and put the full procedure in an appendix."
+      ],
+      "pitfalls": [
+        "Reusing a value measured on a different generator.",
+        "Re-adjusting the input amplitude after connecting the circuit; set it once, before connecting."
+      ]
+    },
+    {
+      "id": "tolerance-range",
+      "title": "Nominal, tolerance range, measured",
+      "when": "Design labs where component choice drives a performance spec (gain, corner frequency).",
+      "steps": [
+        "Compute the ideal component values from the design equations.",
+        "Choose the nearest available nominal values.",
+        "Compute the worst-case minimum and maximum performance from the component tolerances, pairing the extremes that push the result furthest each way.",
+        "Measure the actual components and recompute.",
+        "Compare design goal, nominal, tolerance range, simulated, and measured values in one table."
+      ],
+      "pitfalls": [
+        "Pairing tolerance extremes the wrong way, so the reported range is too narrow.",
+        "Reporting more significant digits than the tolerances justify."
+      ]
+    },
+    {
+      "id": "first-order-active-filter-design",
+      "title": "First-order active filter design",
+      "when": "Op-amp design-project labs.",
+      "steps": [
+        "Take the filter type, pass-band gain, and corner frequency from the assignment's parameter procedure.",
+        "Fix the capacitor, then solve the gain and corner-frequency expressions for the two resistors.",
+        "Carry through the tolerance-range method.",
+        "Simulate the nominal and actual circuits with the simple op-amp model, then read the pass-band gain and the frequency where gain falls to 0.707 of it.",
+        "Build and measure the circuit, and plot the simulated traces as lines with the measured points as markers."
+      ],
+      "pitfalls": [
+        "Reversing the op-amp supply rails, which can destroy the part.",
+        "Expecting the simple op-amp model to show high-frequency roll-off; it does not, unlike the detailed 741 model."
+      ]
+    }
+  ],
+  "assignment_families": [
+    {
+      "id": "formal-lab-report",
+      "title": "Formal analog lab report",
+      "stages": [
+        "pre-lab: equation and simulation models with nominal values",
+        "lab: measure components and the frequency response",
+        "re-model with measured values",
+        "good draft taken to peer review",
+        "final report"
+      ],
+      "deliverables": [
+        "Word report: title page, abstract page, numbered sections",
+        "appendices PDF: model tables, simulation data, measured data, procedures"
+      ],
+      "what_good_looks_like": [
+        "The abstract summarizes the experiments and the findings in one paragraph with no figure references and no detailed numbers.",
+        "The background section gives a reader with the same training what they need to follow the analysis, including the ideal and realistic circuit schematics as captioned figures.",
+        "The results graphs overlay every model and the measurement on a log axis, with markers for data, lines for models, and a legend.",
+        "The analysis has at least one paragraph per comparison the assignment lists, explaining discrepancies and naming error sources.",
+        "The conclusion ties the results back to the stated goals and suggests follow-up work.",
+        "Appendices are referenced from the body, and each data table fits on its page."
+      ],
+      "exemplars": ["formal-lab-report-shape"],
+      "basis": "department report standards and report instructions in the lab assignment, the instructor report template's guidance text, one completed formal report"
+    },
+    {
+      "id": "short-form-lab-report",
+      "title": "Short-form lab report (op-amp and filter design labs)",
+      "stages": ["simulate", "build and measure", "individual analysis and submission"],
+      "deliverables": ["a short report following the step list in the assignment"],
+      "what_good_looks_like": [
+        "A header block with title, author, lab section, and date.",
+        "The design requirements and the equations used to meet them, typeset.",
+        "The assignment's comparison table filled completely, with units and sensible digits.",
+        "One graph with simulated traces as lines and measured points as markers.",
+        "A sentence or two comparing each result to its design goal, which is what the assignment's analysis step asks for."
+      ],
+      "exemplars": [],
+      "basis": "two assignment prompts and two completed submissions. The prompts refer to an instructor template that is not in the archive, so the header and section layout here are observed, not specified."
+    },
+    {
+      "id": "weekly-digital-worksheet",
+      "title": "Weekly digital-logic turn-in worksheet",
+      "stages": ["in-lab completion of a fill-in handout"],
+      "deliverables": ["completed worksheet (truth tables, Karnaugh maps, schematics)"],
+      "what_good_looks_like": [],
+      "exemplars": [],
+      "basis": "Handouts survive, but the answers were handwritten and have no text layer. This family's format is not covered."
+    }
+  ]
+}

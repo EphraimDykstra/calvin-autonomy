@@ -1,0 +1,10 @@
+{
+  "name": "schoolwork",
+  "displayName": "Calvin Schoolwork",
+  "description": "Lab memos, reports and problem sets for Calvin engineering courses, in the format each course expects, with EES help and checked numbers.",
+  "agents": [
+    "./.claude/agents/assignment-coordinator.md",
+    "./.claude/agents/assignment-verifier.md",
+    "./.claude/agents/course-profile-curator.md"
+  ]
+}

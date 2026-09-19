@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "engr202",
+    "code": "ENGR 202",
+    "title": "Statics and Dynamics",
+    "title_basis": "the archive folder and the assigned textbook; no course document states the title",
+    "professor": null,
+    "instructor_identified_from": "not identified: no course document survives",
+    "terms_observed": ["Spring 2024"]
+  },
+  "coverage": {
+    "format": "none",
+    "methods": "none",
+    "assignments": "none",
+    "notes": "The course folder has no syllabus, no assignment prompt, and no completed work. It holds three things. The assigned textbook, a publisher's text. The publisher's instructor solutions manual, which is proprietary and deliberately not used. And one personal test cheat sheet that is entirely images with no text layer. Nothing in the archive shows how this course's homework or tests were set, presented, or graded, and no copy of that material was found elsewhere. The real course material probably lived on Moodle and was never saved locally. A host must not infer a format from the textbook or the solutions manual."
+  },
+  "course_policy": {
+    "source": "none found",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this course was found. Ask the student to confirm the current policy with the instructor.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "gaps": {
+    "archive_holds": [
+      "the assigned textbook (publisher material, not a course document)",
+      "a publisher's instructor solutions manual (proprietary; not used)",
+      "one image-only personal cheat sheet"
+    ],
+    "missing": ["syllabus", "homework prompts", "completed or graded homework", "tests", "any statement of how solutions should be presented"],
+    "student_can_supply": [
+      "the homework assignment sheet, and one graded, returned problem set to fix the presentation",
+      "the syllabus, for the AI-use policy"
+    ],
+    "basis": "direct listing of the course folder and a search of the student's other cloud storage"
+  },
+  "assignment_families": []
+}

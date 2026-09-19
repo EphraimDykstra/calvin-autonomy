@@ -1,0 +1,51 @@
+//[Student Name]
+//ENGR 328 - THERMO 2
+//[Assignment] - [Problem]
+//Professor [Surname]
+//[Date]
+
+// ILLUSTRATIVE ONLY. Invented numbers; not an assigned problem.
+// Unit system is set in the GUI for ENGR 328 files: SI, mass basis, K, kPa, kJ.
+// Confirm it before solving - the temperature inputs below are tagged [K].
+
+//Givens
+fluid$ = 'Air'		//change the working fluid in one place
+r_p = 7			//pressure ratio
+eta_comp = 0.85		//isentropic efficiency, compressor
+
+//State 1 - compressor inlet
+P[1] = 96 [kPa]
+T[1] = 290 [K]
+h[1] = Enthalpy(fluid$, T=T[1])
+s[1] = Entropy(fluid$, T=T[1], P=P[1])
+
+//State 2s - compressor exit, isentropic reference
+P[2] = r_p * P[1]
+s2s = s[1]
+h2s = Enthalpy(fluid$, s=s2s, P=P[2])
+
+//State 2 - compressor exit, actual
+h[2] = h[1] + (h2s - h[1]) / eta_comp
+T[2] = Temperature(fluid$, h=h[2])
+s[2] = Entropy(fluid$, h=h[2], P=P[2])
+
+//State 3 - turbine inlet
+P[3] = P[2]
+T[3] = 1150 [K]
+h[3] = Enthalpy(fluid$, T=T[3])
+s[3] = Entropy(fluid$, T=T[3], P=P[3])
+
+//State 4 - turbine exit, isentropic for this sketch
+P[4] = P[1]
+s[4] = s[3]
+h[4] = Enthalpy(fluid$, s=s[4], P=P[4])
+T[4] = Temperature(fluid$, h=h[4])
+
+//Calcs - properties come from EES, not from cp*DELTAT or Pv=RT
+w_comp = h[2] - h[1]
+w_turb = h[3] - h[4]
+w_net = w_turb - w_comp
+q_in = h[3] - h[2]
+eta_th = w_net / q_in
+
+//Mark w_net and eta_th as Key Variables before printing.

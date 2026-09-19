@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "document_id": "00000000000000000000",
+  "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "provenance": {
+    "method": "local_ocr_then_manual_correction",
+    "tool": "replace with tool name",
+    "version": "replace with tool version",
+    "notes": "Compared every block with the named source page or image."
+  },
+  "blocks": [
+    {
+      "locator": "page:1",
+      "text": "Replace with the complete transcription for this exact locator."
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "chem101",
+    "code": "CHEM 101 / 101L",
+    "title": "General Chemistry (lecture and laboratory)",
+    "professor": null,
+    "instructor_identified_from": "the archived lecture syllabus names the lecture instructor; the lab syllabus lists several section instructors, and which one taught this student's section is not recorded",
+    "terms_observed": ["Fall 2023"]
+  },
+  "coverage": {
+    "format": "none",
+    "methods": "none",
+    "assignments": "partial",
+    "notes": "No lab report survives, and that is structural, not a filing gap. The archived lab syllabus says each report was written and handed in on paper before the end of the lab period, from a weekly lab manual posted online, which was not kept. It also says what the reports were graded on: correct calculations, units, significant figures, and reasonable answers to the questions, not the data itself. Lecture homework and daily quizzes were online. The in-class tests were handwritten on printed exams and are out of scope. The lecture syllabus describes an end-of-term sustainability essay, but its prompt was on Moodle and was not kept. One completed essay survives in a separate cloud folder, so the family is known but its length, citation, and format requirements are not. No format rule can be stated for anything in this course."
+  },
+  "course_policy": {
+    "source": "lecture and lab syllabi (archived, Fall 2023)",
+    "confidence": "unknown",
+    "term_observed": "Fall 2023",
+    "summary": "The archived syllabi cover collaboration, plagiarism, and cheating but contain no generative-AI statement. The current terms are unknown.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "gaps": {
+    "archive_holds": [
+      "the lecture syllabus and the lab syllabus (archived)",
+      "two completed in-class tests handwritten on printed exams, plus practice tests, a prior-year test, and one key",
+      "one completed sustainability essay, with no prompt"
+    ],
+    "missing": ["every lab manual chapter and report sheet", "every completed lab report", "the sustainability essay prompt", "online homework (never exported)"],
+    "why_structural": "Lab reports were completed and handed in on paper within the lab period, and homework lived on an online platform. Neither ever existed as a kept file.",
+    "student_can_supply": [
+      "the week's lab manual pages or report sheet, which are the whole structure of a lab report",
+      "the sustainability essay prompt from Moodle",
+      "the current syllabus, for the AI-use policy"
+    ],
+    "basis": "the archived lecture and lab syllabi, a direct listing of the course folder, and a search of the student's other cloud storage"
+  },
+  "assignment_families": [
+    {
+      "id": "lab-report-in-period",
+      "title": "Weekly lab report (101L), handed in at the end of the lab period",
+      "stages": ["open-book prelab quiz online before the lab", "the experiment in the lab period", "written report handed in before leaving"],
+      "deliverables": ["a paper report following that week's lab manual"],
+      "what_good_looks_like": [
+        "Every calculation is shown and correct.",
+        "Every quantity carries units.",
+        "Significant figures match the measurements.",
+        "Each question is answered reasonably and directly."
+      ],
+      "exemplars": [],
+      "basis": "The archived lab syllabus's statement of what reports are graded on. No report, lab manual, or report sheet survives, so structure and layout are unknown."
+    },
+    {
+      "id": "sustainability-essay",
+      "title": "End-of-term sustainability essay (lecture)",
+      "stages": ["chemistry chapels and sustainability discussions during the term", "essay at the end of the course"],
+      "deliverables": ["an essay drawing on the chapels and discussions"],
+      "what_good_looks_like": [],
+      "exemplars": [],
+      "basis": "The archived lecture syllabus says the essay exists and draws on the term's chapels and discussions. The prompt was on Moodle and was not kept. One completed essay survives, but without its prompt it cannot show what was required, so it is not used as an exemplar."
+    }
+  ]
+}

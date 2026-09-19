@@ -1,0 +1,24 @@
+---
+name: complete-assignment
+description: Execute a course-grounded engineering assignment through planning, evidence retrieval, reproducible checks, rendering, and verification.
+---
+
+Use when the student asks to complete an assignment and supplies the current requirements and course. The host supplies reasoning; use the project CLI for durable state and deterministic operations. Start by reading the original assignment and supporting files, then create a complete structured plan JSON covering every question, method, input, dependency, requirement, requested deliverable, and whether reproducible calculations are required. The started run contains bounded current-assignment blocks; cite their real locator and text hash rather than inventing a question label. Retrieve same-course evidence and reviewed examples. Search returns the durable review status with each document ID, source hash, locator, and text hash. If controlling evidence is unreviewed, visually compare that exact source location and record the review with `evidence-review`; never type `reviewed` into a plan to promote evidence.
+
+Solve with the course method and assumptions, using scripts for numerical calculations and preserving inputs, formulas, units, and check evidence. Never invent measurements, sources, requirements, or lab data. Declare every requested PDF, DOCX, or XLSX path in the plan; `render` builds and registers all declared artifacts. Run verification and visually inspect every artifact. Fill a separate structured inspection report from `.calvin-autonomy/templates/inspection.json` for each artifact; its path and hash must match the registered deliverable. A run is ready only when current input, plan, solution, checks, artifacts, and inspection records are current, every requirement is covered, reviewed same-course evidence resolves, requested formats parse correctly, and no unresolved item remains. Missing evidence blocks readiness and must enter the review queue. Execute mode produces the requested deliverables; it does not add quizzes or tutoring sections. Keep prose and sections concise.
+
+Start from the JSON structures in `.calvin-autonomy/templates/`. Structure the current assignment with `assignment.json` before matching; every field must come from the current assignment or reviewed same-course evidence. Register a reviewed course profile before the first assignment; its evidence must resolve against the same-course catalog. A complete command sequence is:
+
+1. `.calvin-autonomy/bin/coursework --workspace workspace ingest COURSE_MATERIALS --course COURSE_ID`
+2. `.calvin-autonomy/bin/coursework --workspace workspace search "assignment topic and method" --course COURSE_ID`
+3. After reviewing an unreviewed controlling source, `.calvin-autonomy/bin/coursework --workspace workspace evidence-review --course COURSE_ID --document-id DOCUMENT_ID --locator LOCATOR --notes "CONCRETE REVIEW NOTES"`
+4. `.calvin-autonomy/bin/coursework --workspace workspace profile-set COURSE_PROFILE.json --course COURSE_ID`, then copy the hash from `profile-show --course COURSE_ID` into the plan
+5. `.calvin-autonomy/bin/coursework --workspace workspace start ASSIGNMENT_FILE --course COURSE_ID --run-id RUN_ID`
+6. Fill `.calvin-autonomy/templates/assignment.json` from the current assignment, then run `.calvin-autonomy/bin/coursework --workspace workspace match STRUCTURED_ASSIGNMENT.json --course COURSE_ID`
+7. When a reviewed match exists, `.calvin-autonomy/bin/coursework --workspace workspace adapt CURRENT.json PRIOR.json --out ADAPTATION.json`
+8. `.calvin-autonomy/bin/coursework --workspace workspace accept-plan RUN_ID PLAN.json`
+9. `.calvin-autonomy/bin/coursework --workspace workspace render RUN_ID SOLUTION.json`
+10. `.calvin-autonomy/bin/coursework --workspace workspace verify RUN_ID`
+11. Have the assignment verifier build a report from `.calvin-autonomy/templates/verification.json`, then run `.calvin-autonomy/bin/coursework --workspace workspace verify-report RUN_ID VERIFICATION.json`
+12. Visually inspect each artifact and run `.calvin-autonomy/bin/coursework --workspace workspace inspect RUN_ID --artifact ARTIFACT_PATH --report INSPECTION.json` for each one
+13. `.calvin-autonomy/bin/coursework --workspace workspace status RUN_ID`

@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "engr209",
+    "code": "ENGR 209",
+    "title": "Material Balances and Fluid Mechanics",
+    "title_basis": "inferred from the course materials and the two assigned textbooks (an elementary chemical-process principles text and a fluid mechanics text); the catalog title was not found in the archive",
+    "professor": null,
+    "instructor_identified_from": "a lab memo title page and the take-home exam instructions; the exam names two instructors, so the course appears team-taught",
+    "terms_observed": ["Fall 2024"]
+  },
+  "coverage": {
+    "format": "partial",
+    "methods": "partial",
+    "assignments": "partial",
+    "notes": "Both graded deliverable families have a readable instructor prompt that states its format rules: the fluid-flow lab handout for the technical memo and the plant design project prompt for the group report. But the lab handout defers to 'Technical Memo instructions on Moodle', which were not kept, and each family has exactly one completed submission, both of which depart from their prompts. So the prompts are the rules here and the submissions are shape only. No syllabus survives. Homework left nothing readable. Three of the five exam files are image-only scans, and exams are out of scope anyway."
+  },
+  "course_policy": {
+    "source": "none found (no syllabus in the archive)",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this course was found in the archive. Ask the student to confirm the current policy with the instructors.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "format": {
+    "deliverable": "group technical memo (labs); group design report with a spreadsheet and hand-calculation appendix (design project)",
+    "precedence": [
+      "the specific lab handout or design project prompt",
+      "the course's Technical Memo instructions on Moodle (not retained; ask the student for them)",
+      "patterns observed in one completed memo and one completed design report, each of which departs from its prompt where noted below"
+    ],
+    "technical_memo": {
+      "authorship": "one memo per lab team of 3-4, written by the team with no data sharing across teams",
+      "audience": "a supervisor who needs the result to make a business decision: technical findings, not a diary of the experience",
+      "title_page": {
+        "required": true,
+        "fields": ["title", "[Student Name] for every team member", "ENGR 209 section", "group, bench or tube number, and the day, date, and time of the lab"],
+        "carries_abstract": true,
+        "abstract_content": "the key findings, with numbers, in a handful of sentences",
+        "source": "lab handout"
+      },
+      "body": {
+        "max_pages": 2,
+        "length_note": "The two pages after the title page are the most important material. Everything else goes in the appendices.",
+        "sections": ["Introduction/Background", "Method and Equipment", "Data/Results", "Analysis/Discussion", "Conclusions"],
+        "must_answer": "what the target values or relationships were, and the recommendation the company should use",
+        "no_handwriting": true,
+        "source": "lab handout"
+      },
+      "figures": {
+        "rules": ["units and axis labels on every graph", "a numbered caption on every figure", "a graph that visually shows the calibration result the handout asks for"],
+        "source": "lab handout"
+      },
+      "appendices": {
+        "contents": ["the scanned raw data sheet", "supporting data and calculations", "additional figures and photos"],
+        "raw_data_rule": "Record raw data in ink. Cross out mistakes so the original stays legible, and initial and date each correction.",
+        "hand_work": "photocopied data sheets and hand calculations are allowed in the appendices only",
+        "source": "lab handout"
+      },
+      "numbers": "reasonable significant figures throughout, with attention to accuracy and precision",
+      "observed_deviation": "The completed memo had no abstract on its title page, no figure captions, unit exponents written with ^, and a wrong unit on an axis. Every one of these breaks a handout rule. Follow the handout.",
+      "basis": "lab handout (readable) + one completed team memo"
+    },
+    "design_report": {
+      "authorship": "an instructor-assigned group of 3. Only members who made a substantial contribution are listed as authors.",
+      "purpose": "recommend the best operating procedure against the prompt's objective (minimum cost, maximum profit) under its constraints",
+      "results": "Present results as graphs and tables. The prompt says they condense the results and make them easy to understand.",
+      "appendix_required": ["the spreadsheet or program itself", "a hand calculation of one representative case that shows the spreadsheet is right"],
+      "numbers": "appropriate significant figures on every number; money in the prompt's stated form (millions of dollars per year)",
+      "observed_deviation": "The completed report narrated its failed attempts in order, put the hand work in as whiteboard photos, and linked to an online spreadsheet instead of including it. Each of these departs from the prompt. The prompt wins: recommend first, and put the spreadsheet and a clean hand calculation in the appendix.",
+      "basis": "design project prompt (readable) + one completed group report"
+    },
+    "paired_deliverable": {
+      "rule": "In the design project the spreadsheet is the engine and the hand calculation is its proof. Pick one representative case, such as a single operating day. Solve it by hand from the flow diagram and show the arithmetic with units. Then show the spreadsheet's result for the same case next to it. The report body presents the recommendation, and the graphs and tables that support it, from the spreadsheet's full-range results.",
+      "the_three_must_agree": "The hand-calculated case, the spreadsheet row for that case, and any number quoted in the body must all agree to the stated significant figures. If they differ, the spreadsheet is wrong until shown otherwise.",
+      "lab_memo_version": "In the lab memo the spreadsheet stays out of the body. The body carries the result and one graph, and the appendix carries the data sheet scan and a digested calculation table.",
+      "basis": "design project prompt + lab handout"
+    },
+    "tooling": {
+      "calculation": "a spreadsheet (a written program is allowed for the design project); equation-solving software such as EES is permitted on take-home work",
+      "writing": "a word processor exported to PDF",
+      "source": "prompts"
+    }
+  },
+  "methods": [
+    {
+      "id": "material-balance-dof",
+      "title": "Structured material balance with degree-of-freedom analysis",
+      "when": "Any multi-unit steady-state process problem: separators, mixers, reactors, recycle loops.",
+      "steps": [
+        "Draw a fully labeled process flow diagram. Give every stream its total flow and composition as known values or named unknowns.",
+        "State the basis of calculation.",
+        "Express what is asked for in terms of the labeled variables.",
+        "Do a degree-of-freedom analysis for the overall system and for each unit: count the unknowns, then subtract the independent balances and the given relations.",
+        "Choose a solution order that starts where the degrees of freedom are zero, and state it.",
+        "Solve, carrying units.",
+        "Check the answer, for example by confirming an overall balance you did not use closes, and say whether the result makes physical sense."
+      ],
+      "pitfalls": [
+        "Skipping the degree-of-freedom analysis. It is graded as its own step, not just a route to the answer.",
+        "Mixing mass and mole fractions, or using a separator ratio on the wrong stream.",
+        "Counting a dependent balance as independent."
+      ]
+    },
+    {
+      "id": "reactor-recycle-economics",
+      "title": "Reactor-with-recycle balance converted to daily economics",
+      "when": "A process with a reaction of stated fractional conversion, separations, a recycle, and prices given per unit mass, volume, or mole.",
+      "steps": [
+        "Write the reaction and relate the outlet flows to the extent of reaction from the fractional conversion.",
+        "Balance each unit in turn, carrying the inerts through, and close the recycle.",
+        "Convert each priced stream into the units its price uses (molar mass to mass, density to volume), showing each conversion factor.",
+        "Daily profit = product revenue - feed costs - fixed daily operating cost. Label each line with units."
+      ],
+      "pitfalls": [
+        "Pricing a stream in the wrong unit, such as per mole when the price is per gallon.",
+        "Dropping the fixed daily cost on days with no production."
+      ]
+    },
+    {
+      "id": "schedule-optimization-sweep",
+      "title": "Operating-schedule optimization with a time-varying parameter",
+      "when": "A performance parameter decays over time (catalyst deactivation) and there is a costly reset (catalyst replacement with downtime) to schedule over a fixed operating year.",
+      "steps": [
+        "Code the time-varying parameter exactly as the prompt defines it, including its day-indexing convention.",
+        "Compute daily production and profit for every day of the year under a given schedule, including shutdown days, which carry cost and no production.",
+        "Sum the annual production and profit, and apply the prompt's rule for any production shortfall.",
+        "Sweep the decision variables, which are the number of resets and when each happens, and tabulate annual profit and production for each option.",
+        "Recommend the schedule that meets the production target with the highest profit, and show the graph of profit against the decision variable that proves it is the best one."
+      ],
+      "pitfalls": [
+        "Assuming the reset point (for example the midpoint) instead of sweeping it.",
+        "An off-by-one in the day index, which shifts every day's conversion.",
+        "Reporting the profit without checking the production constraint."
+      ]
+    },
+    {
+      "id": "pitot-orifice-calibration",
+      "title": "Pitot-tube centerline velocity calibrated against an orifice flow rate",
+      "when": "The fluid velocity and flow rate lab. The same calibration idea appears in ENGR 319's discharge-coefficient lab.",
+      "steps": [
+        "Convert every pressure reading to Pa, noting the reference water temperature the gauge's inches-of-water unit assumes.",
+        "Subtract the zero-flow baseline reading from each differential pressure.",
+        "Air density from the ideal gas law. Use absolute pressure (ambient from a reliable source plus the static gauge pressure) and the tube temperature in kelvin.",
+        "Centerline velocity from the Pitot dynamic pressure: Vc = sqrt(2 dP / rho).",
+        "Volume flow rate from the orifice equation with the given discharge coefficient and the area ratio of the orifice and tube diameters.",
+        "Scale factor from Q = factor x A1 x Vc. Plot Q against A1 x Vc and take the slope through the origin. That graph is the one the memo needs.",
+        "Interpret the factor as the ratio of average to centerline velocity, and recommend it with its uncertainty."
+      ],
+      "pitfalls": [
+        "Not subtracting the zero-flow offset. It distorts the lowest-flow point most.",
+        "Averaging point-by-point ratios, including a near-zero-flow point, instead of fitting a slope.",
+        "Using the wall barometer, which the handout warns is inaccurate.",
+        "Labeling fan speed with a wrong unit, or writing unit exponents with ^."
+      ]
+    }
+  ],
+  "assignment_families": [
+    {
+      "id": "lab-technical-memo",
+      "title": "Lab technical memo (fluid velocity and flow rate)",
+      "stages": ["arrive prepared with the handout and a blank data sheet", "take baseline and at least three flow-condition readings in ink", "team analysis with no cross-team sharing", "two-page memo plus appendices, submitted as one team"],
+      "deliverables": ["title page with the abstract", "a two-page body", "appendices including the scanned raw data sheet"],
+      "what_good_looks_like": [
+        "The abstract gives the recommended calibration value and how it was obtained, with numbers, so a supervisor could stop there.",
+        "The body uses the five section headings and fits within two pages.",
+        "One graph, numbered, captioned, and with labeled axes and units, shows the calibration factor as a slope.",
+        "The body states a recommendation the company can act on.",
+        "Nothing handwritten appears in the body, and the raw data sheet scan and a digested calculation table are in the appendix."
+      ],
+      "exemplars": ["lab-technical-memo-shape"],
+      "basis": "Lab handout (readable, with explicit memo rules) and one completed memo that departs from it. The course's Technical Memo instructions were not retained."
+    },
+    {
+      "id": "design-project-report",
+      "title": "Group design project report (plant material balance and economics)",
+      "stages": ["the instructor assigns groups", "hand solution of one case", "spreadsheet or program model for the full operating year", "sweep of the operating decisions", "written recommendation report"],
+      "deliverables": ["the report with graphs and tables", "an appendix with the spreadsheet or program and one hand-calculated representative case"],
+      "what_good_looks_like": [
+        "It opens with the recommended operating procedure and its annual production and profit in the prompt's units.",
+        "It describes the process and the model concisely, with the flow diagram and the balance approach, instead of narrating the order the work was done in.",
+        "A table compares the candidate schedules, and a graph shows why the recommended one is best.",
+        "The appendix has a clean hand calculation of one case that matches the spreadsheet for the same case.",
+        "Every number carries appropriate significant figures and units, and only substantial contributors are listed as authors."
+      ],
+      "exemplars": ["design-project-report-shape"],
+      "basis": "Design project prompt (readable, with explicit report rules) and one completed group report that departs from it."
+    },
+    {
+      "id": "homework",
+      "title": "Homework problem sets",
+      "stages": [],
+      "deliverables": [],
+      "what_good_looks_like": [],
+      "exemplars": [],
+      "basis": "No homework prompt or solution survives for this course, so homework is not covered. Exams are individual assessed work and are deliberately not covered."
+    }
+  ],
+  "magnitudes": [
+    {
+      "quantity": "air density at the tube conditions",
+      "unit": "kg/m^3",
+      "typical_range": [
+        1.0,
+        1.3
+      ],
+      "basis": "Physical plausibility, not a course rule: ideal gas law for room air near the course's elevation, at ordinary lab temperatures and the small gauge pressures in the tube.",
+      "note": "Near 0.01 or lower: the static gauge pressure was used as the absolute pressure. Near 1000: the density of water, or kPa and Pa confused. Exactly 1.225 means standard sea-level air was assumed instead of the tube conditions the method asks for."
+    },
+    {
+      "quantity": "Pitot centerline velocity",
+      "unit": "m/s",
+      "typical_range": [
+        1,
+        60
+      ],
+      "basis": "Physical plausibility, not a course rule: a fan-driven lab air tube; the bounds are generous on both sides.",
+      "note": "Too low by about 16x (a factor of sqrt(249)): the dynamic pressure stayed in inches of water. Below about 1 at a flow setting that is clearly running: check the baseline subtraction and the pressure unit."
+    },
+    {
+      "quantity": "calibration factor, average over centerline velocity (Q / (A1 x Vc))",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.5,
+        1.0
+      ],
+      "basis": "Handout and physical plausibility: the lab handout states that the centerline velocity exceeds the average, so the factor is below 1, and says the factor is specific to the tube. The lower bound is physics: fully developed laminar flow gives 0.5 and turbulent flow roughly 0.8-0.9.",
+      "note": "Above 1: impossible for this flow. Most often the area used the diameter as the radius (4x), or Q and Vc are in inconsistent units. Well below 0.5: check the orifice area ratio and the discharge coefficient."
+    },
+    {
+      "quantity": "mass or mole fraction of any component in a stream",
+      "unit": "dimensionless",
+      "typical_range": [
+        0,
+        1
+      ],
+      "basis": "Physical plausibility, not a course rule: a fraction by definition, and a stream's fractions sum to 1.",
+      "note": "Negative, above 1, or fractions that do not sum to 1 within rounding: a balance was mis-solved, a dependent equation was counted as independent, or mass and mole fractions were mixed."
+    },
+    {
+      "quantity": "fractional conversion of a reactant",
+      "unit": "dimensionless",
+      "typical_range": [
+        0,
+        1
+      ],
+      "basis": "Physical plausibility, not a course rule: the fraction of the reactant fed that reacts, so it lies between 0 and 1 by definition.",
+      "note": "Outside 0-1: conversion defined on the wrong stream (fresh feed vs reactor feed with recycle), or a percent entered as a fraction."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "document_type": "worked_problem",
+  "title": "Engineering Assignment",
+  "sections": [
+    {
+      "heading": "Solution",
+      "body": "Replace with the concise, course-aligned solution.",
+      "requirement_ids": [
+        "r1"
+      ]
+    }
+  ],
+  "calculations": [
+    {
+      "id": "r1-check",
+      "expression": "2+2",
+      "variables": {},
+      "expected": 4,
+      "tolerance": 1e-08,
+      "unit": "dimensionless"
+    }
+  ],
+  "unresolved": []
+}

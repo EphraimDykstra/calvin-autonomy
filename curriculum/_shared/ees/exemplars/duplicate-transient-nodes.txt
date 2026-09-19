@@ -1,0 +1,51 @@
+//[Student Name]
+//ENGR 328 - THERMO 2
+//[Assignment] - 1D transient conduction
+//Professor [Surname]
+//[Date]
+
+// ILLUSTRATIVE ONLY. Invented geometry and properties; not an assigned problem.
+// GUI unit system: SI, mass, C, kPa, kJ. Heat terms here are in W.
+// EES is not case sensitive: m and M are the same variable, so the last node is MM.
+// Same for t and T: time is called time.
+
+// GIVENS
+L = 0.06 [m]
+k = 15 [W/m-K]
+alpha = 4e-6 [m^2/s]
+e_dot = 2e5 [W/m^3]
+h_conv = 30 [W/m^2-K]
+T_infinity = 25 [C]
+T_left = 20 [C]
+
+rho_cp = k / alpha		//only the product rho*cp is needed
+A = 1 [m^2]			//1D: A drops out, so set it to 1
+
+// GRID
+MM = 4				//last node index; nodes 0..MM
+DELTAx = L / MM
+
+// LEFT BOUNDARY (node 0) - isothermal
+T[0] = T_left
+
+// INITIAL CONDITION + TIME INTEGRATION for every free node
+DUPLICATE m = 1, MM
+	T_init[m] = 20 [C]
+	T[m] = T_init[m] + Integral(dTdt[m], time)
+END
+
+// INTERIOR NODES - "all in": every conduction term is (T_neighbor - T_node), always added
+DUPLICATE m = 1, MM-1
+	k*A*(T[m-1] - T[m])/DELTAx + k*A*(T[m+1] - T[m])/DELTAx + e_dot*A*DELTAx = rho_cp*A*DELTAx*dTdt[m]
+END
+
+// RIGHT BOUNDARY (node MM) - convection, half volume
+k*A*(T[MM-1] - T[MM])/DELTAx + h_conv*A*(T_infinity - T[MM]) + e_dot*A*(DELTAx/2) = rho_cp*A*(DELTAx/2)*dTdt[MM]
+
+// VALIDATION: set e_dot = 0 and solve to steady state. The profile must match a
+// hand-solvable conduction + convection resistance network before you trust it.
+
+// PARAMETRIC TABLE (set up in the GUI, not in this file):
+//   columns: time, T[0], T[1], ..., T[MM]
+//   time from 0 [s] to the end time, linear, about 20-40 runs
+//   Solve Table, then plot each T[m] against time.

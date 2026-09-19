@@ -1,0 +1,53 @@
+//[Student Name]
+//ENGR 328 - THERMO 2
+//[Lab Name] - refrigerant loop
+//Professor [Surname]
+//[Date]
+
+// ILLUSTRATIVE ONLY. Invented readings; not lab data.
+// GUI unit system: SI, mass, C, kPa, kJ.
+
+// GIVEN DATA
+	P_atm = 98 [kPa]		//from the barometer reading, converted with Convert()
+
+	//R134a GAUGE pressures from the panel - these are NOT air pressures
+	P_1_Gauge = 150 [kPa]		//evaporator outlet
+	P_2_Gauge = 800 [kPa]		//condenser inlet
+	P_3_Gauge = 790 [kPa]		//condenser outlet
+
+	//absolute = gauge + atmospheric, before ANY property call
+	P[1] = P_1_Gauge + P_atm
+	P[2] = P_2_Gauge + P_atm
+	P[3] = P_3_Gauge + P_atm
+
+	T[1] = 10 [C]		//evaporator outlet, superheated
+	T[2] = 70 [C]		//condenser inlet
+
+	m_dot_R134a = 15 [g/s]
+
+// R134a STATE PROPs
+	//State 1 - superheated vapor, two independent properties
+	h_R134a[1] = Enthalpy(R134a, T=T[1], P=P[1])
+	s_R134a[1] = Entropy(R134a, T=T[1], P=P[1])
+
+	//State 2 - compressor exit, measured
+	h_R134a[2] = Enthalpy(R134a, T=T[2], P=P[2])
+
+	//State 3 - condenser exit taken as saturated liquid
+	h_R134a[3] = Enthalpy(R134a, P=P[3], x=0)
+
+	//State 4 - expansion valve is isenthalpic
+	h_R134a[4] = h_R134a[3]
+	P_R134a[4] = P[1]
+	x_R134a[4] = Quality(R134a, P=P_R134a[4], h=h_R134a[4])
+
+	//State 2s - isentropic compressor reference
+	h_R134a_2s = Enthalpy(R134a, P=P[2], s=s_R134a[1])
+
+// PERFORMANCE
+	Q_dot_evap = m_dot_R134a * Convert(g/s, kg/s) * (h_R134a[1] - h_R134a[4])
+	W_dot_comp = m_dot_R134a * Convert(g/s, kg/s) * (h_R134a[2] - h_R134a[1])
+	COP = Q_dot_evap / W_dot_comp
+	eta_s_comp = (h_R134a_2s - h_R134a[1]) / (h_R134a[2] - h_R134a[1])
+
+	//sanity: 0 < x_R134a[4] < 1, and eta_s_comp < 1. If eta_s_comp > 1, check the T[2] reading.

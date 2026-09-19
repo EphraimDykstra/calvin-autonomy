@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "cs104",
+    "code": "CS 104",
+    "code_note": "Unconfirmed. The archive folder is named 'CS 104'. Of the 26 module docstrings, 15 say 'CS 108' and 11 say 'CS 104'. The split is not chronological: Labs 4 and 5 each contain both. One header still carries an unedited template instruction line, which points to instructor-supplied header templates copied between courses. The archive does not settle which number is the course's. Ask the student.",
+    "title": "Introductory programming in Python",
+    "title_basis": "Inferred from the code. No syllabus or course document names the course.",
+    "professor": null,
+    "terms_observed": ["Fall 2024"],
+    "term_note": "File dates run from late October to mid December, which suggests a course that started mid-semester. That is not confirmed."
+  },
+  "coverage": {
+    "format": "partial",
+    "methods": "partial",
+    "assignments": "partial",
+    "notes": "The only evidence is the student's own Python files: 20 lab-exercise files across Labs 1-7 (two are near-copies of other files) plus 6 homework programs, 26 .py files in all. There are no assignment prompts, no syllabus, no style guide, no rubric, no tests or autograder output, and no graded returns. The module docstring header is consistent and clearly template-derived, so the header format is well evidenced. Everything else (structure, naming, libraries) is observed practice, not a stated rule. The course number is itself unconfirmed (see course.code_note). This repo cannot run or test a Python deliverable: the host can draft the .py file, and only the student can run it and confirm its behaviour."
+  },
+  "course_policy": {
+    "source": "none found",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this course was found in the archive.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "format": {
+    "deliverable": "One Python module (.py) per lab exercise or homework problem. There is no document and no rendered output.",
+    "deliverable_kind": "code-bearing",
+    "artifacts": [
+      {
+        "role": "source",
+        "extension": ".py",
+        "submitted": "presumed; how it was submitted is not recorded",
+        "produced_by": "student"
+      },
+      {
+        "role": "asset",
+        "extension": "image file used by the program (one homework ships a .gif beside its script)",
+        "submitted": "unknown",
+        "derived_from": null,
+        "produced_by": "student or prompt"
+      }
+    ],
+    "pipeline_support": {
+      "render": false,
+      "execute": false,
+      "verify_rendered_output": false,
+      "note": "This repo renders pdf, docx and xlsx and never executes student or source code. A drafted .py is unverified until the student runs it and confirms its behaviour against the prompt. The host must not report it ready before that."
+    },
+    "precedence": [
+      "the specific lab or homework prompt (none survive in the archive; ask the student for it)",
+      "the header template the course supplies",
+      "patterns observed in the completed files"
+    ],
+    "module_header": {
+      "form": "A module docstring at the very top of the file.",
+      "lines": [
+        "first line: course number, a spaced hyphen, then the exercise label (for example 'Lab N.M' or 'Homework N.MM')",
+        "blank line",
+        "a short plain-language paragraph on what the program does (omitted in several short labs)",
+        "blank line",
+        "@author: [Student Name]",
+        "a second @author line for a lab partner, deleted when working solo (from the template's own instruction)",
+        "@date: season and year, in the form '[Season], [Year]'"
+      ],
+      "label_rule": "Use the exercise number exactly as the prompt gives it. The archive has headers that disagree with their own file names (a Lab 5.3 file headed 5.1, a Lab 7 file headed Lab 10), so check the header against the prompt before submitting.",
+      "course_number_rule": "Use whichever course number the student's current template or prompt shows. Do not copy it from an archived file.",
+      "source": "every file in the archive; one file retains the template's instruction line"
+    },
+    "file_naming": {
+      "labs": "LabN_M.py for lab N, exercise M, inside a 'Lab N' folder. A few labs use a descriptive name instead.",
+      "homework": "HWn.py, or a descriptive name for some problems.",
+      "source": "observed"
+    },
+    "code_style": {
+      "comments": "Short comments above or beside each step, saying what the step does.",
+      "functions_and_classes": "Most early work is top-level script code, with an occasional helper function for a repeated drawing. Lab 6 is built around functions, Lab 7 around classes with a docstring on every method, and the last homework splits into functions. One homework uses an `if __name__ == \"__main__\":` guard.",
+      "io": "input() for values and print() for results. Early labs call input() with no prompt text; later programs include prompt strings. The archive does not say whether an auto-checker compares output exactly, so follow the prompt's example output and ask if there is none.",
+      "graphics": "turtle for drawing exercises and guizero (App, Drawing) for simple windowed programs.",
+      "source": "observed"
+    },
+    "submission": {
+      "rule": "Not recorded in the archive.",
+      "source": "none"
+    }
+  },
+  "methods": [
+    {
+      "id": "read-validate-compute-report",
+      "title": "Read input, validate it, compute, report",
+      "when": "Most lab exercises: a program that takes numbers from the user and prints a result.",
+      "steps": [
+        "Read each value with input() and convert it with int() or float(), whichever the prompt's values need.",
+        "Validate before computing: reject impossible values (a zero denominator, a negative count, out-of-range inputs) with a clear message, as the prompt specifies.",
+        "Compute in named intermediate variables rather than one long expression.",
+        "Print the result in the exact wording and format the prompt shows."
+      ],
+      "pitfalls": [
+        "Integer division (//) and remainder (%) where true division was meant, or the reverse, when splitting a number into digits.",
+        "Converting with int() when the prompt allows decimals.",
+        "Adding prompt text or extra output the prompt's example does not show, if the course checks output exactly. Unknown for this course: ask."
+      ]
+    },
+    {
+      "id": "loops-and-accumulation",
+      "title": "Loops, sentinels and accumulation",
+      "when": "Series approximations, counting, repeated input until a stop value, drawing repeated shapes.",
+      "steps": [
+        "Decide whether the loop count is known (for over range) or depends on input (while with a sentinel).",
+        "Initialise the accumulator before the loop, and update it once per pass.",
+        "For a sentinel loop, handle the case where the first value is already the sentinel.",
+        "For a series approximation, print the estimate at each requested number of terms and compare it against the library value (math.pi, for example)."
+      ],
+      "pitfalls": [
+        "An off-by-one range that computes one term too few or too many.",
+        "A sentinel value that is also stored as data."
+      ]
+    },
+    {
+      "id": "graphics-turtle-guizero",
+      "title": "Drawing with turtle or guizero",
+      "when": "Drawing exercises and simple windowed programs.",
+      "steps": [
+        "Set up the window once at the top (turtle.setup, or a guizero App with a Drawing).",
+        "Compute coordinates from the inputs, and size the window from them, so the drawing always fits.",
+        "Draw with loops for repeated shapes instead of repeating code.",
+        "Show a text result in the window as well as printing it, when the prompt asks for both."
+      ],
+      "pitfalls": [
+        "A hard-coded window screen position that suits one monitor and puts the window off-screen on another.",
+        "Boundary cases (a point exactly on an edge) left out of an inside-or-outside test."
+      ]
+    },
+    {
+      "id": "classes",
+      "title": "A small class with validation",
+      "when": "Later labs: model a value type (a fraction, say) or categorise records.",
+      "steps": [
+        "Write __init__ to store the attributes and to validate them, recording invalid input instead of crashing.",
+        "Give every method a one-line docstring.",
+        "Implement __str__ for printing, and operator methods (__mul__, say) that return a new object.",
+        "Keep the object normalised (lowest terms, sign on the numerator) after every construction."
+      ],
+      "pitfalls": [
+        "An operator method that mutates self instead of returning a new object.",
+        "Operating on an invalid object without checking its validity first."
+      ]
+    }
+  ],
+  "assignment_families": [
+    {
+      "id": "lab-exercise-script",
+      "title": "Weekly lab exercise script",
+      "stages": ["one short script per numbered lab exercise", "several exercises per lab"],
+      "deliverables": ["one .py file per exercise with the header docstring"],
+      "artifacts": ["source"],
+      "what_good_looks_like": [
+        "The header names the right course number and exercise number, has the author line(s), and gives the term.",
+        "The program does exactly what the prompt asks and prints results in the prompt's format.",
+        "Inputs are validated where the prompt describes invalid cases.",
+        "Each step has a short comment."
+      ],
+      "exemplars": ["python-module-shape"],
+      "basis": "20 completed lab-exercise files across Labs 1-7, two of them near-copies; no prompts, no graded returns"
+    },
+    {
+      "id": "homework-program",
+      "title": "Numbered homework program",
+      "stages": ["one self-contained program per homework"],
+      "deliverables": ["one .py file, plus any asset file the program loads"],
+      "artifacts": ["source", "asset"],
+      "what_good_looks_like": [
+        "The header's description paragraph says in plain words what the program does, including its edge-case behaviour.",
+        "Logic is organised into functions (and a main guard) once the course has introduced them.",
+        "Edge cases the program handles (bad first input, boundary points) are named in the description and handled in code."
+      ],
+      "exemplars": ["python-module-shape"],
+      "basis": "6 completed homework programs; the numbering (for example 3.11, 6.14) looks like section.exercise references to an outside text or platform that is not in the archive"
+    }
+  ]
+}

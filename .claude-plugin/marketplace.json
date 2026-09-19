@@ -1,0 +1,17 @@
+{
+  "name": "calvin-autonomy",
+  "owner": {
+    "name": "Calvin Autonomy"
+  },
+  "description": "Course-grounded help with Calvin engineering coursework in Claude Code.",
+  "plugins": [
+    {
+      "name": "schoolwork",
+      "displayName": "Calvin Schoolwork",
+      "source": "./",
+      "description": "Lab memos, reports and problem sets for Calvin engineering courses, in the format each course expects, with EES help and checked numbers.",
+      "category": "education",
+      "keywords": ["calvin", "engineering", "coursework", "ees", "lab-report"]
+    }
+  ]
+}

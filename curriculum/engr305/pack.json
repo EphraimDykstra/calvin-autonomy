@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "engr305",
+    "code": "ENGR 305",
+    "title": "Mechanics of Materials",
+    "professor": null,
+    "instructor_note": "The instructor is identifiable from the FEA report template, and is the same instructor as ENGR 322. Rules the two packs share (hand-versus-FEA agreement, test corrections) therefore come from one source, not two. No name is recorded.",
+    "terms_observed": ["Fall 2025"]
+  },
+  "coverage": {
+    "format": "partial",
+    "methods": "partial",
+    "assignments": "partial",
+    "notes": "The FEA report is well covered. The instructor wrote a model report with placeholder values that sets its sections, its agreement target and its length. The lab-exercise prompts survive, and one completed report with its paired workbook survives. Everything else is thin. The test-correction memo has two instances and no prompt; one of the two is readable. The cantilever beam lab survives as a workbook plus a report that is almost all images. All 13 chapter problem sets are scanned handwriting with no text layer, so the homework format is not covered at all. There is no syllabus. Methods rest on the instructor's typed study guide, the FEA prompts and the student's test corrections."
+  },
+  "course_policy": {
+    "source": "none found",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this course was found in the archive.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "format": {
+    "deliverable": "An FEA report comparing hand calculations with FEA, supported by a spreadsheet; a cantilever beam lab; test-correction memos; chapter problem sets.",
+    "precedence": [
+      "the specific lab exercise or assignment prompt",
+      "the instructor's model FEA report",
+      "patterns observed in completed submissions"
+    ],
+    "artifacts": [
+      {
+        "role": "report",
+        "extension": ".docx (submitted as PDF)",
+        "submitted": true,
+        "derived_from": "workbook and FEA study",
+        "produced_by": "student"
+      },
+      {
+        "role": "workbook",
+        "extension": ".xlsx",
+        "submitted": "not stated",
+        "produced_by": "student; the calculation of record"
+      },
+      {
+        "role": "FEA study",
+        "extension": "SolidWorks part and simulation study (Inventor also accepted by one prompt)",
+        "submitted": "screenshots only",
+        "produced_by": "student"
+      }
+    ],
+    "pipeline_support": {
+      "render": true,
+      "execute": false,
+      "verify_rendered_output": false,
+      "note": "The report (docx/pdf) and a workbook (xlsx) are formats this repo renders, but this pack sets no format.rendering values (page budget, required figure roles), so the renderer's checks have nothing course-specific to enforce, and no render of this course has been exercised. Treat the rendered output as unverified until inspected. The FEA results cannot be produced here: every FEA value and screenshot must come from the student's own study, and the report must not state agreement that was never measured."
+    },
+    "report_workbook_pairing": {
+      "fea_report": [
+        "One worksheet per lab exercise.",
+        "Each sheet holds an inputs table (Variable / Value / Units), with derived values computed by formula from the inputs.",
+        "Each sheet holds a comparison table (quantity / hand value / FEA value / percent difference) as an Excel table. FEA values are typed in from the simulation, and the percent difference is a formula.",
+        "FEA screenshots are pasted into the sheet beside the numbers.",
+        "The report transcribes both tables for each exercise as captioned Word tables, and the screenshots as captioned figures. The workbook is where the numbers come from; the report is where they are explained."
+      ],
+      "cantilever_lab": [
+        "The pairing is reversed. The single worksheet holds the trials, their average, the FEA value, the percent error and a chart, and the typed answers to the handout's six guiding questions.",
+        "The report is almost entirely images: photos, ink and pasted content, around two question headings."
+      ],
+      "rule": "The pairing is not uniform across assignments. Ask which file carries the answers before drafting either one.",
+      "source": "two report-plus-workbook pairs in the OneDrive archive"
+    },
+    "fea_report": {
+      "title_block": {
+        "lines": ["[REPORT TITLE]", "[subtitle: what is compared to what]", "[Student Name] | ENGR 305 | [date]"],
+        "source": "instructor model report + student report"
+      },
+      "sections": [
+        "Introduction (or Purpose)",
+        "Procedure: how each model was built to match the hand-calculation assumptions (geometry, material, supports, loads)",
+        "one section per loading case: axial, torsional, pressure vessel, stress concentration, plus optional extra cases for bonus credit",
+        "Discussion: the lessons of the loading cases drawn into one theme. The instructor's model marks this as the most important section, and says criticism of the software or the process is acceptable.",
+        "Conclusion: a short restatement of the introduction and discussion, with a hint of how well the data agreed"
+      ],
+      "loading_case_section": [
+        "the governing hand equation, stated where first used",
+        "the FEA result and the hand result, in the text",
+        "a figure of the FEA result",
+        "a summary table: FEA value / hand value / percent difference",
+        "the cause of the difference, and which direction each method's approximation pushes the result"
+      ],
+      "agreement_target": "about 5 percent or less; a larger difference is acceptable only if it is explained",
+      "length": "The instructor's model estimates roughly 3-15 pages of text and tables, and possibly double that with images.",
+      "figures": "Keep a figure only if the text relies on it, and give each one a single narrow job. Screenshots offered as proof of effort are cut. Describe simple setups in words, and picture only the loads or supports that words handle badly.",
+      "captions": "Figure N - description, below the figure; Table N - description, above the table.",
+      "source": "instructor model report + lab exercise prompts + student report"
+    },
+    "test_correction_memo": {
+      "structure": [
+        "title line: course, test number, 'Memo'",
+        "one heading per missed problem",
+        "a paragraph naming the specific error and why it happened",
+        "a paragraph on the concrete change of practice"
+      ],
+      "voice": "first person, reflective",
+      "source": "two instances, one readable; no prompt"
+    },
+    "homework": {
+      "rule": "Not covered. The chapter problem sets are scanned handwriting with no text layer. A Word homework template in the archive is the student's own (their name and section in the header), not an instructor requirement.",
+      "source": "observed"
+    }
+  },
+  "methods": [
+    {
+      "id": "hand-vs-fea-cross-check",
+      "title": "Validate a hand calculation with FEA",
+      "when": "Every FEA lab exercise and the FEA report.",
+      "shared_with": "engr322 (same instructor: one source, not independent agreement)",
+      "steps": [
+        "Solve by hand with the course equation for the loading case, and list the assumptions it makes.",
+        "Build the FEA model to match those assumptions: the same geometry, material properties (E, G, Poisson's ratio), supports and load.",
+        "Compare the same quantity in the same units at the same location. For stepped shafts and 'wedding cake' bars, compare the total first, then each section if the totals disagree.",
+        "Tabulate hand value, FEA value and percent difference, and define the sign of the difference once.",
+        "Explain every difference over about 5 percent: coordinate system, a load or support that the model could not reproduce, mesh quality at a stress riser, or local effects near the load."
+      ],
+      "pitfalls": [
+        "Comparing different quantities (an angle of twist against a linear displacement) and then trying to explain the resulting large 'error'.",
+        "Pressure vessels: the hand equations are in cylindrical coordinates and the FEA reports Cartesian components. Transform before comparing.",
+        "Trusting stresses right at the load application point or a sharp corner."
+      ]
+    },
+    {
+      "id": "stress-strain-transformation",
+      "title": "Stress and strain transformation, principal values, Mohr's circle",
+      "when": "Rotating a 2-D state of stress or strain, and finding principal and maximum shear values.",
+      "steps": [
+        "Draw the element and mark the given stresses with their signs.",
+        "Measure the angle from the x axis to the n axis, counter-clockwise positive (the course study guide's convention).",
+        "Apply the transformation equations, or construct Mohr's circle, to get the stresses on the rotated plane.",
+        "Find the principal stresses and their angle, and the maximum in-plane shear.",
+        "For strains, use the strain transformation equations, then convert to stress with the isotropic plane-stress relations."
+      ],
+      "pitfalls": [
+        "Measuring the angle from n to x, or clockwise, which flips the sign of the shear term.",
+        "Mixing the plane-stress and plane-strain relations."
+      ]
+    },
+    {
+      "id": "axial-deflection-and-indeterminate",
+      "title": "Axial deflection, thermal strain and statically indeterminate bars",
+      "when": "Stepped bars, composite bars, bars between walls, and temperature change.",
+      "steps": [
+        "Split the bar into sections of constant load, area and material.",
+        "Sum PL/(AE) over the sections for the total deflection.",
+        "For an indeterminate bar, write equilibrium plus a compatibility condition (equal strain, or deflections that sum to a known gap).",
+        "Add thermal strain alpha times delta T, positive for heating, by superposition."
+      ],
+      "pitfalls": [
+        "A load that changes along the bar but is treated as constant.",
+        "A modulus entered with the wrong exponent sign in a table. It is harmless only while nothing uses the cell, so check every input's order of magnitude."
+      ]
+    },
+    {
+      "id": "units-through-every-line",
+      "title": "Carry units through every line",
+      "when": "Always, especially with moments in foot-pounds and stresses in psi.",
+      "steps": [
+        "Write units on every quantity in every line of the working.",
+        "Convert moments to inch-pounds before computing a stress in psi.",
+        "Sanity-check the magnitude of each answer before moving on."
+      ],
+      "pitfalls": [
+        "Leaving a moment in foot-pounds inside a psi calculation, which is off by a factor of 12. Both of the student's test-correction memos trace lost points to exactly this.",
+        "Carrying one wrong unit from an early part into every later part that reuses it."
+      ]
+    },
+    {
+      "id": "stress-concentration",
+      "title": "Stress concentration at holes and fillets",
+      "when": "Plates with holes, stepped shafts, notches.",
+      "steps": [
+        "Compute the nominal stress on the net section.",
+        "Read the concentration factor from the chart at this geometry's own ratio (hole diameter to width, fillet radius to diameter).",
+        "Multiply to get the peak stress, and compare it with the FEA maximum near the riser, after a mesh refinement there."
+      ],
+      "pitfalls": [
+        "Reusing one concentration factor for two features with different ratios. The factors differ, and apparent FEA agreement does not make a shared factor right.",
+        "Hard-coding a rounded intermediate value into the comparison formula, which breaks the link to the inputs."
+      ]
+    }
+  ],
+  "assignment_families": [
+    {
+      "id": "fea-report",
+      "title": "FEA experiments report (hand calculations versus FEA)",
+      "stages": [
+        "weekly FEA lab exercises, each a short write-up with hand calculations and screenshots",
+        "a workbook of the inputs and comparison tables for each exercise",
+        "compilation into one report with a discussion and a conclusion"
+      ],
+      "deliverables": ["report (Word, submitted as PDF)", "supporting workbook", "FEA screenshots as figures"],
+      "artifacts": ["report", "workbook", "FEA study"],
+      "what_good_looks_like": [
+        "Every loading case has its equation, a figure, a hand/FEA/percent table and an explanation of the difference.",
+        "Differences are within about 5 percent or explained with a specific cause.",
+        "The discussion draws the cases into one lesson about using FEA.",
+        "Every figure makes a point the text uses.",
+        "The numbers in the report match the workbook."
+      ],
+      "exemplars": ["fea-report-shape"],
+      "basis": "instructor-written model report with placeholder values (strongest evidence), the lab-exercise prompts, one completed student report with its paired workbook. The same instructor sets the hand-versus-FEA rule in ENGR 322, so the two courses are one source."
+    },
+    {
+      "id": "cantilever-beam-lab",
+      "title": "Cantilever beam lab",
+      "stages": ["build and test a beam", "compare the measurements with hand calculation and FEA", "answer the handout's six guiding questions"],
+      "deliverables": ["workbook with trials, averages, FEA comparison, chart and answers", "a report"],
+      "artifacts": ["report", "workbook"],
+      "what_good_looks_like": [],
+      "exemplars": [],
+      "basis": "one completed workbook and an image-only report. No handout survives beyond the six question headings. The report's format is not covered."
+    },
+    {
+      "id": "test-correction-memo",
+      "title": "Test-correction memo",
+      "stages": ["after a graded test"],
+      "deliverables": ["short memo, one section per missed problem"],
+      "what_good_looks_like": [
+        "Each missed problem names the specific error (the step, the unit, the misread given), not a general cause.",
+        "Each has a concrete change of practice for the next test.",
+        "Where the corrected work is attached, it is the full re-solution."
+      ],
+      "exemplars": [],
+      "basis": "two student instances, one readable as text; the other exists as a re-solved image-only copy. No prompt survives. ENGR 322 has one more instance under the same instructor."
+    },
+    {
+      "id": "chapter-problem-sets",
+      "title": "Chapter problem sets",
+      "stages": ["assigned by chapter"],
+      "deliverables": ["handwritten solutions"],
+      "what_good_looks_like": [],
+      "exemplars": [],
+      "basis": "13 sets, all scanned handwriting with no text layer. Nothing about their format is covered, and none is inferred."
+    }
+  ],
+  "magnitudes": [
+    {
+      "quantity": "percent difference between hand calculation and FEA for the same quantity at the same location",
+      "unit": "%",
+      "typical_range": [
+        0,
+        10
+      ],
+      "basis": "Handout: the instructor's model FEA report says overall differences should be 5% or less, or be explained, and that pressure-vessel differences may run higher. The upper bound of 10 is a plausibility margin above that target, not a course rule.",
+      "note": "Tens of percent or more usually means different quantities are being compared (angle of twist against a displacement), a different location, a coordinate mismatch (cylindrical vs Cartesian in a pressure vessel), or a stress read at a singular node. Exactly 12x or 1/12x: a moment left in ft-lb."
+    },
+    {
+      "quantity": "computed working stress divided by the material's yield strength",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.001,
+        1.5
+      ],
+      "basis": "Physical plausibility, not a course rule: homework and lab parts are loaded to stay elastic, so working stress is a fraction of yield. Above 1 the part would yield and the linear equations no longer apply.",
+      "note": "Well above 1: check the moment units first. A moment left in ft-lb inside a psi formula is 12x too small, and the reverse slip 12x too large. A ratio range cannot see every 12x slip, so check the moment units on every line anyway."
+    },
+    {
+      "quantity": "modulus of elasticity of a common structural metal (input)",
+      "unit": "psi",
+      "typical_range": [
+        9000000,
+        31000000
+      ],
+      "basis": "Physical plausibility, not a course rule: about 10 x 10^6 psi for aluminum and 29-30 x 10^6 psi for steel. Handbook values.",
+      "note": "Off by powers of ten: the exponent in a table cell has the wrong sign or size. It is harmless only while no formula reads the cell, so check the order of magnitude of every input."
+    },
+    {
+      "quantity": "Poisson's ratio of a metal (input)",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.2,
+        0.45
+      ],
+      "basis": "Physical plausibility, not a course rule: steels and aluminum alloys sit near 0.3, cast irons nearer 0.2-0.26, and any isotropic material lies between 0 and 0.5.",
+      "note": "Outside 0-0.5: not a Poisson's ratio. The shear modulus G and E were probably swapped somewhere."
+    },
+    {
+      "quantity": "normal strain in an elastic member",
+      "unit": "dimensionless",
+      "typical_range": [
+        1e-06,
+        0.005
+      ],
+      "basis": "Physical plausibility, not a course rule: metals yield at strains of roughly 0.001 to 0.005, so elastic working strains are below that.",
+      "note": "Above about 0.005: the member would have yielded, or a length is in inches against a modulus in ksi. Hundreds or thousands: strain reported in microstrain without saying so."
+    },
+    {
+      "quantity": "stress concentration factor Kt read from a chart",
+      "unit": "dimensionless",
+      "typical_range": [
+        1.0,
+        5.0
+      ],
+      "basis": "Physical plausibility, not a course rule: Kt is peak over nominal stress, so it is at least 1, and holes and fillets within the chart ranges give roughly 1.2 to 3.",
+      "note": "Below 1: impossible, so the chart was read at the wrong ratio or the wrong curve. The same Kt for two features with different ratios is suspect even when it lands in range."
+    },
+    {
+      "quantity": "coefficient of thermal expansion of a metal (input)",
+      "unit": "1/degF",
+      "typical_range": [
+        3e-06,
+        1.5e-05
+      ],
+      "basis": "Physical plausibility, not a course rule: about 6.5 x 10^-6 /degF for steel and 13 x 10^-6 /degF for aluminum. Handbook values.",
+      "note": "About 1.8x high: a per-degC value used with degF. Powers of ten off: the exponent."
+    }
+  ]
+}

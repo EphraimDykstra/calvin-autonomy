@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "review_status": "reviewed",
+  "precedence": [
+    "instructor_assignment",
+    "instructor_template",
+    "reviewed_course_guidance",
+    "anonymous_student_example",
+    "unresolved_or_image_only_evidence"
+  ],
+  "rules": {
+    "report": "Concise technical report using the current instructor requirements.",
+    "figures": "Readable figures with units and explanatory captions.",
+    "tables": "Tables use units and consistent significant figures.",
+    "calculations": "Preserve inputs, equations, units, and reproducible checks."
+  },
+  "rendering": {
+    "body_font_size": 12,
+    "line_spacing": 1.5,
+    "margin_inches": 1,
+    "title_page": true,
+    "abstract": true,
+    "number_body_pages": true,
+    "table_captions_above": true,
+    "figure_captions_below": true
+  },
+  "evidence": [
+    {
+      "document_id": "REPLACE_WITH_SEARCH_DOCUMENT_ID",
+      "source_sha256": "REPLACE_WITH_SEARCH_SOURCE_SHA256",
+      "locator": "REPLACE_WITH_SEARCH_LOCATOR",
+      "text_sha256": "REPLACE_WITH_SEARCH_TEXT_SHA256"
+    }
+  ]
+}

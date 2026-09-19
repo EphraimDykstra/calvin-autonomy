@@ -1,0 +1,10 @@
+---
+name: ingest-course-materials
+description: Import local course materials into a private course pack with hashes, provenance, page-aware extraction, and review states.
+---
+
+Use when adding course sources. Inspect read-only first and filter hidden, secret-like, key, symlink, and unsupported files. Copy sources into the private course workspace, preserve originals, hash both sides, and extract native text with page or cell locators. Keep diagrams, equations, tables, and OCR failures visibly unresolved; never pretend plain text captured their semantics. Never execute code, macros, or imported scripts. Apply bounded file/page limits and retain good records when one source fails. Exclude historical syllabus AI sections when configured by the owner. Native extraction remains unreviewed. After visually checking an exact source location and its context, use `evidence-review` to create the durable review record; plans cannot self-promote evidence to reviewed.
+
+Use `ingest SOURCE --course ID --max-files N --max-pages N`, then `search QUERY --course ID`. PNG, JPEG, TIFF, BMP, WebP, and image-only PDF inputs remain `needs_ocr`; ingestion writes a hash-bound review manifest and does not silently trust machine text. Use `ocr-status --course ID` to list pending sources and check local engine availability.
+
+OCR is an explicit bounded follow-up. Copy `.calvin-autonomy/templates/ocr-transcription.json`, bind it to the pending document ID and source hash, include exactly one nonblank block for every pending `page:N` or `image:N` locator, and record how the transcription was produced. Run `ocr-import TRANSCRIPTION.json --course ID`. The import rejects stale, partial, incomplete, conflicting, unsafe, or replacement input; it preserves native PDF blocks and stores the imported text privately with content and file hashes. Imported text remains unreviewed. Compare each exact transcription with the source, then run `evidence-review` separately for every locator that will control a method or format. Keep private data and logs under `workspace/`.

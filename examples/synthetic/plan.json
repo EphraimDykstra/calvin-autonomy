@@ -1,0 +1,24 @@
+{
+  "requirements": [
+    {
+      "id": "r1",
+      "text": "Calculate the maximum bending stress in the beam and report it in megapascals."
+    },
+    {
+      "id": "r2",
+      "text": "Calculate the maximum free-end deflection and report it in millimetres."
+    }
+  ],
+  "evidence": [],
+  "course_profile_sha256": "",
+  "deliverables": [
+    {
+      "path": "deliverables/submission.pdf",
+      "format": "pdf"
+    }
+  ],
+  "verification": {
+    "calculations_required": true
+  },
+  "unresolved": []
+}

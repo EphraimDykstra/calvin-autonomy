@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "engr319",
+    "code": "ENGR 319",
+    "title": "Introduction to Thermal/Fluid Sciences",
+    "professor": null,
+    "terms_observed": ["Fall 2025"]
+  },
+  "coverage": {
+    "format": "high",
+    "methods": "high",
+    "assignments": "partial",
+    "notes": "Lab memos and computer-problem reports are covered by a written instructor memo spec, two readable lab prompts, and completed examples, but homework survives only as prompts with bare answers, both exams and equation sheets are image-only scans, and the first computer-problem prompt is a scan, so its tool rules are inferred from the second."
+  },
+  "course_policy": {
+    "source": "syllabus (archived)",
+    "confidence": "stale",
+    "term_observed": "Fall 2025",
+    "summary": "This course has had a stated generative-AI policy. Its current terms are unknown.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "format": {
+    "deliverable": "technical memo",
+    "precedence": [
+      "the specific assignment prompt",
+      "the instructor's written technical-memo format spec",
+      "patterns observed in completed submissions"
+    ],
+    "page": {
+      "size": "letter",
+      "margins_in": 1,
+      "justification": "full",
+      "source": "memo spec"
+    },
+    "typography": {
+      "fonts": ["Arial", "Times New Roman", "Calibri"],
+      "size_pt": [11, 12],
+      "line_spacing": 1.5,
+      "line_spacing_note": "1.5 is the stated preference for lab reports; the general memo spec accepts single spacing.",
+      "single_font_throughout": true,
+      "source": "lab prompt writing guidelines"
+    },
+    "title_page": {
+      "required": true,
+      "numbered": false,
+      "fields": ["title", "author", "course number and section", "group (if applicable)", "professor", "date"],
+      "carries_abstract": true,
+      "source": "memo spec + lab prompt"
+    },
+    "abstract": {
+      "placement": "title page",
+      "content": "objective, method in a phrase, and the key numerical results with units",
+      "source": "lab prompt + peer-review checklist"
+    },
+    "page_numbering": {
+      "position": "bottom center",
+      "first_numbered_page": "first page of the body (title page is unnumbered and does not count)",
+      "source": "memo spec + lab prompt"
+    },
+    "body": {
+      "min_pages": 2,
+      "max_pages": 2,
+      "length_note": "Lab memos: the body is exactly two full pages, and figures inside it count. The general memo spec allows 1-2 pages; use the assignment prompt's number when it gives one.",
+      "sections_observed": ["Abstract (on title page)", "Introduction and Methods (or separate Objectives and Methods)", "Results and Analysis", "Conclusions", "Appendices"],
+      "sections_required_by_spec": ["objective", "indication of methods (not a full description)", "description of results shown in the figures", "list of conclusions"],
+      "no_trailing_whitespace": "No body page should end with a large empty block, and no graph should take a full page when the body is limited to two pages.",
+      "source": "memo spec + lab prompt + observed"
+    },
+    "equations": {
+      "typeset_with": "Word equation editor",
+      "numbering": "sequential, numbered at the right margin",
+      "observed_label_style": "[Equation N]",
+      "label_style_note": "The spec requires right-margin numbering but not a particular label form. The instructor's own handouts use (N), and one completed memo uses [Equation N]. Either form satisfies the spec; use one form consistently.",
+      "placement": "Inline at the point of first use and explained in context, like a textbook. Never collected into an appendix list.",
+      "forbidden": ["screenshots of equations", "code-style notation such as ^ or * in displayed math", "handwritten equations"],
+      "source": "memo spec + lab prompt"
+    },
+    "figures": {
+      "count_range": [1, 5],
+      "caption_position": "below",
+      "caption_alignment": "center",
+      "caption_pattern": "Figure N. Title.",
+      "numbering": "in order of first reference in the text, placed where first referenced",
+      "required_roles_labs": ["apparatus-schematic"],
+      "plot_rules": [
+        "no chart title inside the graph when the figure is captioned",
+        "no grid lines",
+        "inward tick marks",
+        "axis ticks on a 1-2-5 progression",
+        "axis labels with units, lettering readable when projected",
+        "readable in grayscale",
+        "one plotted line per graph when the prompt asks for a single best fit",
+        "caption describes the content, not the form 'Y vs X'"
+      ],
+      "schematic_rules": "Drawn digitally (simple shapes are fine), every relevant component labeled, no hand drawing.",
+      "source": "memo spec + lab prompt + peer-review checklist"
+    },
+    "tables": {
+      "caption_position": "above",
+      "caption_alignment": "center",
+      "caption_pattern": "Table N. Title.",
+      "rules": ["units in headers", "sensible significant digits (2-3 for measured data)"],
+      "source": "memo spec + peer-review checklist"
+    },
+    "appendices": {
+      "list_of_appendices_first": true,
+      "labeling": "lettered (Appendix A, B, ...), with a heading on each page",
+      "contents": [
+        "scanned original raw data sheet (labs)",
+        "detailed intermediate calculations",
+        "additional supporting plots and tables",
+        "more detailed method description if needed",
+        "commented, documented computations (computer problems)"
+      ],
+      "rules": [
+        "as professional as the body",
+        "spreadsheet data only in digested, readable form, never a raw dump",
+        "no page that is only a list of equations"
+      ],
+      "source": "memo spec + lab prompt + computer-problem prompt"
+    },
+    "voice": {
+      "person": "third person; no I, we, you, 'the team', or 'the author' in lab reports",
+      "tone": "concise and non-narrative; no diary-style storytelling",
+      "scope_note": "The first-person ban is stated for lab reports. Completed group computer-problem reports used 'we'; whether that is acceptable there is unconfirmed.",
+      "source": "lab prompt writing guidelines"
+    },
+    "units_and_numbers": {
+      "units_everywhere": true,
+      "unit_typesetting": "superscripts and subscripts (m3 with a raised 3), never ^ notation",
+      "multiplication_sign": "× or ·, never *",
+      "leading_zero": "0.56, not .56",
+      "greek_letters": "real Greek glyphs, not spelled-out names",
+      "significant_digits": "reasonable for the measurement, typically 2-3 for experimental data, including appendices and graph labels",
+      "source": "lab prompt writing guidelines + syllabus (archived)"
+    },
+    "tooling": {
+      "labs": "Excel for all data reduction and calculation, Word (equation editor) for the memo. The prompt discourages hand calculation.",
+      "computer_problems": "Any computational tool; the prompt names EES as preferred, with Mathcad, MATLAB, or Excel accepted. Use one property source throughout: either the tool's built-in property functions or the textbook tables, never both.",
+      "computer_problems_confidence": "stated in the second computer-problem prompt; the first prompt is an image-only scan and is assumed, not confirmed, to match",
+      "property_tables": "Cengel textbook appendix tables (SI and English), cited as the source when used",
+      "source": "lab prompt + computer-problem prompt"
+    },
+    "submission": {
+      "labs": "draft for peer review, then final PDF upload; printed copy stapled",
+      "computer_problems": "electronic copy plus a paper printout of the electronic work",
+      "source": "lab prompt + computer-problem prompt"
+    }
+  },
+  "methods": [
+    {
+      "id": "state-point-property-table",
+      "title": "State-point analysis with property tables",
+      "when": "Any cycle or device analysis (compressors, turbines, valves, heat exchangers, refrigeration and power cycles).",
+      "steps": [
+        "Draw the system and number every state point; mark which states share a pressure and which process connects each pair (isentropic, isenthalpic throttle, constant pressure).",
+        "Tabulate the known properties at each state and name the table each missing property will come from (saturated, superheated, compressed liquid).",
+        "Fix each state with two independent properties, then read or interpolate T, P, v, h, s, showing the interpolation.",
+        "For non-ideal devices, find the isentropic state first (the 2s state) and then apply the isentropic efficiency to get the actual state.",
+        "Apply mass and energy balances per device, carrying units through every line.",
+        "Report the cycle metrics (heat rates, work, COP or efficiency) with units, and show the states on a T-s or P-h diagram."
+      ],
+      "pitfalls": [
+        "Mixing a software package's property functions with textbook table values in the same analysis.",
+        "Using the isentropic state as the actual state, or applying the efficiency in the wrong direction for a compressor versus a turbine.",
+        "Dropping units partway through; units are expected on every homework and test answer.",
+        "Interpolating across a phase boundary instead of switching tables."
+      ]
+    },
+    {
+      "id": "lab-data-reduction-excel",
+      "title": "Lab data reduction in Excel",
+      "when": "Every lab. The prompt expects all supporting math in a spreadsheet, not by hand.",
+      "steps": [
+        "Before the lab, list every equation and every variable it needs, and build the data sheet from that list.",
+        "Record the zero offsets of any gauge that should read zero before flow or heating starts, then subtract them in the analysis.",
+        "Convert every input to one consistent unit system in its own column, and convert temperatures to absolute before any radiation or ratio calculation.",
+        "Write each formula once and fill it across all runs or data points instead of repeating arithmetic.",
+        "Set display precision in the spreadsheet so results show sensible significant digits without losing the underlying precision."
+      ],
+      "pitfalls": [
+        "An isolated unit-conversion slip in one input cell (a Fahrenheit-to-kelvin factor, for example) that propagates silently into every result; check every converted input against an independent conversion.",
+        "Forgetting a gauge zero offset.",
+        "Pasting thousands of raw rows into the appendix instead of a digested table."
+      ]
+    },
+    {
+      "id": "calibration-as-slope",
+      "title": "Calibration constant as the slope of actual versus ideal",
+      "when": "A single correction or conversion factor relates two measured quantities (a discharge coefficient, or a sensor's volts-per-watt constant).",
+      "steps": [
+        "Compute the ideal or reference quantity and the measured quantity at each operating point.",
+        "Plot measured (y) against ideal (x) with markers only.",
+        "Fit a line through the origin; the slope is the single calibration constant.",
+        "Report one constant with units, and note which points are least trustworthy (usually the lowest-signal ones)."
+      ],
+      "pitfalls": [
+        "Averaging point-by-point ratios instead of taking the slope when the prompt asks for a slope.",
+        "Using a published value in the analysis or on the graph when the prompt allows it only as a comparison in the text."
+      ]
+    },
+    {
+      "id": "parameter-sweep-fit",
+      "title": "Parameter sweep to minimize error or cost",
+      "when": "A model has one unknown parameter to fit to data (a cooling time constant, say), or a design has parameters to optimize (pressure, efficiency, surface choices) and no closed form is expected.",
+      "steps": [
+        "Write the model or cost function with the free parameter(s) explicit.",
+        "Sweep the parameter over a sensible range in the spreadsheet or tool, computing the objective (sum of squared error against all data points, or total cost) at each value.",
+        "Refine the step size around the minimum.",
+        "Show the result with a graph that proves it: the objective against the parameter, or the best-fit model over the data.",
+        "State the chosen value and why, and check that it meets every stated constraint."
+      ],
+      "pitfalls": [
+        "Fitting to a subset of the data instead of every point.",
+        "An error-versus-parameter plot whose axis runs negative; a sum of squares cannot be below zero, so that points to a plotting or formula error.",
+        "Several model lines on one graph when the prompt asks for only one."
+      ]
+    },
+    {
+      "id": "radiation-exchange",
+      "title": "Radiation exchange with view factors",
+      "when": "Surface radiation problems: emissivity measurement, spacecraft or enclosure energy balances.",
+      "steps": [
+        "Draw the geometry and identify every surface pair that exchanges radiation, with areas and distances.",
+        "Get each view factor from the appropriate relation or chart, applying reciprocity and summation checks.",
+        "Write the net exchange with absolute temperatures to the fourth power.",
+        "Close the steady-state energy balance on the body, including internal generation.",
+        "Compare measured or chosen emissivities against a cited handbook value or range from the course heat-transfer text."
+      ],
+      "pitfalls": [
+        "Using Celsius or Fahrenheit inside a T^4 term.",
+        "Claiming agreement with an uncited or unspecified 'online value'. When the prompt requires a reference value on the graph, it must actually appear there, with its source.",
+        "Substituting a handbook value for a different surface finish without saying so; when the exact finish is not tabulated, report the bracketing range instead."
+      ]
+    }
+  ],
+  "assignment_families": [
+    {
+      "id": "lab-technical-memo",
+      "title": "Laboratory technical memo",
+      "stages": [
+        "pre-lab: list the governing equations and prepare a data sheet from them",
+        "lab session: collect data as a group",
+        "individual analysis in Excel (no sharing of processed data)",
+        "draft memo brought to class for peer review against a checklist",
+        "final memo submitted as PDF"
+      ],
+      "deliverables": [
+        "title page with abstract",
+        "two-page body",
+        "lettered appendices with the scanned raw data sheet and detailed calculations",
+        "supporting Excel workbook (kept by the author, not submitted)"
+      ],
+      "what_good_looks_like": [
+        "The abstract states the objective and gives the key numerical results with units, so a reader could stop there.",
+        "The body fills exactly two pages, with every analysis item the prompt enumerates addressed there, and nothing cut to the appendix that the prompt requires in the body.",
+        "A clean digital apparatus schematic with every relevant component labeled.",
+        "Each key equation appears once, numbered at the right margin, where it is first used, and is followed by a sentence explaining it.",
+        "Every processing decision the prompt did not spell out is named and justified in one or two sentences.",
+        "Graphs have no internal title, labeled axes with units, markers for measured data, and any reference value the prompt asks for is drawn on the graph with its source.",
+        "The appendix opens with a list of appendices, and each page carries a heading."
+      ],
+      "exemplars": ["lab-technical-memo-shape"],
+      "basis": "instructor memo spec, two lab prompts (the second an image-only scan, transcribed privately), a peer-review checklist, two completed memos"
+    },
+    {
+      "id": "computer-problem",
+      "title": "Group computer problem (design and optimization)",
+      "stages": [
+        "group formation and parameter assignment",
+        "initial hand estimate",
+        "computational model in the chosen tool",
+        "iterate or optimize to meet the stated requirement at lowest cost or best performance",
+        "report with documented computations in an appendix"
+      ],
+      "deliverables": [
+        "memo-format report (title page with abstract, short body, appendices)",
+        "commented computations in an appendix",
+        "electronic copy plus a printout of the electronic work"
+      ],
+      "what_good_looks_like": [
+        "The abstract states the design goal and the recommended design values with units.",
+        "The methods paragraph names the tool and the single property source used.",
+        "A table of design iterations shows what changed each trial and the resulting constraint check.",
+        "A graph shows how the objective depends on the design variable(s), so the optimum can be read off it.",
+        "State properties for a cycle are tabulated per state point with units, and the cycle is shown on a T-s or P-h diagram.",
+        "The appendix computations are commented well enough to follow without the software."
+      ],
+      "exemplars": ["computer-problem-shape"],
+      "basis": "second computer-problem prompt (readable), first prompt (image-only scan), two completed group reports"
+    },
+    {
+      "id": "weekly-homework",
+      "title": "Weekly homework problem sets",
+      "stages": ["assigned weekly", "due the following week"],
+      "deliverables": ["worked solutions with units on every quantity"],
+      "what_good_looks_like": [],
+      "exemplars": [],
+      "basis": "Prompts with bare final answers only. No worked submission survives, so how solutions should be presented is not covered. The only stated requirement is units on every answer (archived syllabus)."
+    }
+  ]
+}

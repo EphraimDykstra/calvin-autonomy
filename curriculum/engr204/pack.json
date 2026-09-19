@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "engr204",
+    "code": "ENGR 204",
+    "title": "Circuit Analysis and Electronics",
+    "title_basis": "the header of a course lecture handout",
+    "professor": null,
+    "instructor_identified_from": "not identified: no syllabus survives and the homework prompts carry no instructor name",
+    "terms_observed": ["Spring 2025"],
+    "related_packs": ["engr204-lab"]
+  },
+  "coverage": {
+    "format": "partial",
+    "methods": "none",
+    "assignments": "partial",
+    "notes": "All 11 weekly homework prompts survive, and each states the same grading rule, so the problem-set format and what earns credit are known from instructor documents. No completed homework survives anywhere, so nothing shows how a solution was laid out or what the grader accepted. The two test papers and their keys are image-only scans, and the cheat sheets are personal. There is no syllabus. Methods are not covered. The prompts name topics and circuit-simulator tasks but contain no worked solution, and the selected answers at the end of each prompt are final values only. The lab has its own pack (engr204-lab). A lecture writing handout on audience, abstracts, graphing, and conclusions sits in this folder, and it bears on the lab reports, not the homework."
+  },
+  "course_policy": {
+    "source": "none found",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this course was found. Ask the student to confirm the current policy with the instructor.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "format": {
+    "deliverable": "weekly homework problem set",
+    "precedence": [
+      "the specific homework prompt",
+      "the rules repeated in every one of the 11 prompts"
+    ],
+    "prompt_shape": "A header with the course, the homework number, the problem count and total points, and the term. Then numbered problems, many with circuit figures, and a Selected Answers list at the end giving final values for most numeric problems.",
+    "grading_rule": "Every prompt says full credit goes to an honest attempt, and that because most answers are given, work must be shown to earn the credit. A bare final answer earns nothing, even when it matches the answer list.",
+    "simulator_problems": {
+      "rule": "Circuit-simulator (PSPICE) problems are handed in as printouts or screen captures: the schematic with node voltages or branch currents displayed, or a plot captured from the print preview on a white background.",
+      "plots": "Plots need a proper title, axis labels, and a legend. Mark key points with the plotting tool's label feature where the problem asks for values.",
+      "comparison": "Several problems ask for written comments on the printout comparing the simulated values with the hand-calculated ones.",
+      "source": "homework prompts"
+    },
+    "unknown": [
+      "whether homework is handwritten or typed",
+      "page layout, headers, and how problems are separated",
+      "how solutions should present a method (the given-find-solution form or otherwise)",
+      "how the work is submitted (paper or upload)"
+    ],
+    "basis": "11 homework prompts (readable text)"
+  },
+  "gaps": {
+    "archive_holds": [
+      "11 homework prompts with selected final answers",
+      "a lecture writing handout",
+      "two tests and two keys (image-only scans)",
+      "personal cheat sheets and a study guide"
+    ],
+    "missing": ["syllabus", "any completed or graded homework", "worked solutions", "readable test solutions"],
+    "student_can_supply": [
+      "one graded, returned problem set, to fix how solutions should be laid out",
+      "the syllabus, for the AI-use policy and how homework is submitted"
+    ],
+    "basis": "direct listing and text extraction of the course folder"
+  },
+  "assignment_families": [
+    {
+      "id": "weekly-homework",
+      "title": "Weekly circuits homework",
+      "stages": ["prompt released with numbered problems and selected answers", "hand analysis of each problem", "circuit-simulator problems run and captured", "submission"],
+      "deliverables": ["worked solutions for every problem", "simulator printouts or screen captures with comparison comments where asked"],
+      "what_good_looks_like": [
+        "Every problem is attempted, and the work shows the method, not just the result, because credit is for the shown attempt.",
+        "Where a final answer is listed, the shown work reaches it or explains the discrepancy.",
+        "Simulator problems include the requested capture with values displayed or labeled, and a note comparing them to the hand result.",
+        "Every plot has a title, axis labels with units, and a legend."
+      ],
+      "exemplars": [],
+      "basis": "The grading rule and simulator instructions stated in the 11 prompts. No completed homework exists, so the layout of a good solution is unknown and no exemplar is given."
+    }
+  ]
+}

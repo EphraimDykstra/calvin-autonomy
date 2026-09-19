@@ -1,0 +1,47 @@
+{
+  "title": "Assignment 4 - Cantilever Beam Stress and Deflection",
+  "family": "cantilever-beam-stress-and-deflection",
+  "method": "Euler-Bernoulli cantilever beam with an end point load",
+  "text": "A cantilever beam carries a downward point load at its free end. Report the maximum bending stress in megapascals and the maximum free-end deflection in millimetres.",
+  "assumptions": {
+    "material_behaviour": "linear elastic and homogeneous",
+    "cross_section": "prismatic rectangular section along the full length",
+    "load_case": "single static point load at the free end",
+    "self_weight": "neglected"
+  },
+  "inputs": {
+    "P": {
+      "value": 500.0,
+      "unit": "N"
+    },
+    "L": {
+      "value": 2.0,
+      "unit": "m"
+    },
+    "b": {
+      "value": 0.05,
+      "unit": "m"
+    },
+    "h": {
+      "value": 0.1,
+      "unit": "m"
+    },
+    "E": {
+      "value": 200000000000.0,
+      "unit": "Pa"
+    }
+  },
+  "requirements": [
+    {
+      "id": "r1",
+      "text": "Calculate the maximum bending stress in the beam and report it in megapascals."
+    },
+    {
+      "id": "r2",
+      "text": "Calculate the maximum free-end deflection and report it in millimetres."
+    }
+  ],
+  "deliverables": [
+    "A single PDF report showing the method, the numeric substitution, and the final values."
+  ]
+}

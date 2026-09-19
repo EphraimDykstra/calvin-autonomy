@@ -1,0 +1,324 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "engr205",
+    "code": "ENGR 205",
+    "title": "Principles of Materials Science",
+    "professor": null,
+    "instructor_identified_from": "PDF author metadata on the lecture slides and the course schedule; no syllabus survives, so the attribution was never confirmed from a course document",
+    "terms_observed": ["Spring 2024"]
+  },
+  "coverage": {
+    "format": "partial",
+    "methods": "partial",
+    "assignments": "partial",
+    "notes": "No syllabus survives. The lab report sheets cite 'Lab Manual appendices' for how to label figures and tables, and those appendices were not kept, so the labeling rules here come from what the report sheets themselves ask for. Each lab deliverable shape rests on a single instance. The report sheet answered in place with a separate workbook (polymers, concrete 2) has two handouts but only one completed sheet. The free-form tensile-test write-up (metals) has no surviving prompt. The recorded slide presentation (societal issues) has one handout with a topic rubric and one completed deck. Concrete 1, the weekly paper homework, and the ZyBook activities left nothing readable. The test summaries are the student's own study notes, not instructor material, and are not used."
+  },
+  "course_policy": {
+    "source": "none found (no syllabus in the archive)",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this course was found in the archive. Ask the student to confirm the current policy with the instructor.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "format": {
+    "deliverable": "lab report sheet: the lab handout answered in place in Word, with every requested table and chart rebuilt as a numbered, captioned figure or table, plus the Excel workbook uploaded as its own file",
+    "precedence": [
+      "the specific lab handout or report sheet, especially its hand-in list",
+      "labeling rules the report sheets restate (the lab-manual appendices they cite were not retained)",
+      "patterns observed in one completed report sheet and one free-form write-up"
+    ],
+    "paired_deliverable": {
+      "rule": "The workbook and the report sheet are two halves of one submission. The workbook does the arithmetic and is uploaded separately. The report sheet carries every table and chart the hand-in list names, each rebuilt as a numbered, captioned figure or table the way a technical report would present it. The concrete sheet says not to print from Excel: charts go into the Word document, not onto separate spreadsheet printouts.",
+      "workbook_holds": [
+        "the raw instrument data as supplied (force and displacement, or fracture force)",
+        "the specimen dimensions and the cross-section area actually used",
+        "calculated columns (stress, strain, strength) written once as formulas and filled down, not typed values",
+        "the chart each report figure is copied from"
+      ],
+      "report_holds": [
+        "the answer to every numbered question, typed under that question",
+        "each requested table and figure, numbered, captioned, and with units",
+        "each derived property with its units and a sentence on how it was determined, because the polymers sheet asks for the method as well as the value"
+      ],
+      "consistency": "Every number in the report must match the workbook cell that produced it, in the same units and to sensible significant figures. A value typed into the report that no cell computes cannot be checked by anyone, including the student.",
+      "common_errors": [
+        "a property reported with no units, or in the workbook's internal units (lbf, in) without saying so",
+        "a peak load reported where the question asks for a strength (a stress needs the load divided by the original area)",
+        "a chart pasted without a figure number and caption"
+      ],
+      "basis": "hand-in lists on the concrete 2 and polymers report sheets, one completed polymers sheet, the concrete workbook"
+    },
+    "header": {
+      "fields": ["[Student Name]", "group or group number (group labs)"],
+      "note": "The concrete sheet has name and group lines at the top and asks for the name on every printed page. The polymers sheet has no header field of its own; put the name at the top anyway.",
+      "source": "report sheets"
+    },
+    "figures": {
+      "caption_pattern": "Figure N. Descriptive title.",
+      "caption_position": "unknown",
+      "rules": [
+        "a figure or table heading carries a number and a descriptive title",
+        "axes labeled with the quantity and its units",
+        "a legend whenever the chart has more than one series",
+        "histograms and scatter plots as separate numbered figures when the hand-in list names them separately"
+      ],
+      "basis": "The number-plus-title rule is inferred from a quiz item on the concrete sheet; the lab-manual appendix that states the rule outright was not retained. The legend rule is general practice: the sheet asks whether every graph needs a legend, and no answer survives.",
+      "source": "report sheet + inferred"
+    },
+    "tables": {
+      "caption_pattern": "Table N. Descriptive title.",
+      "caption_position": "unknown",
+      "rules": ["units in every column header", "statistical summary tables give count, minimum, maximum, mean, and standard deviation when the sheet asks for statistics"],
+      "source": "report sheets"
+    },
+    "voice": {
+      "rule": "No stated rule. The one free-form write-up is first person and narrates what was done; nothing in the archive says whether that is accepted. Default to a plain third-person report voice and tell the student this is a default, not a course rule.",
+      "source": "observed + default"
+    },
+    "units_and_numbers": {
+      "units_everywhere": true,
+      "unit_system": "US customary in the tensile and concrete labs (lbf, in, psi); state the units with every value",
+      "significant_digits": "report derived properties to 3 significant figures unless the handout says otherwise; the completed sheets show raw spreadsheet precision, which is not a model",
+      "source": "handouts + inferred"
+    },
+    "tooling": {
+      "calculation": "Excel for all data reduction, charts, and statistics",
+      "writing": "Word, answering in place on the instructor's report sheet",
+      "readings": "ZyBook (Callister-based) participation and challenge activities, due by noon on class days",
+      "homework": "paper problem sets handed in at the start of class",
+      "source": "course schedule + handouts"
+    },
+    "submission": {
+      "concrete": "workbook uploaded to Moodle, plus the completed report sheet printed and stapled with the tables and figures",
+      "polymers": "individual; the completed report sheet with the stress-strain chart and relaxation table inserted, with the workbook behind it",
+      "societal_issues": "individual; a recorded voice-over slide presentation uploaded to Moodle",
+      "source": "handouts"
+    }
+  },
+  "methods": [
+    {
+      "id": "tensile-test-reduction",
+      "title": "Engineering stress-strain from a tensile test",
+      "when": "The metals and polymers tensile labs: force and displacement from the test frame, reduced to material properties.",
+      "steps": [
+        "Measure the gauge length, width, and thickness before the test (and after it, for reduction in area). Compute the original area A0 = width x thickness.",
+        "Engineering stress = force / A0. Engineering strain = elongation / original gauge length. Build both as formula columns.",
+        "Plot stress (vertical) against strain (horizontal) with markers for the measured points.",
+        "Modulus of elasticity: the slope of a line fitted over the clearly linear initial region. State which points were used.",
+        "Yield strength by the 0.2% offset: draw a line with the elastic slope shifted by a strain of 0.002 and read the stress where it crosses the curve.",
+        "Tensile strength: the maximum engineering stress.",
+        "Ductility: percent elongation = (final length - original length) / original length x 100, and percent reduction in area from the before and after areas when they were measured.",
+        "Resilience: the area under the elastic portion (about yield stress squared over twice the modulus). Toughness: the area under the whole curve to fracture, by the trapezoid rule over every data row.",
+        "Compare each property with a handbook or textbook value for the same material and condition, cite where it came from, and explain any difference."
+      ],
+      "pitfalls": [
+        "Reporting the peak force in lbf as the tensile strength.",
+        "Resilience and toughness formulas covering the same row range. Toughness has to run to the fracture row. When the two come out equal, the range is wrong.",
+        "A modulus well below the handbook value, because crosshead displacement includes machine and grip compliance. Say so rather than adjusting the data.",
+        "Comparing against a reference value for a different alloy, temper, or cold-work state, or leaving the reference column blank for one of the two materials.",
+        "Formula references hard-coded to one sample's rows and then copied to the other sample's table without being updated."
+      ]
+    },
+    {
+      "id": "polymer-stress-relaxation",
+      "title": "Relaxation modulus from a held-strain test",
+      "when": "The polymers lab: the crosshead is paused in the plastic region and the force is read each second as it decays.",
+      "steps": [
+        "Record the held strain once, and the force every second from the test video.",
+        "Stress at each time = force / A0, using the original area as for engineering stress.",
+        "Relaxation modulus Er(t) = stress(t) / held strain. Tabulate it against time and plot it.",
+        "Report Er at the time the handout names. When it names none, state the time you chose; the textbook convention is 10 s.",
+        "Contrast with creep: relaxation holds strain and watches stress fall, while creep holds load and watches strain grow."
+      ],
+      "pitfalls": [
+        "Reporting a list of moduli with no time attached.",
+        "Taking the strain from a moment when the elongation was still rising, because the video shows it creeping for a few seconds after the pause."
+      ]
+    },
+    {
+      "id": "concrete-strength-statistics",
+      "title": "Compressive strength and acceptance statistics for concrete cylinders",
+      "when": "The concrete 2 lab: fracture forces from the class's cylinders, a supplier's 7-day and 28-day record, and historical class data.",
+      "steps": [
+        "Compressive strength = fracture force / (pi x diameter^2 / 4). Confirm the cylinder diameter for every data set before computing.",
+        "Tabulate the count, minimum, maximum, mean, and standard deviation for each group the sheet asks about (7-day, 28-day, with and without entrained air).",
+        "Plot what the hand-in list names: a bar chart of 7-day against 28-day strength, histograms of the historical strengths (with and without air, as separate figures), and scatter plots of strength against water/cement ratio and against percent air.",
+        "Judge acceptance against the standard the course links on Moodle, which was not retained. ACI 318 is the usual basis (a running average of three consecutive tests and a floor on any single test), but use the course's document when the student has it.",
+        "Compare each trend with the expected direction (strength falls as water/cement ratio rises and as air content rises), and explain any scatter from mix or testing differences."
+      ],
+      "pitfalls": [
+        "The historical data and the class's own cylinders may not share a cylinder size, so one area formula applied to both is wrong for one of them.",
+        "Air content entered as a fraction in some rows and as a percent in others. Check the column before plotting it.",
+        "Calling a mix acceptable from its mean alone without checking the individual-test criterion."
+      ]
+    }
+  ],
+  "assignment_families": [
+    {
+      "id": "lab-report-sheet",
+      "title": "Lab report sheet with workbook (polymers, concrete 2)",
+      "stages": [
+        "read the posted lab procedure and answer the preparation questions",
+        "attend the scheduled test (group or individual, per the handout) and record data in the sheet's table",
+        "reduce the data in Excel, either in the instructor's workbook or one built to the same structure",
+        "answer every question in place and insert each requested table and figure",
+        "upload the workbook and hand in or upload the completed sheet"
+      ],
+      "deliverables": [
+        "the completed report sheet (Word, or printed and stapled where the handout says so)",
+        "the Excel workbook as a separate upload"
+      ],
+      "what_good_looks_like": [
+        "Every numbered question is answered directly under it, and none is left blank.",
+        "Every item on the hand-in list appears as a numbered, captioned figure or table with units, inserted into the sheet and not printed from Excel.",
+        "Each derived property states its value, its units, and one sentence on how it was determined.",
+        "The workbook computes every reported number with formulas, and the report matches it exactly.",
+        "Trend and acceptance questions are answered with the relevant statistic or criterion named, not just yes or no."
+      ],
+      "exemplars": ["lab-report-sheet-shape"],
+      "basis": "two report-sheet handouts (polymers, concrete 2), one completed polymers sheet, the concrete workbook. No graded return exists."
+    },
+    {
+      "id": "tensile-lab-writeup",
+      "title": "Short tensile-test write-up (metals)",
+      "stages": ["download the supplied force-displacement data", "reduce it in Excel", "write a short report with a property table and figures"],
+      "deliverables": ["a short Word report with a title block, a method summary, a property table, a discussion, and an appendix of stress-strain figures"],
+      "what_good_looks_like": [
+        "The property table gives each property's value with units, how it was found, and a cited reference value for the same material and condition.",
+        "The discussion explains each large difference from the reference with a physical or procedural reason.",
+        "The stress-strain figures are numbered, captioned, and have labeled axes with units."
+      ],
+      "exemplars": ["tensile-lab-writeup-shape"],
+      "basis": "One completed write-up. No prompt for this lab survives, so its required structure is unknown and the shape here is observed, not specified. Ask the student for the handout."
+    },
+    {
+      "id": "societal-issues-presentation",
+      "title": "Societal and environmental issues presentation",
+      "stages": ["read the assigned textbook chapter and complete its activities", "claim a material from the approved list", "research it against the handout's topic list", "record a voice-over slide presentation"],
+      "deliverables": ["a recorded presentation of about 6-10 slides with the presenter's voice, uploaded to Moodle"],
+      "what_good_looks_like": [
+        "Every topic on the handout's list is covered, because the list is also the grading rubric: what the material is and its molecular structure with a diagram, the full materials cycle through end of life, its purpose, its costs and who bears them, and a Christian-perspective evaluation using the design norms.",
+        "Slides use images and short bullets, not paragraphs.",
+        "Sources appear on each slide or on a closing references slide, and they are judged for quality (the handout names the CRAAP test).",
+        "The narration shows command of the material rather than reading the slides."
+      ],
+      "exemplars": ["societal-issues-presentation-shape"],
+      "basis": "one handout with an explicit topic rubric and one completed slide deck"
+    },
+    {
+      "id": "homework-and-zybook",
+      "title": "Weekly paper homework and ZyBook activities",
+      "stages": ["ZyBook reading activities due by noon on class days", "paper problem sets handed in at the start of class"],
+      "deliverables": ["handwritten problem sets", "online ZyBook completions"],
+      "what_good_looks_like": [],
+      "exemplars": [],
+      "basis": "Only the course schedule mentions these. No problem set, prompt, or solution survives, so how solutions should be presented is not covered."
+    }
+  ],
+  "magnitudes": [
+    {
+      "quantity": "held strain in the polymer stress-relaxation test (engineering strain, as a fraction)",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.002,
+        3
+      ],
+      "basis": "Physical plausibility, not a course rule: the hold is in the plastic region of a thermoplastic tensile test, where engineering strain is a small fraction up to a few times the gauge length.",
+      "note": "Between about 3 and 300: strain entered as a percent. Every relaxation modulus built on it comes out 100x low."
+    },
+    {
+      "quantity": "relaxation modulus Er at about 10 s (thermoplastic at room temperature)",
+      "unit": "MPa",
+      "typical_range": [
+        20,
+        5000
+      ],
+      "basis": "Physical plausibility, not a course rule: room-temperature thermoplastics sit roughly between a few tens of MPa (soft polyethylene, well into yield) and a few GPa (glassy polymers). Textbook property tables.",
+      "note": "About 100x low: the held strain went in as a percent. About 1000x off: stress in Pa or kPa labelled MPa. If the specimen is an elastomer, not a thermoplastic, 1-20 MPa is normal and this range does not apply. 1 MPa = 145 psi."
+    },
+    {
+      "quantity": "tensile strength of a metal lab specimen (steel, aluminum, brass)",
+      "unit": "psi",
+      "typical_range": [
+        10000,
+        200000
+      ],
+      "basis": "Physical plausibility, not a course rule: common engineering alloys have ultimate strengths from about 10 ksi (annealed pure aluminum) to about 200 ksi (hardened steel). Handbook values.",
+      "note": "Equal to the peak force, or below about 10,000: the peak force was reported without dividing by the original area. A lab specimen's area is well under 1 in^2, so the strength is always numerically larger than the force in lbf."
+    },
+    {
+      "quantity": "modulus of elasticity of a metal from the tensile test",
+      "unit": "ksi",
+      "typical_range": [
+        1000,
+        32000
+      ],
+      "basis": "Physical plausibility, not a course rule: handbook moduli are about 10,000 ksi for aluminum, 15,000 for brass and 29,000 for steel. Crosshead displacement includes grip and machine compliance, so a measured modulus well below handbook is expected and is why the low bound is generous.",
+      "note": "Above the handbook value for the alloy: something is wrong, since compliance can only lower it. About 100x low: strain as a percent. About 1000x off: psi and ksi confused."
+    },
+    {
+      "quantity": "percent elongation at fracture (metals)",
+      "unit": "%",
+      "typical_range": [
+        1,
+        70
+      ],
+      "basis": "Physical plausibility, not a course rule: ductile wrought alloys elongate roughly 10-60% and cast or hardened ones a few percent. Handbook values.",
+      "note": "Below 1 for a visibly ductile specimen: reported as a fraction, not a percent. Above 100: lengths in different units, or the fraction multiplied by 100 twice."
+    },
+    {
+      "quantity": "ratio of toughness to resilience (same specimen)",
+      "unit": "dimensionless",
+      "typical_range": [
+        2,
+        5000
+      ],
+      "basis": "Physical plausibility, not a course rule: resilience is only the elastic triangle, while toughness integrates the whole curve to fracture, so for any metal that yields before breaking toughness is many times larger.",
+      "note": "About 1: the toughness integral stopped at the same row as the resilience range. It has to run to the fracture row."
+    },
+    {
+      "quantity": "compressive strength of a concrete cylinder",
+      "unit": "psi",
+      "typical_range": [
+        1000,
+        10000
+      ],
+      "basis": "Handout and physical plausibility: the concrete report sheet frames acceptance against required strengths of 3,000 to 4,000 psi, and ordinary concrete breaks between about 2,000 and 8,000 psi. The bounds are a generous plausibility margin around both, not a course rule.",
+      "note": "About 4x low: the radius was used as the diameter in pi d^2/4. About 2.25x off: a 4 in cylinder's area applied to a 6 in cylinder, or the reverse. The report sheet itself names both sizes in different parts, so check the diameter for every data set. Acceptance is judged per cylinder against the required strength, not from the mean."
+    },
+    {
+      "quantity": "ratio of 7-day to 28-day compressive strength (same mix)",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.5,
+        0.95
+      ],
+      "basis": "Physical plausibility, not a course rule: concrete gains strength as it cures, and a 7-day cylinder usually reaches roughly two-thirds to three-quarters of its 28-day strength.",
+      "note": "Above 1: the columns are swapped, or the groups used different cylinder sizes. A single odd pair can be real scatter; a whole data set above 1 is not."
+    },
+    {
+      "quantity": "entrained air content",
+      "unit": "%",
+      "typical_range": [
+        0.5,
+        10
+      ],
+      "basis": "Physical plausibility, not a course rule: entrapped air in plain concrete is a percent or two, and air-entrained mixes run about 4-8%.",
+      "note": "Below 0.5 in a column that is otherwise percent: those rows were entered as fractions. Check the column before plotting strength against it."
+    },
+    {
+      "quantity": "water/cement ratio",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.3,
+        0.8
+      ],
+      "basis": "Physical plausibility, not a course rule: workable structural mixes fall roughly between 0.35 and 0.7 by mass.",
+      "note": "Above 1 or near 30-80: entered as a percent, or the ratio inverted to cement/water."
+    }
+  ]
+}

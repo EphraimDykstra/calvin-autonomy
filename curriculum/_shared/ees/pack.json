@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "pack": {
+    "id": "ees",
+    "kind": "tool",
+    "title": "EES (Engineering Equation Solver)"
+  },
+  "coverage": {
+    "conventions": "high",
+    "methods": "partial",
+    "pitfalls": "high",
+    "notes": "Conventions rest on one student's files and two professors' handouts, ENGR 333 evidence covers only its first weeks plus final-exam tips, parametric-table evidence is handout-side only, and no exemplar has been solved in EES."
+  },
+  "conventions": {
+    "scope": {
+      "rule": "ENGR 319, ENGR 328 and ENGR 333. Where the courses differ the rule is keyed by course; do not merge them.",
+      "basis": "Course folders for ENGR 319, 328, 333: handouts, lab manuals, student EES files."
+    },
+    "unit_system": {
+      "engr328": {
+        "rule": "No $UnitSystem line in the file. The unit system is set in the EES Options dialog and saved with the file, so the equations listing does not show it; the solution-window printout does. Confirm SI/English, mass/molar, C/K, kPa/bar, kJ/J before trusting any number. Individual handouts override the default: one cycle problem requires English units, the flame-temperature problem requires molar.",
+        "basis": "All 22 ENGR 328 EES files lack a $UnitSystem line; student notes on GUI unit preferences; ENGR 328 homework sheets naming English and molar systems for specific problems."
+      },
+      "engr333": {
+        "rule": "Declare it on the first code line, e.g. $UnitSystem SI mass K bar kJ, so the basis travels with the code.",
+        "basis": "Every ENGR 333 EES file opens with a $UnitSystem directive; ENGR 333 printout shows matching unit settings."
+      },
+      "tag_every_input": {
+        "rule": "Every given carries a unit in brackets, e.g. T[1] = 300 [K], m_dot = 15 [g/s]. Constants inside lab-manual formulas get units too, or Check Units fails.",
+        "basis": "ENGR 328 A/C lab manual (assign units to formula constants); unit tags throughout student files."
+      },
+      "convert_not_factors": {
+        "rule": "Change units with Convert(from, to) and ConvertTemp(from, to, value), not typed factors such as 0.133322 or 1000.",
+        "basis": "ENGR 328 IC lab manual (let EES convert units); A/C lab file progression from typed factors to Convert()."
+      },
+      "temperature_offsets": {
+        "rule": "Use ConvertTemp, or a K unit system, wherever absolute temperature matters (radiation T^4, exergy T0*DELTAs). Convert(C,K) is a size-of-degree factor for temperature differences and does not add 273.15.",
+        "basis": "ENGR 328 boiling and exergy files using ConvertTemp for radiation and dead-state T; homework checklist asking for the right T units in radiation."
+      },
+      "unit_strings": {
+        "rule": "Unit strings are case-insensitive: write torque as [N-m], since [Nm] reads as nanometres.",
+        "basis": "ENGR 328 IC engine lab manual."
+      },
+      "auto_units": {
+        "rule": "Turn on automatic unit setting in preferences and treat Check Units as part of the answer: EES submissions show the solution window with no unit errors.",
+        "basis": "ENGR 328 homework sheets (solution window with no unit errors); student notes on the auto-set-units preference and unit-error counts."
+      }
+    },
+    "naming": {
+      "state_arrays": {
+        "rule": "States are arrays: T[1], P[1], h[1], s[1], not T1. Arrays are needed to plot states on property plots, even for a single state.",
+        "basis": "ENGR 328 Lecture 06A (states as arrays); ENGR 319 week-5 homework sheet (arrays needed to plot a state)."
+      },
+      "grid_indices": {
+        "rule": "Nodes are T[m] in 1D and T[m,n] in 2D. EES is case-insensitive, so the last index is MM (and NN), not M, and time is written time, not t. Index origin follows the handout: 0-based for the 1D textbook examples, 1-based for the 2D busbar-type problems.",
+        "basis": "ENGR 328 Lecture 25 handout (MM for M, time for t); ENGR 328 homework 9 and 10 sheets (index origin)."
+      },
+      "scalar_names": {
+        "rule": "Scalars use snake_case with subscripts after underscores: m_dot_a, Q_dot_evap, T_infinity, h_air_B. Rates use the _dot_ infix, gauge readings end in _Gauge, per-station values end in the station letter.",
+        "basis": "Recurring pattern across ENGR 328 lab and homework EES files."
+      },
+      "plot_arrays": {
+        "rule": "Values used only for plotting get their own arrays, e.g. T_psych[k], omega_psych[k], P_R134a_plot[k], filled from computed states.",
+        "basis": "ENGR 328 A/C and IC lab EES files."
+      },
+      "fluid_string": {
+        "rule": "A string variable may hold the fluid, e.g. fluid$ = 'Air' then Enthalpy(fluid$, T=T[1]); an ENGR 328 cycle handout asks for this so the fluid changes in one place.",
+        "basis": "ENGR 328 homework 2 sheet (change fluid in one place); homework EES files using fluid$ in property calls."
+      },
+      "reaction_coefficients": {
+        "rule": "For the IC lab combustion equation use the manual's coefficient letters (n, a, b, c, d, e).",
+        "basis": "ENGR 328 IC engine lab manual."
+      }
+    },
+    "comments": {
+      "engr328": {
+        "rule": "Line comments with //, section banners in capitals (// GIVENS, // STATE 1, // SECTION C-D). Quoted text prints in the formatted equations; quoted text starting with ! prints highlighted. Braces comment out a block.",
+        "basis": "ENGR 328 EES files and their printed PDFs."
+      },
+      "engr333": {
+        "rule": "Descriptive text in double quotes, e.g. \"Problem 1: h and s at each state\", so it appears in the formatted printout; braces for temporary checks marked for removal.",
+        "basis": "ENGR 333 EES files; ENGR 333 final-exam handout (temporary check equations in braces)."
+      },
+      "header": {
+        "rule": "Files open with a short comment block: student, course, assignment and problem, professor, date. Demonstration code uses placeholders, never a real student.",
+        "basis": "Header block at the top of every ENGR 328 and ENGR 333 student file (shape only)."
+      },
+      "apostrophes": {
+        "rule": "Avoid apostrophes inside comments: EES delimits strings with single quotes, and apostrophes in comments were reported to cause trouble. Write do not, not the contraction.",
+        "basis": "Student comments in two ENGR 328 EES files; single-quote strings in homework files. Student-reported, not confirmed in a handout."
+      }
+    },
+    "block_order": {
+      "rule": [
+        "Header comment block",
+        "Unit-system declaration (ENGR 333) or a comment stating the GUI unit system (ENGR 328)",
+        "GIVENS: raw measured or stated data with units, grouped by physical source; gauge-to-absolute and unit conversions right after the raw value",
+        "Constants looked up once: MolarMass, T_sat, textbook formation enthalpies",
+        "State properties: one block per state, or one DUPLICATE loop over a run or state index",
+        "Balances and derived results, section by section in the order the lab or problem walks through them",
+        "Percent errors and checks",
+        "Plot arrays and a comment saying what to plot"
+      ],
+      "basis": "Recurring order in ENGR 328 lab and homework files; Lecture 25 handout outline (variables, grid, BCs, interior, positions)."
+    },
+    "build_order": {
+      "rule": "Build a lab model in passes, solving after each: givens and unit conversions, then state properties, then one control volume or section at a time (simplest section first), then efficiencies, COP or errors, then plot arrays. Clear unit errors before adding the next section.",
+      "basis": "Early vs late versions of the same ENGR 328 A/C lab file plus dated intermediate printouts; ENGR 333 final-exam handout (solve after every equation)."
+    },
+    "state_points": {
+      "two_properties": {
+        "rule": "Fix each state with two independent properties from the process relation (s[2] = s[1], v[2] = v[1]/r, P[3] = P[2]) and let EES return the rest; do not write ideal-gas or constant-cp formulas when the problem wants exact properties.",
+        "basis": "ENGR 328 Lecture 06A; ENGR 328 homework 2 and 3 sheets."
+      },
+      "look_up_constants": {
+        "rule": "If cp, cv, R or molar mass is needed, get it from EES (Cp, Cv, MolarMass) rather than typing a table number.",
+        "basis": "ENGR 328 Lecture 06A; ENGR 328 IC lab manual."
+      },
+      "saturation": {
+        "rule": "Saturated states use x=0 or x=1. Tap or subcooled water is not x=0, which means saturated liquid at Tsat. Above the critical point there is no quality.",
+        "basis": "ENGR 328 A/C lab manual (x=0 is not tap water); ENGR 328 homework 11 sheet (critical point)."
+      },
+      "no_isolation": {
+        "rule": "Equations need not be solved for one variable; write the balance in its physical long form and let EES solve the simultaneous set.",
+        "basis": "ENGR 328 Lecture 25 handout."
+      }
+    },
+    "property_models": {
+      "ideal_vs_real": {
+        "rule": "A chemical-formula name (CO2, H2O, N2, O2, CH4, C8H18) is an ideal gas; a word name (CarbonDioxide, Water, Nitrogen, Methane, n-Octane) is a real fluid with all phases. Use Water, not H2O, for steam-table work.",
+        "basis": "ENGR 328 homework 7 sheet; ENGR 328 IC lab manual; ENGR 319 week-5 homework sheet."
+      },
+      "formation_enthalpy": {
+        "rule": "Enthalpy() of an ideal-gas species already includes formation enthalpy; a real fluid's does not. For a liquid fuel, take h_f from the textbook and add the real-fluid change h(T,P) - h(298 K,P) from EES.",
+        "basis": "ENGR 328 homework 7 sheet; ENGR 328 IC lab manual."
+      },
+      "air_variants": {
+        "rule": "Air and Air_ha are different data sets. ENGR 328 asks for Air, not Air_ha, and the IC lab builds air from O2 and N2 for combustion enthalpies; ENGR 333 week-one work used Air_ha. Follow the handout and do not mix them in one analysis.",
+        "basis": "ENGR 328 homework 1 sheet; ENGR 328 IC lab manual; ENGR 333 week-one EES file."
+      },
+      "moist_air": {
+        "rule": "Psychrometrics use AirH2O with the total pressure passed explicitly; h and v come back per kg of dry air.",
+        "basis": "ENGR 328 A/C lab manual appendix on EES psychrometric functions."
+      },
+      "no_mixing_with_tables": {
+        "rule": "ENGR 319 computer problems: use EES property functions or textbook tables, never both. In every course, do not splice table values into an EES property chain except where a handout requires it (liquid-fuel formation enthalpy).",
+        "basis": "ENGR 319 computer problem 2 sheet; ENGR 328 homework 7 and IC lab manual for the liquid-fuel exception."
+      },
+      "reference_state": {
+        "rule": "Absolute h and s depend on the property reference state; compare differences, not absolute values, with tables or classmates.",
+        "basis": "ENGR 328 homework 7 sheet (real-fluid vs ideal-gas reference); comparison of EES and other property packages during ENGR 333 week-one work."
+      }
+    },
+    "when_ees_is_allowed": {
+      "rule": "Each handout says which problems are EES problems. Several ENGR 328 problems forbid EES because tests have no EES; where a quick EES lookup is allowed the student writes 'from EES' and need not print code. Check before writing EES for any problem.",
+      "basis": "ENGR 328 homework sheets 1-12."
+    },
+    "printout": {
+      "rule": "EES problems are submitted as printed code plus solution window, the requested answers marked as Key Variables with descriptive labels and units, plots included, and no unit errors.",
+      "basis": "ENGR 328 homework sheets (print code, key variables, no unit errors, plots)."
+    }
+  },
+  "methods": [
+    {
+      "id": "declare-units",
+      "title": "Set and verify the unit system",
+      "when": "Before writing or debugging any EES file.",
+      "steps": [
+        "Read the handout for a required unit system (English, molar, K).",
+        "ENGR 333: put $UnitSystem on the first line. ENGR 328: tell the student which Options > Unit System settings to choose and state them in a comment.",
+        "Tag every given with units and make temperature tags match the system (inputs in [K] need a K system).",
+        "Ask the student to run Check Units and report the count of unit errors and the unit settings line on the solution printout."
+      ],
+      "pitfalls": [
+        "Code that is right under K solves silently wrong under C for ideal-gas h and s and cycle efficiencies; no error is raised.",
+        "A pasted equations listing from ENGR 328 cannot confirm the unit system on its own."
+      ],
+      "basis": "ENGR 333 EES files; ENGR 328 file documenting a C-vs-K unit-setting error; ENGR 328 homework sheets."
+    },
+    {
+      "id": "state-properties",
+      "title": "Fix states and call property functions",
+      "when": "Any cycle, device or state-table problem.",
+      "steps": [
+        "Index states as arrays T[i], P[i], h[i], s[i].",
+        "Choose the substance name deliberately: real fluid (Water, R134a, n-Octane) or ideal gas (CO2, N2, Air).",
+        "Give each call two independent properties by keyword: Enthalpy(R134a, T=T[1], P=P[1]); Temperature(fluid$, s=s[3], P=P[4]); Quality(R134a, P=P[4], h=h[4]).",
+        "Write process relations (s[2]=s[1]; h[4]=h[3] across a valve) as equations and let EES return the rest."
+      ],
+      "pitfalls": [
+        "cp*DELTAT, Pv=RT or typed table values defeat the exact-property purpose of ENGR 328 cycle problems.",
+        "H2O instead of Water gives ideal-gas steam with no liquid phase.",
+        "Gauge pressures passed to a property call; convert to absolute first."
+      ],
+      "basis": "ENGR 328 Lecture 06A; ENGR 328 homework 2 and 3 sheets; ENGR 319 week-5 homework sheet."
+    },
+    {
+      "id": "psychrometrics",
+      "title": "Moist-air stations (A/C lab)",
+      "when": "Air-conditioning lab or any psychrometric problem.",
+      "steps": [
+        "Enter dry-bulb and wet-bulb pairs per station and the barometric pressure converted with Convert(mmHg, kPa).",
+        "Call Enthalpy, HumRat, Volume, RelHum or DewPoint with AirH2O, T=dry bulb, B=wet bulb, P=P_atm.",
+        "Multiply per-kg-dry-air values by the dry-air mass flow.",
+        "Write each section as forcing versus response; percent error = (response - forcing)/forcing*100.",
+        "Copy station values into plot arrays for the psychrometric chart."
+      ],
+      "pitfalls": [
+        "Passing a refrigerant-loop pressure as P in an AirH2O call gives wrong humidity ratios with no error.",
+        "Electrical power in W added to kJ/kg times kg/s terms without Convert(W, kW) is off by 1000.",
+        "Constants in the lab-manual flow equation need unit tags or Check Units fails."
+      ],
+      "basis": "ENGR 328 A/C lab manual; A/C lab EES files (winter and summer)."
+    },
+    {
+      "id": "refrigeration-loop",
+      "title": "R134a vapor-compression loop",
+      "when": "A/C lab refrigerant side or any vapor-compression cycle.",
+      "steps": [
+        "Convert panel gauge readings to absolute pressures.",
+        "State 1 from T and P (superheated), state 2 from measured T and P, state 3 as x=0 at condenser pressure, state 4 with h[4]=h[3] at evaporator pressure.",
+        "State 2s from Enthalpy(R134a, P=P[2], s=s[1]).",
+        "Convert refrigerant flow from g/s to kg/s with Convert, then compute evaporator heat, compressor work, COP and isentropic efficiency."
+      ],
+      "pitfalls": [
+        "Quality at state 4 outside 0 to 1 means a pressure or state definition is wrong.",
+        "Isentropic efficiency above 1 points to a bad compressor-exit reading, not a better compressor."
+      ],
+      "basis": "ENGR 328 A/C lab manual (R134a energy rate); A/C lab EES files."
+    },
+    {
+      "id": "duplicate-loops",
+      "title": "DUPLICATE loops and sums",
+      "when": "Repeated equations over runs, states or grid nodes.",
+      "steps": [
+        "Wrap repeated equations in DUPLICATE i = 1, N ... END; nest DUPLICATE for 2D grids.",
+        "Use MM and NN for last indices and a grid multiplier so node count changes in one place.",
+        "Write boundary and interior equations as separate loops over their own index ranges.",
+        "Total with Sum(Q[m], m=1, MM), or Sum(Q[2..a]) with the end bound precomputed into a variable."
+      ],
+      "pitfalls": [
+        "m and M, or t and T, are the same variable to EES.",
+        "Overlapping loop ranges define a node twice and missing ranges leave unknowns; equation count must match unknown count.",
+        "Very dense grids can exhaust EES memory."
+      ],
+      "basis": "ENGR 328 Lecture 25 handouts; homework 9, 10 and 12 sheets and files; IC lab file."
+    },
+    {
+      "id": "transient-integral",
+      "title": "Transient nodes with Integral()",
+      "when": "1D or 2D transient conduction.",
+      "steps": [
+        "For each free node: T[m] = T_init[m] + Integral(dTdt[m], time).",
+        "Write each node balance all-in (neighbor minus node, always added) equal to rho_cp times node volume times dTdt[m].",
+        "Use rho_cp = k/alpha when only diffusivity is given.",
+        "Drive time from a parametric table with a time column from start to end.",
+        "Validate by switching generation off and comparing with a hand-solvable resistance network."
+      ],
+      "pitfalls": [
+        "Half volumes and half areas on boundary and corner nodes are the usual source of wrong results.",
+        "The all-in convention only works if every conduction term is added; mixing sign conventions breaks the balance."
+      ],
+      "basis": "ENGR 328 Lecture 27 handout; homework 9 and 10 sheets and files; Lecture 25 validation slide."
+    },
+    {
+      "id": "parametric-table",
+      "title": "Parametric table sweeps",
+      "when": "A result plotted against an input, a time history, or a grid-convergence check.",
+      "steps": [
+        "Tell the student to create the table in the GUI (Tables > New Parametric Table) with the swept input and the outputs as columns.",
+        "Comment out the fixed equation for the swept input so the table supplies it.",
+        "Fill the input column (first value, last value, number of runs, linear) and Solve Table.",
+        "Plot from the table and ask for the table printout and plots back.",
+        "Check one row against the single-solve answer before trusting the curve."
+      ],
+      "pitfalls": [
+        "Leaving the swept variable also set in the equations over-specifies the system.",
+        "Tables live in the file, not the equations text; a code listing does not show them."
+      ],
+      "basis": "ENGR 328 homework 2, 9 and 10 sheets; parametric table printout in a homework 10 PDF; student notes on table setup."
+    },
+    {
+      "id": "combustion-balance",
+      "title": "Combustion with element balances",
+      "when": "Air-fuel ratios, heat of combustion, adiabatic flame temperature, IC lab energy balance.",
+      "steps": [
+        "Write one balance per element (e.g. 8 = b for carbon) with air mole fractions as variables; never enter the overall reaction as an equation.",
+        "Use ideal-gas species names so Enthalpy includes formation; for a liquid fuel add the textbook h_f to the EES real-fluid temperature change.",
+        "Match the basis: a molar unit system returns kJ/kmol; in mass mode convert with MolarMass or mass fractions.",
+        "For flame temperature leave T_prod unknown, set H_P = H_R, and give T_prod a realistic guess."
+      ],
+      "pitfalls": [
+        "Mixing kJ/kmol textbook values with kJ/kg EES values (off by the molar mass).",
+        "Using Air directly in combustion enthalpies; build air from O2 and N2.",
+        "Enthalpy_formation does not work for real liquids such as Water or n-Octane."
+      ],
+      "basis": "ENGR 328 homework 7 sheet; ENGR 328 IC engine lab manual; homework 7 and IC lab files."
+    },
+    {
+      "id": "convergence",
+      "title": "Guess values and limits when it will not converge",
+      "when": "Solver errors, negative roots, properties out of range, or physically absurd results.",
+      "steps": [
+        "Solve after every added equation; the failure is usually in the last one added.",
+        "Set a realistic guess in Variable Info (a temperature in the hundreds of K, not 1), then Update Guesses once it solves.",
+        "ENGR 328 guidance: add limits when needed, such as temperatures at or above 200 K, or a film-boiling surface temperature just above Tsat.",
+        "ENGR 333 guidance: prefer good guesses to limits and leave limits at -Inf and Inf.",
+        "For an inconsistency-in-block error, look for redundant equations: copy the file, comment everything out, and re-add equations one at a time.",
+        "Replace singular inputs such as emissivity = 1 with 0.999999999."
+      ],
+      "pitfalls": [
+        "A guess near absolute zero sends property calls out of range and returns a mathematical but unphysical answer.",
+        "Any thermo result below 200 K is suspect; EES properties are poorly defined there."
+      ],
+      "basis": "ENGR 328 homework 7 and 11 sheets (limits, guesses); homework 12 sheet (emissivity); ENGR 333 final-exam handout (guesses over limits, block inconsistency)."
+    },
+    {
+      "id": "magnitude-check",
+      "title": "A result off by about 1000",
+      "when": "A property, heat rate or power is three orders of magnitude from expectation.",
+      "steps": [
+        "List the unit system's energy and pressure units, then compare every input tag with them.",
+        "Check prefix pairs: Pa vs kPa (orifice pressure drops are often read in Pa), J vs kJ (W-based heat-transfer correlations against kJ/kg properties), g vs kg (flow meters), W vs kW (electrical power).",
+        "Fix with Convert() at the input, not a trailing factor.",
+        "Remove invented unit tags that are not real units and redundant conversions such as Convert(kW, kJ/s); both leave unit errors that spread downstream.",
+        "Re-run Check Units until it reports none."
+      ],
+      "pitfalls": [
+        "Hand-typed factors hide the mismatch from Check Units.",
+        "A factor near 18, 29 or 44 instead of 1000 is a mass versus molar basis error, not a prefix error."
+      ],
+      "basis": "IC lab EES file fixes (Pa vs kPa, invented unit tag, redundant conversion); boiling and A/C files (J vs kJ, g vs kg, W vs kW); ENGR 328 homework 2 sheet (track kJ vs J)."
+    }
+  ],
+  "exemplars": [
+    {
+      "id": "gas-cycle-states",
+      "file": "exemplars/gas-cycle-states.txt",
+      "shows": "ENGR 328 cycle: fluid$ string, state arrays, two-property lookups, no ideal-gas formulas."
+    },
+    {
+      "id": "state-points-declared-units",
+      "file": "exemplars/state-points-declared-units.txt",
+      "shows": "ENGR 333 idiom: $UnitSystem line, quoted comments, state arrays, DUPLICATE over states, Convert(kJ/s,W)."
+    },
+    {
+      "id": "psychrometric-stations",
+      "file": "exemplars/psychrometric-stations.txt",
+      "shows": "AirH2O stations at P_atm, forcing and response percent error, plot arrays."
+    },
+    {
+      "id": "r134a-loop",
+      "file": "exemplars/r134a-loop.txt",
+      "shows": "Gauge to absolute, R134a states 1 to 4 and 2s, g/s conversion, COP."
+    },
+    {
+      "id": "duplicate-transient-nodes",
+      "file": "exemplars/duplicate-transient-nodes.txt",
+      "shows": "MM naming, Integral(dTdt[m], time), all-in balances, validation case, table setup."
+    },
+    {
+      "id": "combustion-element-balance",
+      "file": "exemplars/combustion-element-balance.txt",
+      "shows": "Element balances, ideal-gas versus real-fluid enthalpy, back-solved flame temperature."
+    }
+  ]
+}

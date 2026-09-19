@@ -1,0 +1,11 @@
+{
+  "artifact_path": "deliverables/submission.pdf",
+  "artifact_sha256": "REPLACE_WITH_REGISTERED_ARTIFACT_HASH",
+  "all_pages_reviewed": null,
+  "legible": null,
+  "requirements_present": null,
+  "identity_checked": null,
+  "no_clipping": null,
+  "unresolved": [],
+  "notes": "Replace with concrete observations from the rendered artifact. Answer every check above with true or false after looking at the pages; a check left null is recorded as not passing, because an unanswered check is not an affirmation. Record what you actually found, including findings that block readiness."
+}

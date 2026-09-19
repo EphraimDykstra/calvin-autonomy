@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "pack": {
+    "id": "calvin-engineering",
+    "kind": "shared-conventions",
+    "title": "Calvin Engineering cross-course report conventions",
+    "use_when": "A student's course has no pack of its own, or its pack is silent on a point. A course pack always wins over this one, and the student's own handout always wins over both."
+  },
+  "coverage": {
+    "conventions": "partial",
+    "methods": "partial",
+    "pitfalls": "high",
+    "notes": "Built from one student's archive of about ten engineering courses. The archive holds no graded or instructor-annotated work, so nothing here shows what earned marks, only what handouts asked for. Evidence is instructor-written handouts first and submissions second. The department report standards were seen attached to exactly one course's lab handout; that they are department-wide is inferred from their title and content, not established. The thermo-fluids handouts (ENGR 209 lab, 319, 328) are one lineage and count once. ENGR 305 and 322 share an instructor. After collapsing those, most rules rest on 3 to 5 independent documents; courses outside mechanical and thermo-fluids (chemical, electrical design, civil) are barely represented. Pitfalls are rated high because the disagreements they come from are stated in writing on both sides."
+  },
+  "conventions": {
+    "precedence": {
+      "rule": [
+        "the specific assignment handout",
+        "the course's own report or memo spec, if the student has one",
+        "the course pack, if one exists",
+        "the cross-course rules below",
+        "the department report standards default, where no course rule speaks"
+      ],
+      "basis": "Every course with a written spec in the archive overrides the department default somewhere (abstract, voice, spacing, page numbering), and one handout says outright that its sections are a model, not a requirement.",
+      "confidence": "high"
+    },
+    "source_lineage": {
+      "rule": "Count agreement by independent document, not by course. Known families: (1) department report standards, seen appended to an ENGR 204 Lab handout; (2) the thermo-fluids handout family: the ENGR 319 and ENGR 328 lab writing guidelines are one document with the header changed, and the ENGR 209 lab handout's file metadata shows it derived from an ENGR 319 lab document; (3) ENGR 305's FEA report prompt and ENGR 322's executive-summary memos are by the same instructor. The ENGR 204 lecture writing handout may share an instructor with ENGR 204 Lab; it is counted as a document but not as a distinct instructor.",
+      "basis": "Side-by-side reading of the handouts; PDF metadata of the ENGR 209 lab handout. Counting rule: one instructor per course, ENGR 204 lecture and lab as one, ENGR 305 and 322 as one, the shared ENGR 319/328 writing guidelines as one document; an instructor counts only for a document of their own.",
+      "confidence": "high"
+    },
+    "captions": {
+      "rule": "Every figure and table carries a number and a descriptive caption. Table captions go above the table, figure captions below the figure. Each is numbered in order and referred to by number in the text, and sits near where it is first discussed.",
+      "varies": "Alignment (ENGR 319 centres figure and table captions; ENGR 315 centres figure captions and left-aligns table captions). Wording: ENGR 319 wants 'Figure N. Title.'; ENGR 328 wants a sentence stating the takeaway. ENGR 315 wants a capital F and T when citing 'Figure 1' or 'Table 1' in the text.",
+      "basis": "4 distinct instructors, each in a document of their own, plus the department standards: ENGR 204 Lab report template; ENGR 319 memo format spec; ENGR 328 technical report guidelines (separate from the shared writing guidelines); ENGR 315 Lab report checklist; department report standards. The ENGR 204 lecture handout (graph title below the graph) and the ENGR 209 lab handout (captions required) agree. No contradiction found.",
+      "confidence": "high"
+    },
+    "units_and_precision": {
+      "rule": "Every reported number carries units, in text, tables (column headings are fine), graph axes and appendices. Significant figures match what was measured; spreadsheet output is trimmed to that precision rather than pasted at full length.",
+      "basis": "Department report standards; ENGR 204 Lab template; ENGR 209 lab handout and ENGR 209 design project prompt; thermo-fluids writing guidelines (one document, ENGR 319/328); ENGR 328 technical report guidelines; ENGR 315 Lab checklist (axis labels with units). 4 distinct instructors in documents of their own (ENGR 204 Lab, 209 design project, 328, 315) plus the thermo-fluids family and the department standards.",
+      "confidence": "high"
+    },
+    "graphs": {
+      "rule": "Label both axes with quantity and units. Traces must stay distinguishable in grayscale: vary markers or line styles, not only colour.",
+      "varies": "Measured data as markers only and model or simulation data as lines without markers is stated in the department standards and in the ENGR 204 lecture slides (a lecture deck, weaker than a spec); it is not contradicted elsewhere but is only observed in ENGR 204 courses.",
+      "basis": "Department report standards; ENGR 204 lecture slides; ENGR 328 technical report guidelines; ENGR 315 Lab handout. 3 distinct instructors plus the department standards.",
+      "confidence": "high"
+    },
+    "report_arc": {
+      "rule": "The body runs objective or purpose, then method (brief, enough to follow and reproduce, not the full manual), then results, then analysis or discussion, then conclusions. Section names and the split between them vary; the order does not.",
+      "basis": "Department report standards (body elements); ENGR 204 Lab template; ENGR 209 lab handout (suggested headings); ENGR 319 memo format spec; ENGR 305 FEA report prompt; ENGR 315 Lab checklist. 4 distinct instructors plus the department standards, counting the ENGR 209 lab handout with the thermo-fluids family.",
+      "confidence": "high"
+    },
+    "results_versus_discussion": {
+      "rule": "Results say what was found, with the figures and tables. Analysis or discussion interprets: why the data behave as they do, what is surprising, where error entered and how large it is, how models compare, and an argument that uses the results as evidence. The conclusion answers the stated objectives and synthesises rather than repeating the results; it may suggest next steps.",
+      "basis": "ENGR 204 lecture slides (a lecture deck, not a spec) and ENGR 204 Lab template (analysis questions), counted as one instructor; ENGR 305 FEA report prompt (discussion as the combining theme); ENGR 315 Lab checklist (analysis supports a thesis, conclusion addresses objectives); the department standards ask for a statement of accuracy. 3 distinct instructors.",
+      "confidence": "high"
+    },
+    "appendices": {
+      "rule": "Appendices hold raw data and at least one sample calculation, plus longer derivations, code and extra plots. The body must stand alone: a figure or equation needed to follow the argument stays in the body, and the reader should not have to flip to an appendix. Every appendix is pointed to from the body. Appendix material is as tidy as the body: digested tables, never a raw spreadsheet dump.",
+      "varies": "Lettered appendices opening with a list of appendices is stated only in ENGR 319 and followed in ENGR 328 (thermo-fluids family). ENGR 204 Lab submits appendices as a separate PDF upload.",
+      "basis": "Department report standards; ENGR 204 Lab template; ENGR 209 lab handout (scanned data sheet in an appendix) and design project prompt; ENGR 319 memo format spec and lab handout; ENGR 315 Lab checklist (code in an appendix referenced from the body). 4 distinct instructors plus the department standards, counting the ENGR 209 lab handout with the thermo-fluids family.",
+      "confidence": "high"
+    },
+    "calculation_tooling": {
+      "rule": "Repetitive calculation belongs in a spreadsheet or computational tool, not done by hand in the body. The report shows key equations and final results; the tool's work goes in an appendix in readable form, with one worked sample or hand calculation that lets a reader confirm the tool is right.",
+      "varies": "How the tool travels: printed in the appendix (ENGR 209, 319, 328) or uploaded as a separate file (ENGR 204 Lab).",
+      "basis": "Department report standards (sample calculations in the appendix); ENGR 204 Lab template; ENGR 209 design project prompt (hand calculation of one case to show the spreadsheet is right); thermo-fluids writing guidelines (Excel, not hand calculation); ENGR 319 memo format spec (sample calculations). 3 distinct instructors plus the department standards.",
+      "confidence": "medium"
+    },
+    "independent_check": {
+      "rule": "Check the main result against something independent and report the size of the disagreement as a percent difference or percent error, with its likely cause. What counts as independent is course-specific: a second model or a simulation against measurement, a hand calculation against FEA, a spreadsheet against one hand-worked case, or an energy or mass balance that should close.",
+      "basis": "ENGR 204 Lab template (compare models against measurement); ENGR 305 FEA report prompt (hand against FEA, target stated there); ENGR 209 design project prompt (hand case checks the spreadsheet); ENGR 328 lab handouts (balance percent error, per the ENGR 328 pack). 4 distinct instructors, each with a different form of check.",
+      "confidence": "medium"
+    },
+    "error_reporting": {
+      "rule": "Report error as percent difference or percent error against a reference, explain where it came from, and show precision through sensible significant figures. Formal uncertainty propagation (plus-or-minus bounds, root-sum-square) was required by no engineering handout in the archive; do not add it unless the assignment asks.",
+      "basis": "Absence across every engineering spec read (department standards, ENGR 204 Lab, 209, 305, 315, 319, 328). The department standards ask for a statement of accuracy; ENGR 209 asks students to record measurement precision. Only the Physics 133 syllabus names experimental uncertainty, and its standards handout is not in the archive.",
+      "confidence": "medium"
+    },
+    "not_a_diary": {
+      "rule": "Report what was done and found. No chronology of the lab session, no personal feelings about the work, and no rewriting of the lab manual as instructions to the reader. Routine steps (unit conversions, common equipment) do not get body space.",
+      "basis": "Department report standards; ENGR 204 Lab template; ENGR 209 lab handout (the memo supports a supervisor's decision); thermo-fluids writing guidelines (ENGR 319/328, one document). 3 independent sources (department standards, ENGR 204 Lab, the thermo-fluids family) but only one instructor writing in a document of their own; no course contradicts it.",
+      "confidence": "medium"
+    },
+    "title_block": {
+      "rule": "The first page identifies the work: a descriptive title (not just the lab number), author or authors, date, course and section, and the instructor. Record the fields; fill them at run time. Use [Student Name] and [Instructor] placeholders unless the student supplies values for their own private run.",
+      "varies": "Group or partner line: ENGR 204 Lab (experiment partner), ENGR 209 (group and apparatus number), ENGR 319 and 328 (group if applicable). ENGR 315 puts a course and lab title block at the top of page 1 rather than a separate title page.",
+      "basis": "Department report standards; ENGR 204 Lab template; ENGR 209 lab handout; ENGR 319 memo format spec; ENGR 328 technical report guidelines (title page with names, date and course section). 3 distinct instructors plus the department standards.",
+      "confidence": "high"
+    },
+    "page_setup": {
+      "rule": "Letter paper, 1-inch margins that figures and tables stay inside, typed, pages numbered at the bottom and never in the stapling corner. Do not meet a page limit by shrinking fonts, margins or figures below legibility.",
+      "varies": "Line spacing and which page is page 1 disagree; see disagreements.",
+      "basis": "Department report standards; ENGR 204 Lab template; ENGR 319 memo format spec; thermo-fluids writing guidelines; ENGR 315 Lab checklist (bottom page numbers); ENGR 328 technical report guidelines (pages numbered, reasonable margins). Numbered pages: 4 distinct instructors plus the department standards. The 1-inch figure specifically: 2 instructors (ENGR 204 Lab, 319) plus the department standards.",
+      "confidence": "high"
+    },
+    "equations": {
+      "rule": "Key equations are typed with an equation editor, numbered in order, and placed where they are used, explained in the sentence around them. Do not collect equations into an appendix list.",
+      "varies": "Right-margin numbering is stated only in ENGR 319 and followed in ENGR 328. The department standards still permit handwritten equations in ink; ENGR 209, 319 and 328 forbid handwriting in the report.",
+      "basis": "ENGR 204 Lab template; ENGR 319 memo format spec and lab handout; ENGR 328 technical report guidelines; department standards (equations encouraged, rigour often lacking). 3 distinct instructors plus the department standards.",
+      "confidence": "medium"
+    },
+    "diagrams": {
+      "rule": "Show the apparatus or system as a clean schematic drawn digitally, with the relevant parts labelled. Photographs belong in an appendix if at all.",
+      "basis": "Department report standards (drawn sketches preferred to hand sketches); ENGR 319 lab handout (labelled schematic); ENGR 328 technical report guidelines (schematic, not photographic); ENGR 315 Lab checklist (a picture of the system). 3 distinct instructors plus the department standards.",
+      "confidence": "medium"
+    },
+    "disagreements": {
+      "memo_means_two_things": {
+        "rule": "'Technical memo' names two different documents. In the thermo-fluids family (ENGR 209 lab, 319, 328) it is a short report: title page carrying the abstract, then a body of about two pages, then appendices. In ENGR 322 it is a business memo: To / From / CC / Date / Re header, then a tight executive summary in prose. Neither is the Calvin default. Ask which one before producing anything called a memo.",
+        "basis": "ENGR 209 lab handout, ENGR 319 memo format spec and lab handout (title-page form); ENGR 322 model executive summary and submissions (header form). The title-page form is one handout family (two instructors plus the ENGR 209 derivative); the header form is one instructor.",
+        "confidence": "high"
+      },
+      "abstract": {
+        "department_default": "One paragraph, on its own page after the title page, summarising purpose, what was done and the results in general terms, without detailed numbers or references to figures and tables.",
+        "engr204-lab": "Follows the department default.",
+        "thermo_fluids_family": "ENGR 209, 319, 328: on the title page, and it must state the key results as numbers with units.",
+        "basis": "Department report standards; ENGR 204 Lab template; ENGR 209 lab handout; ENGR 319 lab handout; ENGR 328 technical report guidelines. The two positions contradict each other on numbers; do not average.",
+        "confidence": "high"
+      },
+      "voice": {
+        "department_default": "Third person, past tense for what was done; first person only if the instructor allows it.",
+        "engr204-lab": "Active voice where possible without I or we; I or we only as a last resort. One tense per paragraph.",
+        "thermo_fluids_family": "ENGR 319 and 328: no I, we, you, 'the team' or 'the author' at all.",
+        "engr322": "The instructor's own model executive summary uses I and we.",
+        "basis": "Department report standards; ENGR 204 Lab template; thermo-fluids writing guidelines; ENGR 322 model executive summary.",
+        "confidence": "high"
+      },
+      "line_spacing": {
+        "department_default": "Double.",
+        "engr204-lab": "Double.",
+        "engr319": "Single acceptable in the memo spec; 1.5 preferred in the lab handout.",
+        "engr328": "1.5.",
+        "basis": "Department report standards; ENGR 204 Lab template; ENGR 319 memo format spec and lab handout; thermo-fluids writing guidelines.",
+        "confidence": "high"
+      },
+      "first_numbered_page": {
+        "engr204-lab": "The abstract page is page 1.",
+        "thermo_fluids_family": "Title page unnumbered; page 1 is the first body page.",
+        "basis": "ENGR 204 Lab template; thermo-fluids writing guidelines.",
+        "confidence": "high"
+      },
+      "title_inside_graph": {
+        "engr319_engr328": "No title inside a captioned graph; the caption is the title.",
+        "engr204": "Graph title goes below the graph (as the caption), not in it.",
+        "engr315-lab": "The MATLAB exercise asks for a plot title in the figure. This is an instruction for producing that plot, not a stated report rule, but follow it there.",
+        "basis": "ENGR 319 and 328 handouts; ENGR 204 lecture writing handout; ENGR 315 Lab handout.",
+        "confidence": "medium"
+      },
+      "length": {
+        "rule": "Varies too widely to default: about 2 body pages (ENGR 209 and 319 memos), per-stage budgets (ENGR 328), 5 to 10 pages (department standards), open-ended with many figures (ENGR 305 FEA). Where a limit is given, treat it as a maximum that the content should fill without padding.",
+        "basis": "The handouts named.",
+        "confidence": "high"
+      },
+      "draft_stage": {
+        "rule": "Some courses have a draft before the final, in different forms: printed copies for in-class peer review then a final (ENGR 204 Lab, 319); several graded pre-submissions of report sections then a final (ENGR 328). Others have none (ENGR 209, 315). Ask; do not assume a rhythm.",
+        "basis": "ENGR 204 Lab, 319, 328, 209 and 315 handouts.",
+        "confidence": "high"
+      }
+    },
+    "one_lineage_only": {
+      "rule": "Seen in the thermo-fluids family only, so not Calvin-wide: superscript units (m3 typeset, never a caret), a real multiplication sign rather than an asterisk, a leading zero on numbers below one, real Greek glyphs, equation numbers at the right margin, lettered appendices opening with a list of appendices, and no chart title under a caption. Good practice, harmless elsewhere, but do not cite them to a student as a Calvin rule.",
+      "basis": "ENGR 319 memo format spec and the shared ENGR 319/328 writing guidelines; one family.",
+      "confidence": "medium"
+    },
+    "ask_the_student": {
+      "rule": [
+        "Do you have the handout, rubric or format spec for this assignment? (It overrides everything here.)",
+        "If the word 'memo' appears: is it a short report with a title page and abstract, or a To/From/Date/Re memo?",
+        "Where does the abstract go, and should it give numbers?",
+        "May you write I or we?",
+        "Is there a page limit, and does it count figures and the title page?",
+        "Line spacing, if the handout does not say.",
+        "Is there a draft or peer-review stage before the final?",
+        "How are the spreadsheet or code handed in: in an appendix, or as a separate file?"
+      ],
+      "basis": "Each question is a point where courses with written specs disagree.",
+      "confidence": "high"
+    }
+  },
+  "methods": [
+    {
+      "id": "uncovered-course",
+      "title": "Start a deliverable for a course with no pack",
+      "when": "The student's course has no directory under curriculum/, or its pack reports format coverage none.",
+      "steps": [
+        "Say plainly that there is no course pack and that you are working from cross-course conventions.",
+        "Ask for the assignment handout and any report or memo spec. If one exists, it wins wherever it speaks.",
+        "If the deliverable is called a memo, settle which kind before drafting anything.",
+        "Ask the remaining ask_the_student questions the handout does not answer, in one short list.",
+        "Apply the high-confidence conventions; apply the department default only where neither the handout nor the student has answered.",
+        "Tell the student which rules you applied from this pack, and that they are inferred defaults, not their instructor's rules."
+      ],
+      "pitfalls": [
+        "Carrying a thermo-fluids rule (abstract with numbers on the title page, no first person) into a course that follows the department default, or the reverse. Both look professional; one is wrong for the course.",
+        "Treating the department standards as confirmed policy. They were seen in one course's handout."
+      ],
+      "basis": "Every course with a written spec overrides the department default somewhere; see conventions.disagreements.",
+      "confidence": "high"
+    },
+    {
+      "id": "which-memo",
+      "title": "Decide which document 'technical memo' means",
+      "when": "The assignment says memo, tech memo, technical memo or executive summary.",
+      "steps": [
+        "Look for a title page, abstract and page-count language in the handout: that is the short-report form.",
+        "Look for To, From, Date, Re or 'executive summary' addressed to a reader: that is the business-memo form.",
+        "If the handout does not settle it, ask the student, and check a returned example if they have one.",
+        "Short-report form: title page with title, author, course and section, [Instructor], date, and the abstract; body of objective, method, results, discussion, conclusions within the page limit; lettered or labelled appendices.",
+        "Business-memo form: header block with the fields filled at run time, then a short prose summary that leads with the answer and states how it was checked."
+      ],
+      "pitfalls": [
+        "A To/From memo handed in for a short-report assignment is the wrong artifact even when it is well written, and the student has no way to tell."
+      ],
+      "basis": "ENGR 209, 319 and 328 handouts against ENGR 322 materials.",
+      "confidence": "high"
+    },
+    {
+      "id": "write-the-discussion",
+      "title": "Separate results from discussion",
+      "when": "Drafting the results, analysis or discussion, and conclusions sections.",
+      "steps": [
+        "Results: state each finding once, pointing to its figure or table by number.",
+        "Discussion: for each finding, say why it came out that way, what the comparison with the reference or model shows, where error came in and whether it matters.",
+        "If several parts were analysed, end the discussion with what they show together.",
+        "Conclusions: answer each stated objective in turn, with the key numbers and units; add next steps only if useful."
+      ],
+      "pitfalls": [
+        "A discussion that restates the results in sentences.",
+        "A conclusion that introduces a result not shown earlier."
+      ],
+      "basis": "ENGR 204 lecture and lab handouts; ENGR 305 FEA report prompt; ENGR 315 Lab checklist.",
+      "confidence": "high"
+    },
+    {
+      "id": "report-the-error",
+      "title": "Check the result and report the error",
+      "when": "Any result that has a reference: a model, a simulation, a hand calculation, a balance that should close, a textbook value.",
+      "steps": [
+        "Name the reference and why it is independent of the result.",
+        "Compute percent difference or percent error, stating which value is the denominator.",
+        "Put the comparison in a table with units and sensible significant figures.",
+        "Explain the likely cause of the difference in the discussion (an approximation, a measurement limit, a modelling choice).",
+        "Stop there unless the assignment asks for formal uncertainty analysis."
+      ],
+      "pitfalls": [
+        "Adding plus-or-minus propagation nobody asked for, which costs space under a page limit and was requested by no engineering handout seen.",
+        "Reporting an error with more significant figures than the measurement supports."
+      ],
+      "basis": "ENGR 204 Lab, 209, 305 and 328 materials; see conventions.error_reporting.",
+      "confidence": "medium"
+    },
+    {
+      "id": "pair-the-spreadsheet",
+      "title": "Pair a report with its spreadsheet or code",
+      "when": "The analysis was done in Excel, EES, MATLAB or similar.",
+      "steps": [
+        "Keep key equations and final results in the body.",
+        "Put a readable version of the tool's work in an appendix: trimmed tables with units, or code with comments.",
+        "Add one sample calculation worked through by hand for a representative case, with units at each step.",
+        "Point to the appendix from the body where the result is used.",
+        "Ask whether the file itself is also handed in separately."
+      ],
+      "pitfalls": [
+        "Pages of raw spreadsheet output in the appendix.",
+        "Full-precision spreadsheet numbers copied into the body."
+      ],
+      "basis": "Department standards; ENGR 204 Lab, 209, 319 and 328 handouts.",
+      "confidence": "medium"
+    }
+  ],
+  "exemplars": [
+    {
+      "id": "department-default-report-shape",
+      "file": "exemplars/department-default-report-shape.md",
+      "shows": "Section skeleton for a formal lab report under the department default: separate abstract page, numbered sections, caption placement, appendices."
+    },
+    {
+      "id": "title-page-short-report-shape",
+      "file": "exemplars/title-page-short-report-shape.md",
+      "shows": "The thermo-fluids 'technical memo': title page carrying a numeric abstract, a two-page body, and an error-comparison table with stand-in values."
+    },
+    {
+      "id": "executive-summary-memo-shape",
+      "file": "exemplars/executive-summary-memo-shape.md",
+      "shows": "The header-style memo: To/From/CC/Date/Re with placeholders, then a short summary that leads with the answer and states how it was checked."
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "pack": {
+    "id": "matlab",
+    "kind": "tool",
+    "title": "MATLAB (scripts and 2-D plotting)"
+  },
+  "coverage": {
+    "conventions": "partial",
+    "methods": "partial",
+    "pitfalls": "partial",
+    "notes": "Every rule rests on one course (ENGR 315 Lab), its first two weeks, one instructor-supplied m-file template, two lab handouts, and one student's m-files and reports. No other course in the archive has MATLAB files. Simulink is named in the Lab 1 title but no Simulink evidence exists, so Simulink is not covered at all. Control System Toolbox functions (tf, step, pzmap, rlocus) are not covered: the labs seen so far use closed-form expressions and base MATLAB only. The exemplars have never been run in MATLAB. Where another course uses MATLAB, treat these as a starting point and read that course's handout first. The host cannot execute MATLAB: every number and figure comes from the student's own run, so nothing a script produces is verified until the student returns its printed output and figure."
+  },
+  "conventions": {
+    "scope": {
+      "rule": "Observed in ENGR 315 Lab only. The header block and file naming are course-specific; the plotting and script rules are general enough to carry to other courses unless their handout says otherwise.",
+      "basis": "ENGR 315 Lab 1 and Lab 2 handouts; the instructor m-file template; the student's Week 1 and Week 2 m-files."
+    },
+    "trademark": {
+      "rule": "Write MATLAB in capitals in reports and prose, never Matlab or MatLab.",
+      "basis": "ENGR 315 Lab 1 handout."
+    },
+    "script_not_command_window": {
+      "rule": "Work goes in a script (m-file) that runs top to bottom and regenerates every result. Commands typed at the prompt are not the deliverable; the handout asks for the commands to be run from an m-file even when they could be typed.",
+      "basis": "ENGR 315 Lab 1 handout (Experiments 2 and 3)."
+    },
+    "header_block": {
+      "rule": "Every m-file opens with the instructor template's comment header: course line, Author, Date with a version number, Title, File Name, then clc, close all, and clear all, each with a short comment. The File Name line must match the saved file name.",
+      "note": "The template warns against clear all when a Simulink model reads workspace variables. Keep that caveat when a lab moves to Simulink.",
+      "basis": "Instructor m-file template (Week 1); every student m-file in Weeks 1 and 2 keeps it."
+    },
+    "file_naming": {
+      "rule": "One m-file per experiment, named [StudentName]_Lab[N]_Ex[M]_v[K].m, copied forward and renamed rather than edited in place when the next experiment builds on it. Where one m-file covers the whole lab, [StudentName]_Lab[N]_v[K].m.",
+      "note": "The written sources disagree on the name part: the Lab 1 handout says the student's name, the template header says first and last name separated by an underscore, and the Lab 2 guidelines say the file name should include the student's initials. The submitted files used surname and given name run together. When a handout names a pattern, the current handout wins.",
+      "basis": "ENGR 315 Lab 1 handout (Experiments 2 and 3); the template header; the Lab 2 guidelines' formatting checklist; the student's submitted file names."
+    },
+    "elementwise_operators": {
+      "rule": "Use .* ./ .^ whenever either operand is a vector of time or x samples. Plain * between two vectors of the same shape is a dimension error, not an elementwise product.",
+      "basis": "ENGR 315 Lab 1 handout (Experiment 4 asks what happens without the period); Lab 2 handout (use .* between the exponential and the sine)."
+    },
+    "exponential": {
+      "rule": "Write exp(x). MATLAB has no built-in constant e, so e^x fails unless e was defined.",
+      "basis": "An early Week 2 student draft written with e^ that never ran, replaced in the working file by exp()."
+    },
+    "loops_over_cases": {
+      "rule": "Put the cases in one vector and fill one row of a preallocated matrix per case inside a for loop. Do not repeat near-identical lines per case.",
+      "basis": "ENGR 315 Lab 2 handout (use a for loop, do not repeat similar code) and its hint skeleton; the student's Week 2 m-file."
+    },
+    "one_plot_call": {
+      "rule": "Draw all the cases with a single plot command taking several x, y, style triples, and keep the returned handles.",
+      "basis": "ENGR 315 Lab 2 handout; the student's Week 2 m-file."
+    },
+    "grayscale_line_styles": {
+      "rule": "Each curve on a shared figure gets its own line style (solid, dashed, dash-dot, dotted), not only its own color, so the plot reads on a black-and-white printout. Four styles exist; a fifth trace needs markers or a gray shade to stay distinct.",
+      "basis": "ENGR 315 Lab 2 handout and formatting checklist (plots must look different in black and white)."
+    },
+    "labels_title_legend": {
+      "rule": "ENGR 315: every figure has a title inside the plot, both axes labeled with the quantity and unit, and a legend naming every trace the reader must tell apart. The in-plot title is a course-specific requirement: other courses' report standards (ENGR 204 Lab, for one) say a captioned figure carries no title inside the graph. Follow the course, not this pack's default.",
+      "basis": "ENGR 315 Lab 2 handout (asks for a title, axis labels and a legend, with an example title); Lab 1 template script; the ENGR 204 Lab pack's plot rules for the contrast."
+    },
+    "greek_in_text": {
+      "rule": "Greek letters and subscripts use TeX markup in titles, labels, and legends: \\zeta, \\omega_n, \\tau. A legend that spells out 'zeta' is wrong.",
+      "basis": "ENGR 315 Lab 2 handout; Lab 1 template script (\\omega_n in the label)."
+    },
+    "no_figure_touch_up": {
+      "rule": "The figure the script produces is the figure in the report. Limits, labels, styles, and legend are all set in code, never with the figure window's editing tools.",
+      "basis": "ENGR 315 Lab 2 handout."
+    },
+    "overlays": {
+      "rule": "Add curves to an existing axes with hold on, and close with hold off. Pass the legend only the handles it should name.",
+      "basis": "ENGR 315 Lab 2 handout (Experiment 2 uses hold on); the student's Week 2 m-file (legend built from selected handles)."
+    },
+    "code_in_report": {
+      "rule": "The m-files are part of the deliverable: included in the report (in the body or an appendix that the body refers to) and also uploaded as .m files.",
+      "basis": "ENGR 315 Lab 1 handout (m-files included and uploaded, with a penalty when they are not uploaded); Lab 2 checklist."
+    },
+    "individual_files": {
+      "rule": "Each student writes and runs their own m-files. Discussing is allowed; running a classmate's file to get results is treated as plagiarism.",
+      "basis": "ENGR 315 Lab 1 and Lab 2 handouts."
+    }
+  },
+  "methods": [
+    {
+      "id": "closed-form-parameter-sweep",
+      "title": "Plot a closed-form response across a parameter sweep",
+      "when": "A handout gives an analytical response y(t) and asks for several values of one parameter on one figure.",
+      "steps": [
+        "Start from the course header template and fill in every header field.",
+        "Define the time vector with a step small enough to show the fastest feature, and a span long enough for the slowest case to settle.",
+        "Put the parameter values in one vector; the handout usually fixes which regimes must appear.",
+        "Preallocate the output matrix with zeros(number of cases, length(t)).",
+        "Fill one row per case in a for loop, using elementwise operators on t.",
+        "Before plotting, print a check value per case that has a known answer (the initial condition, or a value at a characteristic time).",
+        "Plot all rows with one plot call, one black line style per case, then title, labels with units, and a TeX legend.",
+        "Set axis limits in code so the interesting part of the response fills the plot."
+      ],
+      "pitfalls": [
+        "A formula that divides by a quantity that is zero at a boundary value (for example sqrt(1 - zeta^2) at zeta = 1). Use a value just inside the boundary, as the handout specifies, and say why in the report.",
+        "Past that boundary the square root turns imaginary and acos returns a complex angle. MATLAB then plots only the real part with a warning, and a branch sign can flip the whole curve. Wrap the whole expression, not part of it, and check the printed initial value equals the given initial condition for every case.",
+        "A time step too coarse for the fastest case, which draws a smooth-looking but wrong curve."
+      ],
+      "basis": "ENGR 315 Lab 2 handout and hint skeleton; the student's Week 2 m-file and its separate output-check notes, which name a sign flip in the overdamped case as the failure to look for."
+    },
+    {
+      "id": "polynomial-roots",
+      "title": "Polynomial roots from a coefficient vector",
+      "when": "Characteristic equations, pole locations, or a handout that says to use roots.",
+      "steps": [
+        "Write the coefficients in descending powers, with an explicit 0 for every missing power.",
+        "Call roots on the vector and report complex pairs as a +/- b j.",
+        "Cross-check a quadratic factor with the quadratic formula when the handout asks for hand work too."
+      ],
+      "pitfalls": [
+        "Dropping the zero for a missing power, which silently solves a different polynomial."
+      ],
+      "basis": "ENGR 315 Lab 1 handout (Experiment 6); the student's Week 1 m-file."
+    },
+    {
+      "id": "check-before-trusting-the-figure",
+      "title": "Independent expected values before the screenshot",
+      "when": "Any figure that goes into a report.",
+      "steps": [
+        "Compute a few expected values independently of the plot: initial value, final value, a characteristic time, a ratio with a closed form.",
+        "Have the script print the same quantities and compare.",
+        "Only then export or screenshot the figure."
+      ],
+      "pitfalls": [
+        "Reading values off the plot and calling that a check.",
+        "Fixing a curve that looks wrong but is physically right; know which behavior the analysis expects before editing."
+      ],
+      "basis": "The student's Week 2 output-check notes, which listed expected values and visual checks before the figure was captured."
+    },
+    {
+      "id": "host-cannot-run-matlab",
+      "title": "Hand the script over and ask for the right things back",
+      "when": "Always. The host has no MATLAB, and no exemplar here has been run.",
+      "steps": [
+        "Give the student the complete m-file, header filled with placeholders they replace.",
+        "Tell them to save it under the File Name in its header, then run the whole file (Run or F5), not pasted lines.",
+        "Ask for the printed check values, any warning or error text verbatim, and the exported figure."
+      ],
+      "pitfalls": [
+        "Treating an unrun script as verified.",
+        "A warning about ignored imaginary parts is a result that needs fixing, not noise."
+      ],
+      "basis": "Tool constraint; the output-check practice in the Week 2 student notes."
+    }
+  ],
+  "exemplars": [
+    {
+      "id": "script-header",
+      "file": "exemplars/script-header.m",
+      "shows": "Course template header with placeholder identity, File Name matching the saved name, clc / close all / clear all with the Simulink caveat."
+    },
+    {
+      "id": "parameter-sweep-grayscale",
+      "file": "exemplars/parameter-sweep-grayscale.m",
+      "shows": "Invented first-order RC sweep over tau: preallocated matrix, for loop, elementwise operators, printed self-check, one plot call in black line styles, TeX legend."
+    },
+    {
+      "id": "overlay-hold-on",
+      "file": "exemplars/overlay-hold-on.m",
+      "shows": "Invented step response with reference lines added by hold on / hold off, a gray shade for a fourth style, legend built from selected handles."
+    }
+  ]
+}

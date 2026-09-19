@@ -1,0 +1,325 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "engr322",
+    "code": "ENGR 322",
+    "title": "Machine Design",
+    "professor": null,
+    "instructor_note": "The instructor is identifiable from the course's own handouts, and is the same instructor who wrote the ENGR 305 FEA report template. Rules the two packs share therefore come from one source, not two independent ones. No name is recorded.",
+    "terms_observed": ["Spring 2026"]
+  },
+  "coverage": {
+    "format": "partial",
+    "methods": "partial",
+    "assignments": "partial",
+    "notes": "The executive-summary memo is the best-evidenced format in this pack: the instructor wrote a one-page model memo for a homework, with the answer left as placeholders, and one student memo follows it closely. Everything else is thinner. Module homework prompts are typed and readable, but most answers are handwritten on the printed prompt, so how a worked solution should look is not covered. One time-stepping set has typed answers inline. There is no syllabus, no rubric beyond the one project handout, and no graded returns. Methods come from the prompts themselves, from the model memo, and from the student's test-correction notes. The SolidWorks study in the OneDrive archive is a native model file and was only inventoried by name."
+  },
+  "course_policy": {
+    "source": "none found",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this course was found in the archive.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "format": {
+    "deliverable": "Module homework, often closed by a one-page executive-summary memo; short hands-on labs; one presentation project; test corrections.",
+    "not_a_technical_memo": "In ENGR 322 the prose deliverable is called an executive summary and uses a memo header (To, From, CC, Date, Re) with a short body. It has no title page, no abstract and no appendices. It is a different document from the title-page-plus-abstract 'technical memo' of ENGR 319 and 328. The words collide twice: 'memo' names both documents, and ENGR 328 uses 'executive summary' for the abstract block on its title page. Producing the other course's document here would look correct and be wrong.",
+    "precedence": [
+      "the specific module or project prompt",
+      "the instructor's model executive-summary memo",
+      "patterns observed in completed submissions"
+    ],
+    "artifacts": [
+      {
+        "role": "memo",
+        "extension": ".docx or .pdf",
+        "submitted": true,
+        "produced_by": "student"
+      },
+      {
+        "role": "hand calculation",
+        "extension": "handwritten on the printed prompt",
+        "submitted": true,
+        "produced_by": "student"
+      },
+      {
+        "role": "FEA model",
+        "extension": "CAD/FEA study (SolidWorks or Inventor)",
+        "submitted": "screenshots only, in the memo or write-up",
+        "derived_from": null,
+        "produced_by": "student"
+      },
+      {
+        "role": "workbook",
+        "extension": ".xlsx",
+        "submitted": "not stated; the time-stepping answers say the instructor probably will not open it",
+        "produced_by": "student"
+      }
+    ],
+    "pipeline_support": {
+      "render": true,
+      "execute": false,
+      "verify_rendered_output": false,
+      "note": "The memo is a one-page text document in a format the renderer produces (docx/pdf). This pack sets no format.rendering values, however, and no render of this memo form (header block, no title page) has been exercised, so the output is unverified until inspected. The renderer cannot produce the hand calculations or the FEA model the memo summarises. The student must supply those results, and the memo must not state agreement between methods that were not both run."
+    },
+    "executive_summary_memo": {
+      "header": {
+        "fields": ["To", "From", "CC", "Date", "Re"],
+        "layout": "One field per line, label then a tab, at the top of the page. No title page.",
+        "values": {
+          "To": "[Recipient] (the instructor's model addresses the class)",
+          "From": "[Student Name]",
+          "CC": "[CC] (the model uses a filing line)",
+          "Date": "[Date]",
+          "Re": "Executive summary of [assignment]"
+        },
+        "source": "instructor model memo + student memo"
+      },
+      "length": "One page.",
+      "body": {
+        "paragraphs": [
+          "What was solved and by which methods (by hand and by FEA), with the bottom-line answer and the safety-factor basis in the first paragraph.",
+          "How closely the methods agreed, as a percentage, and any FEA anomaly and how it was handled.",
+          "How the hand calculation was done, which approximation it made, and which direction that biases the answer.",
+          "One short paragraph per secondary question in the prompt.",
+          "A closing sentence of confidence that restates the answer."
+        ],
+        "voice": "First person singular is used in the instructor's own model. Short declarative paragraphs, no headings, no figures.",
+        "source": "instructor model memo + student memo"
+      },
+      "looser_variant": "One other student executive summary, for an FEA study with no surviving prompt, used a single title line instead of the memo header, with screenshots under plain labels. Its format is not endorsed by any instructor document. Use the memo form unless the prompt says otherwise.",
+      "source": "instructor model memo for one module homework; one student memo following it; one looser student summary"
+    },
+    "homework_presentation": {
+      "rule": "Not covered. Most module answers are handwritten directly on the printed prompt, and no document states how worked solutions should be laid out. One lab prompt asks for hand calculations on the prompt page itself, turned in by hand.",
+      "source": "observed"
+    },
+    "tooling": {
+      "fea": "SolidWorks or Inventor, whichever has the needed material in its library (from a module prompt)",
+      "computation": "Excel for time-stepping and repeated calculations. Students are expected to build their own calculators rather than trust online ones: a fastener prompt warns about untrustworthy online charts, and the student's test corrections blame an online calculator.",
+      "references": "the course's fastener technical guide and bolted-joint guide, Machinery's Handbook, and a mechanics of materials text for fatigue",
+      "source": "prompts + test corrections"
+    }
+  },
+  "methods": [
+    {
+      "id": "hand-vs-fea-cross-check",
+      "title": "Solve by hand and by FEA, then reconcile",
+      "when": "Any module homework whose prompt says to check the answer, and the FEA study.",
+      "shared_with": "engr305 (same instructor: one source, not independent agreement)",
+      "steps": [
+        "Solve by hand first, and write down every simplifying assumption the hand method makes.",
+        "Build the FEA model with the same geometry, material and supports as the hand model, using a material the software library actually has.",
+        "Compare the same quantity at the same location. Report the difference as a percentage.",
+        "Where FEA shows a single-node spike at a sharp corner, weld root or load point, read the stress at the surrounding nodes instead, and say so.",
+        "Explain the difference: which approximation in which method, and whether it makes the hand answer higher or lower.",
+        "State the answer both methods support, and whether you trust it."
+      ],
+      "pitfalls": [
+        "Treating a singular corner stress as the real maximum.",
+        "Claiming agreement without saying what was compared where.",
+        "Supports in the FEA that are stiffer or looser than the hand model assumes."
+      ]
+    },
+    {
+      "id": "weld-group-as-line",
+      "title": "Size a fillet weld by treating the weld group as a line",
+      "when": "Welded brackets under eccentric load.",
+      "steps": [
+        "Treat each weld as a line of unit throat. Compute the group's centroid, and its unit second moment (Iu) or unit polar moment (Ju).",
+        "Find the direct shear per unit length, and the bending or torsional shear per unit length at the most distant point of the weld.",
+        "Combine them as vectors at that point to get the resultant force per unit length.",
+        "Divide by the allowable shear for the electrode to get the throat, then convert the throat to a leg size.",
+        "Check that the plates themselves are not the weaker element."
+      ],
+      "pitfalls": [
+        "Basing the allowable on the base metal. With a matched electrode on mild steel, the electrode governs, which is why switching between similar mild steels barely changes the size.",
+        "Approximating J as a sum over a few discrete pieces underestimates it, which overstates the stress. That is conservative, but say so."
+      ]
+    },
+    {
+      "id": "eccentric-bolt-group",
+      "title": "Safety factor for each bolt in an eccentrically loaded group",
+      "when": "Bolted brackets or plates carrying an off-centre load.",
+      "steps": [
+        "Locate the bolt-group centroid and the load's moment arm about it.",
+        "Split the load into direct shear (shared equally) and moment shear (proportional to each bolt's distance from the centroid, divided by the sum of squared distances).",
+        "Add them as vectors at each bolt, and find the worst-loaded bolt.",
+        "Compare against the grade's strength using the correct area (shank or thread) for where the shear plane falls.",
+        "Report a safety factor for each bolt, and answer any substitution question (grade, size, thread pitch) by rerunning with the new values."
+      ],
+      "pitfalls": [
+        "Using the shank area when the shear plane passes through the threads.",
+        "Mixing metric and inch sizes when a substitute bolt is specified."
+      ]
+    },
+    {
+      "id": "bolt-preload-torque",
+      "title": "Tightening torque for a target preload",
+      "when": "Fastener homework and the torque-wrench lab.",
+      "steps": [
+        "Pick the preload: a stated fraction of proof load, or your own justified value.",
+        "Choose the nut factor K for the surface condition (dry, plated, or lubricated, from the course's fastener guide). Dry is highest and lubricated lowest.",
+        "Compute torque as K times preload times nominal diameter, with consistent units.",
+        "Comment on whether the torque is large for a hand tool."
+      ],
+      "pitfalls": [
+        "Using one K value for every finish.",
+        "Taking bolt strength from an unchecked online chart. The prompt warns about exactly this."
+      ]
+    },
+    {
+      "id": "time-stepping",
+      "title": "Explicit time stepping in a spreadsheet",
+      "when": "The time-stepping computer problems: motion driven first by a given acceleration, later by forces.",
+      "steps": [
+        "Solve the simplest case analytically with calculus first, so the spreadsheet has a check.",
+        "Build columns for time, acceleration, velocity and position. Each new velocity is the previous velocity plus the previous acceleration times the step, and each new position is the previous position plus the previous velocity times the step.",
+        "Use the step size the prompt gives, then vary it and report how the answer changes.",
+        "For a force-driven version, compute the force from the current speed (a motor torque curve through the drive ratio), then the acceleration from the net force, then step forward.",
+        "Plot acceleration, velocity and position against time."
+      ],
+      "pitfalls": [
+        "Never testing the step size, even though the prompt asks how the step affects the answer.",
+        "Using the current rather than the previous value in an explicit update, so the scheme no longer matches the stated equations."
+      ]
+    }
+  ],
+  "assignment_families": [
+    {
+      "id": "executive-summary-memo",
+      "title": "Executive-summary memo",
+      "stages": ["solve the homework by hand and by FEA", "write a one-page memo summarising the result"],
+      "deliverables": ["one-page memo with To/From/CC/Date/Re header"],
+      "artifacts": ["memo"],
+      "what_good_looks_like": [
+        "The first paragraph gives the answer, with units and its safety-factor basis, so a reader could stop there.",
+        "The agreement between methods is stated as a number, and any FEA artefact is named and handled.",
+        "The hand method's approximation is named, with the direction it pushes the answer.",
+        "Every secondary question in the prompt gets its own short paragraph.",
+        "It fits on one page, with no headings or figures."
+      ],
+      "exemplars": ["executive-summary-memo-shape"],
+      "basis": "instructor-written model memo for one module homework, with the answer as placeholders (the strongest format evidence in this pack); one student memo in the same form; one looser student summary for an FEA study; one other prompt asks for an executive report, but that answer does not survive"
+    },
+    {
+      "id": "module-homework",
+      "title": "Module homework",
+      "stages": ["reading assignment", "problems set by the module prompt", "hand solution, with a spreadsheet or FEA where the prompt calls for one"],
+      "deliverables": ["worked answers, usually handwritten on the printed prompt"],
+      "what_good_looks_like": [],
+      "exemplars": [],
+      "basis": "about a dozen typed module prompts with text layers. Most answers are handwritten ink on the printed prompt with no text layer. One time-stepping set has typed answers inline. How solutions should be presented is not covered."
+    },
+    {
+      "id": "hands-on-lab",
+      "title": "Short hands-on lab",
+      "stages": ["physical exercise with a fastener or tool", "hand calculation on the prompt page"],
+      "deliverables": ["the prompt page with hand calculations or method, turned in by hand"],
+      "what_good_looks_like": [],
+      "exemplars": [],
+      "basis": "two one-page lab prompts; no completed lab survives with a text layer"
+    },
+    {
+      "id": "machine-presentation",
+      "title": "Explain-a-machine presentation",
+      "stages": ["choose a device", "short in-class presentation", "paper copy of the slides turned in by the due date"],
+      "deliverables": ["slide deck presented in a few minutes", "printed copy of the slides"],
+      "what_good_looks_like": [
+        "Most of the credit is for identifying the simple machines inside the device, so name each one and show where it is.",
+        "Mechanical devices earn more credit than electrical, civil or chemical ones.",
+        "The presentation fits the time window the handout gives."
+      ],
+      "exemplars": [],
+      "basis": "one instructor project handout with a point breakdown; the student's decks were inventoried by name only"
+    },
+    {
+      "id": "test-corrections",
+      "title": "Test corrections",
+      "shared_with": "engr305 (same instructor; the ENGR 305 pack has the fuller evidence)",
+      "stages": ["after a graded test"],
+      "deliverables": ["a short document with one section per missed problem"],
+      "what_good_looks_like": [
+        "Each missed problem gets its own heading, the specific error, and the correct method or result.",
+        "A concrete change of practice for the next test."
+      ],
+      "exemplars": [],
+      "basis": "one student instance in this course. There is no prompt, so the required form is not stated."
+    }
+  ],
+  "magnitudes": [
+    {
+      "quantity": "percent difference between hand calculation and FEA for the same quantity at the same location",
+      "unit": "%",
+      "typical_range": [
+        0,
+        20
+      ],
+      "basis": "Handout: the instructor's model executive-summary memo presents hand and FEA answers within 15% of each other as acceptable. That is an example, not a stated target, and the upper bound of 20 is a plausibility margin, not a course rule.",
+      "note": "Well above 20: usually a single-node spike at a sharp corner, weld root or load point read as the maximum, different quantities or locations compared, or supports stiffer or looser than the hand model assumes."
+    },
+    {
+      "quantity": "bolt preload as a fraction of proof load",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.5,
+        0.95
+      ],
+      "basis": "Handout and physical plausibility: the fasteners homework says a preload of 75% of proof load is often used. The bounds around it are machine-design practice (up to about 0.9 for permanent joints), not a course rule.",
+      "note": "Above 1: the bolt would yield when tightened, or the tensile-stress area and the proof strength were mismatched. Below 0.5 with no stated reason: check which strength was used."
+    },
+    {
+      "quantity": "nut factor K",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.1,
+        0.35
+      ],
+      "basis": "Handout and physical plausibility: the fasteners homework gives typical K values of roughly 0.14 lubricated, 0.2 zinc-plated and 0.25 dry. The bounds are a margin around those, from published torque coefficients.",
+      "note": "Outside the range: not a nut factor, most often a friction coefficient or a percent. The same K for every finish in a comparison question is a method error even inside the range."
+    },
+    {
+      "quantity": "tightening torque for a hand-tool bolt (about 1/4 to 3/4 in)",
+      "unit": "lbf-ft",
+      "typical_range": [
+        2,
+        500
+      ],
+      "basis": "Physical plausibility, not a course rule: T = K x F x d with a proof-load-scale preload gives single to low hundreds of lbf-ft across that size span.",
+      "note": "About 12x high: lbf-in labelled lbf-ft. Near or below 1: the diameter went in as feet, or the preload in kips was read as lbf. A range cannot see every 12x slip, so state the unit on every line."
+    },
+    {
+      "quantity": "safety factor of a bolt, weld or member",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.5,
+        20
+      ],
+      "basis": "Physical plausibility, not a course rule: designs usually land between about 1.5 and 4. The generous bounds only catch values that cannot be a real design check.",
+      "note": "Below 1 may be the true answer to a 'will it hold' question, so check it rather than dismiss it. Above about 20: the load or the area is off by a unit factor (lbf vs kip, in^2 vs mm^2)."
+    },
+    {
+      "quantity": "fillet weld leg size",
+      "unit": "in",
+      "typical_range": [
+        0.125,
+        1.0
+      ],
+      "basis": "Physical plausibility, not a course rule: fillet welds on plate and bracket work run from about 1/8 in to 1 in legs.",
+      "note": "About 0.7x the expected leg: the throat was reported as the leg (leg = throat / 0.707). Far larger than the plate thickness: the weld group's unit moment of inertia or J is off by a units factor."
+    },
+    {
+      "quantity": "relative change in a time-stepped result when the step is halved",
+      "unit": "%",
+      "typical_range": [
+        0,
+        5
+      ],
+      "basis": "Physical plausibility, not a course rule: an explicit first-order scheme's error shrinks roughly in proportion to the step, so a step small enough to trust changes the result by only a few percent when halved. Numerical-methods property.",
+      "note": "Tens of percent: the step is too large for the dynamics, or the update uses the current value instead of the previous one. Zero change: the step is not actually being used in the update."
+    }
+  ]
+}

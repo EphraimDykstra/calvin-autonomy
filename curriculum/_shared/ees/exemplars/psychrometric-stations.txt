@@ -1,0 +1,60 @@
+//[Student Name]
+//ENGR 328 - THERMO 2
+//[Lab Name]
+//Professor [Surname]
+//[Date]
+
+// ILLUSTRATIVE ONLY. Invented readings; not lab data.
+// GUI unit system: SI, mass, C, kPa, kJ. Readings are entered in C.
+
+// GIVEN DATA
+
+	//AIR STREAM TEMPs - dry bulb / wet bulb pairs per station
+	T[1] = 22 [C]		//Station A dry bulb
+	T[2] = 14 [C]		//Station A wet bulb
+	T[3] = 30 [C]		//Station B dry bulb
+	T[4] = 18 [C]		//Station B wet bulb
+
+	//PRESSURES
+	P_atm_mmHg = 740 [mmHg]
+	P_atm = P_atm_mmHg * Convert(mmHg, kPa)	//let EES convert, no typed factor
+
+	//ELECTRICAL
+	V_sys = 200 [V]
+	R_heater = 40 [ohm]
+
+	//AIR FLOW - use the flow equation from the lab manual; stand-in value here
+	m_dot_a = 0.05 [kg/s]		//kg of DRY air per second
+
+// AIR STREAM PSYCH PROPs
+// Every AirH2O call uses P_atm. Never pass a refrigerant pressure here.
+// AirH2O returns h and v per kg of dry air.
+
+	//Station A
+	h_air_A = Enthalpy(AirH2O, T=T[1], B=T[2], P=P_atm)
+	omega_A = HumRat(AirH2O, T=T[1], B=T[2], P=P_atm)
+	v_A = Volume(AirH2O, T=T[1], B=T[2], P=P_atm)
+
+	//Station B
+	h_air_B = Enthalpy(AirH2O, T=T[3], B=T[4], P=P_atm)
+	omega_B = HumRat(AirH2O, T=T[3], B=T[4], P=P_atm)
+	phi_B = RelHum(AirH2O, T=T[3], B=T[4], P=P_atm)
+
+// SECTION A-B: HEATING (no water added)
+// Forcing => heater electrical power
+// Response => enthalpy change of the air stream
+
+	Q_dot_forcing_AB = V_sys^2 / R_heater * Convert(W, kW)	//W -> kW to match kJ/kg * kg/s
+	Q_dot_response_AB = m_dot_a * (h_air_B - h_air_A)
+
+	// % error = (response - forcing) / forcing * 100
+	Error_energy_AB = (Q_dot_response_AB - Q_dot_forcing_AB) / Q_dot_forcing_AB * 100 [%]
+
+	// Water balance: no forcing, so compare humidity ratios directly
+	Error_water_AB = (omega_B - omega_A) / omega_A * 100 [%]
+
+// PLOT ARRAYS - one array per axis so EES can plot the stations
+	T_psych[1] = T[1]
+	T_psych[2] = T[3]
+	omega_psych[1] = omega_A
+	omega_psych[2] = omega_B

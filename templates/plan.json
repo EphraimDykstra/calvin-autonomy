@@ -1,0 +1,33 @@
+{
+  "requirements": [
+    {
+      "id": "r1",
+      "text": "State one exact requirement from the current assignment."
+    }
+  ],
+  "evidence": [
+    {
+      "document_id": "current-assignment",
+      "source_sha256": "REPLACE_WITH_CURRENT_ASSIGNMENT_HASH",
+      "locator": "REPLACE_WITH_CURRENT_ASSIGNMENT_LOCATOR",
+      "text_sha256": "REPLACE_WITH_CURRENT_ASSIGNMENT_TEXT_SHA256"
+    },
+    {
+      "document_id": "REPLACE_WITH_SEARCH_DOCUMENT_ID",
+      "source_sha256": "REPLACE_WITH_SEARCH_SOURCE_SHA256",
+      "locator": "REPLACE_WITH_SEARCH_LOCATOR",
+      "text_sha256": "REPLACE_WITH_SEARCH_TEXT_SHA256"
+    }
+  ],
+  "course_profile_sha256": "REPLACE_WITH_PROFILE_SHOW_SHA256",
+  "deliverables": [
+    {
+      "path": "deliverables/submission.pdf",
+      "format": "pdf"
+    }
+  ],
+  "verification": {
+    "calculations_required": true
+  },
+  "unresolved": []
+}

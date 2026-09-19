@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "math172",
+    "code": "MATH 172",
+    "title": "Calculus II",
+    "title_basis": "the syllabus names the course Math 172 and the archive files call it Calc 2; the catalog title is not stated",
+    "aliases": ["Calc 172", "Calc 2"],
+    "professor": null,
+    "instructor_identified_from": "the archived syllabus",
+    "terms_observed": ["Fall 2023"]
+  },
+  "coverage": {
+    "format": "none",
+    "methods": "none",
+    "assignments": "none",
+    "notes": "No completed deliverable exists, and that is how the course was designed, not a filing gap. The archived syllabus puts all homework on an online platform, where answers are typed into the site and nothing is written up or kept as a file. Tests and the final are paper, closed-technology, and were never scanned. The archive holds the syllabus, the open textbook, study guides, formula and equation sheets, and blank practice problems for each test and the final. That is enough to know the course's topics, but not how any written work should look, because no written work was ever turned in digitally. A student asking for help should get the method for the specific problem, not a formatted deliverable."
+  },
+  "course_policy": {
+    "source": "syllabus (archived, Fall 2023)",
+    "confidence": "unknown",
+    "term_observed": "Fall 2023",
+    "summary": "The archived syllabus has an academic-integrity section but no generative-AI statement. The current terms are unknown.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "gaps": {
+    "archive_holds": [
+      "the syllabus (archived)",
+      "the open textbook",
+      "study guides, formula sheets, and equation sheets for each test and the final",
+      "blank practice problems for each test and the final"
+    ],
+    "missing": ["any completed homework (it lived on the online platform)", "any completed test (paper, never scanned)", "worked solutions in the instructor's style"],
+    "why_structural": "Homework was entered on an online platform and tests were taken on paper without technology, so no digital deliverable was ever produced. Nobody lost it. It never existed as a file.",
+    "student_can_supply": [
+      "the specific problem, typed or photographed",
+      "any instructor-posted worked solution, to fix the expected presentation"
+    ],
+    "basis": "the archived syllabus and a direct listing of the course folder"
+  },
+  "assignment_families": []
+}

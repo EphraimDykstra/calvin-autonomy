@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "engr315-lab",
+    "code": "ENGR 315 Lab",
+    "title": "Control Systems Laboratory",
+    "professor": null,
+    "terms_observed": [
+      "Fall 2026"
+    ]
+  },
+  "coverage": {
+    "format": "partial",
+    "methods": "partial",
+    "assignments": "partial",
+    "notes": "Two weeks of a semester-long lab. Each of the first two labs has a written handout ending in a report checklist, and each has a completed report, so the report format is specified rather than guessed, but later labs (Simulink, hardware) may add requirements that are not here. The Week 3 folder holds only an empty outline and no handout. Methods cover MATLAB scripting and the closed-form second-order response; nothing on transfer-function toolbox work, Simulink, or physical-rig measurement. No syllabus was found. MATLAB conventions live in the shared MATLAB tool pack. The host cannot execute MATLAB, so results in a drafted report stay unverified until the student runs the m-file and returns its output."
+  },
+  "course_policy": {
+    "source": "none found (no syllabus in the archive)",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus for this lab was found, so its policy on AI use is unknown. Both lab handouts separately require each student to write and run their own MATLAB files; that is an individual-work rule, not an AI policy.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "format": {
+    "deliverable": "weekly lab report (Word) plus the MATLAB m-files that produced its results",
+    "artifacts": [
+      {
+        "role": "report",
+        "extension": "docx",
+        "submitted": true,
+        "derived_from": "the m-file's printed output and exported figure",
+        "produced_by": "Word, written by the student (the renderer can draft it)"
+      },
+      {
+        "role": "m-file",
+        "extension": "m",
+        "submitted": true,
+        "derived_from": null,
+        "produced_by": "written with host help, run by the student in MATLAB"
+      },
+      {
+        "role": "figure",
+        "extension": "png",
+        "submitted": false,
+        "derived_from": "the m-file",
+        "produced_by": "MATLAB, on the student's machine; embedded in the report"
+      }
+    ],
+    "pipeline_support": {
+      "render": true,
+      "execute": false,
+      "verify_rendered_output": true,
+      "note": "The report is a docx, which the renderer supports. Nothing executes MATLAB: the figures and every number in the report come from the student running the m-file. The rendered report can be checked for format, but its results are unverified until the student returns the printed check values and the figure, and a deliverable must not be called ready before then."
+    },
+    "precedence": [
+      "the current lab's handout and its report checklist",
+      "the general report instructions in the Lab 1 handout",
+      "patterns observed in completed submissions"
+    ],
+    "header_block": {
+      "title_page": false,
+      "lines": [
+        "ENGR 315 - Control Systems",
+        "Lab #[N]: [Lab title]",
+        "[Student Name]",
+        "[Instructor] · Calvin University",
+        "[date]"
+      ],
+      "basis": "Observed in both submitted reports. The handouts do not specify a title page or header, so this is practice, not rule."
+    },
+    "sections": {
+      "rule": "Section headings follow the current handout's checklist. Lab 1 asks for three: Objectives, Results & Analysis, Conclusion. Lab 2 asks for four, adding Procedure between Objectives and Results & Analysis. Results & Analysis is subdivided per experiment.",
+      "note": "Do not merge the two lists. A lab whose handout is silent defaults to the most recent handout's list; tell the student that is an assumption.",
+      "basis": "Lab 1 handout report instructions and checklist; Lab 2 guidelines formatting checklist; both submitted reports follow their own lab's list."
+    },
+    "objectives": {
+      "rule": "One paragraph of complete sentences in the student's own words. No numbering, no bullets, not copied from the handout. The conclusion answers these objectives.",
+      "basis": "Lab 1 handout report instructions and checklist; Lab 2 guidelines checklist."
+    },
+    "procedure": {
+      "rule": "When required (Lab 2 onward), a picture of the system studied and the equation that characterizes it, plus a short description of what the m-file does, pointing to the code appendix.",
+      "basis": "Lab 2 guidelines content checklist; the Week 2 submitted report."
+    },
+    "results_and_analysis": {
+      "rule": "One subsection per experiment. Refer to results by figure and table number to support each claim. The analysis explains the physics behind the plots, not only what they show.",
+      "basis": "Lab 2 guidelines content checklist; both submitted reports."
+    },
+    "question_answers": {
+      "rule": "Where a handout poses numbered questions inside an experiment, restate each question and answer it directly under that experiment's subsection.",
+      "basis": "Lab 1 handout (Experiments 1 and 7); the Week 1 submitted report."
+    },
+    "figures": {
+      "caption_position": "below",
+      "caption_pattern": "Figure N. Descriptive caption.",
+      "alignment": "figure and caption centered",
+      "in_text": "capital F: 'shown in Figure 1'",
+      "plots": "produced by the m-file as-is, readable in grayscale; see the shared MATLAB pack",
+      "basis": "Lab 1 handout (captions under figures, IEEE style, centered); Lab 2 guidelines (title, axis labels, legend) and checklist.",
+      "title_in_plot": "required: the Lab 2 handout asks for a chart title inside the figure as well as the caption below it. This differs from courses whose standards forbid an in-graph title; it is ENGR 315's rule, not a general one."
+    },
+    "tables": {
+      "caption_position": "above",
+      "caption_pattern": "Table N. Descriptive caption.",
+      "alignment": "Lab 2 asks for the table caption left-aligned while its general rule centers figures, tables, and captions; the submitted report centered the table and left-aligned its caption.",
+      "in_text": "capital T: 'shown in Table 1'",
+      "basis": "Lab 1 handout; Lab 2 guidelines checklist; the Week 2 submitted report."
+    },
+    "page_numbers": {
+      "rule": "Numbered at the bottom of every page.",
+      "observed": "Lab 1 report used 'Page N'; Lab 2 used a bare number, both centered at the bottom.",
+      "basis": "Lab 1 handout and Lab 2 guidelines checklists; both submitted reports."
+    },
+    "code": {
+      "rule": "Every m-file used is in the report, in the body or in an appendix that the procedure refers to.",
+      "observed": "Lab 1 pasted screenshots of each script with its plot as captioned figures in the body. Lab 2 put the full script as monospaced text in 'Appendix A: MATLAB Code'.",
+      "basis": "Lab 1 handout; Lab 2 guidelines content checklist; both submitted reports."
+    },
+    "terminology": {
+      "rule": "MATLAB in capitals, never Matlab.",
+      "basis": "Lab 1 handout."
+    },
+    "file_naming": {
+      "report": "[StudentName]_Lab[N]_Report.docx, with a PDF of the same name",
+      "mfile": "[StudentName]_Lab[N]_v[K].m, or [StudentName]_Lab[N]_Ex[M]_v[K].m for one file per experiment",
+      "disagreement": "The Lab 2 checklist says the file name should include the student's initials. The Lab 1 handout and the m-file template ask for the name. The submitted files used surname and given name run together. Follow the current handout; ask the student when it is silent.",
+      "basis": "Lab 1 handout; the m-file template; Lab 2 guidelines checklist; the submitted file names (recorded as a pattern only)."
+    },
+    "submission": {
+      "due": "at the beginning of the next lab",
+      "where": "course learning-management site: the report, and the m-files uploaded separately",
+      "penalty": "Lab 1 states a 20% penalty when the m-files are not uploaded.",
+      "individual_work": "Discuss with classmates in lab, but write and run your own m-files; running another student's file to get results is plagiarism.",
+      "basis": "Lab 1 handout; Lab 2 guidelines."
+    },
+    "not_specified": {
+      "items": [
+        "font and size",
+        "margins",
+        "line spacing",
+        "reference list",
+        "a title page"
+      ],
+      "note": "The submitted reports used a single-spaced serif body and colored sans-serif headings. That is the student's choice, not a course rule; do not present it as required.",
+      "basis": "Absence from both handouts; both submitted reports."
+    }
+  },
+  "methods": [
+    {
+      "id": "second-order-damping-regimes",
+      "title": "Second-order transient response across damping regimes",
+      "when": "A lab asks how the damping ratio shapes the free or step response of a mass-spring-damper or any second-order system.",
+      "steps": [
+        "Write the governing ODE from a force balance and name the parameters: M, b, k.",
+        "Express the response through the natural frequency and damping ratio, both defined from M, b, k.",
+        "Pick one value in each regime the handout lists: undamped, underdamped, critically damped (just below 1 when the closed form divides by sqrt(1 - zeta^2)), overdamped.",
+        "Compute all cases in one m-file (see the shared MATLAB pack, closed-form-parameter-sweep).",
+        "Tie each regime to its poles, the roots of s^2 + 2 zeta wn s + wn^2: the real part sets decay, the imaginary part sets oscillation.",
+        "Check a number with a closed form against the plot, such as the ratio of successive extrema in the underdamped case.",
+        "Explain why the overdamped response is slower than the critically damped one rather than treating it as an error."
+      ],
+      "pitfalls": [
+        "The complex branch of acos past zeta = 1, which can flip the sign of the overdamped curve.",
+        "Describing the plots without the physics: the checklist asks how M, b, k and zeta produce the behavior.",
+        "Envelope overlays drawn in a line style another curve already uses, which collide in grayscale."
+      ],
+      "basis": "Lab 2 guidelines (experiments and content checklist); the Week 2 submitted report and m-file; the Week 2 output-check notes."
+    },
+    {
+      "id": "math-review-for-controls",
+      "title": "Supporting mathematics",
+      "when": "Lab 1's math review, and any later lab that needs it.",
+      "steps": [
+        "Partial fractions: factor the denominator, then solve for residues; check by recombining.",
+        "Quadratic roots by formula, written as -a +/- b j for complex pairs.",
+        "Block reduction to one polynomial numerator over one polynomial denominator: the transfer-function form.",
+        "Complex numbers as vectors for sums and differences, and in polar form (magnitude and angle).",
+        "Convergence: a decaying exponential reaches steady state; a growing one does not."
+      ],
+      "pitfalls": [
+        "Leaving a simplified transfer function with a fraction inside the numerator or denominator."
+      ],
+      "basis": "Lab 1 handout (Experiment 8); the Week 1 submitted report."
+    }
+  ],
+  "assignment_families": [
+    {
+      "id": "weekly-matlab-lab-report",
+      "title": "Weekly MATLAB lab report",
+      "stages": [
+        "read the assigned textbook sections and handout",
+        "write and run the m-file in lab, individually",
+        "write the report in Word from the saved files",
+        "upload the report and the m-files before the next lab"
+      ],
+      "deliverables": [
+        "Word report with the sections the handout's checklist names",
+        "the m-file(s), uploaded separately and also included in the report"
+      ],
+      "what_good_looks_like": [
+        "Objectives as one rephrased paragraph, not a copied list.",
+        "A procedure that shows the system diagram and its governing equation, and points to the code appendix.",
+        "Every figure produced by the script unedited, readable in grayscale, captioned below and referred to by number.",
+        "Analysis that explains the behavior through the physics and the math, referring to figures and tables for support.",
+        "A conclusion that answers each objective.",
+        "The code, header filled in, in the report and uploaded."
+      ],
+      "exemplars": [
+        "lab-report-shape"
+      ],
+      "basis": "Lab 1 handout and Lab 2 guidelines report checklists; the Week 1 and Week 2 submitted reports."
+    }
+  ]
+}

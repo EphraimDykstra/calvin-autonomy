@@ -1,0 +1,699 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "engr328",
+    "code": "ENGR 328",
+    "title": "Thermodynamics 2",
+    "professor": null,
+    "terms_observed": [
+      "Spring 2026"
+    ]
+  },
+  "coverage": {
+    "format": "high",
+    "methods": "high",
+    "assignments": "partial",
+    "notes": "No graded copy, instructor annotation or syllabus survives in the archive, so every 'what good looks like' entry is derived from the professor's written handouts and lab manuals rather than from a marked-up submission. The student submissions backing them are reported by their author to have scored highly, which is the strongest evidence available here and is weaker than a graded artifact; they also break several written rules (page limits, title-page numbering), and the handout wins where they disagree. Homework format is inferred from handwritten scans, and margin size has no evidence at all."
+  },
+  "course_policy": {
+    "source": "none found (no syllabus in the archive)",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus for this course was found, so its policy on AI use is unknown. The lab manuals separately require lab analysis and writing to be individual work.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "evidence_tiers": {
+    "spec": "Professor-authored documents distributed in this course and term: general technical-report guidelines, the lab schedule with per-stage deliverable descriptions and grading, and both lab manuals.",
+    "prior_handout": "A one-page writing-guidelines handout by the same professor, originally issued for an earlier ENGR 319 lab and filed with this course's lab material. Probably still applies, but it was not re-issued under this course's header.",
+    "exemplar": "Observed in the student's own submissions. The author reports that this course's memos and lab reports scored highly, so the observed structure is reported to have worked; no graded copy or instructor annotation survives to confirm it, and the written handout still wins wherever the two disagree.",
+    "default": "No evidence. A renderer default so the pipeline can run. Do not present it to the student as a course rule."
+  },
+  "format": {
+    "applies_to": [
+      "ac-lab",
+      "ic-lab"
+    ],
+    "rendering": {
+      "title_page": true,
+      "abstract": true,
+      "number_body_pages": true,
+      "table_captions_above": true,
+      "figure_captions_below": true,
+      "body_font_size": 12,
+      "line_spacing": 1.5,
+      "margin_inches": 1.0,
+      "max_body_pages": null,
+      "max_body_pages_note": "Set per stage from assignment_families[].stage_details[].max_body_pages; the budget differs between pre-submissions and finals."
+    },
+    "rendering_basis": {
+      "title_page": "spec",
+      "abstract": "spec",
+      "number_body_pages": "spec",
+      "table_captions_above": "spec",
+      "figure_captions_below": "spec",
+      "body_font_size": "spec (11-12 pt stated acceptable; 12 chosen)",
+      "line_spacing": "spec",
+      "margin_inches": "default"
+    },
+    "title_page": {
+      "numbered": false,
+      "contents": [
+        "descriptive report title (not just the lab number)",
+        "[Student Name]",
+        "course number and section",
+        "group, if applicable",
+        "professor surname, spelled correctly",
+        "date with the correct year",
+        "abstract (the final report's 'executive summary' is this same block)"
+      ],
+      "abstract_content": [
+        "a few sentences on what was done and how",
+        "a few sentences of key results stated as actual numbers with units, not a promise that results appear inside"
+      ],
+      "basis": "spec; the course/section/group line and the surname-spelling rule come from prior_handout"
+    },
+    "pagination": {
+      "body_starts_at": 1,
+      "position": "bottom of page, centered or outside corner; never the stapling corner",
+      "basis": "spec for numbering; position from prior_handout"
+    },
+    "headings": {
+      "rule": "Headings visibly distinct (bold, italic, or larger) so that skimming them gives the outline of the argument.",
+      "observed_body_order": [
+        "Objective",
+        "Methods",
+        "Results",
+        "Conclusions",
+        "Appendix"
+      ],
+      "numbered_headings": false,
+      "basis": "rule from spec; order and unnumbered style from exemplar (all eight lab submissions use this order)"
+    },
+    "equations": {
+      "typed": "Word equation editor or equivalent; never screenshots of the manual and never handwritten",
+      "numbering": "sequential in order of first reference; label at the right margin in parentheses",
+      "placement": "Inline where first used, introduced and explained in the surrounding sentence. Never a wall of equations in an appendix, and never numbering that jumps between body and appendix.",
+      "notation": [
+        "Greek symbols as real symbols, not spelled-out names",
+        "superscript units (m3/s typeset with a superscript), never a caret",
+        "\u00d7 or \u00b7 for multiplication, never * or x",
+        "no code-style expressions such as rho/A^2*Vdot^3"
+      ],
+      "basis": "typed/placement from spec; numbering order from prior_handout; right-margin parenthesized label from exemplar; notation from prior_handout"
+    },
+    "figures": {
+      "caption_position": "below",
+      "caption_style": "'Figure N.' followed by a sentence stating the takeaway, not a bare label",
+      "numbering": "sequential, placed where first referenced",
+      "rules": [
+        "centered, never text-wrapped",
+        "no chart title when a caption is present",
+        "readable in grayscale",
+        "vector or native charts, never screenshots",
+        "schematic diagrams, not photographs (photos may go in an appendix)",
+        "comparable plots share axis ranges",
+        "two scenarios on one set of axes is encouraged when comparing",
+        "never a full page when a page limit applies, never shrunk below legibility"
+      ],
+      "basis": "spec"
+    },
+    "tables": {
+      "caption_position": "above",
+      "caption_style": "'Table N.' followed by a caption, which may be brief for large data tables",
+      "units": "units in the column heading or a units column",
+      "basis": "spec"
+    },
+    "numbers_and_units": {
+      "rules": [
+        "every number carries units: text, tables, graphs, appendices",
+        "significant digits reflect measurement accuracy, even in appendices and printed spreadsheets",
+        "leading zero on magnitudes below one"
+      ],
+      "basis": "units and significant digits from spec; leading zero from prior_handout"
+    },
+    "voice_and_style": {
+      "rules": [
+        "no first, second, or third person references to people (no I, we, you, the team, the author)",
+        "concise and non-narrative; no diary-style lab chronology",
+        "do not spend body space on routine unit conversions",
+        "one font and one size throughout the paragraphs"
+      ],
+      "basis": "prior_handout"
+    },
+    "appendices": {
+      "lettering": "Lettered A, B, C, ... with sub-items A.1, A.2 where useful",
+      "observed_first_appendix": "Appendix A is a list of the appendices",
+      "role": "Supporting material the reader could lose without losing the story; anything critical belongs in the body",
+      "typical_contents": [
+        "raw data sheet",
+        "calculated intermediate properties",
+        "charts not in the body",
+        "equipment or manufacturer data",
+        "EES code with solution output"
+      ],
+      "appendix_table_numbering": "unresolved: one final report continues the body's Table N sequence into the appendices, the other restarts per appendix (B.1, B.2). Neither is specified; pick one and use it consistently.",
+      "basis": "letters and sub-numbering from spec (the A/C manual itself refers to a lettered, sub-numbered appendix); role from spec; contents and list-of-appendices from exemplar"
+    },
+    "calculation_tooling": {
+      "rule": "No hand calculations in a report. Repetitive lab math goes in Excel or EES, and the code is printed in the appendix.",
+      "basis": "prior_handout, reinforced by spec (both lab manuals direct the analysis into EES)"
+    },
+    "physical_submission": {
+      "rule": "Printed and stapled, handed in at the start of class; the key-data online form is due with each pre-submission.",
+      "basis": "spec"
+    }
+  },
+  "methods": [
+    {
+      "id": "moist-air-state-from-dry-and-wet-bulb",
+      "title": "Moist-air state from dry- and wet-bulb temperatures",
+      "when": "Any A/C lab station (A, B, C, D), or a psychrometrics homework problem.",
+      "steps": [
+        "Fix the state with three properties: measured atmospheric pressure, dry-bulb, and wet-bulb.",
+        "Use the moist-air property functions (per kg of dry air) with pressure passed explicitly; do not rely on a chart's built-in pressure.",
+        "Read humidity ratio, enthalpy per kg dry air, and specific volume at every station.",
+        "Water-vapour flow at a station is the dry-air mass flow times the humidity ratio."
+      ],
+      "pitfalls": [
+        "Using a refrigerant gauge pressure (or any refrigerant pressure) as the moist-air pressure.",
+        "Treating the inlet air as dry; ambient air already carries water vapour.",
+        "Dropping measured atmospheric pressure in favour of a standard atmosphere."
+      ]
+    },
+    {
+      "id": "dry-air-flow-from-orifice",
+      "title": "Dry-air mass flow from the orifice-plate manometer",
+      "when": "A/C lab; needed before any per-section balance.",
+      "steps": [
+        "Take the manometer pressure drop and the moist-air specific volume at the exit station.",
+        "Apply the manual's orifice correlation, attaching units to its constant so the equation solver checks dimensions.",
+        "Use this one dry-air flow for every section, since dry air is conserved along the duct."
+      ],
+      "pitfalls": [
+        "Using the specific volume at the wrong station.",
+        "Leaving the correlation constant unitless, which hides unit errors."
+      ]
+    },
+    {
+      "id": "forcing-versus-response-accounting",
+      "title": "Forcing versus response mass and energy accounting",
+      "when": "The core of every A/C section analysis (A-B, B-C, C-D), for both water and energy, in both seasons.",
+      "steps": [
+        "Draw the control volume for the section around the air stream and list every term that crosses it.",
+        "Compute each forcing term independently from its own measurement: electrical heaters from supply voltage squared over resistance, summed in parallel (never nameplate kW); fan power from the manual's voltage-to-power chart; steam or condensate mass and the enthalpy it carries; refrigerant heat absorption.",
+        "Compute the response term independently from the air-stream states: dry-air flow times the change in humidity ratio (water) or the change in enthalpy (energy).",
+        "Report percent error as (response minus forcing) over forcing.",
+        "Where no forcing is applied, normalise the response difference by the inlet value instead, since forcing-based error is undefined.",
+        "Keep one sign convention throughout: into the air stream is positive, out of it is negative."
+      ],
+      "pitfalls": [
+        "Solving the balance for an unknown the way a homework problem would. A 0% error means the forcing term was derived from the response, which defeats the experiment.",
+        "Omitting enthalpy carried by mass streams (steam in, condensate out).",
+        "Leaving fan power out of the energy forcing.",
+        "Refrigerant heat is energy leaving the air; sign it accordingly.",
+        "In section A-B, summer: two control-volume formulations are required and must be compared, giving six error findings in that stage instead of four."
+      ]
+    },
+    {
+      "id": "steam-generation-rate",
+      "title": "Steam generation rate from a boiler energy balance",
+      "when": "A/C lab section A-B, summer (steam generator on).",
+      "steps": [
+        "Put a control volume around the steam generator at steady state: tap water in equals steam out.",
+        "Net heat equals the electrical heater power minus the convective loss to the room (the manual's hA constant times the temperature difference).",
+        "Steam mass rate is net heat over the enthalpy rise from tap-water state to saturated vapour at room pressure.",
+        "This mass rate is the water forcing term for A-B."
+      ],
+      "pitfalls": [
+        "Using the saturated-liquid state (quality 0) for tap water; tap water enters subcooled at room temperature.",
+        "Assuming a boiling temperature instead of evaluating saturation at the measured room pressure."
+      ]
+    },
+    {
+      "id": "vapor-compression-cycle-from-lab-data",
+      "title": "R134a vapour-compression cycle from measured gauge data",
+      "when": "A/C lab: evaporator heat for section B-C, and the system-level COP and compressor isentropic efficiency in the final report.",
+      "steps": [
+        "Convert every refrigerant gauge pressure to absolute pressure before any property lookup.",
+        "Fix states 1-3 from the measured temperature and pressure.",
+        "Fix state 4 (evaporator inlet), which is not measured: assume saturated liquid at the condenser outlet and an isenthalpic expansion valve, so h4 = h3.",
+        "Evaporator heat is refrigerant mass flow times (h1 minus h4); compressor work is mass flow times (h2 minus h1).",
+        "COP is evaporator heat over compressor work. Compressor isentropic efficiency compares the isentropic enthalpy rise (outlet at state-1 entropy and state-2 pressure) with the actual rise.",
+        "Plot the four states on a P-h diagram for each season."
+      ],
+      "pitfalls": [
+        "Using gauge pressure directly in a property call.",
+        "Reading the float flow meter anywhere but its lowest steady value at the top edge of the float, as the manual directs.",
+        "Putting condensate on the condenser side; air-side condensate forms at the evaporator."
+      ]
+    },
+    {
+      "id": "evaporator-effectiveness",
+      "title": "Evaporator effectiveness and UA (extra credit)",
+      "when": "A/C final report, optional.",
+      "steps": [
+        "Treat the evaporating refrigerant as the infinite-capacity stream, so the capacity ratio is zero.",
+        "Effectiveness is actual heat transfer over maximum possible heat transfer.",
+        "Use the effectiveness-NTU relation at zero capacity ratio to get NTU, then UA."
+      ],
+      "pitfalls": [
+        "Assigning a finite refrigerant heat capacity during phase change."
+      ]
+    },
+    {
+      "id": "combustion-with-unburned-fuel",
+      "title": "Actual combustion equation with unburned fuel",
+      "when": "IC lab energy analysis. Precedes every exhaust calculation.",
+      "steps": [
+        "Solve the theoretical (100% air) octane balance element by element in the equation solver; do not look it up.",
+        "Code the O2 and N2 molar fractions of air as editable parameters and compute the N:O ratio from them rather than hard-coding it.",
+        "Compute the actual molar air-fuel ratio from the measured air and fuel mass flows and their molar masses.",
+        "Solve the six-unknown actual equation (n, a, b, c, d, e) from four element balances, the burned-fuel oxygen relation, and the measured air-fuel ratio. Keep the manual's letters.",
+        "Confirm that either unburned fuel (a) or excess O2 (d) is zero, never both nonzero."
+      ],
+      "pitfalls": [
+        "Writing species symbols into the balances; code only the coefficient equations and comment each one.",
+        "Not sanity-checking the actual air-fuel ratio against the manual's expected band; being well below theoretical is normal for this engine."
+      ]
+    },
+    {
+      "id": "orifice-air-and-exhaust-mass-flow",
+      "title": "IC intake-air and exhaust mass flow",
+      "when": "IC lab energy analysis.",
+      "steps": [
+        "Intake air mass flow from the Bernoulli orifice relation with the manual's discharge coefficient and orifice diameter; use the magnitude of the pressure drop.",
+        "Fuel mass flow from timed pipette volume times liquid n-octane density.",
+        "Exhaust mass flow is intake air plus fuel."
+      ],
+      "pitfalls": [
+        "Mixing Pa and kPa inside the square root; convert explicitly before the root.",
+        "Carrying a negative gauge reading into the square root.",
+        "Mislabeling ambient-pressure units, which silently corrupts every downstream property."
+      ]
+    },
+    {
+      "id": "exhaust-cp-calorimeter-check",
+      "title": "Exhaust specific heat: mixture prediction vs calorimeter",
+      "when": "IC lab energy analysis, before finalising the energy balance.",
+      "steps": [
+        "Predict mixture cp from the product mole fractions and each species' cp, converted consistently between molar and mass bases.",
+        "From the counter-flow calorimeter, set water heat gain equal to exhaust heat loss using the four measured temperatures and both mass flows, and solve for experimental exhaust cp.",
+        "Compare the two and discuss the gap."
+      ],
+      "pitfalls": [
+        "Evaluating a species in the wrong phase.",
+        "Ignoring water-vapour condensation in the calorimeter when explaining a large gap."
+      ]
+    },
+    {
+      "id": "engine-energy-balance",
+      "title": "Engine steady-state energy balance",
+      "when": "IC lab energy analysis, at the energy-data operating point.",
+      "steps": [
+        "Air intake energy: split air into O2 and N2 and use ideal-gas enthalpies, which include formation enthalpy.",
+        "Fuel energy: liquid octane formation enthalpy from the textbook table, adjusted from 25 \u00b0C to the inlet temperature (taken as ambient).",
+        "Exhaust energy: exhaust mass flow times mixture enthalpy at cylinder exhaust temperature, averaged over the five product species on a consistent basis.",
+        "Shaft power is torque times angular speed, in SI.",
+        "Heat loss to the room is the residual of in = out. Spark-plug power is neglected.",
+        "Present the drop in chemical energy (reactants minus products) and show that it equals shaft power plus heat loss."
+      ],
+      "pitfalls": [
+        "Using the generic 'air' substance or humid-air functions in the combustion balance; the reference state differs.",
+        "Calling a formation-enthalpy function on real liquids.",
+        "Panicking at negative absolute energies; only differences matter.",
+        "Torque units that a case-insensitive solver reads as nanometres."
+      ]
+    },
+    {
+      "id": "power-and-torque-curves",
+      "title": "Engine power and torque curves",
+      "when": "IC lab power-curve pre-submission.",
+      "steps": [
+        "At each of the several engine speeds, shaft power is torque times angular speed.",
+        "Plot power and torque against speed on one figure with two labelled axes.",
+        "State the peak power and peak torque, each with the speed where it occurs."
+      ],
+      "pitfalls": [
+        "Assuming peak torque and peak power share a speed.",
+        "Adding a chart title on top of the caption."
+      ]
+    },
+    {
+      "id": "thermal-efficiency-versus-power",
+      "title": "Overall thermal efficiency vs engine power",
+      "when": "IC lab efficiency pre-submission and final.",
+      "steps": [
+        "Overall thermal efficiency is shaft power over (lower heating value times fuel mass flow).",
+        "Compute it at every operating speed.",
+        "Plot efficiency against shaft power, ordering points by power rather than by run number, and discuss how efficiency changes with load."
+      ],
+      "pitfalls": [
+        "Using the higher heating value.",
+        "Plotting against speed when the required plot is against power."
+      ]
+    },
+    {
+      "id": "presubmission-to-final-assembly",
+      "title": "Assembling the final report from pre-submissions",
+      "when": "Each lab's final report.",
+      "steps": [
+        "Correct earlier sections with feedback and later understanding before assembling.",
+        "Condense three pre-submissions into the final's body budget; each section keeps a brief result and conclusion that points to its appendix.",
+        "Add the system-level results the pre-submissions did not require (A/C: P-h and psychrometric charts, COP, compressor isentropic efficiency, optional effectiveness; IC: overall conclusions on energies and efficiencies).",
+        "Move detail to lettered appendices and decide whether repeated material stays or is merged.",
+        "Close with per-section conclusions, then overall conclusions on error magnitude, plausibility, error sources, and how to reduce them."
+      ],
+      "pitfalls": [
+        "Stapling the three pre-submissions together.",
+        "Blowing the body page limit; both final-report exemplars in the archive ran long, which is not a pattern to copy."
+      ]
+    },
+    {
+      "id": "homework-ees-solution",
+      "title": "Homework solved in EES",
+      "when": "Homework problems the set marks for EES.",
+      "steps": [
+        "Header comment block with course, assignment, and problem number, and the student name as [Student Name].",
+        "Givens with units attached, then the solution blocks in the order of the problem parts.",
+        "Print the code, with the requested answers visible as key variables in the solution output.",
+        "Check against any answer the prompt supplies, and mark the answer where the prompt asks for it to be marked."
+      ],
+      "pitfalls": [
+        "Submitting problems out of the assigned order.",
+        "Using EES on a set that says it is not an EES set."
+      ]
+    }
+  ],
+  "assignment_families": [
+    {
+      "id": "ac-lab",
+      "title": "Air-conditioning duct lab (psychrometrics and refrigeration)",
+      "stages": [
+        "section-c-d",
+        "section-b-c",
+        "section-a-b",
+        "final-report"
+      ],
+      "stage_details": [
+        {
+          "id": "section-c-d",
+          "order_note": "Sections are due downstream to upstream: C-D (reheat) first, then B-C, then A-B, as fixed by the lab schedule's due dates. The manual also recommends starting with C-D as the simplest.",
+          "max_body_pages": 3,
+          "body_pages_range": [
+            2,
+            3
+          ],
+          "must_contain": [
+            "brief intro and method",
+            "equations woven into the text",
+            "control-volume diagram of the section",
+            "discussion of findings",
+            "one clearly organised table of forcing, response, and error for both seasons"
+          ],
+          "error_findings": 4,
+          "measured_inputs": [
+            "dry- and wet-bulb at C and D",
+            "atmospheric pressure",
+            "orifice pressure drop",
+            "system and fan supply voltages",
+            "which reheaters were on"
+          ],
+          "attachments": [
+            "raw data",
+            "intermediate analysis",
+            "EES code with output"
+          ],
+          "also_due": "key data on the online form"
+        },
+        {
+          "id": "section-b-c",
+          "max_body_pages": 3,
+          "body_pages_range": [
+            2,
+            3
+          ],
+          "must_contain": [
+            "same structure as C-D",
+            "refrigerant evaporator heat as the energy forcing",
+            "condensate mass and its enthalpy as the water forcing"
+          ],
+          "error_findings": 4,
+          "measured_inputs": [
+            "dry- and wet-bulb at B and C",
+            "refrigerant temperatures and gauge pressures at states 1-3",
+            "refrigerant mass flow",
+            "condensate volume and collection time"
+          ],
+          "attachments": [
+            "raw data",
+            "intermediate analysis",
+            "EES code with output"
+          ],
+          "also_due": "key data on the online form"
+        },
+        {
+          "id": "section-a-b",
+          "max_body_pages": 3,
+          "body_pages_range": [
+            2,
+            3
+          ],
+          "must_contain": [
+            "same structure as C-D",
+            "two control-volume formulations for summer and a comparison between them",
+            "steam-generator sub-calculation"
+          ],
+          "error_findings": 6,
+          "measured_inputs": [
+            "dry- and wet-bulb at A and B",
+            "steam generator heaters on, room temperature, boiling at room pressure",
+            "preheater states"
+          ],
+          "attachments": [
+            "raw data",
+            "intermediate analysis",
+            "EES code with output"
+          ],
+          "also_due": "key data on the online form"
+        },
+        {
+          "id": "final-report",
+          "max_body_pages": 4,
+          "must_contain": [
+            "executive summary (abstract) with numbers on the title page",
+            "all three sections, condensed, each with a brief conclusion pointing to its appendix",
+            "system-level results: psychrometric chart and R134a P-h diagram for each season, COP and compressor isentropic efficiency for each season",
+            "overall conclusions on error size, plausibility, sources, and reduction"
+          ],
+          "optional": [
+            "evaporator effectiveness and UA (extra credit)"
+          ],
+          "attachments": [
+            "lettered appendices: list of appendices, raw data, calculated properties, charts, equipment data, EES code per season"
+          ]
+        }
+      ],
+      "stage_delta": [
+        "Every pre-submission is a self-contained short report (title page with abstract, Objective, Methods, Results, Conclusions, Appendix) covering both seasons for one duct section; the written pages must tell the whole story if the attachments were lost.",
+        "The EES model is one file per season, and it grows each stage: stage one holds the givens, station states, and dry-air flow plus the C-D balance; each later stage appends a section block and corrects earlier blocks; the final adds the cycle metrics. The observed file grew several-fold between the first submission and the final.",
+        "Corrections are expected between stages; the final is not the sum of the pre-submissions but a rewrite to a tighter budget.",
+        "System-level cycle results (COP, isentropic efficiency, P-h and psychrometric charts) are required only at the final, though including charts earlier is harmless."
+      ],
+      "deliverables": [
+        "three stapled pre-submissions (2-3 body pages plus attachments each)",
+        "one stapled final report (4 body pages plus lettered appendices)",
+        "online key-data form with each pre-submission"
+      ],
+      "grading_structure": "Each on-time adequate submission earns a completion credit (effort, punctuality, the online form), not an accuracy grade; the final report is graded for technical content and technical writing and carries most of the lab's weight.",
+      "grading_structure_basis": "spec, as observed in the Spring 2026 lab schedule handout; weights and logistics may change by term",
+      "what_good_looks_like": [
+        "Forcing and response are computed independently, and every error is nonzero and explained in physical terms (single-point wet-bulb sampling across a non-uniform duct is the expected dominant source).",
+        "Each section's table sets forcing, response, and percent error side by side for both seasons, with units in the headings and sensible significant digits.",
+        "The control-volume figure shows exactly the terms used in that section's balance and nothing else.",
+        "The abstract states the error range and cycle metrics as numbers with units.",
+        "No-forcing cases use the inlet-normalised error rather than dividing by zero.",
+        "The final fits the body budget and every chart has a takeaway caption, no chart title, and is legible in grayscale."
+      ],
+      "exemplars": [
+        "ac-section-presubmission",
+        "ac-final-report"
+      ]
+    },
+    {
+      "id": "ic-lab",
+      "title": "Single-cylinder IC engine lab (performance and energy balance)",
+      "stages": [
+        "power-curves",
+        "energy-balance",
+        "efficiency",
+        "final-report"
+      ],
+      "shape_note": "Unlike the A/C lab, the three pre-submissions are three different analyses of one data set, not one analysis repeated over three sections.",
+      "stage_details": [
+        {
+          "id": "power-curves",
+          "max_body_pages": 3,
+          "body_pages_range": [
+            2,
+            3
+          ],
+          "must_contain": [
+            "brief intro and method",
+            "equations woven into the text",
+            "power-and-torque-versus-speed plot",
+            "discussion",
+            "table of the key findings: peak power and peak torque and the speed of each"
+          ],
+          "measured_inputs": [
+            "torque and speed at several operating points",
+            "timed fuel volume at each point"
+          ],
+          "attachments": [
+            "raw data",
+            "intermediate analysis"
+          ],
+          "tooling": "Plot may be done in Excel.",
+          "also_due": "key data on the online form"
+        },
+        {
+          "id": "energy-balance",
+          "max_body_pages": 3,
+          "body_pages_range": [
+            2,
+            3
+          ],
+          "must_contain": [
+            "brief intro and method",
+            "equations woven into the text",
+            "diagram of the energy flows",
+            "discussion",
+            "table of energy streams and the heat-loss residual"
+          ],
+          "measured_inputs": [
+            "ambient temperature and pressure",
+            "cylinder exhaust temperature",
+            "orifice pressure drop",
+            "calorimeter water and exhaust inlet and outlet temperatures",
+            "calorimeter water flow",
+            "torque, speed, fuel volume and time at the energy point"
+          ],
+          "attachments": [
+            "raw data",
+            "intermediate analysis",
+            "EES code with output"
+          ],
+          "workload_note": "The course flags this as the longest analysis, on the order of a hundred lines of EES in roughly fifteen independent blocks; build it incrementally."
+        },
+        {
+          "id": "efficiency",
+          "max_body_pages": 2,
+          "body_pages_range": [
+            2,
+            2
+          ],
+          "must_contain": [
+            "equations woven into the text",
+            "discussion",
+            "table of the key findings",
+            "plot of efficiency against engine power"
+          ],
+          "measured_inputs": [
+            "reuses the power-curve data set"
+          ],
+          "attachments": [
+            "raw data",
+            "intermediate analysis",
+            "EES code with output"
+          ]
+        },
+        {
+          "id": "final-report",
+          "max_body_pages": 4,
+          "must_contain": [
+            "executive summary (abstract) with numbers on the title page",
+            "performance curves with peaks",
+            "energy balance with every stream and the loss residual",
+            "efficiency against power",
+            "brief conclusion on each energy stream",
+            "overall conclusions on energies, efficiencies, and whether the findings are reasonable"
+          ],
+          "attachments": [
+            "lettered appendices: list of appendices, raw data, per-stream detail, EES code with output"
+          ]
+        }
+      ],
+      "stage_delta": [
+        "The power-curve stage needs only torque, speed, and fuel data; the energy stage adds the combustion, exhaust, and calorimeter model; the efficiency stage reuses the power-curve data with the fuel heating value.",
+        "The observed EES grew from a single power-curve file into a combined power-curve plus energy-balance file, with the energy blocks appended below and unit fixes made to earlier blocks.",
+        "The manual defines the energy balance at one operating point; extending it across every point is optional and costs page space."
+      ],
+      "deliverables": [
+        "three stapled pre-submissions (power curves 2-3, energy 2-3, efficiency 2 body pages, plus attachments)",
+        "one stapled final report (4 body pages plus lettered appendices)",
+        "online key-data form with the pre-submissions"
+      ],
+      "grading_structure": "Same as the A/C lab: completion credit per on-time pre-submission and final, and the final report quality-graded.",
+      "grading_structure_basis": "spec, as observed in the Spring 2026 lab schedule handout; weights and logistics may change by term",
+      "what_good_looks_like": [
+        "The actual air-fuel ratio is computed from measured flows, sits inside the manual's expected band, and drives the combustion coefficients.",
+        "Exactly one of unburned fuel or excess oxygen is nonzero, and the report says which and why.",
+        "Predicted and calorimeter exhaust cp are compared and the gap is explained.",
+        "The energy table shows the chemical-energy drop equal to shaft power plus heat loss, with the heat loss identified as a residual.",
+        "The power curves state both peaks with their speeds, and the report notes whether they coincide.",
+        "Efficiency is plotted against power (not speed or run number) and its trend with load is discussed."
+      ],
+      "exemplars": [
+        "ic-energy-balance-presubmission",
+        "ic-final-report"
+      ]
+    },
+    {
+      "id": "homework",
+      "title": "Weekly homework sets",
+      "stages": [
+        "weekly-set"
+      ],
+      "stage_details": [
+        {
+          "id": "weekly-set",
+          "must_contain": [
+            "problems in the assigned order",
+            "non-EES problems worked by hand, observed written directly on the printed prompt",
+            "printed EES code with key answers visible, for problems the set assigns to EES"
+          ],
+          "evidence_note": "The per-set header instructions are the only written spec. Completed non-EES work exists only as handwritten scans with no text layer; the handwriting is the student's own, not instructor feedback."
+        }
+      ],
+      "deliverables": [
+        "problem solutions in assigned order; EES printouts for EES problems"
+      ],
+      "what_good_looks_like": [
+        "Each EES problem prints its givens with units, its solution blocks in problem-part order, and the requested answers as key variables.",
+        "Where the prompt supplies an answer, the solution reproduces it or explains the difference."
+      ],
+      "exemplars": []
+    }
+  ],
+  "related_packs": {
+    "ees": "curriculum/_shared/ees/ (owned separately). Use it for EES syntax, units, property calls, and file layout; this pack only states what each 328 analysis must compute."
+  },
+  "not_covered": [
+    "Exams: only scope sheets exist in the archive and exams produce no take-home deliverable.",
+    "Homework page format: no written specification and no machine-readable completed hand solutions.",
+    "Instructor feedback or grades on any submission."
+  ],
+  "attestation": {
+    "source": "author of the submissions",
+    "claim": "Typically 1-2% deducted per report, 5% at worst; roughly 95-99%.",
+    "confirmed_by_artifact": false,
+    "note": "Self-reported, recalled rather than read off a returned copy. Raises what the exemplars are worth; does not make them a grading key.",
+    "likely_deductions": {
+      "status": "inference, not observed",
+      "reasoning": "The submissions break three written rules that this pack records independently: both finals run past the four-page body limit, one numbers its title page, and one power-curve pre-submission has no page numbers. On a report graded for technical writing, a deduction of that size is what those look like. Following the handout rather than the exemplar is therefore not only the safer rule, it is the specific way to close the gap the author describes.",
+      "also_possible": "An arithmetic or unit-conversion slip. A conversion error of exactly this class was found in this student's work for a different course, where a Fahrenheit reading was carried into a Kelvin calculation without conversion. Running results through `verify` catches that before submission; it is the one check a student cannot get by asking a model directly."
+    }
+  }
+}

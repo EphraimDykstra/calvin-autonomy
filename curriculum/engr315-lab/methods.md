@@ -1,0 +1,80 @@
+# ENGR 315 Lab (Control Systems Laboratory)
+
+This is for the host model. It covers the weekly lab report and the methods the first two labs teach. `pack.json` holds the same rules in structured form, each with a `basis`. The MATLAB conventions (script header, file naming, plotting for grayscale, checks before the screenshot) are in `curriculum/_shared/matlab/` and apply to every lab here. Read both.
+
+**Evidence.** The Lab 1 and Lab 2 handouts, each ending in a report checklist, and a completed report for each. That covers two weeks of a semester. The Week 3 folder holds an empty outline and no handout. No syllabus was found, so the AI-use policy is unknown. Both handouts require each student to write and run their own m-files.
+
+## 1. How a lab runs
+
+1. Read the textbook sections the handout names (Dorf and Bishop, *Modern Control Systems*).
+2. Write and run the m-file in lab, individually. Discussion is allowed; running a classmate's file is plagiarism.
+3. Write the report in Word from the saved files.
+4. Upload the report and, separately, every m-file before the next lab starts. Lab 1 states a 20% penalty for m-files that are not uploaded.
+
+## 2. The report
+
+The handout's checklist is the specification. Read the current one before anything below.
+
+- **Header block, no title page:** course line, `Lab #[N]: [title]`, `[Student Name]`, `[Instructor] · Calvin University`, date. Observed practice, not a stated rule.
+- **Sections:** Lab 1 asks for Objectives, Results & Analysis, Conclusion. Lab 2 adds Procedure. Use the current handout's list; do not merge them.
+- **Objectives:** one rephrased paragraph, full sentences, no bullets or numbers. Copying the handout's objectives is called out in both checklists.
+- **Procedure (Lab 2 on):** the system picture, the equation that characterizes it, what the m-file does, and a pointer to the code appendix.
+- **Results & Analysis:** one subsection per experiment. Lab 1's numbered questions are restated and answered under their experiment. The analysis explains why, with the physics and the poles, and cites figures and tables for support.
+- **Conclusion:** answers the objectives.
+- **Figures:** caption below, `Figure N. ...`, figure and caption centered, capital F in the text. The plot also carries its own title inside the graph, which the Lab 2 handout asks for. Other courses' report standards (ENGR 204 Lab, ENGR 319, ENGR 328) forbid an in-graph title on a captioned figure. That is a real difference between courses; follow ENGR 315's rule here and theirs there.
+- **Tables:** caption above, `Table N. ...`, capital T in the text.
+- **Page numbers** at the bottom.
+- **Code** in the report, in the body or an appendix the procedure refers to.
+- **Not specified anywhere:** font, margins, spacing, references, title page. Do not invent requirements for them.
+
+See `exemplars/lab-report-shape.md`.
+
+## 3. Where the written guidelines and the submitted Lab 2 report differ
+
+The Lab 2 guidelines and the report submitted for them were compared item by item. Most items match. These do not, or the guidelines are ambiguous:
+
+| Item | Guidelines | Submitted report | What to do |
+|---|---|---|---|
+| File name | "include the student initials" | surname and given name run together, `[StudentName]_Lab2_Report` | Follow the current handout. Lab 1 and the m-file template ask for the name, so the rule has drifted. Ask the student which form their section uses. |
+| Grayscale | every plot looks different in black and white | the envelope overlay was red dotted, the same style as the black dotted overdamped curve | Give every overlay a style no other curve uses (shared MATLAB pack, section 4). |
+| Legend | example text mentions a legend "showing three cases" | four cases plus the envelope | The handout's own figure has four cases; name every trace. |
+| Axis labels | example `Time[sec]`, `Response y(t)` | `time (s)`, `displacement (mm)` | Either form carries quantity and unit. The handout's reference figure itself uses the second form. |
+| Table caption | captions left-aligned on top; separately, figures, tables and captions centered | table centered, caption left-aligned | Center the table, left-align its caption. |
+| Time span | a hint vector running to 50 s | computed to 50 s, displayed to 5 s with `xlim` | Fine: compute long, show the part that matters, set in code. |
+
+Items that match: four sections, objectives as a rephrased paragraph, the system picture and equation in Procedure, code in an appendix referred to from Procedure, one `for` loop and one plot call, Greek letters in TeX, no figure touch-ups, captions under figures, capital F and T, page numbers at the bottom.
+
+## 4. Lab 1 against its report
+
+Lab 1's checklist asked for three sections and the report used three. It asked for m-files in the report and the report showed each script as a screenshot beside its plot. Its Experiment 9 asks the student to confirm in writing that they read the report instructions; the report did. The report itself matched its checklist. The m-files did not fully match the template: one kept the template's unfilled Author and File Name placeholder lines, and another carried a File Name line copied from the previous experiment. The shared MATLAB pack's `header_block` rule (File Name must match the saved file) exists because of this.
+
+## 5. Methods
+
+### Second-order response across damping regimes (Lab 2)
+
+- Force balance on the mass gives the ODE in M, b, k. The response is written through the natural frequency and the damping ratio, both functions of M, b, k.
+- The handout fixes the regimes: undamped, underdamped, critically damped, overdamped. The closed form divides by sqrt(1 - zeta^2), so "critical" is evaluated just below 1, as the handout directs, and the report says why.
+- Tie every regime to its poles. The real part sets the decay, the imaginary part sets oscillation. An underdamped envelope is a picture of the real part.
+- The overdamped response is slower than the critically damped one, because one pole moves toward the origin. That is a result to explain, not a bug to fix.
+- Check a number against a closed form: the ratio of successive extrema, or the initial value in every case.
+- MATLAB traps (complex branch past zeta = 1, `real()` over the whole expression) are in the shared MATLAB pack, section 3.
+
+### Supporting mathematics (Lab 1)
+
+Partial fractions, quadratic roots in `-a ± bj` form, block reduction to one polynomial over one polynomial (the transfer function), complex numbers as vectors and in polar form, and convergence of decaying exponentials. `roots` needs an explicit 0 for every missing power.
+
+## 6. What this pack does not know
+
+- Anything after Week 2: Simulink, toolbox functions (`tf`, `step`, root locus, Bode), hardware rigs, and whatever report changes those labs bring.
+- The syllabus, the grading weights, and the AI-use policy.
+- The instructor's feedback on either report. There is no graded copy, so "matches the checklist" is the strongest claim available, not "scored well".
+
+## Source basis
+
+Cited by type only. No course text is reproduced beyond a few words, no values from submitted work appear, and the exemplar uses an invented system.
+
+- **Lab 1 handout:** MATLAB introduction, math review, general report instructions and checklist, upload rule and penalty.
+- **Lab 2 guidelines:** spring-mass-damper experiments, content and formatting checklists.
+- **Instructor m-file template.**
+- **Week 1 and Week 2 submitted reports**, and the Week 2 m-files and output-check notes.
+- **Week 3 folder:** an empty outline only.

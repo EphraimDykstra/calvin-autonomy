@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "econ222",
+    "code": "ECON 222",
+    "title": "Macroeconomics",
+    "title_basis": "the archive folder's name; no course document states the title",
+    "professor": null,
+    "instructor_identified_from": "not identified: no course document survives",
+    "terms_observed": ["Spring 2026"]
+  },
+  "coverage": {
+    "format": "none",
+    "methods": "none",
+    "assignments": "none",
+    "notes": "The course folder in the main archive is empty: zero files. The only related item anywhere is one short, informal response in a separate cloud folder. It applies an aggregate demand and aggregate supply reading to a news clip and has no prompt, heading, or references, so it cannot show what was asked or how it was graded. There is no syllabus, no assignment prompt, no problem set, and no exam. Nothing here can tell a host how this course's work is formatted or graded. Ask the student for the assignment sheet or syllabus before producing anything."
+  },
+  "course_policy": {
+    "source": "none found",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this course was found. Ask the student to confirm the current policy with the instructor.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "gaps": {
+    "archive_holds": [
+      "an empty course folder",
+      "one short untitled response applying an AD-AS reading to a news clip, with no prompt"
+    ],
+    "missing": ["syllabus", "any assignment prompt", "any graded or completed work with its prompt", "exams"],
+    "student_can_supply": [
+      "the assignment sheet or Moodle page for the task at hand",
+      "the syllabus, for grading weights and the AI-use policy",
+      "one returned, graded piece of work, to fix the expected format"
+    ],
+    "basis": "direct listing of the archive folder (empty) and a search of the student's other cloud storage"
+  },
+  "assignment_families": []
+}

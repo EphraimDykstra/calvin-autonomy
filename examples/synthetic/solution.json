@@ -1,0 +1,58 @@
+{
+  "document_type": "worked_problem",
+  "title": "Assignment 4 - Cantilever Beam Stress and Deflection",
+  "sections": [
+    {
+      "heading": "Given",
+      "body": "Point load P = 500 N applied at the free end. Span L = 2.0 m. Rectangular section width b = 0.05 m and height h = 0.10 m. Young's modulus E = 200 GPa. The beam is treated as linear elastic and prismatic, and self weight is neglected.",
+      "requirement_ids": [
+        "r1",
+        "r2"
+      ]
+    },
+    {
+      "heading": "Maximum bending stress",
+      "body": "The maximum bending moment occurs at the fixed support: M = P * L = 500 N * 2.0 m = 1000 N*m. The rectangular section modulus is S = b * h^2 / 6 = 0.05 m * (0.10 m)^2 / 6 = 8.3333e-5 m^3. The maximum bending stress is sigma = M / S = 1000 N*m / 8.3333e-5 m^3 = 1.2000e7 Pa, which is 12.0 MPa.",
+      "requirement_ids": [
+        "r1"
+      ]
+    },
+    {
+      "heading": "Maximum free-end deflection",
+      "body": "The second moment of area is I = b * h^3 / 12 = 0.05 m * (0.10 m)^3 / 12 = 4.1667e-6 m^4. The free-end deflection of a cantilever under an end point load is delta = P * L^3 / (3 * E * I) = 500 N * (2.0 m)^3 / (3 * 200e9 Pa * 4.1667e-6 m^4) = 1.6000e-3 m, which is 1.60 mm.",
+      "requirement_ids": [
+        "r2"
+      ]
+    }
+  ],
+  "calculations": [
+    {
+      "id": "r1-max-bending-stress",
+      "expression": "(P * L) / (b * h**2 / 6) / 1000000",
+      "variables": {
+        "P": 500.0,
+        "L": 2.0,
+        "b": 0.05,
+        "h": 0.1
+      },
+      "expected": 12.0,
+      "tolerance": 1e-09,
+      "unit": "MPa"
+    },
+    {
+      "id": "r2-max-free-end-deflection",
+      "expression": "(P * L**3) / (3 * E * (b * h**3 / 12)) * 1000",
+      "variables": {
+        "P": 500.0,
+        "L": 2.0,
+        "b": 0.05,
+        "h": 0.1,
+        "E": 200000000000.0
+      },
+      "expected": 1.6,
+      "tolerance": 1e-09,
+      "unit": "mm"
+    }
+  ],
+  "unresolved": []
+}

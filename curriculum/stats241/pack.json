@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "stats241",
+    "code": "STAT 241",
+    "code_note": "The archive folder is named 'Stats 241'. No syllabus or course document states the catalog code or title.",
+    "title": "Statistics (engineering statistics, R and Quarto)",
+    "title_basis": "Inferred: the problem sets load data from a public Engineering Statistics course site and use R textbook-data packages. No document names the course.",
+    "professor": null,
+    "terms_observed": ["Spring 2025"]
+  },
+  "coverage": {
+    "format": "partial",
+    "methods": "partial",
+    "assignments": "partial",
+    "notes": "One family only: seven weekly R/Quarto problem sets, each a .qmd source kept beside its rendered PDF, all built from one instructor-supplied Quarto template. The template header is strong evidence for the source format. There are no assignment prompts, no syllabus, no rubric, no graded returns and no answer key. The one test is a phone scan with no text layer. Methods are inferred from the student's own R code and comments, not from course notes, and some of those comments contain statistical errors (listed as pitfalls). This repo cannot render, run or verify a .qmd deliverable: its renderer produces pdf, docx and xlsx only and never executes R. The host can draft the source, but the student must render it in their own Quarto and R install and check the PDF."
+  },
+  "course_policy": {
+    "source": "none found",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this course was found in the archive.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "format": {
+    "deliverable": "Quarto (.qmd) source rendered to PDF by the student's own Quarto and R install. The PDF is the submitted file; the template's header comment says PDF is what homework submission needs.",
+    "deliverable_kind": "code-bearing",
+    "artifacts": [
+      {
+        "role": "source",
+        "extension": ".qmd",
+        "submitted": "not confirmed; kept beside the PDF in every instance",
+        "produced_by": "student, starting from the instructor's Quarto template"
+      },
+      {
+        "role": "rendered",
+        "extension": ".pdf",
+        "submitted": true,
+        "derived_from": "source",
+        "produced_by": "the student's Quarto render (pandoc to LaTeX to PDF)"
+      }
+    ],
+    "pipeline_support": {
+      "render": false,
+      "execute": false,
+      "verify_rendered_output": false,
+      "note": "This repo renders pdf, docx and xlsx only and never runs R. A drafted .qmd is unverified until the student renders it, and the host must not report it as ready before the student confirms the PDF rendered and matches the source."
+    },
+    "precedence": [
+      "the specific homework prompt (none survive in the archive; ask the student for it)",
+      "the instructor's Quarto template header",
+      "patterns observed in the seven completed problem sets"
+    ],
+    "source_header": {
+      "fields": ["title", "author", "date", "format", "output-file", "fig-height", "fig-width", "fig-align", "fig-cap-location", "geometry", "fontsize", "editor"],
+      "values_from_template": {
+        "format": "pdf (an html line is present but commented out, labelled for web publishing)",
+        "fig-height_in": 2.5,
+        "fig-width_in": 5.5,
+        "fig-align": "center",
+        "fig-cap-location": "bottom",
+        "geometry": "1 in margins on all four sides, plus heightrounded",
+        "fontsize_pt": 12,
+        "editor": "visual",
+        "date": "an inline R expression that prints the render date, not a typed date"
+      },
+      "student_supplied": ["title (the homework number)", "author ([Student Name] placeholder in this repo)"],
+      "keep_as_is": "Every other header value comes from the template. Do not restyle it.",
+      "source": "identical header in all seven .qmd files"
+    },
+    "setup_chunk": {
+      "rule": "The first chunk is a labelled package-loading chunk hidden from the output (include: false). It loads mosaic, tidyverse and a fixed list of textbook-data packages, and every problem set reuses the same list.",
+      "source": "identical first chunk in all seven .qmd files"
+    },
+    "body": {
+      "structure": "One level-2 heading per problem, 'Problem N.NN', using the textbook problem number, in assignment order.",
+      "chunk_per_problem": "Usually one R chunk per problem. Multi-part problems label each part (a), (b), ... inside the chunk.",
+      "interpretation": "The written answers go in R comments inside the chunk, directly under the code that produced them, not in separate prose. Code, printed output and comments all appear in the PDF because echo is left on.",
+      "interpretation_confidence": "observed in all seven sets; whether prose outside chunks is preferred or accepted is not stated anywhere",
+      "plots": "mosaic formula-interface ggformula plots (gf_histogram, gf_point, gf_lm, gf_qq) with axis labels set through labs() or gf_labs(). Base-R plots appear once.",
+      "source": "observed"
+    },
+    "rendering_pitfalls": [
+      "The template fixes output-file to one template file name, so every homework renders to the same PDF name and the next render overwrites it. The archive shows the result: PDFs renamed by hand afterwards, and the template-named PDF actually holding a later homework. Set output-file to the current homework before rendering, or confirm the submitted PDF matches this week's source.",
+      "The title field is copied forward by hand. One set kept the previous homework's title. Update it every week.",
+      "Long code lines and long comment lines are not wrapped in the PDF and run off the right margin, cutting off text, including answers written as comments. Break code and comment lines well before the margin, and check the rendered PDF for truncated lines.",
+      "The date prints the render date. A re-render changes it.",
+      "Help-page lookups (?dataset) left in a chunk add nothing to the PDF. Describe the dataset in a comment instead."
+    ],
+    "tooling": {
+      "language": "R",
+      "document": "Quarto, visual editor, rendered to PDF",
+      "packages": "mosaic and tidyverse for analysis and plotting; textbook-data packages for the problem datasets; outside data read with read.csv from a URL",
+      "source": "observed"
+    },
+    "submission": {
+      "rule": "The rendered PDF, per the template's header comment. Whether the .qmd is also uploaded is not stated.",
+      "source": "template header comment"
+    }
+  },
+  "methods": [
+    {
+      "id": "exploratory-plots",
+      "title": "Describe a distribution or a relationship with plots",
+      "when": "A problem gives a dataset and asks for its shape, centre, spread or a relationship between two variables.",
+      "steps": [
+        "Name the dataset and say in one comment what each variable measures, with units.",
+        "For one variable, draw a histogram and choose the bin count or bin width on purpose. Use a density histogram when the question compares against a distribution.",
+        "For two variables, draw a scatter plot with the response on the y axis and label both axes.",
+        "State the shape (modality, skew, outliers) or the direction and strength of the relationship in a comment under the plot, answering the question as asked."
+      ],
+      "pitfalls": [
+        "Answering a causal claim ('taller parents cause...') from a scatter plot. Say what the plot supports and what it cannot show.",
+        "Frequency and density histograms of the same variable with different bin settings, then compared as if alike."
+      ]
+    },
+    {
+      "id": "simple-linear-regression",
+      "title": "Fit, check and use a least-squares line",
+      "when": "A problem asks for a regression line, its slope, a residual check, or an estimate at a new x.",
+      "steps": [
+        "Fit with lm(response ~ predictor) and print summary() for the coefficients, their standard errors and the residual standard error.",
+        "Plot the data with the fitted line.",
+        "Check the model: residuals against the predictor (look for pattern or funnel shape) and a normal-quantile plot of the residuals.",
+        "Write the fitted equation with units, and give the slope as estimate ± uncertainty in the problem's context.",
+        "For a slope interval by hand, use estimate ± t* × SE with t* at n - 2 degrees of freedom, and state the degrees of freedom.",
+        "For an estimate at a new x, wrap the model with makeFun() and ask for the interval type the question needs."
+      ],
+      "pitfalls": [
+        "Confusing the two intervals. A confidence interval is for the mean response at x. A prediction interval is for one new individual at x, and it is wider. The archive has this reversed once, in the student's own comment. Decide which one the question asks for before computing either.",
+        "Reading an interval off the shaded band on a plot instead of computing it.",
+        "Swapping response and predictor between the fit and the plot."
+      ]
+    },
+    {
+      "id": "one-sample-t-test",
+      "title": "One-sample t test",
+      "when": "A problem asks whether a population mean differs from, exceeds or falls short of a stated value.",
+      "steps": [
+        "Write the null and alternative hypotheses in words and symbols. Choose the alternative's direction from the question, not from the data.",
+        "Check that the dataset's variable is in the same units and scale as the stated value before testing.",
+        "Check the normality assumption with a normal-quantile plot when n is small.",
+        "Run t.test(x, mu = value, alternative = ...) and report t, degrees of freedom and the p-value.",
+        "Conclude in context: reject or fail to reject the null at the stated level. Never 'accept' the null or 'reject the alternative'."
+      ],
+      "pitfalls": [
+        "A units or scale mismatch between the variable and the hypothesised value, for example a variable stored in thousands tested against a value in ones. It yields an absurd t statistic and a p-value of exactly 1 or 0. Treat either as a signal to check units.",
+        "A conclusion phrased as rejecting the alternative."
+      ]
+    },
+    {
+      "id": "normality-check",
+      "title": "Normal-quantile plot as an assumption check",
+      "when": "Before a t procedure on a small sample, or when a problem asks whether the data look normal.",
+      "steps": [
+        "Draw gf_qq on the variable (or the residuals) with a reference line from gf_qqline.",
+        "Judge straightness, and say which points (tails, outliers) depart from the line.",
+        "State whether the procedure's assumption is reasonable, in one comment."
+      ],
+      "pitfalls": [
+        "A misspelled plotting argument may be passed through without an error, so the plot silently ignores it. Check that the rendered plot shows what the code asked for."
+      ]
+    }
+  ],
+  "assignment_families": [
+    {
+      "id": "quarto-problem-set",
+      "title": "Weekly R/Quarto problem set",
+      "stages": [
+        "start from the instructor's Quarto template",
+        "one heading and chunk per textbook problem",
+        "render to PDF in the student's own Quarto and R install",
+        "submit the PDF"
+      ],
+      "deliverables": [
+        "rendered PDF showing code, output and comment answers",
+        ".qmd source kept alongside"
+      ],
+      "artifacts": ["source", "rendered"],
+      "what_good_looks_like": [
+        "The header is the template's, with this week's title and the output-file updated.",
+        "Every problem has its own 'Problem N.NN' heading in assignment order, and every part is labelled.",
+        "Each answer sits in a comment right under the code that supports it, and answers the question in context with units.",
+        "Every plot has labelled axes and is the kind the question asks for.",
+        "No code or comment line runs off the page in the PDF.",
+        "Hypotheses, interval types and conclusions use the correct statistical wording."
+      ],
+      "exemplars": ["quarto-problem-set-shape"],
+      "basis": "seven completed .qmd sources, each beside its rendered PDF, all from one instructor template; no prompts, rubric or graded returns"
+    },
+    {
+      "id": "test",
+      "title": "In-class test",
+      "stages": ["in class"],
+      "deliverables": [],
+      "what_good_looks_like": [],
+      "exemplars": [],
+      "basis": "One test survives as a phone scan with no text layer and no key. Nothing about its format or grading is covered."
+    }
+  ]
+}

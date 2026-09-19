@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "calvin-autonomy"
+version = "0.1.0"
+description = "Course-grounded assignment workflows for Claude Code and Codex"
+requires-python = ">=3.10"
+dependencies = ["pypdf>=5,<7", "openpyxl>=3.1,<4", "reportlab>=4,<6", "pillow>=10,<13", "python-docx>=1.1,<2"]
+
+[project.optional-dependencies]
+dev = ["PyYAML>=6,<7"]
+# Optional automatic OCR for bulk scans of printed pages: a PDF rasterizer and
+# an OCR engine.  Deliberately not a hard dependency: without it, scanned
+# sources stay in the manual transcription queue and nothing else changes.
+# pypdfium2 is BSD-3-Clause/Apache-2.0 and rapidocr-onnxruntime is Apache-2.0,
+# so neither imposes a copyleft obligation.  RapidOCR ships its models inside
+# the wheel, so no system package manager is needed on macOS, Windows or
+# Linux.  Its 1.4.x releases support Python 3.10-3.12 only; on 3.13+ pip
+# resolves 1.2.x, which bootstrap reports rather than hides.  Neither engine
+# reads handwriting reliably.
+ocr = ["pypdfium2>=4,<6", "rapidocr-onnxruntime>=1.2.3,<2"]
+
+[project.scripts]
+coursework = "engineering_assistant.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

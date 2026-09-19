@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "engr324",
+    "code": "ENGR 324",
+    "title": "Manufacturing Processes",
+    "title_basis": "the archive folder and the student's own study guide; no course document states the title",
+    "professor": null,
+    "instructor_identified_from": "not identified: no syllabus, prompt, or rubric survives",
+    "terms_observed": ["Spring 2026"]
+  },
+  "coverage": {
+    "format": "none",
+    "methods": "none",
+    "assignments": "none",
+    "notes": "The course runs on group presentations, each teaching one manufacturing process to the class, followed by a final exam across all the processes. Nearly all of the course material in the archive is other students' work: 14 of the 15 presentation decks were made by other groups. They were deliberately not used for anything, including format evidence. The student's own material is one deck, co-authored with a partner, plus a handwritten outline for it and a personal study guide summarizing every process under the same headings. None of these is an instructor document. There is no syllabus, no presentation prompt, and no rubric, so the requirements (length, required sections, whether economics or a demonstration was expected) are unknown. One deck made to an unknown prompt is not a format."
+  },
+  "course_policy": {
+    "source": "none found",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this course was found. Ask the student to confirm the current policy with the instructor.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "gaps": {
+    "archive_holds": [
+      "14 presentation decks by other students (deliberately not used)",
+      "one presentation deck by the student and a partner, with no prompt",
+      "a handwritten outline for that deck",
+      "the student's own study guide covering every process"
+    ],
+    "missing": ["syllabus", "the presentation prompt and rubric", "any instructor feedback", "exams"],
+    "not_used": "Classmates' work is never evidence for this system, whatever its quality.",
+    "student_can_supply": [
+      "the presentation assignment sheet or rubric",
+      "the syllabus, for the AI-use policy"
+    ],
+    "basis": "direct listing of the course folder and a search of the student's other cloud storage; authorship was judged from the deck title slides and file names, which are not reproduced here"
+  },
+  "assignment_families": []
+}

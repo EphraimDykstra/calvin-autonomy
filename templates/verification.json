@@ -1,0 +1,60 @@
+{
+  "schema_version": "verification-report-1",
+  "bindings": {
+    "input_sha256": "REPLACE_FROM_CURRENT_RUN",
+    "plan_sha256": "REPLACE_FROM_CURRENT_RUN",
+    "solution_sha256": "REPLACE_FROM_CURRENT_RUN",
+    "calculation_checks_sha256": "REPLACE_FROM_CURRENT_RUN",
+    "calculation_checks_for_solution_sha256": "REPLACE_FROM_CURRENT_RUN",
+    "artifacts": [
+      {
+        "path": "deliverables/submission.pdf",
+        "sha256": "REPLACE_FROM_CURRENT_RUN",
+        "source_solution_sha256": "REPLACE_FROM_CURRENT_RUN"
+      }
+    ],
+    "artifact_manifest_sha256": "REPLACE_FROM_CURRENT_RUN"
+  },
+  "findings": {
+    "requirements": [
+      {
+        "requirement_id": "r1",
+        "passed": true,
+        "evidence": [
+          "solution.sections[0]"
+        ],
+        "notes": "Replace with concrete requirement-coverage evidence."
+      }
+    ],
+    "method": [
+      {
+        "id": "course-method",
+        "passed": true,
+        "notes": "Replace with an independent comparison to reviewed course evidence."
+      }
+    ],
+    "numerical": [
+      {
+        "id": "recalculation",
+        "passed": true,
+        "notes": "Replace with independent numerical-check evidence."
+      }
+    ],
+    "format": [
+      {
+        "id": "requested-format",
+        "passed": true,
+        "notes": "Replace with format and deliverable evidence."
+      }
+    ],
+    "identity": [
+      {
+        "id": "identity-review",
+        "passed": true,
+        "notes": "Replace with the identity and privacy review result."
+      }
+    ]
+  },
+  "unresolved": [],
+  "passed": true
+}

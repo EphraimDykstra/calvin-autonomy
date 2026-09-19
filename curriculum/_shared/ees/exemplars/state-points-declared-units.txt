@@ -1,0 +1,40 @@
+"[Student Name]"
+"ENGR 333 [Week], Problem [n]"
+"ILLUSTRATIVE ONLY. Invented states for a generic steam loop; not an assigned problem."
+
+$UnitSystem SI mass K kPa kJ
+
+"State givens: one line per state, arrays so the Arrays table and T-s plot work"
+P[1]=10 [kPa]
+P[2]=4000 [kPa]
+P[3]=4000 [kPa];  T[3]=720 [K]
+P[4]=10 [kPa]
+m_dot=12 [kg/s]
+
+"Pump inlet: saturated liquid; pump and turbine taken isentropic in this sketch"
+h[1]=Enthalpy(Water, P=P[1], x=0)
+s[1]=Entropy(Water, P=P[1], x=0)
+s[2]=s[1]
+s[4]=s[3]
+
+"Remaining states: two independent properties each"
+h[3]=Enthalpy(Water, T=T[3], P=P[3])
+s[3]=Entropy(Water, T=T[3], P=P[3])
+h[2]=Enthalpy(Water, P=P[2], s=s[2])
+h[4]=Enthalpy(Water, P=P[4], s=s[4])
+
+"Temperatures for the T-s plot, one loop over every state"
+duplicate i=1,4
+  T_plot[i]=Temperature(Water, P=P[i], h=h[i])
+end
+
+"Power in W: h is kJ/kg under this unit system, so convert kJ/s to W"
+W_dot_turb=m_dot*(h[3]-h[4])*Convert(kJ/s,W)
+W_dot_pump=m_dot*(h[2]-h[1])*Convert(kJ/s,W)
+Q_dot_in=m_dot*(h[3]-h[2])*Convert(kJ/s,W)
+eta_th=(W_dot_turb-W_dot_pump)/Q_dot_in
+
+"Temporary check equation, commented out; remove before submitting"
+{W_dot_net_expected=1.0E7 [W]}
+
+"Absolute h and s depend on the property reference state; only differences are comparable."

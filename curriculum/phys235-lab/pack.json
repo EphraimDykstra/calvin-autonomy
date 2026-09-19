@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "phys235-lab",
+    "code": "Physics 235L",
+    "title": "General Physics II Laboratory (Electricity and Magnetism)",
+    "professor": null,
+    "terms_observed": ["Fall 2024"]
+  },
+  "coverage": {
+    "format": "partial",
+    "methods": "partial",
+    "assignments": "partial",
+    "notes": "Every convention here comes from completed submissions plus one surviving blank handout; there is no syllabus, rubric, instructor format statement, graded return, or identifiable lab instructor, so this pack records what was submitted, not what was required."
+  },
+  "course_policy": {
+    "source": "none found",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this lab was found in the archive.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "format": {
+    "deliverable": "weekly lab write-up answering the handout's numbered items",
+    "precedence": [
+      "the specific lab handout",
+      "patterns observed in completed submissions (no instructor-stated rules exist in the archive)"
+    ],
+    "title_page": {
+      "required": false,
+      "cover_page": false,
+      "placement": "title block at the top of page 1",
+      "fields": ["lab title", "experimenter names (partners)", "date"],
+      "source": "observed across nine submissions"
+    },
+    "body": {
+      "structure": "Numbered answers keyed to the handout's item numbers, in handout order. Items answered together are labeled with all their numbers.",
+      "answer_form": "A direct answer first, then the equation or reasoning, then the value with units.",
+      "tables": "Data tables placed at the item that asks for them, with units in the column headers.",
+      "images": "Oscilloscope captures, simulations, and hand-drawn schematics pasted at the relevant item",
+      "source": "observed + handout"
+    },
+    "closing": {
+      "reflection": "Most submissions close with a short reflection paragraph. Whether it is required, and what it should cover, is not stated anywhere in the archive.",
+      "source": "observed"
+    },
+    "figures": {
+      "caption_position": "unknown",
+      "note": "Submissions paste images without formal captions. No instructor rule on captions was found, so treat it as unknown, not as permission to omit labels.",
+      "source": "observed"
+    },
+    "units_and_numbers": {
+      "units_everywhere": "expected practice, not a stated rule here",
+      "source": "inferred"
+    },
+    "tooling": {
+      "writing": "Word document exported to PDF",
+      "data": "values recorded directly in the write-up; no separate spreadsheet survives",
+      "source": "observed"
+    },
+    "submission": {
+      "partners": "The handout says to work in pairs. Write-ups list all experimenters.",
+      "checkpoints": "The handout has instructor sign-off checkpoints at several points during the lab.",
+      "source": "handout"
+    }
+  },
+  "methods": [
+    {
+      "id": "predict-build-compare",
+      "title": "Predict, build, test, compare",
+      "when": "Most items in the qualitative circuit labs (bulbs, series and parallel, switches).",
+      "steps": [
+        "Draw the schematic with standard symbols, and a physical sketch when asked.",
+        "Write a prediction with its reasoning before building.",
+        "Build the circuit and record what is observed.",
+        "State whether the observation matched the prediction, and explain any mismatch in terms of current, voltage, or resistance."
+      ],
+      "pitfalls": [
+        "Revising the prediction after the fact instead of recording the mismatch.",
+        "Proceeding past an instructor checkpoint without sign-off."
+      ]
+    },
+    {
+      "id": "kirchhoff-consistency-check",
+      "title": "Junction, loop, and power-balance checks",
+      "when": "DC resistor and bulb networks where currents, voltages, and powers are measured or simulated.",
+      "steps": [
+        "Tabulate R, I, V, and P for every element with units.",
+        "Junction rule: the currents into each node sum to the currents out.",
+        "Loop rule: the drops around each loop sum to the source voltage.",
+        "Power balance: the source power equals the sum of element powers.",
+        "State each check with the numbers substituted, and name the size of any residual."
+      ],
+      "pitfalls": [
+        "Treating a parallel pair as one element for the loop rule without saying so.",
+        "Rounding before checking, which hides or creates a residual."
+      ]
+    },
+    {
+      "id": "ac-oscilloscope-measurement",
+      "title": "AC amplitude, RMS, and reactance from scope measurements",
+      "when": "The AC labs: signals and the oscilloscope, reactance and impedance, phasors, and RL/RC circuits.",
+      "steps": [
+        "Record which quantity the instrument reports (amplitude, peak-to-peak, or RMS) and convert explicitly.",
+        "For a sinusoid, RMS equals the peak amplitude divided by the square root of 2.",
+        "Get an element's voltage from channel differences when it cannot be probed directly to ground.",
+        "Compute current from a known resistor's voltage, then reactance from the element's voltage divided by that current.",
+        "Plot reactance against frequency, with frequency on the horizontal axis, preferably on a log scale."
+      ],
+      "pitfalls": [
+        "Mixing peak-to-peak and amplitude, which gives a factor-of-two error.",
+        "Swapping axes, or describing the plot's axes wrongly in the text.",
+        "Trusting the generator's dial instead of measuring the signal."
+      ]
+    },
+    {
+      "id": "transient-time-constant",
+      "title": "RC and RL time constants",
+      "when": "Transient labs on RC and RL circuits.",
+      "steps": [
+        "Write the charging or decay expression for the measured quantity.",
+        "Solve it for the time constant or the unknown element from a measured point, or fit it across several points.",
+        "Include every series resistance in the time constant, including the inductor's own winding resistance."
+      ],
+      "pitfalls": [
+        "Omitting the source or winding resistance from the total resistance."
+      ]
+    }
+  ],
+  "assignment_families": [
+    {
+      "id": "weekly-lab-writeup",
+      "title": "Weekly lab write-up",
+      "stages": ["in-lab work in pairs with instructor checkpoints", "write-up answering each handout item"],
+      "deliverables": ["a PDF write-up with a title block, numbered answers, tables and images, and an optional closing reflection"],
+      "what_good_looks_like": [
+        "Every handout item is answered, in order, labeled with its number, and none is skipped or left unfinished.",
+        "Each quantitative answer shows the relation used, the substituted values, and the result with units.",
+        "Each prediction item states the prediction and the reasoning, and then says whether the test confirmed it.",
+        "Tables and pasted images sit at the item that asks for them, and each is identified in a sentence.",
+        "Any reflection addresses the physics learned or a specific source of measurement error, in a professional register."
+      ],
+      "exemplars": ["weekly-lab-writeup-shape"],
+      "basis": "Nine completed write-ups and one blank handout; the other handouts were not retained. The what_good_looks_like entries are inferred from the handout's own instructions and general lab practice, because no instructor rubric exists in the archive."
+    }
+  ]
+}

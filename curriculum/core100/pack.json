@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "core100",
+    "code": "CORE 100",
+    "title": "Core 100",
+    "title_basis": "the archive folder's name; no course document states the catalog title",
+    "professor": null,
+    "instructor_identified_from": "not identified: no syllabus or handout survives",
+    "terms_observed": ["Fall 2023"]
+  },
+  "coverage": {
+    "format": "none",
+    "methods": "none",
+    "assignments": "none",
+    "notes": "The course folder holds only assigned readings (essays, articles, and book chapters on vocation, creation care, faith and learning, and justice) and a one-line list of reading titles. There is no syllabus, no assignment prompt, and no rubric. Two completed pieces survive in a separate cloud folder: a short structured-dialogue response to a classmate's position and a final essay that brings several readings together on one question. Neither has its prompt, a heading convention, or a citation style, so they show that these two tasks existed but not what was required. Format and grading are unknown. Ask the student for the prompt."
+  },
+  "course_policy": {
+    "source": "none found",
+    "confidence": "unknown",
+    "term_observed": null,
+    "summary": "No syllabus or generative-AI policy for this course was found. Ask the student to confirm the current policy with the instructor.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "gaps": {
+    "archive_holds": [
+      "assigned readings (third-party published texts, not course documents)",
+      "a one-line list of reading titles",
+      "one completed structured-dialogue response, with no prompt",
+      "one completed final essay drawing on several readings, with no prompt"
+    ],
+    "missing": ["syllabus", "every assignment prompt", "rubrics", "citation and formatting requirements", "graded returns"],
+    "student_can_supply": [
+      "the prompt for the essay or response in hand, including length and citation style",
+      "the syllabus, for the AI-use policy",
+      "the readings the prompt names, if they are not already at hand"
+    ],
+    "basis": "direct listing of the archive folder plus a search of the student's other cloud storage, which found the two completed pieces"
+  },
+  "assignment_families": []
+}

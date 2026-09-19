@@ -1,0 +1,40 @@
+//[Student Name]
+//ENGR 328 - THERMO 2
+//[Assignment] - adiabatic flame temperature
+//Professor [Surname]
+//[Date]
+
+// ILLUSTRATIVE ONLY. Invented fuel and air amount; not an assigned problem.
+// GUI unit system: SI, MOLAR, K, kPa, kJ. Enthalpies come back in kJ/kmol.
+// Chemical-formula names (CH4, CO2, H2O, O2, N2) are IDEAL GASES in EES, and their
+// Enthalpy() already includes the enthalpy of formation. Real-fluid names
+// (Methane, CarbonDioxide, Water, n-Octane) do NOT include formation.
+
+// GIVENS
+TA = 1.6			//fraction of theoretical air
+y_O2_air = 0.21
+y_N2_air = 0.79
+N2_O2_ratio = y_N2_air / y_O2_air	//computed, not typed as 3.76
+T_react = 298 [K]
+
+// ELEMENT BALANCES - one equation per element; never type the overall reaction
+// CH4 + n*(O2 + N2_O2_ratio*N2) -> b*CO2 + c*H2O + d*O2 + e*N2
+n = TA * 2			//2 kmol O2 is the stoichiometric amount for CH4
+1 = b				//carbon balance
+4 = 2*c				//hydrogen balance
+2*n = 2*b + c + 2*d		//oxygen balance
+N2_O2_ratio*n = e		//nitrogen balance
+
+// REACTANTS - gaseous fuel, so one ideal-gas lookup per species
+H_R = Enthalpy(CH4, T=T_react) + n*Enthalpy(O2, T=T_react) + n*N2_O2_ratio*Enthalpy(N2, T=T_react)
+// For a LIQUID fuel (real fluid, no formation data in EES) build it instead as:
+//   h_fuel = h_form_liquid_from_textbook + (Enthalpy(n-Octane, T=T_in, P=P_in) - Enthalpy(n-Octane, T=298 [K], P=P_in))
+
+// PRODUCTS at the unknown T_prod - EES back-solves for it
+H_P = b*Enthalpy(CO2, T=T_prod) + c*Enthalpy(H2O, T=T_prod) + d*Enthalpy(O2, T=T_prod) + e*Enthalpy(N2, T=T_prod)
+
+// ADIABATIC: Q = H_P - H_R = 0
+H_P = H_R
+
+// If it will not converge or returns something below 200 K: Variable Info for T_prod,
+// guess 1500 [K], lower limit 300 [K]. Then Calculate > Update Guesses once it solves.

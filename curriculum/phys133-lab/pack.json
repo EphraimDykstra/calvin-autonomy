@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "course": {
+    "id": "phys133-lab",
+    "code": "Physics 133 Lab",
+    "title": "Introductory Physics I Laboratory (Mechanics)",
+    "professor": null,
+    "instructor_identified_from": "not established: the lecture syllabus names the lecture instructor, and the one surviving lab handout's document metadata names a different author; which of them, if either, ran the lab section is unknown",
+    "terms_observed": ["Spring 2024"]
+  },
+  "coverage": {
+    "format": "partial",
+    "methods": "partial",
+    "assignments": "partial",
+    "notes": "Only one lab handout survives (Lab 01, measurement and density), and its 'What You'll Turn In' list is the only format rule stated by an instructor. Three completed group reports (Labs 06-08) follow a looser version of that list, and their handouts were not kept, so their question numbering cannot be checked. The lecture syllabus says lab writing standards are in separate handouts, which were not retained. There are no graded returns. The completed reports contain unit and uncertainty errors, so they show structure only. The uncertainty method is well specified because Lab 01 teaches it in full."
+  },
+  "course_policy": {
+    "source": "lecture syllabus (archived, Spring 2024)",
+    "confidence": "unknown",
+    "term_observed": "Spring 2024",
+    "summary": "The archived lecture syllabus covers collaboration and plagiarism, but no generative-AI statement was found in it, and the lab has no syllabus of its own. The current terms are unknown.",
+    "permitted": [],
+    "prohibited": [],
+    "student_asked": null,
+    "professor_answer": null
+  },
+  "format": {
+    "deliverable": "weekly group lab report as a single PDF, submitted together with the LoggerPro data file",
+    "precedence": [
+      "the specific week's lab handout, especially its turn-in list",
+      "the Lab 01 turn-in list, the only stated format rule in the archive",
+      "patterns observed in three completed group reports (Labs 06-08)"
+    ],
+    "stated_turn_in_list": {
+      "items": [
+        "a single cover sheet with the group members' names, the experiment title, and the date",
+        "the data table pasted from LoggerPro, with a table caption",
+        "each requested graph with data points, a best-fit line, and axis labels with units, sized to fill most of a page with the data filling most of the plot",
+        "answers to the handout's numbered questions",
+        "concluding remarks on how the lab went and anything that could not be completed"
+      ],
+      "companion_file": "the LoggerPro file, submitted alongside the PDF",
+      "per_member_submission": "Every team member submits both files each week, even though they are identical.",
+      "basis": "Lab 01 handout, 'What You'll Turn In'"
+    },
+    "observed_later": {
+      "title": "a title line with the lab name, the group members, and sometimes the date, instead of a separate cover sheet",
+      "body": "answers numbered to match the handout's questions; for open-ended labs, short Set-Up, Goal, and per-case sections instead",
+      "graphs": "pasted with a one-sentence description beneath and no numbered caption",
+      "closing": "a short Conclusion or Summary paragraph",
+      "note": "This is a loosening of the stated list, not a rule. When the week's handout gives a turn-in list, follow it. Otherwise use the stated Lab 01 list, which is the stricter one.",
+      "basis": "three completed group reports"
+    },
+    "paired_deliverable": {
+      "rule": "The PDF and the LoggerPro file are one submission. LoggerPro holds the raw manual columns, the uncertainty columns, the calculated columns, and the fits. The PDF shows the pasted table, the full-page graphs with their fits, and the answers. Every value quoted in an answer, such as a slope with its uncertainty, should be readable off the fit shown in the PDF graph.",
+      "basis": "Lab 01 handout"
+    },
+    "uncertainty_and_numbers": {
+      "uncertainty_digits": "State the uncertainty to one significant digit.",
+      "value_rounding": "Round the value to the same decimal place as its uncertainty, for example 4.30 ± 0.05 cm, never 4.3 ± 0.05 cm or 4.3021 ± 0.05 cm.",
+      "digital_instrument": "A digital instrument's uncertainty is half of its last displayed digit unless practical limits make it larger.",
+      "propagation": "maximum-minus-best method (see methods)",
+      "units": "SI units in every calculated quantity. Convert grams to kilograms before computing joules or newtons.",
+      "source": "Lab 01 handout"
+    },
+    "tooling": {
+      "data": "LoggerPro: manual columns for raw measurements, calculated columns for derived quantities, error-bar columns, linear or proportional fits, video analysis, and strike-through for excluded points",
+      "writing": "a word processor exported to a single PDF",
+      "reference": "the LoggerPro survival guide on the course Teams page (not retained)",
+      "source": "Lab 01 handout + observed"
+    },
+    "submission": {
+      "group_size": "3",
+      "channel": "Teams, weekly",
+      "source": "Lab 01 handout"
+    }
+  },
+  "methods": [
+    {
+      "id": "max-min-uncertainty",
+      "title": "Measurement uncertainty and max-minus-best propagation",
+      "when": "Every lab. Every measured and calculated value carries an uncertainty.",
+      "steps": [
+        "For each measurement, take the larger of the instrument uncertainty (half the last digit for a digital readout) and the practical uncertainty from how well it could actually be read.",
+        "Compute the best value from the best measurements.",
+        "Compute the extreme value by pushing each input in the direction that increases the result. For a quotient, that means the numerator plus its uncertainty and the denominator minus its uncertainty.",
+        "The uncertainty is the absolute difference between the extreme value and the best value, rounded to one significant digit.",
+        "Round the best value to the place value of that uncertainty and report it as value ± uncertainty with units.",
+        "An input whose uncertainty is negligible next to another's may be ignored in the propagation, but still state it and say that it was neglected."
+      ],
+      "pitfalls": [
+        "Reporting the uncertainty to several digits, or the value to more decimal places than the uncertainty supports.",
+        "Quoting an uncertainty smaller than the instrument's resolution.",
+        "Adding uncertainties with different units."
+      ]
+    },
+    {
+      "id": "slope-as-measured-quantity",
+      "title": "A physical quantity as the slope or intercept of a linear fit",
+      "when": "Density from mass against volume, acceleration from velocity against time, a spring constant, or an unknown mass from torque against distance.",
+      "steps": [
+        "Choose axes so that the target quantity is the slope (or the intercept) of a straight line, and say why the relation is linear.",
+        "Enter the raw measurements and their uncertainties as columns, and compute the plotted quantities in calculated columns.",
+        "Fit a line. Use a linear fit with an intercept unless the handout asks for a proportional fit. A nonzero intercept is information about a systematic offset.",
+        "Report the slope with the fit's own slope uncertainty, converted to SI units.",
+        "Interpret the intercept physically when the handout asks, meaning the value of the response when the controlled variable is zero.",
+        "When a point clearly does not belong, strike it through rather than deleting it, and say why it was excluded."
+      ],
+      "pitfalls": [
+        "Converting the value's units but not its uncertainty.",
+        "Excluding points to improve a fit without stating a physical reason."
+      ]
+    },
+    {
+      "id": "video-analysis-kinematics",
+      "title": "Position and velocity from video analysis",
+      "when": "Labs that film the motion and track it in LoggerPro.",
+      "steps": [
+        "Set the scale from a reference length visible in the frame, in the plane of the motion.",
+        "Set the origin and axes, then mark the object frame by frame.",
+        "Fit position against time for velocity (linear, for constant velocity) or velocity against time for acceleration.",
+        "Compare a fitted constant with its accepted value, such as g, as a percent difference, and name the dominant source of error."
+      ],
+      "pitfalls": [
+        "A reference length taken out of the plane of motion, which scales every position wrongly.",
+        "Reading velocities off single frames instead of from a fit."
+      ]
+    },
+    {
+      "id": "conservation-check",
+      "title": "Momentum and energy before and after a collision",
+      "when": "Collision labs (elastic and inelastic carts) and energy-tracking labs.",
+      "steps": [
+        "Convert masses to kg and velocities to m/s before multiplying.",
+        "Compute the system momentum and kinetic energy before and after, each with an uncertainty.",
+        "Percent change = (after - before) / before x 100, with its sign.",
+        "Momentum should be conserved in both kinds of collision. Kinetic energy is conserved only in an elastic one, and a perfectly inelastic one loses a predictable fraction.",
+        "Explain any momentum change by a specific cause such as friction, tracking error, or the collision window chosen. A momentum gain signals a measurement error."
+      ],
+      "pitfalls": [
+        "Kinetic energy in joules computed from grams, which is off by a factor of 1000.",
+        "Calling the momentum conserved or not without comparing the change to its uncertainty.",
+        "Concluding with generic remarks about human error instead of a named cause."
+      ]
+    },
+    {
+      "id": "torque-equilibrium",
+      "title": "Static torque balance",
+      "when": "Torque labs with a pivoted beam, a scale, and added masses.",
+      "steps": [
+        "Draw a free-body diagram showing every force and its distance from the pivot.",
+        "Sum the torques about the pivot and set the sum to zero. The pivot force contributes none.",
+        "Rearrange so that the measured scale force is linear in the controlled variable (the added mass's position or size), and identify what the slope and intercept represent.",
+        "Extract the unknown from the fit with its uncertainty, and compare the independent methods for consistency within their uncertainties."
+      ],
+      "pitfalls": [
+        "Getting the sign of a torque wrong because the rotation sense was not fixed first.",
+        "Calling the results consistent without comparing their uncertainty ranges."
+      ]
+    }
+  ],
+  "assignment_families": [
+    {
+      "id": "weekly-lab-report",
+      "title": "Weekly group lab report",
+      "stages": ["in-lab data collection in groups of three using LoggerPro", "group write-up answering the handout's numbered questions", "each member submits the PDF and the LoggerPro file"],
+      "deliverables": ["a single PDF report", "the LoggerPro file"],
+      "what_good_looks_like": [
+        "A cover sheet or title block with the group members, the experiment title, and the date.",
+        "A captioned data table with units and uncertainty columns.",
+        "Each graph is full-page, with labeled axes and units, data points, and a best-fit line, and the fit's parameters are visible.",
+        "Every numbered question is answered in order, and each quantitative answer gives the value ± uncertainty with units.",
+        "Concluding remarks name what went well and any specific problem or incomplete item, in a professional register.",
+        "The LoggerPro file is attached, and its fits match the graphs in the PDF."
+      ],
+      "exemplars": ["weekly-lab-report-shape"],
+      "basis": "The Lab 01 handout's turn-in list (stated) and three completed group reports (observed). No graded return and no writing-standards handout survive."
+    }
+  ]
+}
