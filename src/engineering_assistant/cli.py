@@ -6,7 +6,7 @@ from .ingest import MAX_OCR_IMPORT_BYTES,auto_ocr_document,import_ocr_transcript
 from .matching import match_examples,register_example
 from .adaptation import build_adaptation_manifest
 from .identity import run_identity
-from .memory import forget_memory,list_memory,set_memory
+from .memory import forget_memory,forget_observations,list_memory,list_observations,record_observation,set_memory
 from .runtime import *
 from .artifact_rendering import render_declared_artifacts
 from .verification import verify_solution
@@ -14,7 +14,8 @@ from .course_profile import course_coverage,course_onboarding_status,load_course
 from .evidence import review_evidence
 from .evaluation import evaluate_manifest
 from .doctor import diagnose
-from .curriculum import DEFAULT_CURRICULUM,coverage_report,load_packs,load_tool_packs
+from .review import review_work
+from .curriculum import DEFAULT_CURRICULUM,RENDERING_FIELDS,coverage_report,load_packs,load_tool_packs,pack_for_course,pack_style
 
 def _json_input(path:Path,max_bytes:int|None=None)->dict:
  if not path.is_file() or path.is_symlink() or not permitted_source(path): raise ValueError('JSON input must be a permitted regular file')
@@ -47,12 +48,16 @@ def main(argv=None):
  q=sub.add_parser('evaluate'); q.add_argument('manifest',type=Path); q.add_argument('--out',type=Path)
  q=sub.add_parser('doctor'); q.add_argument('--project-root',type=Path,default=Path('.'))
  q=sub.add_parser('courses'); q.add_argument('--curriculum',type=Path,default=DEFAULT_CURRICULUM)
+ q=sub.add_parser('review',help='check a student\'s own finished work step by step, and name the likely slip'); q.add_argument('steps',type=Path); q.add_argument('--course',help='a pack id; its magnitude ranges are checked where a step names one')
  q=sub.add_parser('adapt'); q.add_argument('current',type=Path); q.add_argument('prior',type=Path); q.add_argument('--out',type=Path); q.add_argument('--name'); q.add_argument('--student-id')
  q=sub.add_parser('init'); q.add_argument('--name'); q.add_argument('--student-id')
  q=sub.add_parser('memory'); m=q.add_subparsers(dest='memory_cmd',required=True)
  m.add_parser('list')
  s=m.add_parser('set'); s.add_argument('key'); s.add_argument('value'); s.add_argument('--scope',required=True); s.add_argument('--source',required=True)
  f=m.add_parser('forget'); f.add_argument('key')
+ o=m.add_parser('observe',help='record a slip caught while checking the student\'s own work, once confirmed with them'); o.add_argument('--course',required=True); o.add_argument('--topic',required=True); o.add_argument('--cause',required=True)
+ o=m.add_parser('observations',help='recent slips, newest first'); o.add_argument('--course'); o.add_argument('--limit',type=int,default=20)
+ o=m.add_parser('forget-observations',help='delete recorded slips'); o.add_argument('--course')
  args=p.parse_args(argv); ws=args.workspace
  try:
   if args.cmd=='ingest': out=ingest(args.source,ws,args.course,args.max_files,args.max_pages)
@@ -66,9 +71,21 @@ def main(argv=None):
   elif args.cmd=='accept-plan': out=set_plan(ws,args.run_id,_json_input(args.plan))
   elif args.cmd=='record-solution': out=record_solution(ws,args.run_id,_json_input(args.solution))
   elif args.cmd=='render':
-   st=record_solution(ws,args.run_id,_json_input(args.solution)); profile=load_course_profile(ws,st['course'])
+   st=record_solution(ws,args.run_id,_json_input(args.solution))
+   try:
+    profile=load_course_profile(ws,st['course']); style_basis={'source':'reviewed course profile'}
+   except FileNotFoundError:
+    # A new student has no profile yet, and deliverables are never withheld.
+    # Lay the page out from the course's shipped pack where it states values,
+    # and the renderer's defaults where it does not, recording which is which.
+    # A profile that exists but fails its checks still raises: rendering
+    # around a broken profile would hide it.
+    entry=pack_for_course(st['course'])
+    if entry: profile,style_basis=pack_style(entry)
+    else: profile,style_basis=None,{'source':'renderer defaults','fields':{k:'renderer default' for k in RENDERING_FIELDS}}
    paths=render_declared_artifacts(st['solution'],st['plan'],run_dir(ws,args.run_id),identity=st.get('identity'),style_profile=profile)
    for outpath in paths: out=record_artifact(ws,args.run_id,outpath)
+   record_style_basis(ws,args.run_id,style_basis)
   elif args.cmd=='verify':
    st=load_run(ws,args.run_id); out=record_checks(ws,args.run_id,verify_solution(st.get('solution',{})))
   elif args.cmd=='verify-report': out=record_verification_report(ws,args.run_id,_json_input(args.report))
@@ -89,6 +106,13 @@ def main(argv=None):
   elif args.cmd=='doctor':
    project=args.project_root.resolve(); doctor_workspace=ws if ws.is_absolute() else project/ws
    out=diagnose(project,doctor_workspace)
+  elif args.cmd=='review':
+   # Check-my-work.  No run is created: the student produced the work, and
+   # this only recomputes and compares it.  Magnitude ranges come from the
+   # course's shipped pack when one is named.
+   entry=pack_for_course(args.course) if args.course else None
+   magnitudes=entry['pack'].get('magnitudes',[]) if entry else []
+   out=review_work(_json_input(args.steps).get('steps'),magnitudes)
   elif args.cmd=='courses':
    # Shipped-pack coverage, not workspace state: what this install can honestly
    # claim about a course before the student has ingested anything.
@@ -102,12 +126,15 @@ def main(argv=None):
    (ws/'student'/'memory').mkdir(parents=True,exist_ok=True)
    identity=run_identity(args.name,args.student_id)
    atomic_json(ws/'student'/'profile.json',{'schema_version':1,'identity':identity,'memory_policy':'explicit_updates_only'})
-   (ws/'student'/'memory'/'index.md').write_text('# Student memory\n\nOnly explicit, reviewed project preferences belong here.\n')
+   (ws/'student'/'memory'/'index.md').write_text('# Student memory\n\nTwo things are kept here, and both are yours to read and delete. Preferences you asked to be remembered. Observations: slips caught while checking your own work, each recorded against the piece of work it was in, never as a judgement about you. Delete them with `memory forget-observations`.\n')
    out={'workspace':str(ws),'profile':'student/profile.json','identity':identity}
   elif args.cmd=='memory':
    if args.memory_cmd=='list': out=list_memory(ws)
    elif args.memory_cmd=='set': out=set_memory(ws,args.key,args.value,scope=args.scope,source=args.source)
    elif args.memory_cmd=='forget': out=forget_memory(ws,args.key)
+   elif args.memory_cmd=='observe': out=record_observation(ws,args.course,args.topic,args.cause)
+   elif args.memory_cmd=='observations': out=list_observations(ws,args.course,args.limit)
+   elif args.memory_cmd=='forget-observations': out=forget_observations(ws,args.course)
  except (OSError,ValueError,KeyError,json.JSONDecodeError) as exc:
   p.error(str(exc))
  print(json.dumps(out,indent=2,default=str)); return 0

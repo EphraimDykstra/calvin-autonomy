@@ -241,6 +241,7 @@ def render_text_docx(
     margin = float(rendering.get("margin_inches", 1))
     title_page = bool(rendering.get("title_page", True))
     report = solution.get("document_type") == "technical_report"
+    memo = solution.get("document_type") == "memo"
     # DOCX has no fixed pagination, so a page budget cannot be checked here;
     # the required-figure rule is independent of pagination and does apply.
     _check_required_figures(solution, rendering)
@@ -299,7 +300,21 @@ def render_text_docx(
         page_number.set(qn("w:start"), str(start))
         section._sectPr.append(page_number)
 
-    if report and title_page:
+    if memo:
+        for label, value in memo_header_rows(solution, metadata["display_name"]):
+            line = document.add_paragraph()
+            line.add_run(f"{label}:").bold = True
+            line.add_run(f"\t{value}")
+        # A rule under the header separates it from the body, as a memo does.
+        rule = document.add_paragraph()
+        borders = OxmlElement("w:pBdr")
+        bottom = OxmlElement("w:bottom")
+        for attribute, value in (("w:val", "single"), ("w:sz", "6"), ("w:space", "1"), ("w:color", "auto")):
+            bottom.set(qn(attribute), value)
+        borders.append(bottom)
+        rule._p.get_or_add_pPr().append(borders)
+        body_section = document.sections[0]
+    elif report and title_page:
         title_paragraph = document.add_paragraph(title, style="Title")
         title_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
         details = solution.get("metadata", {}) if isinstance(solution.get("metadata", {}), dict) else {}
@@ -400,6 +415,34 @@ def render_text_docx(
     _normalize_docx_package(output)
     return output
 
+MEMO_FIELDS = (("to", "To"), ("from", "From"), ("cc", "CC"), ("date", "Date"), ("re", "Re"))
+
+
+def memo_header_rows(solution: dict, display_name: str) -> list[tuple[str, str]]:
+    """Return a header memo's To, From, CC, Date and Re lines, or refuse an incomplete one.
+
+    "Technical memo" names two different documents at Calvin, and this is the
+    header form: a To/From/CC/Date/Re block, then the body.  A document that
+    declares itself a memo must carry that header, because without it the
+    result looks finished and is the wrong document.  From defaults to the run
+    identity, a placeholder unless the student supplied one; To has no default,
+    since it is the instructor, which the host reads off the student's own
+    assignment sheet.  The subject line falls back to the title.
+    """
+    header = solution.get("memo_header")
+    if not isinstance(header, dict):
+        raise ValueError("a memo needs a memo_header with to, date and re")
+    values = {key: str(header.get(key) or "").strip() for key, _ in MEMO_FIELDS}
+    if not values["from"]:
+        values["from"] = str(display_name or "").strip()
+    if not values["re"]:
+        values["re"] = str(solution.get("title") or "").strip()
+    missing = [label for key, label in MEMO_FIELDS if key != "cc" and not values[key]]
+    if missing:
+        raise ValueError("a memo header needs " + ", ".join(missing))
+    return [(label, values[key]) for key, label in MEMO_FIELDS if values[key]]
+
+
 def render_text_pdf(solution:dict, output:Path, *, identity:dict | None = None, style_profile:dict | None = None)->Path:
     """Render a worked problem or an opted-in course-style technical report."""
     try:
@@ -419,6 +462,7 @@ def render_text_pdf(solution:dict, output:Path, *, identity:dict | None = None, 
     caption=ParagraphStyle('Caption',parent=styles['BodyText'],fontSize=9,leading=11,spaceAfter=8)
     centered=ParagraphStyle('Centered',parent=styles['BodyText'],alignment=TA_CENTER,spaceAfter=8)
     report=solution.get('document_type')=='technical_report'; metadata=deliverable_identity(identity)
+    memo=solution.get('document_type')=='memo'
     _check_required_figures(solution,rendering); page_budget=_body_page_budget(rendering); frame=_figure_frame_points(rendering)
     appendix_start:list[int]=[]
 
@@ -430,7 +474,17 @@ def render_text_pdf(solution:dict, output:Path, *, identity:dict | None = None, 
 
     title=str(solution.get('title','Engineering Assignment'))
     title_page=bool(rendering.get('title_page',True))
-    if report and title_page:
+    if memo:
+        from reportlab.platypus.flowables import HRFlowable
+        # Values sit in their own column, as a memo's do, rather than starting
+        # wherever each label happens to end.
+        rows=[[Paragraph(f'<b>{escape(label)}:</b>',styles['BodyText']),Paragraph(escape(value),styles['BodyText'])]
+              for label,value in memo_header_rows(solution,metadata['display_name'])]
+        header=Table(rows,colWidths=[0.75*inch,None],hAlign='LEFT')
+        header.setStyle(TableStyle([('LEFTPADDING',(0,0),(-1,-1),0),('VALIGN',(0,0),(-1,-1),'TOP'),
+                                    ('TOPPADDING',(0,0),(-1,-1),1),('BOTTOMPADDING',(0,0),(-1,-1),1)]))
+        story.extend([header,Spacer(1,0.08*inch),HRFlowable(width='100%',thickness=0.75,color=colors.black),Spacer(1,0.14*inch)])
+    elif report and title_page:
         story.extend([Spacer(1,1.1*inch),Paragraph(escape(title),styles['Title']),Spacer(1,0.35*inch)])
         details=solution.get('metadata',{}) if isinstance(solution.get('metadata',{}),dict) else {}
         for value in (details.get('course'),details.get('section'),metadata['display_name'],details.get('date')):

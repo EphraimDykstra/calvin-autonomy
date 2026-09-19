@@ -59,11 +59,15 @@ _REGISTRY: dict[str, tuple[float, tuple, float | None]] = {
     # mass
     "kg": (1.0, _MASS, None),
     "g": (1e-3, _MASS, None),
+    "lbm": (0.45359237, _MASS, None),
     # length
     "m": (1.0, _LENGTH, None),
     "cm": (1e-2, _LENGTH, None),
     "mm": (1e-3, _LENGTH, None),
     "km": (1e3, _LENGTH, None),
+    # US customary length, used throughout the mechanics and design courses.
+    "in": (0.0254, _LENGTH, None),
+    "ft": (0.3048, _LENGTH, None),
     # time
     "s": (1.0, _TIME, None),
     "min": (60.0, _TIME, None),
@@ -89,6 +93,11 @@ _REGISTRY: dict[str, tuple[float, tuple, float | None]] = {
     # force
     "N": (1.0, _FORCE, None),
     "kN": (1e3, _FORCE, None),
+    # Pound-force and pound-mass are registered separately and a bare "lb" is
+    # not registered at all: in engineering it names either, and a guessed
+    # reading is exactly how a wrong conversion comes to look right.
+    "lbf": (4.4482216152605, _FORCE, None),
+    "kip": (4448.2216152605, _FORCE, None),
     # energy
     "J": (1.0, _ENERGY, None),
     "kJ": (1e3, _ENERGY, None),
@@ -107,6 +116,8 @@ _REGISTRY: dict[str, tuple[float, tuple, float | None]] = {
     "psia": (_PSI, _PRESSURE, None),
     "mmHg": (133.322387415, _PRESSURE, None),
     "mmH2O": (9.80665, _PRESSURE, None),
+    "GPa": (1e9, _PRESSURE, None),
+    "ksi": (1e3 * _PSI, _PRESSURE, None),
     # volume
     "L": (1e-3, _VOLUME, None),
     "mL": (1e-6, _VOLUME, None),

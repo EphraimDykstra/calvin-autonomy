@@ -107,6 +107,29 @@ def _extension_tokens(extension: Any) -> set[str]:
     return set(re.findall(r"[a-z0-9]+", extension.lower()))
 
 
+def _check_rendering(pack: dict[str, Any], where: str) -> None:
+    """Hold a pack's layout values to the same bounds as a course profile's.
+
+    With no profile, these values go straight to the renderer, so a pack must
+    not be a way around the checks a profile would have faced.  A pack may
+    state only some values; each one it does state is checked.
+    """
+    fmt = pack.get("format")
+    rendering = fmt.get("rendering") if isinstance(fmt, dict) else None
+    if rendering is None:
+        return
+    rendering = _require_mapping(rendering, f"{where}: format.rendering")
+    for key in ("title_page", "abstract", "number_body_pages", "table_captions_above", "figure_captions_below"):
+        if rendering.get(key) is not None and not isinstance(rendering[key], bool):
+            raise CurriculumError(f"{where}: format.rendering.{key} must be true or false")
+    for key, low, high in (("body_font_size", 8, 14), ("line_spacing", 1, 2), ("margin_inches", 0.5, 1.5)):
+        value = rendering.get(key)
+        if value is None:
+            continue
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not low <= value <= high:
+            raise CurriculumError(f"{where}: format.rendering.{key} must be between {low} and {high}")
+
+
 def _check_pipeline_support(pack: dict[str, Any], where: str) -> None:
     """Refuse a pack that claims more of the pipeline than exists.
 
@@ -178,6 +201,7 @@ def load_pack(path: Path) -> dict[str, Any]:
     _check_coverage(pack["coverage"], where)
     _check_policy(pack["course_policy"], where)
     _check_pipeline_support(pack, where)
+    _check_rendering(pack, where)
     return pack
 
 
@@ -270,6 +294,69 @@ def _pipeline_summary(pack: dict[str, Any]) -> dict[str, Any] | None:
     }
 
 
+# The eight values a renderer needs to lay out a page.  A course profile must
+# state all of them; a pack may state some, and the rest fall to the renderer's
+# own defaults, which are recorded as defaults rather than passed off as rules.
+RENDERING_FIELDS = (
+    "title_page", "abstract", "number_body_pages", "table_captions_above",
+    "figure_captions_below", "body_font_size", "line_spacing", "margin_inches",
+)
+
+
+def pack_for_course(course: str, root: Path = DEFAULT_CURRICULUM) -> dict[str, Any] | None:
+    """Return the shipped pack for ``course`` with its content hash, or None.
+
+    A course id is a pack's directory name.  Only course packs qualify; a tool
+    pack describes EES or MATLAB, not the conventions of any one course.
+    """
+    if not isinstance(course, str) or not course or course.startswith("_"):
+        return None
+    path = Path(root) / course.lower() / "pack.json"
+    if not path.is_file() or path.is_symlink():
+        return None
+    import hashlib
+
+    pack = load_pack(path)
+    return {
+        "id": path.parent.name,
+        "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        "pack": pack,
+    }
+
+
+def pack_style(entry: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    """Return the style a pack supplies to the renderer, and where each value came from.
+
+    Only values the pack states are passed on, so the renderer fills the rest
+    from its own defaults.  The basis names both, so a default can never be
+    presented as a course rule.
+    """
+    fmt = entry["pack"].get("format") or {}
+    rendering = fmt.get("rendering") if isinstance(fmt.get("rendering"), dict) else {}
+    stated_basis = fmt.get("rendering_basis") if isinstance(fmt.get("rendering_basis"), dict) else {}
+    supplied = {key: rendering[key] for key in RENDERING_FIELDS if rendering.get(key) is not None}
+    fields = {}
+    for key in RENDERING_FIELDS:
+        if key not in supplied:
+            fields[key] = "renderer default"
+        elif str(stated_basis.get(key, "")).startswith("default"):
+            fields[key] = "pack default, not a course rule"
+        else:
+            fields[key] = "course pack rule"
+    basis = {
+        "source": f"shipped pack {entry['id']}",
+        "pack_sha256": entry["sha256"],
+        "format_coverage": entry["pack"]["coverage"]["format"],
+        "fields": fields,
+        # What each stated value rests on, in the pack's own words.  "Course
+        # pack rule" says only that the pack states it; this says whether that
+        # is a written rule or the instructor's consistent practice, so a host
+        # never reports a value as more certain than its evidence.
+        "field_basis": {key: stated_basis.get(key) for key in supplied},
+    }
+    return ({"rendering": supplied} if supplied else None), basis
+
+
 def coverage_report(
     packs: dict[str, dict[str, Any]],
     tool_packs: dict[str, dict[str, Any]] | None = None,
@@ -328,4 +415,7 @@ __all__ = [
     "load_packs",
     "load_tool_pack",
     "load_tool_packs",
+    "pack_for_course",
+    "pack_style",
+    "RENDERING_FIELDS",
 ]

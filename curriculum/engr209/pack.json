@@ -32,6 +32,15 @@
       "the course's Technical Memo instructions on Moodle (not retained; ask the student for them)",
       "patterns observed in one completed memo and one completed design report, each of which departs from its prompt where noted below"
     ],
+    "rendering": {
+      "title_page": true,
+      "figure_captions_below": true
+    },
+    "rendering_basis": {
+      "title_page": "lab handout: the technical memo has a title page carrying the names, section, group and tube, and the abstract. The design project prompt is silent on a title page, so for the design report this is the memo's rule applied, not a stated one.",
+      "figure_captions_below": "instructor practice, not a written rule: both instructor documents (the lab handout and the design project prompt) caption their figures directly below the figure. The lab handout requires captions on every figure but does not state a position.",
+      "omitted": "abstract is left out on purpose. The lab handout requires one on the memo's title page, but the design project prompt does not, and this switch applies course-wide, so setting it would make the renderer refuse a correct design report. The memo's abstract requirement stays in format.technical_memo.title_page. Nothing in either prompt states page numbering, table caption position, font, spacing, or margins; the Technical Memo instructions that might were not retained."
+    },
     "technical_memo": {
       "authorship": "one memo per lab team of 3-4, written by the team with no data sharing across teams",
       "audience": "a supervisor who needs the result to make a business decision: technical findings, not a diary of the experience",

@@ -94,3 +94,7 @@ Unset, the scan does not run and the audit says so rather than implying it passe
 **Do not put the test fixtures' invented names in this variable.** Several test files deliberately contain invented names as detector fixtures (`tests/test_identity.py`, `tests/test_adaptation.py` and `tests/test_distribution_names.py`), and none is audit-exempt, nor should be. Configuring those names would fail every branch.
 
 See [docs/architecture.md](docs/architecture.md) for the public/private boundary and execution flow, and [docs/pilot-status.md](docs/pilot-status.md) for implemented capabilities, held-out evidence, and remaining validation work. The content-free [held-out evaluation harness](docs/evaluation.md) scores 10-20 private runs for false-ready behavior, blockers, requirement coverage, verification, stale detection, and observed correction time.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

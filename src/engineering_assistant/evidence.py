@@ -50,6 +50,12 @@ def review_evidence(workspace:Path,course:str,document_id:str,locator:str,notes:
     atomic_json(_reviews_path(workspace,course),registry); return record
 
 
+# The one evidence failure a shipped course pack can stand in for: the student
+# has supplied no reviewed material from the course itself.  Named so the
+# readiness check can recognise it without matching a copy of the sentence.
+NO_COURSE_EVIDENCE = "no resolved reviewed same-course evidence"
+
+
 def resolve_evidence(
     workspace: Path,
     course: str,
@@ -131,7 +137,7 @@ def resolve_evidence(
     if require_current_assignment and not current_found:
         blockers.append("evidence does not cite the current assignment")
     if not course_found:
-        blockers.append("no resolved reviewed same-course evidence")
+        blockers.append(NO_COURSE_EVIDENCE)
     return blockers
 
 

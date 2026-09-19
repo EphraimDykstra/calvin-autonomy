@@ -5,7 +5,7 @@ import zipfile
 from pathlib import Path
 from .common import atomic_json, digest, now, sha256, permitted_source, safe_relative
 from .identity import run_identity
-from .evidence import resolve_evidence
+from .evidence import NO_COURSE_EVIDENCE, resolve_evidence
 from .course_profile import load_course_profile
 from .verification import validate_verification_report
 from .ingest import extract_source_blocks
@@ -183,8 +183,14 @@ def _inspection_status(root:Path,artifact)->dict:
     else: status='passed'
     return {'artifact':path,'status':status,'findings':findings}
 
+PROFILE_ABSENT='reviewed course profile is missing'
+
 def readiness(state:dict, root:Path | None=None)->dict:
     blockers=[]
+    # Blockers that mean only "the student has not supplied their own course
+    # material yet".  They are the one thing a shipped pack can stand in for,
+    # and they are tracked by identity rather than inferred from wording.
+    course_gaps=set()
     # 'rejected' is a run someone inspected and turned down.  It is listed here only
     # so the blockers can say that instead of 'nobody looked'; the gate below is
     # re-derived from the artifact records and never trusts this stage.
@@ -244,13 +250,20 @@ def readiness(state:dict, root:Path | None=None)->dict:
                 blockers.append('one or more deliverable artifacts were rendered from a stale solution')
     if root is not None:
         root=Path(root)
-        blockers.extend(_course_evidence_blockers(state,root))
+        for message in _course_evidence_blockers(state,root):
+            blockers.append(message)
+            if message==f'plan {NO_COURSE_EVIDENCE}': course_gaps.add(message)
         try:
             profile=load_course_profile(root.parent.parent,state.get('course',''))
             if state.get('plan',{}).get('course_profile_sha256')!=digest(profile):
                 blockers.append('plan course profile is missing or stale')
+        except FileNotFoundError:
+            # Absent and invalid are different claims.  No profile yet is what a
+            # new student has; a profile that exists but fails its own checks is
+            # a broken one, and that must never be softened to provisional.
+            blockers.append(PROFILE_ABSENT); course_gaps.add(PROFILE_ABSENT)
         except (OSError,ValueError,KeyError,TypeError,json.JSONDecodeError):
-            blockers.append('reviewed course profile is missing or invalid')
+            blockers.append('reviewed course profile is invalid')
         source=state.get('input',{})
         try:
             input_path=safe_relative(root,source['path'])
@@ -302,7 +315,36 @@ def readiness(state:dict, root:Path | None=None)->dict:
             if state.get('verification_sha256')!=digest(report): blockers.append('structured verifier report hash is stale')
         except (ValueError,KeyError,TypeError) as exc:
             blockers.append(f'structured verifier report is invalid: {exc}')
-    return {'ready':not blockers,'blockers':list(dict.fromkeys(blockers))}
+    blockers=list(dict.fromkeys(blockers))
+    return {'ready':not blockers,'blockers':blockers,**_provisional(state,blockers,course_gaps)}
+
+def _provisional(state:dict,blockers:list[str],course_gaps:set[str])->dict:
+    """Say whether a run is provisional: everything checked except course evidence.
+
+    Provisional is not a softer ready.  It holds only when the sole remaining
+    blockers are that the student has supplied no reviewed course material and
+    no course profile, and a shipped pack for the course states its format.
+    Every other blocker, including a stale review, an invalid profile, a plan
+    that does not cite the assignment, a failed check or an uninspected
+    artifact, keeps the run blocked.  The format then traces to a named pack,
+    and the report says which values were course rules and which were defaults.
+    """
+    none={'provisional':False,'provisional_reasons':[],'provisional_basis':None}
+    if not blockers or any(item not in course_gaps for item in blockers): return none
+    from .curriculum import CurriculumError, pack_for_course, pack_style
+    try: entry=pack_for_course(state.get('course',''))
+    except CurriculumError: return none
+    if entry is None or entry['pack']['coverage']['format']=='none': return none
+    _,basis=pack_style(entry)
+    return {'provisional':True,'provisional_reasons':list(blockers),'provisional_basis':basis}
+
+def record_style_basis(workspace:Path,run_id:str,basis:dict)->dict:
+    """Record where a rendered deliverable's layout values came from.
+
+    A reviewed profile, a shipped pack or the renderer's defaults: the reader of
+    a provisional run must be able to see which, value by value.
+    """
+    state=load_run(workspace,run_id); state['style_basis']=basis; save_run(workspace,state); return state
 
 def record_solution(workspace:Path,run_id:str,solution:dict)->dict:
     state=load_run(workspace,run_id); root=run_dir(workspace,run_id)
@@ -370,6 +412,6 @@ def inspect_artifact(workspace:Path,run_id:str,artifact:str,report:dict)->dict:
 def status_run(workspace:Path,run_id:str)->dict:
     state=load_run(workspace,run_id); root=run_dir(workspace,run_id)
     current=readiness(state,root)
-    effective='ready' if current['ready'] else ('stale' if state.get('stage')=='ready' else state.get('stage'))
+    effective='ready' if current['ready'] else ('provisional' if current['provisional'] else ('stale' if state.get('stage')=='ready' else state.get('stage')))
     inspections=[_inspection_status(root,artifact) for artifact in state.get('artifacts',[]) if isinstance(artifact,dict)]
     return {'state':state,'effective_stage':effective,'readiness':current,'inspections':inspections,'discarded':state.get('discarded',[])}

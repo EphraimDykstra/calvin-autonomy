@@ -56,7 +56,25 @@
       "render": true,
       "execute": false,
       "verify_rendered_output": false,
-      "note": "The report (docx/pdf) and a workbook (xlsx) are formats this repo renders, but this pack sets no format.rendering values (page budget, required figure roles), so the renderer's checks have nothing course-specific to enforce, and no render of this course has been exercised. Treat the rendered output as unverified until inspected. The FEA results cannot be produced here: every FEA value and screenshot must come from the student's own study, and the report must not state agreement that was never measured."
+      "note": "The report (docx/pdf) and a workbook (xlsx) are formats this repo renders, This pack states three format.rendering fields (no abstract, table captions above, figure captions below) and leaves the rest to renderer defaults; see rendering_basis. It sets no page budget or required figure roles. A placeholder test render confirmed the stated fields reach the renderer, but no render has been compared against the instructor's model report, so treat rendered output as unverified until inspected. The FEA results cannot be produced here: every FEA value and screenshot must come from the student's own study, and the report must not state agreement that was never measured."
+    },
+    "rendering": {
+      "abstract": false,
+      "table_captions_above": true,
+      "figure_captions_below": true
+    },
+    "rendering_basis": {
+      "abstract": "spec: the instructor's model FEA report opens with an Introduction and carries no abstract, and neither test-correction memo has one",
+      "table_captions_above": "spec: the instructor's model FEA report puts its table caption above the table's header row; every table in the student's FEA report does the same",
+      "figure_captions_below": "default, observed not stated: every figure in the student's FEA report has its caption below the image. The instructor's model only leaves blank space around a figure caption that follows the sentence introducing the plot, which fits but does not show it",
+      "one_block_two_families": "This pack holds one rendering block, but two families here render as documents: the FEA report and the test-correction memo. Only fields the two agree on are stated. Fields where they disagree are omitted and fall to the renderer's defaults, listed below with what each family shows.",
+      "omitted": {
+        "title_page": "They disagree. The instructor's model FEA report has a cover page (title, subtitle and byline on page 1, alone), and the student's report does too. Both test-correction memos start their text on page 1 under a one-line title.",
+        "number_body_pages": "They disagree. The instructor's model FEA report numbers its body pages at the bottom right, starting at 1 on the first page after the cover. The test-correction memos carry no page numbers.",
+        "body_font_size": "They disagree, and there is no written rule. The instructor's model FEA report is set in 11 pt Arial (measured); the student's memos use a 12 pt default.",
+        "margin_inches": "They disagree, and there is no written rule. The instructor's model FEA report has 1.25 in side margins (measured); the student's memos and report use 1 in.",
+        "line_spacing": "Not stated. The instructor's model report sets about 1.25 times the font size baseline to baseline (measured), but this renderer reads line_spacing as a leading ratio in PDF and as a Word multiple in docx, so no one value reproduces it in both."
+      }
     },
     "report_workbook_pairing": {
       "fea_report": [
@@ -76,6 +94,8 @@
     "fea_report": {
       "title_block": {
         "lines": ["[REPORT TITLE]", "[subtitle: what is compared to what]", "[Student Name] | ENGR 305 | [date]"],
+        "placement": "Alone on a cover page, centred. The body starts on the next page, which is numbered 1 in the instructor's model.",
+        "correction": "An earlier version of this pack said the title block sat at the top of page 1 with no separate title page. That was wrong: the instructor's model report and the student's report both put it alone on a cover page.",
         "source": "instructor model report + student report"
       },
       "sections": [
@@ -309,7 +329,7 @@
     },
     {
       "quantity": "coefficient of thermal expansion of a metal (input)",
-      "unit": "1/degF",
+      "unit": "1/deltaF",
       "typical_range": [
         3e-06,
         1.5e-05

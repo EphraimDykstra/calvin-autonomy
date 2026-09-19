@@ -25,7 +25,7 @@ So before drafting either file, ask which one carries the answers. Then check th
 
 ## The FEA report
 
-Structure: a title block (no title page), Introduction, Procedure, one section per loading case (axial, torsion, pressure vessel, stress concentration, plus optional extras), Discussion, Conclusion. See `exemplars/fea-report-shape.md`.
+Structure: a cover page carrying only the title block, then Introduction, Procedure, one section per loading case (axial, torsion, pressure vessel, stress concentration, plus optional extras), Discussion, Conclusion. See `exemplars/fea-report-shape.md`.
 
 Each loading-case section gives the hand equation, a figure, a hand / FEA / percent table and the cause of the difference. The Discussion is the section the instructor weights most. It should draw the cases into one lesson, and honest criticism is acceptable. Tables are captioned above and figures below.
 

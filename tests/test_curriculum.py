@@ -229,6 +229,19 @@ class PipelineSupportTests(unittest.TestCase):
         self.assertIn("Quarto", course["pipeline"]["note"])
 
 
+class PackStyleTests(unittest.TestCase):
+    def test_each_stated_value_carries_its_own_evidence(self):
+        # "Course pack rule" says only that the pack states a value.  The pack's
+        # own basis says whether that is a written rule or observed practice,
+        # and status must carry it so a host never overstates the evidence.
+        from engineering_assistant.curriculum import pack_for_course, pack_style
+        _, basis = pack_style(pack_for_course("engr328"))
+        self.assertEqual(basis["field_basis"]["abstract"], "spec")
+        self.assertTrue(str(basis["field_basis"]["margin_inches"]).startswith("default"))
+        for key in basis["field_basis"]:
+            self.assertNotEqual(basis["fields"][key], "renderer default")
+
+
 class LoadPacksTests(unittest.TestCase):
     def setUp(self):
         self._tmp = tempfile.TemporaryDirectory()

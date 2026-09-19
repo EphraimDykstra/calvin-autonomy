@@ -63,7 +63,26 @@
       "render": true,
       "execute": false,
       "verify_rendered_output": false,
-      "note": "The memo is a one-page text document in a format the renderer produces (docx/pdf). This pack sets no format.rendering values, however, and no render of this memo form (header block, no title page) has been exercised, so the output is unverified until inspected. The renderer cannot produce the hand calculations or the FEA model the memo summarises. The student must supply those results, and the memo must not state agreement between methods that were not both run."
+      "note": "The memo is a one-page text document in a format the renderer produces (docx/pdf). This pack states three format.rendering fields (no title page, no abstract, no page numbers); see rendering_basis. Drafted as document_type \"memo\" with a memo_header, it renders with its To/From/CC/Date/Re block; a memo draft missing that header is refused rather than rendered incomplete. It is unverified until inspected. The renderer cannot produce the hand calculations or the FEA model the memo summarises. The student must supply those results, and the memo must not state agreement between methods that were not both run."
+    },
+    "rendering": {
+      "title_page": false,
+      "abstract": false,
+      "number_body_pages": false
+    },
+    "rendering_basis": {
+      "title_page": "spec: the instructor's model executive-summary memo starts with its To/From/CC/Date/Re header at the top of page 1, with no title page; the student's memo and test corrections do the same",
+      "abstract": "spec: the instructor's model memo has no abstract. Its first body paragraph carries the answer, and that paragraph is not a separate abstract block",
+      "number_body_pages": "spec: the instructor's model memo is one page with no page number; the student's memo and test corrections carry none either",
+      "memo_header": "The executive-summary memo is a header memo. The renderer lays it out when the draft declares document_type \"memo\" with a memo_header giving to, date and re (cc optional; from defaults to the run identity): a To/From/CC/Date/Re block under a rule, then the body, and no title page. It refuses a memo draft without that header, so a headerless 322 executive summary can no longer render as if complete. To is the instructor, filled from the student's own assignment sheet. The three stated fields still govern only page furniture.",
+      "one_block_two_families": "This pack holds one rendering block. The executive-summary memo and the test corrections are the only families that render as documents, and they agree on the three stated fields. Fields where the evidence disagrees or is missing are omitted and fall to the renderer's defaults.",
+      "omitted": {
+        "table_captions_above": "No evidence: the model memo has no tables, and no rendered 322 deliverable in the archive does either.",
+        "figure_captions_below": "No evidence: the model memo has no figures. The one looser student summary has screenshots under plain labels, not captions.",
+        "body_font_size": "They disagree, and there is no written rule. The instructor's model memo is set in 9 pt Arial (measured); the student's memo uses 11 pt Arial, and the test corrections a 12 pt default.",
+        "margin_inches": "Not one value. The instructor's model memo has 1.25 in side margins but its header starts about 0.75 in from the top (measured), and the renderer takes one margin for all sides. The student's documents use 1 in.",
+        "line_spacing": "Not stated. The renderer reads line_spacing as a leading ratio in PDF and as a Word multiple in docx, so no one value reproduces the model in both."
+      }
     },
     "executive_summary_memo": {
       "header": {

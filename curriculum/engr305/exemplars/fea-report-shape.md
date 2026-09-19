@@ -6,7 +6,7 @@ The FEA numbers and screenshots must come from the student's own simulation. Thi
 
 ---
 
-## Title block (top of page 1, no separate title page)
+## Cover page (title block alone, centred; the body starts on the next page)
 
 ```
 [REPORT TITLE]

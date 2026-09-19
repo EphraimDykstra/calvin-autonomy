@@ -31,6 +31,13 @@
       "labeling rules the report sheets restate (the lab-manual appendices they cite were not retained)",
       "patterns observed in one completed report sheet and one free-form write-up"
     ],
+    "rendering": {
+      "table_captions_above": true
+    },
+    "rendering_basis": {
+      "table_captions_above": "instructor practice, not a written rule: both surviving report-sheet handouts (concrete 2, polymers) put 'Table N.' and a descriptive title directly above the table. The lab-manual appendix the sheets cite for labeling was not retained.",
+      "omitted": "Every other field is left to the renderer default on purpose. The main deliverable is the instructor's own Word sheet answered in place, so its page setup, fonts, and header come from the handout and not from a rendered document; nothing states a title page, abstract, page numbering, font, spacing, or margin rule for any 205 deliverable. The handouts' own images carry no captions, so figure caption position is unknown. The free-form write-up has no surviving prompt."
+    },
     "paired_deliverable": {
       "rule": "The workbook and the report sheet are two halves of one submission. The workbook does the arithmetic and is uploaded separately. The report sheet carries every table and chart the hand-in list names, each rebuilt as a numbered, captioned figure or table the way a technical report would present it. The concrete sheet says not to print from Excel: charts go into the Word document, not onto separate spreadsheet printouts.",
       "workbook_holds": [

@@ -184,6 +184,24 @@ class RenderingBudgetTests(unittest.TestCase):
                 )
 
 
+class MagnitudeUnitTests(unittest.TestCase):
+    """A range a check cannot read is a range that never gets checked."""
+
+    def test_every_magnitude_unit_parses(self):
+        # The unit registry was first built from thermodynamics EES files, and
+        # the mechanics packs then used in, ksi and lbf-ft, none of which it
+        # knew.  A review step pointing at those ranges would have failed.
+        from engineering_assistant.units import UnitError, parse_unit
+
+        for pack_id, pack in _packs().items():
+            for entry in pack.get("magnitudes", []):
+                with self.subTest(pack=pack_id, quantity=entry.get("quantity", "")[:40]):
+                    try:
+                        parse_unit(entry["unit"])
+                    except UnitError as exc:
+                        self.fail(f"{pack_id}: magnitude unit {entry['unit']!r} does not parse: {exc}")
+
+
 class SharedToolPackTests(unittest.TestCase):
     """The EES pack ships with the most exemplars and was checked by nothing."""
 
