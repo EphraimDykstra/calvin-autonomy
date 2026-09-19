@@ -4,7 +4,9 @@
 
 **Well covered:** the FEA report. The instructor wrote a model report with placeholder values. It sets the sections, an agreement target of about 5 percent (or an explanation), a rough length, and a rule for when an image earns its place. The lab-exercise prompts survive too, as does one completed report with its workbook.
 
-**Thin:** test-correction memos, with two instances and no prompt, and the cantilever beam lab, whose workbook survives but whose report is almost all images.
+**Thin:** test-correction memos, with two instances and no prompt, and the cantilever beam lab, whose workbook survives but whose report is almost all images. The lab now lists what a good write-up covers (the six handout questions, thickness cubed in I, screening trials before averaging), but all of it is observed once in one group's work, which may be a draft.
+
+A second pass through the OneDrive copies, including five SolidWorks study folders, found no new instructor-written material. Nothing here is rated higher because of it.
 
 **Not covered:** chapter problem sets. All 13 are scanned handwriting with no text layer, and nothing about their format is inferred. There is no syllabus.
 
@@ -32,6 +34,8 @@ Each loading-case section gives the hand equation, a figure, a hand / FEA / perc
 The FEA values and screenshots must come from the student's own model. This repo cannot run FEA, and a report must never claim an agreement that was not measured.
 
 ## Methods
+
+Hand-versus-FEA has one trap worth naming here: **a von Mises plot read against a hand hoop stress is not the same quantity.** In a plate in tension the two coincide. In a pressure vessel they can differ by several percent on their own (roughly 7 percent at the bore of a wall as thick as a scuba tank's), so a small "agreement" between them proves less than it looks. Name the FEA result you read, and pair it with the matching hand value.
 
 `pack.json` covers hand-versus-FEA validation, stress and strain transformation (angle from x to n, counter-clockwise positive), axial deflection with indeterminate and thermal cases, carrying units, and stress concentration. The single most costly error in this archive is **a moment left in foot-pounds inside a psi calculation**, a factor of 12. Both test-correction memos trace lost points to it.
 

@@ -95,6 +95,24 @@ A check is a tautology if the expected value came out of the same expression you
 
 "Technical memo" names different documents in different Calvin courses. In some it is a title page carrying the abstract plus a short body with fixed headings; in others it is a To/From/Date/Re memo. Never reuse one course's memo shape for another, and never fall back on a generic idea of a memo. Take the shape from the student's own course pack, or ask them for the assignment sheet. When it is the header form, draft it with `"document_type": "memo"` and a `memo_header` giving `to`, `date` and `re` (and `cc` if the assignment asks for one). The renderer then lays out the To, From, CC, Date and Re block under a rule, with no title page, and it refuses a memo draft missing that header rather than rendering one that looks finished and is not. `to` is the instructor: read it off the student's assignment sheet, or ask. `from` defaults to the student's run identity.
 
+Pick the document type deliberately, because it decides the whole layout:
+
+- `technical_report` gives a title page carrying the abstract, then a numbered body. An abstract is only rendered here.
+- `memo` gives the To/From/CC/Date/Re header memo described above.
+- `worked_problem` gives a plain heading and the body, for a problem set.
+
+An abstract supplied to any type but `technical_report` is refused rather than dropped, so a document cannot come out silently missing the section the course asked for.
+
+Run the pipeline in this order. It matters, and a step out of place fails in a way that looks like something else:
+
+1. `start` the run with the student's assignment file
+2. `accept-plan` with the requirements, evidence, deliverables and verification
+3. `render` the solution, which records it and produces the file
+4. `verify`, which records the calculation checks, even when there are none
+5. `verify-report` with your findings: requirements, method, numerical, format, identity. Supply findings only; the report is bound to the run for you
+6. `inspect` each rendered artifact, after the verifier report, never before
+7. `status` to see where the run stands
+
 Follow the course's format, not a generic one. Where the pack has the course's conventions, apply them exactly: which page the abstract sits on, how long the body may be, whether captions go above or below, what belongs in an appendix, how equations are numbered and referenced. Say which convention you applied and where it came from.
 
 When the pack reports `"format": "none"` for a course, or there is no pack at all, say so plainly and ask the student for a handout or a graded example. Do not invent a format. A confident wrong format is worse than an honest question, because the student will not know to check it.

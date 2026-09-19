@@ -13,12 +13,15 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from engineering_assistant.calculations import check_calculation
 from engineering_assistant.common import atomic_json, sha256
 from engineering_assistant.course_profile import set_course_profile
 from engineering_assistant.evidence import review_evidence
 from engineering_assistant.rendering import render_text_pdf
 from engineering_assistant.runtime import (
+    FORMAT_UNKNOWN,
     PIPELINE_NOT_RENDERED,
+    RESULTS_NOT_CHECKED,
     inspect_artifact,
     load_run,
     record_artifact,
@@ -71,9 +74,13 @@ class PipelineReadinessTests(unittest.TestCase):
                          evidence],
             "course_profile_sha256": profile["sha256"],
             "deliverables": [{"path": "deliverables/submission.pdf", "format": "pdf"}],
-            "verification": {"calculations_required": False, "reason": "prose-only fixture requirement"}})
-        record_solution(self.ws, run_id, {"sections": [{"requirement_ids": ["q1"]}], "calculations": [], "unresolved": []})
-        record_checks(self.ws, run_id, [])
+            # These courses' numbers come from a tool the student runs, so the
+            # plan must require calculations and the returned values must be
+            # checked. This is the path a host is meant to take.
+            "verification": {"calculations_required": True, "reason": "the student returns the computed values"}})
+        calculation = {"id": "c1", "expression": "2 + 2", "expected": 4, "unit": "dimensionless"}
+        record_solution(self.ws, run_id, {"sections": [{"requirement_ids": ["q1"]}], "calculations": [calculation], "unresolved": []})
+        record_checks(self.ws, run_id, [check_calculation(calculation)])
         artifact = run_dir(self.ws, run_id) / "deliverables" / "submission.pdf"
         render_text_pdf({"title": "Result", "sections": [{"body": "p = 0.049"}]}, artifact)
         record_artifact(self.ws, run_id, artifact)
@@ -109,6 +116,48 @@ class PipelineReadinessTests(unittest.TestCase):
         # have broken readiness for every course.
         status = self._fully_evidenced_run("engr328")
         self.assertTrue(status["readiness"]["ready"], status["readiness"]["blockers"])
+
+
+class WiderFalseReadyTests(unittest.TestCase):
+    """The same class of hole, found on courses the first rule did not cover."""
+
+    def setUp(self):
+        PipelineReadinessTests.setUp(self)
+
+    def test_a_course_whose_format_no_pack_knows_is_never_ready(self):
+        # A profile for such a course was written, not derived, and nothing
+        # tells the two apart afterwards. The skill says do not invent a
+        # format; status must not then certify one.
+        readiness = PipelineReadinessTests._fully_evidenced_run(self, "chem101")["readiness"]
+        self.assertFalse(readiness["ready"])
+        self.assertIn(FORMAT_UNKNOWN, readiness["blockers"])
+
+    def test_a_plan_may_not_declare_no_calculations_where_the_student_runs_the_tool(self):
+        # ENGR 305, 315 Lab and 322 all render, so the first rule misses them,
+        # and their numbers come from an FEA study or MATLAB the student runs.
+        # Declaring calculations_required false skipped every numeric check.
+        for course in ("engr305", "engr315-lab", "engr322"):
+            with self.subTest(course=course):
+                status = PipelineReadinessTests._fully_evidenced_run(self, course, run_id=f"r-{course}")
+                self.assertTrue(status["readiness"]["ready"], "the intended path must still reach ready")
+        for course in ("engr305", "engr322"):
+            with self.subTest(course=course, plan="no calculations"):
+                readiness = _run_without_calculations(self, course)
+                self.assertFalse(readiness["ready"])
+                self.assertIn(RESULTS_NOT_CHECKED, readiness["blockers"])
+                self.assertFalse(readiness["provisional"], "a defective plan is not provisional")
+
+
+def _run_without_calculations(case, course):
+    """The bypass: a plan that declares no calculations are required."""
+    import engineering_assistant.runtime as rt
+    original = rt.readiness
+    status = PipelineReadinessTests._fully_evidenced_run(case, course, run_id=f"nocalc-{course}")
+    state = load_run(case.ws, f"nocalc-{course}")
+    plan = dict(state["plan"])
+    plan["verification"] = {"calculations_required": False, "reason": "nothing to compute here"}
+    set_plan(case.ws, f"nocalc-{course}", plan)
+    return rt.readiness(load_run(case.ws, f"nocalc-{course}"), run_dir(case.ws, f"nocalc-{course}"))
 
 
 if __name__ == "__main__":

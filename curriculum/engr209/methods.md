@@ -12,6 +12,8 @@ The archive is missing three things:
 
 Exams are individual assessed work and are deliberately left out.
 
+A second pass over the archived course folder added no instructor material. It holds the same design project report and the team's spreadsheets. Two other workbooks in it are not evidence for this course: one is from a different course and term, and one is another student's work on a different process.
+
 ## Course policy
 
 No syllabus was found (`course_policy.confidence: unknown`). Ask the student to confirm the current AI-use policy with the instructors, and record the answer. The take-home exam instructions require entirely individual work. Do not help with an exam.
@@ -51,7 +53,7 @@ In the lab memo the relationship is lighter. The spreadsheet's digested calculat
 
 - `material-balance-dof`: labeled flow diagram, basis, degree-of-freedom analysis, solution order, and a sanity check. The take-home grading scheme scores each of these as its own step.
 - `reactor-recycle-economics`: fractional conversion, recycle closure, and converting streams into the units their prices use.
-- `schedule-optimization-sweep`: a decaying parameter, a costly reset with downtime, and a sweep of the schedule rather than an assumed one.
+- `schedule-optimization-sweep`: a decaying parameter, a costly reset with downtime, and a sweep of the schedule rather than an assumed one. Settle from the prompt whether the first charge of the consumable is itself a cost, since it changes every schedule's total by one charge. One archived team's model counted it, so N replacements paid for N+1 charges. That is observed practice, not a confirmed rule.
 - `pitot-orifice-calibration`: baseline subtraction, density at the tube conditions, and the calibration factor as a slope. It matches ENGR 319's `calibration-as-slope` method.
 
 ## Checking a result

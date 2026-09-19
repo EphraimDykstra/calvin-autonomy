@@ -57,7 +57,13 @@ Lab 1's checklist asked for three sections and the report used three. It asked f
 - Tie every regime to its poles. The real part sets the decay, the imaginary part sets oscillation. An underdamped envelope is a picture of the real part.
 - The overdamped response is slower than the critically damped one, because one pole moves toward the origin. That is a result to explain, not a bug to fix.
 - Check a number against a closed form: the ratio of successive extrema, or the initial value in every case.
+- Choose the underdamped value below 0.5. The handout says that is what lets the damping show.
+- The handout also says to compare the behavior of different values in the underdamped and overdamped cases, while the plot needs only one value each. Make the comparison in the analysis with computed values for a second zeta in each regime, or ask the student whether more traces are wanted. The archived report compared a second underdamped value in one sentence and no second overdamped value. With no graded copy, whether that met the instructor's expectation is unknown.
 - MATLAB traps (complex branch past zeta = 1, `real()` over the whole expression) are in the shared MATLAB pack, section 3.
+
+**What the student brings back from the run.** Nothing here runs MATLAB, so ask for three things: y(0) for each zeta (every one must be 1, an identity of the handout's equation; the handout does not ask for it, but it is the quickest way to catch a sign-flipped overdamped curve), the figure exactly as the script draws it, and every number the analysis will quote. Do not put a number in the report that the run did not produce.
+
+**Checking a result.** `pack.json` carries two `magnitudes` for this lab, both derived from the handout's own equation and neither a course rule: y(0) divided by y0, and the ratio of successive extrema for an underdamped zeta below 0.5. An out-of-range value is a question to ask, not a verdict. The `note` says what it usually means.
 
 ### Supporting mathematics (Lab 1)
 
@@ -65,7 +71,7 @@ Partial fractions, quadratic roots in `-a ± bj` form, block reduction to one po
 
 ## 6. What this pack does not know
 
-- Anything after Week 2: Simulink, toolbox functions (`tf`, `step`, root locus, Bode), hardware rigs, and whatever report changes those labs bring.
+- Anything after Week 2: Simulink, toolbox functions (`tf`, `step`, root locus, Bode), hardware rigs, and whatever report changes those labs bring. A second pass over the archive found no handout, report, or code after Week 2, and the Week 3 file is still an empty outline. The Lab 2 handout lists textbook Section 2.9 (simulation with control design software) as reading and invites optional exploration of Simulink; neither is a requirement, and neither is evidence about the later labs.
 - The syllabus, the grading weights, and the AI-use policy.
 - The instructor's feedback on either report. There is no graded copy, so "matches the checklist" is the strongest claim available, not "scored well".
 

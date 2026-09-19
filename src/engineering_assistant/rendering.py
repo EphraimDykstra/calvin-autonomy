@@ -300,6 +300,7 @@ def render_text_docx(
         page_number.set(qn("w:start"), str(start))
         section._sectPr.append(page_number)
 
+    _refuse_unrendered_abstract(solution, report, title_page)
     if memo:
         for label, value in memo_header_rows(solution, metadata["display_name"]):
             line = document.add_paragraph()
@@ -415,6 +416,25 @@ def render_text_docx(
     _normalize_docx_package(output)
     return output
 
+def _refuse_unrendered_abstract(solution: dict, report: bool, title_page: bool) -> None:
+    """Refuse an abstract that this layout would drop on the floor.
+
+    Only a technical report with a title page carries one.  Any other document
+    type used to discard a supplied abstract in silence, which produced a
+    document that looked finished and was missing the section the course asked
+    for, with nothing anywhere saying so.
+    """
+    if not solution.get("abstract") or (report and title_page):
+        return
+    kind = solution.get("document_type") or "this document type"
+    reason = ("its title page is switched off" if report else
+              f"{kind!r} has no title page to carry one")
+    raise ValueError(
+        f"the solution has an abstract but {reason}. A title-page abstract needs "
+        'document_type "technical_report" with title_page on.'
+    )
+
+
 MEMO_FIELDS = (("to", "To"), ("from", "From"), ("cc", "CC"), ("date", "Date"), ("re", "Re"))
 
 
@@ -474,6 +494,7 @@ def render_text_pdf(solution:dict, output:Path, *, identity:dict | None = None, 
 
     title=str(solution.get('title','Engineering Assignment'))
     title_page=bool(rendering.get('title_page',True))
+    _refuse_unrendered_abstract(solution,report,title_page)
     if memo:
         from reportlab.platypus.flowables import HRFlowable
         # Values sit in their own column, as a memo's do, rather than starting

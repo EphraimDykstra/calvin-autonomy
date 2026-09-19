@@ -193,10 +193,18 @@ PROFILE_ABSENT='reviewed course profile is missing'
 PIPELINE_NOT_RENDERED=("this course's deliverable is produced outside this pipeline, "
                        "so nothing here rendered or checked the file that gets submitted")
 
-def _pipeline_gap(course:str)->bool:
+FORMAT_UNKNOWN=("this course's format is not known to any shipped pack, so a course profile for it "
+                "was written rather than derived, and nothing here can certify the format")
+RESULTS_NOT_CHECKED=("this course's numbers come from a tool the student runs, so the plan must require "
+                     "calculations and the values they bring back must be recorded and checked")
+
+def _course_pack(course:str):
     from .curriculum import CurriculumError, pack_for_course
-    try: entry=pack_for_course(course)
-    except CurriculumError: return False
+    try: return pack_for_course(course)
+    except CurriculumError: return None
+
+def _pipeline_gap(course:str)->bool:
+    entry=_course_pack(course)
     if entry is None: return False
     support=(entry['pack'].get('format') or {}).get('pipeline_support')
     return isinstance(support,dict) and support.get('render') is False
@@ -266,6 +274,21 @@ def readiness(state:dict, root:Path | None=None)->dict:
                 blockers.append('one or more deliverable artifacts were rendered from a stale solution')
     if _pipeline_gap(state.get('course','')):
         blockers.append(PIPELINE_NOT_RENDERED); course_gaps.add(PIPELINE_NOT_RENDERED)
+    entry=_course_pack(state.get('course',''))
+    if entry is not None:
+        # A course whose format no pack knows cannot be certified: any profile
+        # for it was written rather than derived from course material, and
+        # nothing distinguishes one from the other after the fact.
+        if entry['pack']['coverage']['format']=='none': blockers.append(FORMAT_UNKNOWN)
+        # A pack declares pipeline_support exactly when part of the work happens
+        # outside this pipeline: EES, MATLAB, R, an FEA study, a spreadsheet.
+        # For those, a plan may not declare that no calculations are required;
+        # the values the student brings back are the whole result.
+        support=(entry['pack'].get('format') or {}).get('pipeline_support')
+        if isinstance(support,dict):
+            verification=state.get('plan',{}).get('verification')
+            if isinstance(verification,dict) and verification.get('calculations_required') is False:
+                blockers.append(RESULTS_NOT_CHECKED)
     if root is not None:
         root=Path(root)
         for message in _course_evidence_blockers(state,root):

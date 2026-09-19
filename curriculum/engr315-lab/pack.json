@@ -13,7 +13,7 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "Two weeks of a semester-long lab. Each of the first two labs has a written handout ending in a report checklist, and each has a completed report, so the report format is specified rather than guessed, but later labs (Simulink, hardware) may add requirements that are not here. The Week 3 folder holds only an empty outline and no handout. Methods cover MATLAB scripting and the closed-form second-order response; nothing on transfer-function toolbox work, Simulink, or physical-rig measurement. No syllabus was found. MATLAB conventions live in the shared MATLAB tool pack. The host cannot execute MATLAB, so results in a drafted report stay unverified until the student runs the m-file and returns its output."
+    "notes": "Two weeks of a semester-long lab. Each of the first two labs has a written handout ending in a report checklist, and each has a completed report, so the report format is specified rather than guessed, but later labs (Simulink, hardware) may add requirements that are not here. The Week 3 folder holds only an empty outline and no handout, and a second pass over the archive found no handout, report, or code after Week 2. Methods cover MATLAB scripting and the closed-form second-order response; nothing on transfer-function toolbox work, Simulink, or physical-rig measurement. No syllabus was found. MATLAB conventions live in the shared MATLAB tool pack. The host cannot execute MATLAB, so results in a drafted report stay unverified until the student runs the m-file and returns its output."
   },
   "course_policy": {
     "source": "none found (no syllabus in the archive)",
@@ -156,18 +156,21 @@
       "steps": [
         "Write the governing ODE from a force balance and name the parameters: M, b, k.",
         "Express the response through the natural frequency and damping ratio, both defined from M, b, k.",
-        "Pick one value in each regime the handout lists: undamped, underdamped, critically damped (just below 1 when the closed form divides by sqrt(1 - zeta^2)), overdamped.",
+        "Pick one value in each regime the handout lists: undamped, underdamped, critically damped (just below 1 when the closed form divides by sqrt(1 - zeta^2)), overdamped. Choose the underdamped value below 0.5, which the handout says is what lets the damping show.",
         "Compute all cases in one m-file (see the shared MATLAB pack, closed-form-parameter-sweep).",
+        "Have the student run it and bring back three things: y(0) for each zeta, which must be 1 in every regime (a check the handout does not require, but the only quick way to catch a sign-flipped overdamped curve); the figure exactly as the script draws it; and every number the analysis will quote.",
         "Tie each regime to its poles, the roots of s^2 + 2 zeta wn s + wn^2: the real part sets decay, the imaginary part sets oscillation.",
         "Check a number with a closed form against the plot, such as the ratio of successive extrema in the underdamped case.",
+        "For the underdamped and overdamped regimes the handout says to compare the behavior of different values, while the plot needs only one value each. Make that comparison in the analysis with computed values for a second zeta in each regime, or ask the student whether more traces are wanted.",
         "Explain why the overdamped response is slower than the critically damped one rather than treating it as an error."
       ],
       "pitfalls": [
         "The complex branch of acos past zeta = 1, which can flip the sign of the overdamped curve.",
         "Describing the plots without the physics: the checklist asks how M, b, k and zeta produce the behavior.",
+        "Reading 'choose one number' as the whole requirement. The handout also says to compare different values within the underdamped and overdamped cases. The archived report compared a second underdamped value in one sentence and no second overdamped value; with no graded copy, whether that met the instructor's expectation is unknown.",
         "Envelope overlays drawn in a line style another curve already uses, which collide in grayscale."
       ],
-      "basis": "Lab 2 guidelines (experiments and content checklist); the Week 2 submitted report and m-file; the Week 2 output-check notes."
+      "basis": "Lab 2 guidelines (experiments and content checklist); the Week 2 submitted report and m-file; the Week 2 output-check notes. The 'compare different values' requirement and the 0.5 bound are the handout's own words, the comparison shortfall is observed in one submission, and the bring-back list is this pack's recommendation."
     },
     {
       "id": "math-review-for-controls",
@@ -212,6 +215,28 @@
         "lab-report-shape"
       ],
       "basis": "Lab 1 handout and Lab 2 guidelines report checklists; the Week 1 and Week 2 submitted reports."
+    }
+  ],
+  "magnitudes": [
+    {
+      "quantity": "initial response ratio y(0) / y0, any damping ratio",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.99,
+        1.01
+      ],
+      "basis": "Handout: an identity of the Lab 2 response equation, not a course convention. With theta = cos^-1(zeta), sin(theta) equals sqrt(1 - zeta^2), so the response starts at y0 in every regime, and the handout sets y0 = 1.",
+      "note": "The quantity is each curve's first sample divided by y0, so it carries no unit; a raw displacement in mm would not be checked against this range. Exactly -1: that curve came out sign-flipped, because the acos branch used for zeta above 1 disagrees with the sign of sqrt(1 - zeta^2). NaN or Inf: zeta was set to exactly 1. A complex result, or MATLAB's warning about ignored imaginary parts: real() does not cover the whole expression. Any other value: the formula was typed differently from the handout's (theta, the sqrt term, or the exponential)."
+    },
+    {
+      "quantity": "ratio of successive extrema, underdamped response, later magnitude over earlier",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.16,
+        1.0
+      ],
+      "basis": "Handout: the closed form exp(-pi zeta / sqrt(1 - zeta^2)) follows from the handout's response equation, and the range is that value over the handout's advice to choose zeta below 0.5 so the damping shows (0.5 gives 0.163, zeta near 0 gives 1).",
+      "note": "Above 1: the ratio was taken earlier over later. Below 0.16 is not wrong if zeta was chosen above 0.5: check zeta before questioning the number. About the square of the closed-form value: the two peaks compared were a full period apart, which is a different quantity than successive extrema. Not a course rule; the closed form is the check."
     }
   ]
 }

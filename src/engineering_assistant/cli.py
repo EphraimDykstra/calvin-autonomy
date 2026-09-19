@@ -9,7 +9,7 @@ from .identity import run_identity
 from .memory import forget_memory,forget_observations,list_memory,list_observations,record_observation,set_memory
 from .runtime import *
 from .artifact_rendering import render_declared_artifacts
-from .verification import verify_solution
+from .verification import build_verification_report,verify_solution
 from .course_profile import course_coverage,course_onboarding_status,load_course_profile,set_course_profile
 from .evidence import review_evidence
 from .evaluation import evaluate_manifest
@@ -88,7 +88,21 @@ def main(argv=None):
    record_style_basis(ws,args.run_id,style_basis)
   elif args.cmd=='verify':
    st=load_run(ws,args.run_id); out=record_checks(ws,args.run_id,verify_solution(st.get('solution',{})))
-  elif args.cmd=='verify-report': out=record_verification_report(ws,args.run_id,_json_input(args.report))
+  elif args.cmd=='verify-report':
+   document=_json_input(args.report)
+   if 'bindings' not in document:
+    # The bindings are canonical digests of run state that no command prints,
+    # so a verifier cannot write them. It supplies only its findings, which is
+    # all it can know, and they are bound to the run here. Nothing is loosened:
+    # the report is still refused if any finding failed, if anything is
+    # unresolved, or if the run moves on afterwards.
+    findings=document.get('findings') if isinstance(document.get('findings'),dict) else document
+    document=build_verification_report(load_run(ws,args.run_id),
+     requirement_findings=findings.get('requirements',[]),method_checks=findings.get('method',[]),
+     numerical_checks=findings.get('numerical',[]),format_checks=findings.get('format',[]),
+     identity_checks=findings.get('identity',[]),
+     unresolved=document.get('unresolved',findings.get('unresolved',[])))
+   out=record_verification_report(ws,args.run_id,document)
   elif args.cmd=='inspect': out=inspect_artifact(ws,args.run_id,args.artifact,_json_input(args.report))
   elif args.cmd=='status': out=status_run(ws,args.run_id)
   elif args.cmd=='profile-set': out=set_course_profile(ws,args.course,_json_input(args.profile))

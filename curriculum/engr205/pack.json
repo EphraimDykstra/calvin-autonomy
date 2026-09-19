@@ -12,7 +12,7 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "No syllabus survives. The lab report sheets cite 'Lab Manual appendices' for how to label figures and tables, and those appendices were not kept, so the labeling rules here come from what the report sheets themselves ask for. Each lab deliverable shape rests on a single instance. The report sheet answered in place with a separate workbook (polymers, concrete 2) has two handouts but only one completed sheet. The free-form tensile-test write-up (metals) has no surviving prompt. The recorded slide presentation (societal issues) has one handout with a topic rubric and one completed deck. Concrete 1, the weekly paper homework, and the ZyBook activities left nothing readable. The test summaries are the student's own study notes, not instructor material, and are not used."
+    "notes": "No syllabus survives. The lab report sheets cite 'Lab Manual appendices' for how to label figures and tables, and those appendices were not kept, so the labeling rules here come from what the report sheets themselves ask for. Each lab deliverable shape rests on a single instance. The report sheet answered in place with a separate workbook (polymers, concrete 2) has two handouts but only one completed sheet. The free-form tensile-test write-up (metals) has no surviving prompt. The recorded slide presentation (societal issues) has one handout with a topic rubric and one completed deck. Concrete 1, the weekly paper homework, and the ZyBook activities left nothing readable. A second pass added the instructor's lecture slides for chapters 6 to 8 and 12 to 18 (read through their text layer only, so fill-in blanks, figures, and worked solutions are lost), an instructor equation sheet, and a second copy of the concrete sheet. It found no syllabus, test paper, answer key, quiz, or grading sheet, so no coverage level was raised, and exam_profile records only what the schedule, the equation sheet, and three instructor remarks show. The test summaries and the Test 2 review are pasted textbook chapter summaries and learning objectives, and the student's cheat sheet is an image with no text; none is instructor material and none is used. The lecture slides mention a graded paper marked out of 50, with a second paper required only below 45, that has no handout in the archive and is not covered."
   },
   "course_policy": {
     "source": "none found (no syllabus in the archive)",
@@ -73,7 +73,7 @@
         "a legend whenever the chart has more than one series",
         "histograms and scatter plots as separate numbered figures when the hand-in list names them separately"
       ],
-      "basis": "The number-plus-title rule is inferred from a quiz item on the concrete sheet; the lab-manual appendix that states the rule outright was not retained. The legend rule is general practice: the sheet asks whether every graph needs a legend, and no answer survives.",
+      "basis": "The number-plus-title rule is inferred from a quiz item on the concrete sheet; the lab-manual appendix that states the rule outright was not retained. The legend rule is general practice: the sheet asks whether every graph needs a legend, and no answer survives. The polymers sheet also tells students to label its plot using the labeling methods from the concrete 2 lab, so labeling is one course-wide convention and not a rule of a single lab.",
       "source": "report sheet + inferred"
     },
     "tables": {
@@ -91,6 +91,14 @@
       "unit_system": "US customary in the tensile and concrete labs (lbf, in, psi); state the units with every value",
       "significant_digits": "report derived properties to 3 significant figures unless the handout says otherwise; the completed sheets show raw spreadsheet precision, which is not a model",
       "source": "handouts + inferred"
+    },
+    "terminology": {
+      "rules": [
+        "In this class the anode is the electrode where oxidation happens, which is where metal is lost to corrosion. The lecture states this as the class convention because the terms confuse students.",
+        "Yield strength, tensile strength, and fracture strength are three different stresses. Yield is read where the 0.002 offset line meets the curve, tensile strength is the maximum on the engineering curve, and fracture strength is the stress at the end of the curve.",
+        "Percent elongation and percent reduction in area are quoted as positive percentages."
+      ],
+      "source": "instructor lecture slides for chapters 6 and 17 (a vocabulary table and a stated class convention)"
     },
     "tooling": {
       "calculation": "Excel for all data reduction, charts, and statistics",
@@ -118,17 +126,20 @@
         "Modulus of elasticity: the slope of a line fitted over the clearly linear initial region. State which points were used.",
         "Yield strength by the 0.2% offset: draw a line with the elastic slope shifted by a strain of 0.002 and read the stress where it crosses the curve.",
         "Tensile strength: the maximum engineering stress.",
-        "Ductility: percent elongation = (final length - original length) / original length x 100, and percent reduction in area from the before and after areas when they were measured.",
+        "Ductility: percent elongation = (final length - original length) / original length x 100, with the final length taken on the broken specimen after the elastic strain has recovered, and percent reduction in area from the before and after areas when they were measured. Read from the curve, that is the strain at fracture minus the elastic strain, not the whole strain at fracture.",
         "Resilience: the area under the elastic portion (about yield stress squared over twice the modulus). Toughness: the area under the whole curve to fracture, by the trapezoid rule over every data row.",
         "Compare each property with a handbook or textbook value for the same material and condition, cite where it came from, and explain any difference."
       ],
       "pitfalls": [
         "Reporting the peak force in lbf as the tensile strength.",
+        "Calling the peak stress the fracture strength, or the reverse. The instructor's vocabulary separates them: tensile strength is the maximum on the curve, fracture strength is the stress at the end of it.",
+        "Taking percent elongation as the whole strain at fracture on the curve, which includes elastic strain that springs back after the break. The overstatement is small for a ductile metal and large for a brittle one.",
         "Resilience and toughness formulas covering the same row range. Toughness has to run to the fracture row. When the two come out equal, the range is wrong.",
         "A modulus well below the handbook value, because crosshead displacement includes machine and grip compliance. Say so rather than adjusting the data.",
         "Comparing against a reference value for a different alloy, temper, or cold-work state, or leaving the reference column blank for one of the two materials.",
         "Formula references hard-coded to one sample's rows and then copied to the other sample's table without being updated."
-      ]
+      ],
+      "basis": "instructor lecture slides for chapter 6 (vocabulary table and the ductility slide), the metals and polymers handouts, and the completed write-up and sheet, which contain the errors listed above"
     },
     {
       "id": "polymer-stress-relaxation",
@@ -154,7 +165,7 @@
         "Compressive strength = fracture force / (pi x diameter^2 / 4). Confirm the cylinder diameter for every data set before computing.",
         "Tabulate the count, minimum, maximum, mean, and standard deviation for each group the sheet asks about (7-day, 28-day, with and without entrained air).",
         "Plot what the hand-in list names: a bar chart of 7-day against 28-day strength, histograms of the historical strengths (with and without air, as separate figures), and scatter plots of strength against water/cement ratio and against percent air.",
-        "Judge acceptance against the standard the course links on Moodle, which was not retained. ACI 318 is the usual basis (a running average of three consecutive tests and a floor on any single test), but use the course's document when the student has it.",
+        "Judge acceptance against the standard the course links on Moodle, which was not retained. ACI 318 is the usual basis (a running average of three consecutive tests and a floor on any single test), but use the course's document when the student has it. For the group's own three cylinders the concrete sheet itself defines acceptable as every cylinder above the required strength.",
         "Compare each trend with the expected direction (strength falls as water/cement ratio rises and as air content rises), and explain any scatter from mix or testing differences."
       ],
       "pitfalls": [
@@ -162,6 +173,23 @@
         "Air content entered as a fraction in some rows and as a percent in others. Check the column before plotting it.",
         "Calling a mix acceptable from its mean alone without checking the individual-test criterion."
       ]
+    },
+    {
+      "id": "working-stress-sizing",
+      "title": "Working stress and a member sized with a safety factor",
+      "when": "Homework and test problems that size a bar, rod, or member so it does not yield under a given load.",
+      "steps": [
+        "Take the yield strength as the limit and the safety factor N the problem gives. Without one, the lecture says N is often between 1.2 and 4.",
+        "Working stress = yield strength / N. It is the largest stress the design may carry, so it is always below the yield strength.",
+        "Required area = load / working stress, then get the dimension from the area (for a round bar, d = sqrt(4 A / pi)).",
+        "Keep units consistent: a load in N over a stress in MPa gives an area in mm^2. State the answer with its unit."
+      ],
+      "pitfalls": [
+        "Multiplying by N instead of dividing, which gives a working stress above yield and a member that is too small.",
+        "Using the tensile strength where the problem designs against yielding.",
+        "Rounding a minimum diameter down."
+      ],
+      "basis": "the chapter 6 lecture slide on design and safety factors with one worked rod-sizing example, and the working-stress equation on the instructor's equation sheet"
     }
   ],
   "assignment_families": [
@@ -208,24 +236,54 @@
       "stages": ["read the assigned textbook chapter and complete its activities", "claim a material from the approved list", "research it against the handout's topic list", "record a voice-over slide presentation"],
       "deliverables": ["a recorded presentation of about 6-10 slides with the presenter's voice, uploaded to Moodle"],
       "what_good_looks_like": [
-        "Every topic on the handout's list is covered, because the list is also the grading rubric: what the material is and its molecular structure with a diagram, the full materials cycle through end of life, its purpose, its costs and who bears them, and a Christian-perspective evaluation using the design norms.",
+        "Every topic on the handout's list is covered, because the list is also the grading rubric: what the material is with a picture of it and who invented or first made it, its molecular structure with a diagram, the full materials cycle through end of life (how long it lasts, how it is disposed of, whether it can be reused or recycled, and who is affected, including workers and non-human creation), its purpose and whether it can be abused, its costs and who bears them, and a Christian-perspective evaluation using the design norms that also weighs alternatives.",
         "Slides use images and short bullets, not paragraphs.",
         "Sources appear on each slide or on a closing references slide, and they are judged for quality (the handout names the CRAAP test).",
-        "The narration shows command of the material rather than reading the slides."
+        "The narration shows command of the material rather than reading the slides.",
+        "It is uploaded on time: the 2024 handout is worth 40 points, is individual, and says late uploads will not be accepted."
       ],
       "exemplars": ["societal-issues-presentation-shape"],
-      "basis": "one handout with an explicit topic rubric and one completed slide deck"
+      "basis": "one handout with an explicit topic rubric, points, and deadline terms, and one completed slide deck"
     },
     {
       "id": "homework-and-zybook",
       "title": "Weekly paper homework and ZyBook activities",
       "stages": ["ZyBook reading activities due by noon on class days", "paper problem sets handed in at the start of class"],
       "deliverables": ["handwritten problem sets", "online ZyBook completions"],
-      "what_good_looks_like": [],
+      "what_good_looks_like": [
+        "Before solving, list every property value the problem gives or the graph shows, with its number and units, and mark the values on the graph. The chapter 6 lecture example says this helps with partial credit."
+      ],
       "exemplars": [],
-      "basis": "Only the course schedule mentions these. No problem set, prompt, or solution survives, so how solutions should be presented is not covered."
+      "basis": "The course schedule mentions these. No problem set, prompt, or solution survives, so how solutions should be presented is mostly not covered. The one convention here is an instructor remark in a lecture worked example, not a homework specification."
     }
   ],
+  "exam_profile": {
+    "status": "thin: test placement and chapter coverage from the schedule, one equation sheet, and three instructor remarks (two lecture slides and the concrete sheet). Nothing about the questions themselves is documented.",
+    "basis": "the instructor's course schedule, one instructor equation sheet, the chapter 6 and chapter 18 lecture slides, and the concrete 2 report sheet. No test paper, answer key, quiz, or grading sheet survives.",
+    "assessments": [
+      {"id": "test-1", "placement": "week 4 of 15", "chapters": "1 to 5 and the concrete 1 lab", "topics": ["atomic structure and bonding", "crystalline solids", "imperfections", "diffusion", "concrete"], "source": "course schedule"},
+      {"id": "test-2", "placement": "week 10", "chapters": "6 to 8 and 14 to 15", "topics": ["mechanical properties of metals", "dislocations and strengthening", "failure, fatigue, and fracture", "polymer structure", "polymer properties"], "source": "course schedule"},
+      {"id": "test-3", "placement": "week 14", "chapters": "12, 16 to 18, and 22", "topics": ["ceramics", "composites", "corrosion", "electrical properties and semiconductors", "societal and environmental issues"], "source": "course schedule"},
+      {"id": "final", "placement": "finals week, three section times", "chapters": "not stated", "topics": [], "source": "course schedule", "note": "The equation sheet below spans chapters 2 to 18, which suggests a cumulative final, but no document says so."}
+    ],
+    "quizzes": "The schedule lists three in-class quizzes marked tentative (chapters 1 to 4, 6 to 7, and 16, 17, and 22) and an online quiz on the concrete lab. A lecture slide numbers one of them Quiz 4. Their format is not documented.",
+    "aids_provided": {
+      "equation_sheet": "One four-page sheet survives. Every page is headed for Test 2, but its equations run from chapter 2 through chapter 18 and its file name says Final Exam, so it is most likely the final's sheet with a header carried over from Test 2. It is equations only, with no words, grouped by chapter and keyed to the textbook's equation numbers. It adds an SI prefix table, a small table of constants and conversions (Avogadro's number, electron charge, Boltzmann's constant, the Faraday constant, the gas constant, and the kelvin conversion), the coordination number and radius ratio table, and a table of ionic radii.",
+      "not_documented": "Whether Tests 1 to 3 had sheets of their own, and whether a student-made sheet was allowed."
+    },
+    "question_shape_seen": [
+      {"type": "select one, select all that apply, and true or false", "source": "the concrete 2 preparation questions, which the sheet itself says would make great quiz or test questions"},
+      {"type": "explain why in a sentence or two", "source": "the same sheet pairs its choice items with short explanations"},
+      {"type": "worked calculation with the given values listed and marked on a graph", "source": "the chapter 6 lecture example, which says listing values with units helps with partial credit"}
+    ],
+    "instructor_remarks": [
+      "Chapter 18 slide: focus on the concepts from class and the equations used in homework.",
+      "Chapter 6 slide: write down every property value you can find, with numbers and units, because that helps with partial credit.",
+      "Concrete 2 sheet: its preparation questions would make great quiz or test questions."
+    ],
+    "practice_generation_note": "Inference, not a documented rule: because the equations are handed out, a practice question should supply an equation sheet of this kind and test choosing an equation, applying it with units, and interpreting the result, not recalling a formula or a constant. Balance topics by the chapter lists above. Do not copy any real question.",
+    "not_documented": ["number of questions", "point weights", "time limit", "calculator policy", "whether tests are open-note", "typical difficulty", "the final's chapter coverage"]
+  },
   "magnitudes": [
     {
       "quantity": "held strain in the polymer stress-relaxation test (engineering strain, as a fraction)",
@@ -326,6 +384,16 @@
       ],
       "basis": "Physical plausibility, not a course rule: workable structural mixes fall roughly between 0.35 and 0.7 by mass.",
       "note": "Above 1 or near 30-80: entered as a percent, or the ratio inverted to cement/water."
+    },
+    {
+      "quantity": "design safety factor N applied to yield strength",
+      "unit": "dimensionless",
+      "typical_range": [
+        1,
+        6
+      ],
+      "basis": "Handout: the chapter 6 lecture slide says N is often between 1.2 and 4 for structural design. The bounds of 1 and 6 are a plausibility margin around that range, not a course rule.",
+      "note": "Below 1: the working stress would exceed the yield strength. Working stress is yield strength divided by N, so a working stress above yield means N was multiplied. Above about 6 is rare in a homework problem; check whether N was applied twice or the load was taken in the wrong unit."
     }
   ]
 }

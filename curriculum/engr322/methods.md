@@ -6,6 +6,8 @@ The strongest evidence here is the **instructor's own model executive-summary me
 
 The rest is thinner. The module homework prompts are typed and readable, but most answers are handwritten on the printed prompt, so this pack cannot say how a worked solution should be laid out. There is no syllabus, no rubric beyond one project handout, and no graded returns.
 
+**Thin, on purpose:** the student's own module-numbered calculator workbook (a student tool, not an instructor document) has ten topic sheets (bolts, screw jacks, welds, fatigue, shafts, bearings, drive trains, hydraulics, springs, brakes and clutches), and this pack gives steps for only two of those topics (bolts and welds). Do not fill the gap from a textbook and present it as this instructor's method. A file that looks like a 2025 final exam sits in the student's archive, but the student confirmed he or an AI tool generated it for practice, so it is not instructor material. The question is closed: nothing here is derived from it, and nothing ever should be.
+
 The same instructor wrote the ENGR 305 FEA report template, so the hand-versus-FEA rule shared by the two packs comes from one source, not two.
 
 ## "Memo" means something different here

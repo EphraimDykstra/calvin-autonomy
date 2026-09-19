@@ -12,7 +12,7 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "The FEA report is well covered. The instructor wrote a model report with placeholder values that sets its sections, its agreement target and its length. The lab-exercise prompts survive, and one completed report with its paired workbook survives. Everything else is thin. The test-correction memo has two instances and no prompt; one of the two is readable. The cantilever beam lab survives as a workbook plus a report that is almost all images. All 13 chapter problem sets are scanned handwriting with no text layer, so the homework format is not covered at all. There is no syllabus. Methods rest on the instructor's typed study guide, the FEA prompts and the student's test corrections."
+    "notes": "The FEA report is well covered. The instructor wrote a model report with placeholder values that sets its sections, its agreement target and its length. The lab-exercise prompts survive, and one completed report with its paired workbook survives. Everything else is thin. The test-correction memo has two instances and no prompt; one of the two is readable. The cantilever beam lab survives as a workbook plus a report that is almost all images. All 13 chapter problem sets are scanned handwriting with no text layer, so the homework format is not covered at all. There is no syllabus. Methods rest on the instructor's typed study guide, the FEA prompts and the student's test corrections. A second pass through the OneDrive copies found no new instructor-written material, so no level is raised. Those copies include five SolidWorks study folders (the plate, the axial and torsional wedding cake, and a class copy), which are native results files: they show what the student ran (mesh, displacement, strain and stress exports, solver output), not what a deliverable must show. The submitted report carries one result plot per exercise and no mesh or boundary-condition plots. The report and its workbook, not the study folders, are the source of the pressure-vessel pitfall (a sharper way the hand and FEA numbers can disagree without either being wrong), and the cantilever workbook and report are the source of the additions to the cantilever lab. All of it is observed once in one student's work."
   },
   "course_policy": {
     "source": "none found",
@@ -114,7 +114,7 @@
       ],
       "agreement_target": "about 5 percent or less; a larger difference is acceptable only if it is explained",
       "length": "The instructor's model estimates roughly 3-15 pages of text and tables, and possibly double that with images.",
-      "figures": "Keep a figure only if the text relies on it, and give each one a single narrow job. Screenshots offered as proof of effort are cut. Describe simple setups in words, and picture only the loads or supports that words handle badly.",
+      "figures": "Keep a figure only if the text relies on it, and give each one a single narrow job. Screenshots offered as proof of effort are cut. Describe simple setups in words, and picture only the loads or supports that words handle badly. Observed once, not stated by the instructor: the student's plate figure marks, with a probe callout (node, position, value), the points its tabulated FEA values were read from, and every result plot carries a legend with units. A figure that backs a tabulated number is easier to trust when the reader can see where the number was read. The same student's study exported mesh, strain and displacement plots that the report leaves out, which fits the model's rule to cut images that only show effort.",
       "captions": "Figure N - description, below the figure; Table N - description, above the table.",
       "source": "instructor model report + lab exercise prompts + student report"
     },
@@ -142,13 +142,13 @@
       "steps": [
         "Solve by hand with the course equation for the loading case, and list the assumptions it makes.",
         "Build the FEA model to match those assumptions: the same geometry, material properties (E, G, Poisson's ratio), supports and load.",
-        "Compare the same quantity in the same units at the same location. For stepped shafts and 'wedding cake' bars, compare the total first, then each section if the totals disagree.",
+        "Compare the same quantity in the same units at the same location. Name the FEA result you read (a stress component, von Mises, or a resultant displacement) and pair it with the hand quantity of the same kind. For stepped shafts and 'wedding cake' bars, compare the total first, then each section if the totals disagree.",
         "Tabulate hand value, FEA value and percent difference, and define the sign of the difference once.",
         "Explain every difference over about 5 percent: coordinate system, a load or support that the model could not reproduce, mesh quality at a stress riser, or local effects near the load."
       ],
       "pitfalls": [
         "Comparing different quantities (an angle of twist against a linear displacement) and then trying to explain the resulting large 'error'.",
-        "Pressure vessels: the hand equations are in cylindrical coordinates and the FEA reports Cartesian components. Transform before comparing.",
+        "Pressure vessels: the hand equations are in cylindrical coordinates and the FEA reports Cartesian components. Transform before comparing, and compare a hoop stress with the FEA hoop component, not with a von Mises plot. In a plate in tension the two coincide, but in a pressure vessel they do not: at the bore of a thick tube loaded only by internal pressure, von Mises differs from the hoop stress even in a perfect model (roughly 7 percent for a wall as thick as a scuba tank's, less for a thinner wall), and the sign of the gap depends on the axial stress the model carries (the axial stress is about zero with no end load, and von Mises then runs above the hoop stress). A von Mises value read against a hand hoop stress can therefore look like a small, reassuring agreement that is two different quantities. Read the hoop component, or compute the hand von Mises from the principal stresses, and say which. Observed once, in one student's tube comparison, whose figure was a von Mises plot; the reported agreement is consistent with that mismatch.",
         "Trusting stresses right at the load application point or a sharp corner."
       ]
     },
@@ -239,9 +239,15 @@
       "stages": ["build and test a beam", "compare the measurements with hand calculation and FEA", "answer the handout's six guiding questions"],
       "deliverables": ["workbook with trials, averages, FEA comparison, chart and answers", "a report"],
       "artifacts": ["report", "workbook"],
-      "what_good_looks_like": [],
+      "what_good_looks_like": [
+        "Every one of the handout's six questions is answered: which material properties and beam dimensions to use, how to measure, how to build the setup, how to make it repeatable across beams, how well the hand calculation matches the FEA, and how well it matches the measurements.",
+        "The two 'how well' questions are answered with a percent difference and its likely cause. The one surviving answer to both says only that the match is 'pretty good', which is too thin to copy. The FEA report's habit (a number, then the cause of any gap) is the safer model, though the cantilever handout's own expectation is not known.",
+        "The hand model is tip deflection PL^3/(3EI) with I = bh^3/12. The surviving workbook backs the modulus out of each trial's measured deflection and averages the trials, then compares the FEA deflection with the measured average.",
+        "Beam thickness is measured for every trial. It enters I cubed, so a 3 percent thickness error becomes roughly a 9 percent error in the modulus backed out of the data.",
+        "The trials are screened before they are averaged. In the surviving workbook one of five deflection trials sits well above the other four and is averaged in without comment, which can change the reported agreement with the FEA severalfold. If a trial is dropped, say which and why."
+      ],
       "exemplars": [],
-      "basis": "one completed workbook and an image-only report. No handout survives beyond the six question headings. The report's format is not covered."
+      "basis": "one completed group workbook (trials, average, FEA deflection, percent error, chart, typed answers) and an image-only report made of screenshots of that workbook and of the FEA displacement plot. No handout text survives beyond the six question headings. Everything in the list above is observed once, in work that may be a draft, except the questions themselves, which appear to be copied from the handout. The report's format is not covered."
     },
     {
       "id": "test-correction-memo",
@@ -295,7 +301,7 @@
         31000000
       ],
       "basis": "Physical plausibility, not a course rule: about 10 x 10^6 psi for aluminum and 29-30 x 10^6 psi for steel. Handbook values.",
-      "note": "Off by powers of ten: the exponent in a table cell has the wrong sign or size. It is harmless only while no formula reads the cell, so check the order of magnitude of every input."
+      "note": "Off by powers of ten: the exponent in a table cell has the wrong sign or size. It is harmless only while no formula reads the cell, so check the order of magnitude of every input. This range is for metals. The cantilever lab uses a thin wooden strip whose modulus is roughly a tenth of steel's, so a low value there is not a slip and this range does not apply to it."
     },
     {
       "quantity": "Poisson's ratio of a metal (input)",

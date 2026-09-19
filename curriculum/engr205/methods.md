@@ -2,7 +2,7 @@
 
 ## What this pack can and cannot tell you
 
-The rules here come from lab handouts and report sheets, one completed report sheet, one free-form write-up, one presentation deck, the course schedule, and two lab workbooks. No syllabus survives. The report sheets refer students to "Lab Manual appendices" for how to label figures and tables, and those appendices are not in the archive. Every labeling rule below is therefore either something a report sheet asks for directly or an inference, and `pack.json` says which. There is no graded return anywhere.
+The rules here come from lab handouts and report sheets, one completed report sheet, one free-form write-up, one presentation deck, the course schedule, two lab workbooks, the instructor's lecture slides (chapters 6 to 8 and 12 to 18, read through their text only), and one instructor equation sheet. No syllabus survives. The report sheets refer students to "Lab Manual appendices" for how to label figures and tables, and those appendices are not in the archive. Every labeling rule below is therefore either something a report sheet asks for directly or an inference, and `pack.json` says which. There is no graded return anywhere.
 
 The completed work is not a model. The one completed sheet reports some values without units and some loads where strengths were asked for. The free-form write-up is informal and first person. Use them for structure only.
 
@@ -28,11 +28,12 @@ Students most often get this wrong. The workbook and the Word sheet are one subm
 
 ## Methods
 
-`pack.json` carries three methods with steps and pitfalls:
+`pack.json` carries four methods with steps and pitfalls:
 
 - `tensile-test-reduction`: engineering stress-strain, modulus from the slope, 0.2% offset yield, tensile strength, ductility, and resilience and toughness by the trapezoid rule.
 - `polymer-stress-relaxation`: relaxation modulus from a held-strain force decay.
 - `concrete-strength-statistics`: cylinder strength from fracture force, summary statistics, histograms, trend plots, and acceptance against a specified strength.
+- `working-stress-sizing`: working stress as yield strength over a safety factor, then the area and dimension a load needs. It comes from a lecture worked example, so it covers homework-style problems that no handout in the archive shows.
 
 The two errors seen in the archive's own workbooks are worth checking every time:
 
@@ -49,4 +50,8 @@ In a check-my-work session, compare the student's result against `magnitudes` in
 2. Build the workbook first. Then answer the sheet from its summary cells.
 3. Number and caption every figure and table, and put units on every axis and column.
 4. For the presentation, cover every rubric topic on the handout, cite sources, and remember that the student records the narration.
-5. Homework and ZyBook work are not covered. Say so if asked.
+5. Homework and ZyBook work are mostly not covered. The only instructor guidance is a lecture remark: list every given value with its units, and mark values on the graph, because that helps with partial credit. Say so if asked.
+
+## Exam shape
+
+The pack has a thin `exam_profile`. It records which chapters each of the three tests covers (from the schedule), what the one surviving equation sheet contains (equations grouped by chapter and keyed to the textbook's equation numbers, plus tables of constants, prefixes, coordination numbers, and ionic radii), and what the instructor said about worked problems. It records no question count, point weights, time limit, or calculator policy, because no document shows them, and its `not_documented` list says so. Use it to balance topics and to hand a practice question the same kind of equation sheet, never to claim how a real test was built. Do not copy or closely paraphrase any real question.
