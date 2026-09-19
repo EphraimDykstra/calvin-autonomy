@@ -49,6 +49,7 @@ DEFAULT_MAX_BYTES = 8000
 
 GUIDE = "guide"
 GUIDE_FILE = "methods.md"
+EXEMPLARS = "exemplars"
 TOOL_PREFIX = "tool:"
 BOOK_PREFIX = "book:"
 
@@ -115,6 +116,42 @@ def _guide_sections(directory: Path) -> dict[str, dict[str, str]]:
     return sections
 
 
+def _exemplar_texts(directory: Path, pack: dict[str, Any]) -> dict[str, str]:
+    """The text of every exemplar beside a pack, keyed by exemplar id.
+
+    A host is told never to open a file under the curriculum, so an exemplar
+    served by no address is one no careful host can read.  A course pack's
+    families name exemplars by id, and the file is ``exemplars/<id>.*``.  A
+    tool pack lists each exemplar with the file that holds it.
+    """
+    folder = directory / EXEMPLARS
+    texts: dict[str, str] = {}
+    listed = pack.get(EXEMPLARS)
+    if isinstance(listed, list):
+        for item in listed:
+            if not isinstance(item, dict) or not isinstance(item.get("id"), str):
+                continue
+            path = directory / str(item.get("file"))
+            # The pack chooses this path, so it is held inside the folder.
+            if path.parent != folder or path.is_symlink() or not path.is_file():
+                raise CurriculumError(
+                    f"{directory.name}: exemplar {item['id']!r} names {item.get('file')!r}, "
+                    f"which is not a file directly under {EXEMPLARS}/"
+                )
+            texts[item["id"]] = path.read_text(encoding="utf-8")
+        return texts
+    if not folder.is_dir():
+        return texts
+    for path in sorted(folder.iterdir()):
+        if not path.is_file() or path.is_symlink():
+            continue
+        if path.stem in texts:
+            # One id, two files: a host asking for it would get whichever sorted first.
+            raise CurriculumError(f"{directory.name}/{EXEMPLARS}: two files answer to the exemplar id {path.stem!r}")
+        texts[path.stem] = path.read_text(encoding="utf-8")
+    return texts
+
+
 def _load(ref: str, root: Path) -> dict[str, Any] | None:
     """Return the pack ``ref`` names, or None.  A malformed pack still raises."""
     if not isinstance(ref, str):
@@ -132,11 +169,13 @@ def _load(ref: str, root: Path) -> dict[str, Any] | None:
     path = directory / name / file_name
     if not path.is_file() or path.is_symlink():
         return None
+    pack = loader(path)
     return {
         "ref": ref,
         "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
-        "pack": loader(path),
+        "pack": pack,
         "guide": _guide_sections(path.parent),
+        "exemplars": _exemplar_texts(path.parent, pack),
     }
 
 
@@ -157,6 +196,12 @@ def _contents(entry: dict[str, Any]) -> dict[str, Any]:
             {"id": slug, "title": section["title"], "bytes": len(section["text"].encode("utf-8"))}
             for slug, section in entry["guide"].items()
         ]
+    # A tool pack lists its exemplars itself, above; a course pack's are files.
+    if entry["exemplars"] and EXEMPLARS not in entry["pack"]:
+        contents[EXEMPLARS] = [
+            {"id": exemplar_id, "bytes": len(text.encode("utf-8"))}
+            for exemplar_id, text in entry["exemplars"].items()
+        ]
     return contents
 
 
@@ -173,6 +218,11 @@ def _resolve(entry: dict[str, Any], address: str) -> tuple[bool, Any, Any]:
             return bool(entry["guide"]), {slug: s["text"] for slug, s in entry["guide"].items()}, None
         section = entry["guide"].get(segments[1]) if len(segments) == 2 else None
         return section is not None, section and section["text"], None
+    if segments[0] == EXEMPLARS and EXEMPLARS not in entry["pack"]:
+        if len(segments) == 1:
+            return bool(entry["exemplars"]), dict(entry["exemplars"]), None
+        text = entry["exemplars"].get(segments[1]) if len(segments) == 2 else None
+        return text is not None, text, None
     node: Any = entry["pack"]
     parent: Any = None
     for segment in segments:
@@ -231,12 +281,19 @@ def _result(entry: dict[str, Any], address: str) -> dict[str, Any]:
         # The coverage note is never re-read as a basis for one rule.
         if head == GUIDE:
             result["basis_note"] = "guide prose; the basis is on the rule nodes it describes"
+        elif head == EXEMPLARS:
+            result["basis_note"] = "an exemplar illustrates a shape and is not a rule; the rules it follows carry the basis"
         elif any(_basis(child, None, "") is not None for _, child in _children(node)):
             result["basis_note"] = "this node states no basis of its own; each child below carries its own"
         else:
             about = f"; {_DIMENSION_OF.get(head, head)} coverage is {level}" if level else ""
             result["basis_note"] = f"this pack states no basis for this node{about}"
     result["body"] = node
+    if head == EXEMPLARS and isinstance(node, dict) and node.get("id") in entry["exemplars"]:
+        # A tool pack's entry says what the exemplar shows; the file is the
+        # exemplar.  The host pays for the text, so the budget counts it.
+        result["text"] = entry["exemplars"][node["id"]]
+        result["bytes"] += len(result["text"].encode("utf-8"))
     return result
 
 

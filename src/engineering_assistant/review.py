@@ -23,7 +23,7 @@ import math
 from typing import Any
 
 from .calculations import _evaluate_dimensional
-from .units import UnitError, convert, describe, expression_dimension, parse_unit, same_dimension
+from .units import DIMENSIONLESS, UnitError, convert, describe, expression_dimension, parse_unit, same_dimension
 
 SCHEMA_VERSION = 1
 
@@ -85,6 +85,20 @@ def classify_discrepancy(actual: float, claimed: float, dimensionless: bool, tem
     return causes
 
 
+def _dimension_hint(unit: str, claimed: tuple, found: tuple) -> str:
+    """Say what is wrong with the answer's units the way a person would.
+
+    This string is read by the student in both output formats, so it says
+    "a plain number with no unit" rather than restating the unit and then
+    naming its dimension in SI base symbols.
+    """
+    if same_dimension(found, DIMENSIONLESS):
+        return f"The answer is written in {unit}, but this quantity is a plain number with no unit."
+    if same_dimension(claimed, DIMENSIONLESS):
+        return f"The answer is written as a plain number, but this quantity has units of {describe(found)}."
+    return f"The answer is written in {unit}, but this quantity has units of {describe(found)}."
+
+
 def _magnitude_check(value: float, unit: str, entry: dict[str, Any]) -> dict[str, Any]:
     low, high = entry["typical_range"]
     in_range_unit = convert(value, unit, entry["unit"])
@@ -137,13 +151,7 @@ def review_step(step: dict[str, Any], magnitudes: list[dict[str, Any]] | None = 
                     ),
                 }
             else:
-                finding = {
-                    "cause": "dimension",
-                    "hint": (
-                        f"The answer is in {answer['unit']} ({describe(claimed_dim)}), but this "
-                        f"quantity has dimension {describe(found)}."
-                    ),
-                }
+                finding = {"cause": "dimension", "hint": _dimension_hint(answer["unit"], claimed_dim, found)}
             result.update(claimed=claimed, unit=answer["unit"], likely_causes=[finding])
             return result
 

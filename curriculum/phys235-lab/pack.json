@@ -11,7 +11,7 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "Every convention here comes from completed submissions plus one surviving blank handout; there is no syllabus, rubric, instructor format statement, graded return, or identifiable lab instructor, so this pack records what was submitted, not what was required."
+    "notes": "Every convention here comes from completed submissions plus one surviving blank handout, so this pack records what was submitted rather than what was required. That framing is now known to be too strong: an instructor turn-in specification DOES survive, on the last page of the archived blank handout, and it has not been mined. Until it is, treat every format rule below as observed practice that an instructor statement may override. No syllabus, rubric, graded return, or identifiable lab instructor was found in the student's iCloud term archive or his university OneDrive as of September 2026."
   },
   "course_policy": {
     "source": "none found",
@@ -27,14 +27,16 @@
     "deliverable": "weekly lab write-up answering the handout's numbered items",
     "precedence": [
       "the specific lab handout",
-      "patterns observed in completed submissions (no instructor-stated rules exist in the archive)"
+      "patterns observed in completed submissions; an instructor turn-in specification survives on the archived blank handout's last page and has not been mined, so these patterns are not known to be the stated rule"
     ],
     "title_page": {
-      "required": false,
-      "cover_page": false,
-      "placement": "title block at the top of page 1",
+      "required": null,
+      "cover_page": null,
+      "contested": "These were both recorded as false. That was wrong. The archived blank handout's turn-in page states a requirement about where the identifying items go, so a cover sheet is not ruled out and may be required. Until that page is mined, this is unknown, not false.",
+      "placement": "observed: a title block at the top of page 1. Not known to be the required placement.",
       "fields": ["lab title", "experimenter names (partners)", "date"],
-      "source": "observed across nine submissions"
+      "source": "placement and fields observed across nine submissions; the instructor turn-in specification on the blank handout's last page is unmined",
+      "if_asked": "Take this from the student's own copy of the current handout, not from this pack."
     },
     "body": {
       "structure": "Numbered answers keyed to the handout's item numbers, in handout order. Items answered together are labeled with all their numbers.",

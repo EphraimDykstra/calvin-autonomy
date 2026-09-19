@@ -230,6 +230,67 @@ class BudgetTests(_Store):
         self.assertEqual(json.dumps(before, sort_keys=True), json.dumps(after, sort_keys=True))
 
 
+EXEMPLAR_TEXT = "# Exemplar: lab memo shape\n\nObjective, Methods, Results. Every number here is invented.\n"
+
+
+class ExemplarTests(_Store):
+    """An exemplar is part of the store.
+
+    The skill forbids opening a file under the curriculum, so an exemplar no
+    address reaches is an exemplar no careful host can ever read.  That shipped
+    once: packs named their exemplars and nothing could fetch them.
+    """
+
+    def _install_tool(self, tool_id, exemplars, files):
+        directory = self.root / "_shared" / tool_id
+        (directory / "exemplars").mkdir(parents=True)
+        for name, text in files.items():
+            (directory / "exemplars" / name).write_text(text, encoding="utf-8")
+        (directory / "pack.json").write_text(json.dumps({
+            "schema_version": SCHEMA_VERSION,
+            "pack": {"id": tool_id, "kind": "tool", "title": "Example Tool"},
+            "coverage": {"conventions": "high", "methods": "partial", "pitfalls": "high", "notes": "One handout."},
+            "conventions": {}, "methods": [], "exemplars": exemplars,
+        }), encoding="utf-8")
+
+    def test_a_course_exemplar_is_on_the_card_and_comes_back_whole(self):
+        self._install("engr000", _pack())
+        folder = self.root / "engr000" / "exemplars"
+        folder.mkdir()
+        (folder / "lab-memo-shape.md").write_text(EXEMPLAR_TEXT, encoding="utf-8")
+        card = show("engr000", root=self.root)
+        self.assertEqual(card["contents"]["exemplars"], [{"id": "lab-memo-shape", "bytes": len(EXEMPLAR_TEXT.encode())}])
+        (node,) = get("engr000", ["exemplars.lab-memo-shape"], root=self.root)["results"]
+        self.assertEqual(node["status"], "found")
+        self.assertEqual(node["body"], EXEMPLAR_TEXT)
+        miss = get("engr000", ["exemplars.final-report"], root=self.root)
+        self.assertEqual(miss["status"], "no_such_address")
+        self.assertIn("lab-memo-shape", json.dumps(miss["contents"]))
+
+    def test_a_pack_with_no_exemplars_offers_none(self):
+        self._install("engr000", _pack())
+        self.assertNotIn("exemplars", show("engr000", root=self.root)["contents"])
+
+    def test_a_tool_exemplar_keeps_its_entry_and_gains_the_file_text(self):
+        item = {"id": "loop", "file": "exemplars/loop.txt", "shows": "Gauge to absolute."}
+        self._install_tool("ees0", [item], {"loop.txt": "P_abs = P_gauge + P_atm\n"})
+        (node,) = get("tool:ees0", ["exemplars.loop"], root=self.root)["results"]
+        self.assertEqual(node["body"], item)
+        self.assertEqual(node["text"], "P_abs = P_gauge + P_atm\n")
+        # The host pays for the text, so the budget has to count it.
+        self.assertGreaterEqual(node["bytes"], len(node["text"]))
+
+    def test_two_files_answering_to_one_exemplar_id_are_refused(self):
+        self._install("engr000", _pack())
+        folder = self.root / "engr000" / "exemplars"
+        folder.mkdir()
+        (folder / "shape.md").write_text("one", encoding="utf-8")
+        (folder / "shape.txt").write_text("two", encoding="utf-8")
+        with self.assertRaises(CurriculumError) as raised:
+            show("engr000", root=self.root)
+        self.assertIn("shape", str(raised.exception))
+
+
 def _book(**overrides):
     book = {
         "schema_version": SCHEMA_VERSION,
@@ -399,8 +460,11 @@ class ShippedPackRoundTripTests(unittest.TestCase):
             self.assertEqual(card["status"], "found", pack_id)
             # Nothing on disk may be missing from the card, or a rule exists
             # that no host following the card could ever reach.
+            # Blocks served from a file beside the pack rather than from a key in
+            # it.  The disk-side test below checks those byte for byte.
+            from_files = {"guide", "exemplars"} - set(on_disk)
             self.assertEqual(
-                set(card["contents"]) - {"guide"},
+                set(card["contents"]) - from_files,
                 {k for k, v in on_disk.items() if v is not None}
                 - {"schema_version", "course", "book", "coverage", "pointer_policy", "addressing"},
                 pack_id,
@@ -414,6 +478,8 @@ class ShippedPackRoundTripTests(unittest.TestCase):
                     if head == "guide":
                         self.assertIn(out["results"][0]["body"], guide_text)
                         continue
+                    if head in from_files:
+                        continue
                     block = on_disk[head]
                     if not rest:
                         expected = block
@@ -426,6 +492,64 @@ class ShippedPackRoundTripTests(unittest.TestCase):
         # were checked when this was written; packs only grow, so far fewer
         # means the cards have stopped listing what is on disk.
         self.assertGreaterEqual(checked, 500)
+
+
+# Files that ship under the curriculum and are deliberately served by no
+# address.  Empty on purpose.  Add a path (relative to the curriculum) only
+# with a comment saying why no host will ever need to read it.
+UNREACHABLE_BY_DESIGN: frozenset = frozenset()
+
+
+class EveryShippedFileIsReachableTests(unittest.TestCase):
+    """The round trip above starts from the cards, so it cannot see a file that
+    was never put on one.  This starts from the disk.
+
+    The skill forbids a host from opening anything under the curriculum, so a
+    shipped file that no address serves has silently stopped existing.  That
+    happened to every exemplar.  A new kind of file added to a pack now fails
+    here until it is served or deliberately listed above.
+    """
+
+    def test_every_file_under_the_curriculum_is_served_whole_or_listed(self):
+        stores = [(p.parent.name, p) for p in sorted(DEFAULT_CURRICULUM.glob("*/pack.json"))
+                  if not p.parent.name.startswith("_")]
+        stores += [(f"tool:{p.parent.name}", p) for p in sorted(DEFAULT_CURRICULUM.glob("_shared/*/pack.json"))]
+        stores += [(f"book:{p.parent.name}", p) for p in sorted(DEFAULT_CURRICULUM.glob("_shared/textbooks/*/book.json"))]
+        served = set()
+        for ref, store_file in stores:
+            directory = store_file.parent
+            served.add(store_file)  # the store itself, covered node by node by the round trip
+            contents = show(ref)["contents"]
+
+            guide = directory / "methods.md"
+            if guide.is_file():
+                text = "".join(
+                    get(ref, [f"guide.{section['id']}"])["results"][0]["body"]
+                    for section in contents.get("guide", [])
+                )
+                # Every byte, not just every heading: prose before the first
+                # heading, or between two, is still prose a host was meant to see.
+                self.assertEqual(text, guide.read_text(encoding="utf-8"), f"{ref}: guide is not served whole")
+                served.add(guide)
+
+            for item in contents.get("exemplars", []):
+                node = get(ref, [f"exemplars.{item['id']}"])["results"][0]
+                self.assertEqual(node["status"], "found", f"{ref} exemplars.{item['id']}")
+                if isinstance(node["body"], dict):
+                    path, text = directory / node["body"]["file"], node["text"]
+                else:
+                    (path,) = [p for p in (directory / "exemplars").iterdir() if p.stem == item["id"]]
+                    text = node["body"]
+                self.assertEqual(text, path.read_text(encoding="utf-8"), f"{ref}: {path.name} is not served whole")
+                served.add(path)
+
+        shipped = {p for p in DEFAULT_CURRICULUM.rglob("*") if p.is_file() and p.name != ".DS_Store"}
+        listed = {DEFAULT_CURRICULUM / name for name in UNREACHABLE_BY_DESIGN}
+        unreachable = sorted(str(p.relative_to(DEFAULT_CURRICULUM)) for p in shipped - served - listed)
+        self.assertEqual(unreachable, [], "shipped under the curriculum, but no address serves them")
+        # The same guard as the round trip: 66 files were served when this was
+        # written, and a walk that found nothing would pass everything above.
+        self.assertGreaterEqual(len(served), 60)
 
 
 if __name__ == "__main__":

@@ -15,6 +15,7 @@ from .evidence import review_evidence
 from .evaluation import evaluate_manifest
 from .doctor import diagnose
 from .review import review_work
+from .student_output import format_review
 from .curriculum import DEFAULT_CURRICULUM,RENDERING_FIELDS,CurriculumError,coverage_report,load_packs,load_tool_packs,pack_for_course,pack_style
 from . import pack_query
 
@@ -54,7 +55,7 @@ def main(argv=None):
  s=k.add_parser('show',help='what one pack covers, how well, and the name of every node in it'); s.add_argument('ref',help='a pack id, or tool:<id> for a shared tool pack')
  s=k.add_parser('get',help='exact nodes by address, each with its basis'); s.add_argument('ref'); s.add_argument('addresses',nargs='+',help='for example format.figures or methods.<id>'); s.add_argument('--max-bytes',type=int,default=pack_query.DEFAULT_MAX_BYTES,help='the most this call may return; a node over it returns its children instead')
  k.add_parser('list',help='one line per installed pack')
- q=sub.add_parser('review',help='check a student\'s own finished work step by step, and name the likely slip'); q.add_argument('steps',type=Path); q.add_argument('--course',help='a pack id; its magnitude ranges are checked where a step names one')
+ q=sub.add_parser('review',help='check a student\'s own finished work step by step, and name the likely slip'); q.add_argument('steps',type=Path); q.add_argument('--course',help='a pack id; its magnitude ranges are checked where a step names one'); q.add_argument('--format',choices=('json','text'),default='json',help="'text' prints the student-facing block to show them as is; 'json' (the default) is the same result for you to read")
  q=sub.add_parser('adapt'); q.add_argument('current',type=Path); q.add_argument('prior',type=Path); q.add_argument('--out',type=Path); q.add_argument('--name'); q.add_argument('--student-id')
  q=sub.add_parser('init'); q.add_argument('--name'); q.add_argument('--student-id')
  q=sub.add_parser('memory'); m=q.add_subparsers(dest='memory_cmd',required=True)
@@ -169,6 +170,9 @@ def main(argv=None):
    elif args.memory_cmd=='forget-observations': out=forget_observations(ws,args.course)
  except (OSError,ValueError,KeyError,json.JSONDecodeError) as exc:
   p.error(str(exc))
+ # The text format is a rendering of the same object the JSON prints, never a
+ # second computation, so the two cannot disagree about a verdict or a number.
+ if getattr(args,'format',None)=='text': print(format_review(out)); return 0
  print(json.dumps(out,indent=2,default=str)); return 0
 
 if __name__=='__main__': raise SystemExit(main())
