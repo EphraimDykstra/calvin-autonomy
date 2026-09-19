@@ -83,6 +83,11 @@ def _check_policy(policy: Any, where: str) -> None:
         raise CurriculumError(
             f"{where}: course_policy confidence is {confidence!r}, expected one of {allowed}"
         )
+    # A policy with no source or summary is a claim with nothing behind it:
+    # "stated" and nothing more reads as a known rule that nobody can check.
+    for field in ("source", "summary"):
+        if not isinstance(policy.get(field), str) or not policy[field].strip():
+            raise CurriculumError(f"{where}: course_policy needs a {field}")
     # A stale or unknown policy must not carry terms.  Archived syllabus text
     # read as current is the failure this separation exists to prevent.
     if confidence in {"stale", "unknown"}:

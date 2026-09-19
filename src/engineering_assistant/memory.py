@@ -84,9 +84,16 @@ OBSERVATION_CAUSES = frozenset({
     "temperature scale", "dimension", "method", "arithmetic", "reading",
 })
 MAX_OBSERVATIONS = 50
+# No list of words can catch every way of judging a person, so this is a
+# backstop, not the guard.  The guard is the closed cause vocabulary and a
+# topic that names the work ("strain units, lab 3").  Widened after an
+# independent test found "has difficulty with unit conversions" slipped past.
 _TRAIT_WORDS = (
     "ability", "iq", "weak", "bad at", "poor", "struggle", "smart", "stupid",
     "slow", "lazy", "careless", "sloppy", "always", "never", "talent",
+    "difficulty", "trouble", "tends", "tendency", "often", "usually", "keeps",
+    "habit", "confused", "confuses", "understand", "can't", "cannot", "unable",
+    "problem with", "bad with",
 )
 
 

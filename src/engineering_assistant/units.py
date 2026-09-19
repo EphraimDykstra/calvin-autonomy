@@ -243,6 +243,15 @@ def describe(dimension: tuple) -> str:
 def convert(value: float, source: str, target: str) -> float:
     """Convert ``value`` between two units of the same dimension."""
     a, b = parse_unit(source), parse_unit(target)
+    # A difference has no absolute value, so it cannot become a reading on an
+    # offset scale, nor a reading become a difference.  Converting 10 deltaF
+    # to degF would return a plausible absolute temperature that means nothing.
+    deltas, affine = {"deltaC", "deltaF"}, (a.offset is not None, b.offset is not None)
+    if (a.text in deltas and affine[1]) or (b.text in deltas and affine[0]):
+        raise UnitError(
+            f"Cannot convert {source} to {target}: one is a temperature difference and the "
+            "other a reading on an offset scale. Use deltaC, deltaF or K for a difference."
+        )
     if not same_dimension(a.dimension, b.dimension):
         raise UnitError(
             f"Cannot convert {source} ({describe(a.dimension)}) "

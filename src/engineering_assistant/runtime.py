@@ -184,6 +184,22 @@ def _inspection_status(root:Path,artifact)->dict:
     return {'artifact':path,'status':status,'findings':findings}
 
 PROFILE_ABSENT='reviewed course profile is missing'
+# Some courses submit something this pipeline cannot produce: a Quarto notebook
+# the student renders, a MATLAB script they run, a bare Python file.  Their pack
+# says so with pipeline_support.render false.  Such a run can never be ready,
+# whatever else is in order, because the file that gets submitted was not
+# rendered or checked here.  Nothing stopped a host rendering a substitute PDF,
+# inspecting that, and reporting ready for code that had never been run.
+PIPELINE_NOT_RENDERED=("this course's deliverable is produced outside this pipeline, "
+                       "so nothing here rendered or checked the file that gets submitted")
+
+def _pipeline_gap(course:str)->bool:
+    from .curriculum import CurriculumError, pack_for_course
+    try: entry=pack_for_course(course)
+    except CurriculumError: return False
+    if entry is None: return False
+    support=(entry['pack'].get('format') or {}).get('pipeline_support')
+    return isinstance(support,dict) and support.get('render') is False
 
 def readiness(state:dict, root:Path | None=None)->dict:
     blockers=[]
@@ -248,6 +264,8 @@ def readiness(state:dict, root:Path | None=None)->dict:
         for artifact in state.get('artifacts',[]):
             if isinstance(artifact,dict) and artifact.get('source_solution_sha256')!=solution_hash:
                 blockers.append('one or more deliverable artifacts were rendered from a stale solution')
+    if _pipeline_gap(state.get('course','')):
+        blockers.append(PIPELINE_NOT_RENDERED); course_gaps.add(PIPELINE_NOT_RENDERED)
     if root is not None:
         root=Path(root)
         for message in _course_evidence_blockers(state,root):
@@ -336,6 +354,9 @@ def _provisional(state:dict,blockers:list[str],course_gaps:set[str])->dict:
     except CurriculumError: return none
     if entry is None or entry['pack']['coverage']['format']=='none': return none
     _,basis=pack_style(entry)
+    support=(entry['pack'].get('format') or {}).get('pipeline_support')
+    if isinstance(support,dict) and support.get('render') is False:
+        basis=dict(basis,deliverable_produced_outside_pipeline=True,pipeline_note=support.get('note'))
     return {'provisional':True,'provisional_reasons':list(blockers),'provisional_basis':basis}
 
 def record_style_basis(workspace:Path,run_id:str,basis:dict)->dict:

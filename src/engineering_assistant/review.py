@@ -56,10 +56,16 @@ def classify_discrepancy(actual: float, claimed: float, dimensionless: bool, tem
     magnitude = math.log10(abs(ratio))
     for power, what in ((3, "a thousand"), (6, "a million"), (9, "a billion")):
         if _close(abs(magnitude), power, 0.01):
-            causes.append({
-                "cause": "unit prefix",
-                "hint": f"The answer is off by a factor of {what}. That is usually a unit prefix: g for kg, kPa for Pa, mm for m.",
-            })
+            # A dimensionless answer has no unit of its own, but it is usually a
+            # ratio of quantities that do: a strain from a length change in mm
+            # over a length in m comes out a thousand times off.
+            hint = (
+                f"The ratio is off by a factor of {what}. One of the quantities in it was probably "
+                "used in the wrong unit, such as millimetres divided by metres."
+                if dimensionless else
+                f"The answer is off by a factor of {what}. That is usually a unit prefix: g for kg, kPa for Pa, mm for m."
+            )
+            causes.append({"cause": "unit prefix", "hint": hint})
             break
     if _close(abs(ratio), 100.0, tol) or _close(abs(ratio), 0.01, tol):
         causes.append({
@@ -148,7 +154,10 @@ def review_step(step: dict[str, Any], magnitudes: list[dict[str, Any]] | None = 
             claimed=claimed,
             unit=answer["unit"],
             tolerance=tolerance,
-            correct=_close(claimed, actual, tolerance),
+            # Measured against the correct value.  math.isclose measures
+            # against the larger of the two, so an overestimate would get a
+            # looser limit than the stated one.
+            correct=abs(claimed - actual) <= tolerance * abs(actual) + 1e-12,
         )
         if not result["correct"]:
             dimensionless = same_dimension(declared.dimension, (0.0,) * 6)
