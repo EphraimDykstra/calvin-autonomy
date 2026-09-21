@@ -17,8 +17,10 @@ Start from the JSON structures in `.calvin-autonomy/templates/`. Structure the c
 6. Fill `.calvin-autonomy/templates/assignment.json` from the current assignment, then run `.calvin-autonomy/bin/coursework --workspace workspace match STRUCTURED_ASSIGNMENT.json --course COURSE_ID`
 7. When a reviewed match exists, `.calvin-autonomy/bin/coursework --workspace workspace adapt CURRENT.json PRIOR.json --out ADAPTATION.json`
 8. `.calvin-autonomy/bin/coursework --workspace workspace accept-plan RUN_ID PLAN.json`
-9. `.calvin-autonomy/bin/coursework --workspace workspace render RUN_ID SOLUTION.json`
-10. `.calvin-autonomy/bin/coursework --workspace workspace verify RUN_ID`
-11. Have the assignment verifier build a report from `.calvin-autonomy/templates/verification.json`, then run `.calvin-autonomy/bin/coursework --workspace workspace verify-report RUN_ID VERIFICATION.json`
-12. Visually inspect each artifact and run `.calvin-autonomy/bin/coursework --workspace workspace inspect RUN_ID --artifact ARTIFACT_PATH --report INSPECTION.json` for each one
-13. `.calvin-autonomy/bin/coursework --workspace workspace status RUN_ID`
+9. For each image the student supplied, `.calvin-autonomy/bin/coursework --workspace workspace add-figure RUN_ID IMAGE_FILE --as FILE_NAME`, before the render that draws it: a solution may reference a figure only by a path inside its own run
+10. `.calvin-autonomy/bin/coursework --workspace workspace render RUN_ID SOLUTION.json`
+11. `.calvin-autonomy/bin/coursework --workspace workspace verify RUN_ID`
+12. Only when the deliverable is still waiting on something only the student can supply, `.calvin-autonomy/bin/coursework --workspace workspace declare-inputs RUN_ID OUTSTANDING.json`, before the verifier report that binds it. Each entry says what to send in a sentence the student can act on and names the requirements it holds up; that requirement's finding then records `awaiting: <the declared id>` in place of passing, so the rest of the deliverable is still checked instead of the whole report being refused over one missing file. The run stays blocked with a `waiting on you: …` reason until the file arrives, and withdrawing the declaration makes the bound report stale rather than making the run ready
+13. Have the assignment verifier build a report from `.calvin-autonomy/templates/verification.json`, then run `.calvin-autonomy/bin/coursework --workspace workspace verify-report RUN_ID VERIFICATION.json`
+14. Visually inspect each artifact and run `.calvin-autonomy/bin/coursework --workspace workspace inspect RUN_ID --artifact ARTIFACT_PATH --report INSPECTION.json` for each one
+15. `.calvin-autonomy/bin/coursework --workspace workspace status RUN_ID`

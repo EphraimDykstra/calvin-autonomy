@@ -14,7 +14,7 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "Absence claims in this pack describe one search, not the world: a listing of this course's folders in the student's iCloud term archive and his university OneDrive, in September 2026. All 11 weekly homework prompts survive, and each states the same grading rule, so the problem-set format and what earns credit are known from instructor documents. No completed homework survives anywhere, so nothing shows how a solution was laid out or what the grader accepted. One test paper and two keys are present as camera scans; an earlier pass counted two test papers. Those three documents were opened, under the student's explicit instruction, for exam SHAPE and for the method and presentation conventions the keys show, and for nothing else: no question, number, figure or answer from a real problem is recorded anywhere in this pack. The cheat sheets are the student's own and their contents stay out. No syllabus was found in either of the student's two archives as of September 2026. Methods now cover fourteen techniques, one per topic the prompts set: reduction, node and mesh analysis, Thevenin and Norton equivalents, capacitor and inductor relations, transients, phasor analysis, AC power, filters and resonance, op-amps, diodes, three-phase and safety, decibels and frequency ratios, and how a solution is presented. Eight of those rest on a prompt and a key together; mesh analysis, transients, diodes, and three-phase rest on the prompts alone, because no key covering them survives, and each says so in its own basis. Nothing here covers the chapters the course reached after Test 2 in the instructor's own worked hand. The prompts name topics and circuit-simulator tasks but contain no worked solution, and the selected answers at the end of each prompt are final values only. The lab has its own pack (engr204-lab). A lecture writing handout on audience, abstracts, graphing, and conclusions sits in this folder; it bears on the lab reports, and one Test 2 short-answer slot asks about report sections, so it reaches the lecture test too."
+    "notes": "Absence claims in this pack describe one search, not the world: a listing of this course's folders in the student's iCloud term archive and his university OneDrive, in September 2026. All 11 weekly homework prompts survive, and each states the same grading rule, so the problem-set format and what earns credit are known from instructor documents. No completed homework survives anywhere, so nothing shows how a solution was laid out or what the grader accepted. One test paper and two keys are present as camera scans; an earlier pass counted two test papers. Those three documents were opened, under the student's explicit instruction, for exam SHAPE and for the method and presentation conventions the keys show, and for nothing else: no question, number, figure or answer from a real problem is recorded anywhere in this pack. The cheat sheets are the student's own and their contents stay out. No syllabus was found in either of the student's two archives as of September 2026. Methods now cover fourteen techniques, one per topic the prompts set: reduction, node and mesh analysis, Thevenin and Norton equivalents, capacitor and inductor relations, transients, phasor analysis, AC power, filters and resonance, op-amps, diodes, three-phase and safety, decibels and frequency ratios, and how a solution is presented. Eight of those rest on a prompt and a key together; mesh analysis, transients, diodes, and three-phase rest on the prompts alone, because no key covering them survives, and each says so in its own basis. Nothing here covers the chapters the course reached after Test 2 in the instructor's own worked hand. The prompts name topics and circuit-simulator tasks but contain no worked solution, and the selected answers at the end of each prompt are final values only. The lab has its own pack (engr204-lab). A lecture writing handout on audience, abstracts, graphing, and conclusions sits in this folder; it bears on the lab reports, and Test 2 carried a technical-writing short answer, so it reaches the lecture test too."
   },
   "course_policy": {
     "source": "none found",
@@ -190,7 +190,7 @@
     },
     {
       "id": "ac-power",
-      "title": "AC power at a load",
+      "title": "AC power",
       "when": "Real, reactive, apparent or complex power is wanted, or a power factor is to be found or corrected.",
       "reading": "Zekavat ch 6 (Steady-State AC Analysis).",
       "steps": [
@@ -370,17 +370,17 @@
         "question_count": 9,
         "points": "100 in total; per problem, as marked in brackets: 24, 6, 8, 12, 4, 8, 14, 6, 18",
         "topics": [
-          "fundamentals short answer: sign convention, prefixes, dependent sources and schematic symbols",
-          "inductor voltage-current relationship",
-          "DC steady-state equivalent at a terminal pair",
-          "equivalent resistance and equivalent capacitance",
-          "transformer with a DC source",
-          "sinusoid: period, amplitude, frequency and RMS value",
-          "node voltage equations",
-          "voltage divider",
+          "circuit fundamentals",
+          "inductors and capacitors",
+          "inductors and capacitors",
+          "series and parallel combination",
+          "transformers",
+          "sinusoids",
+          "node and mesh analysis",
+          "voltage and current division",
           "Thevenin and Norton equivalents"
         ],
-        "note": "Four printed pages, the problem count and page count stated in the header. The largest block of points sits on the multi-part fundamentals problem and the second largest on the equivalents problem. The key prints class statistics; they are not recorded."
+        "note": "Four printed pages, the problem count and page count stated in the header. The largest block of points sits on a multi-part short-answer problem. The key prints class statistics; they are not recorded."
       },
       {
         "id": "test-2",
@@ -389,17 +389,17 @@
         "question_count": 9,
         "points": "100 in total; per problem, as marked in brackets: 28, 6, 8, 10, 14, 12, 14, 4, 4",
         "topics": [
-          "short-answer set on AC quantities, frequency ratios and report sections",
-          "matching data types to plot styles",
-          "phasor-domain transformation",
-          "filter identification, resonance, bandwidth and quality",
-          "AC power at a load",
-          "filter type and corner frequency with a gain curve",
-          "op-amp output voltage and input resistance",
-          "op-amp gain-bandwidth product",
-          "one-line definition of an op-amp limit"
+          "mixed short answer: AC analysis and technical writing",
+          "technical graphing",
+          "phasors",
+          "filters and resonance",
+          "AC power",
+          "filters and frequency response",
+          "op-amps",
+          "op-amps",
+          "op-amps"
         ],
-        "note": "The Test 2 paper itself is not in the folder searched, so this shape is read from the key, which reproduces the printed problems above the handwriting. One of the short-answer parts asks about technical-report sections rather than circuits, which is the lecture writing material appearing on a lecture test. The key prints class statistics; they are not recorded."
+        "note": "The Test 2 paper itself is not in the folder searched, so this shape is read from the key, which reproduces the printed problems above the handwriting. One short-answer part is on technical writing rather than circuits, which is the lecture writing material appearing on a lecture test. The key prints class statistics; they are not recorded."
       },
       {
         "id": "final",
@@ -451,7 +451,7 @@
         "source": "the Test 1 paper and the Test 2 key"
       },
       {
-        "type": "set up the governing equations without solving them, most of the credit for the setup",
+        "type": "set-up only: some problems credit the set-up rather than the solution",
         "from_exam": true,
         "source": "the Test 1 paper"
       },
@@ -503,7 +503,7 @@
       "Study guide: review class notes, quizzes and handouts alongside the textbook chapters covered in lecture."
     ],
     "quizzes": "The final-exam study guide lists quizzes among the lecture material to review. That establishes that something the course called a quiz existed; it does not establish a graded quiz, a format, a length, a point value or a count, and no quiz paper is in the folder searched.",
-    "practice_generation_note": "A practice test for this course is built from this shape and never from a real question. Match the profile: nine problems for an in-class test, one topic per slot drawn from the labels above, the same relative point weights, the same mix of question forms, and the header rules restated as the instructions. Write new problems; the topic labels say what a slot is about, and deliberately do not say what any real problem contained. Solve each one and hand over a separate worked key in the form the instructor's own keys take: the technique named first, the substitution shown, the final answer boxed with its unit. Tell the student plainly that the shape is modelled on past tests in this course and that the content and the difficulty are the tool's own, and repeat what not_documented says is unknown, rather than filling those gaps with a guess.",
+    "practice_generation_note": "A practice test for this course is built from this shape and never from a real question. Match the profile loosely: nine problems for an in-class test, topics drawn from the labels above, the recorded point weights if wanted, the same mix of question forms, and the header rules restated as the instructions. Vary which topic sits in which slot and which sub-skills each problem tests, so the practice test is modelled on the shape without shadowing a real paper slot for slot; slot-for-slot tracking is what makes a coincidental real value likely. Write new problems; the labels are course topics and deliberately do not say what any real problem asked. Solve each one and hand over a separate worked key in the form the instructor's own keys take: the technique named first, the substitution shown, the final answer boxed with its unit. Tell the student plainly that the shape is modelled on past tests in this course and that the content and the difficulty are the tool's own, and repeat what not_documented says is unknown, rather than filling those gaps with a guess.",
     "not_documented": [
       "the Test 2 paper itself",
       "the final's paper and key",

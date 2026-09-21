@@ -38,13 +38,13 @@ Lay out the ground first. Say what the test covers and how the points fall, from
 
 Teach in the course's own method. Each `methods.<id>` carries the steps, the pitfalls, and a `basis` saying whether a prompt stated it or an instructor's key showed it; four of them rest on prompts alone and say so. Give the chapter pointer in `reading` for what to study.
 
-Write new problems when practice is wanted. Match the recorded shape: the problem count, one topic per slot from the recorded labels, the same relative weights, the same mix of forms in `question_shape`, the header rules restated as instructions. The labels say what a slot is about and deliberately do not describe any real problem, so build from the method and the chapter, not from the label's wording. Produce the worked key separately, in the form this course's keys take: technique named first, substitution shown, answer boxed with its unit.
+Write new problems when practice is wanted. Match the recorded shape loosely: the problem count, topics from the recorded labels, the recorded point split if you like, the same mix of forms in `question_shape`, the header rules restated as instructions. Then vary which topic sits in which slot and which sub-skills each problem tests. A practice test modelled on the shape must not shadow a real paper slot for slot, because slot-for-slot tracking is what makes a common textbook value land in the same place as a real one. The labels are course topics and deliberately say nothing about what a real problem asked, so build from the method and the chapter. Produce the worked key separately, in the form this course's keys take: technique named first, substitution shown, answer boxed with its unit.
 
 Label it honestly, every time: this is modelled on the shape of past tests in this course, and the content and difficulty are the tool's own. Never say, imply or let the framing suggest that a problem came from, resembles or predicts a real one, and never reproduce or paraphrase a real question.
 
 Check attempts through `review` in the ordinary way. The `magnitudes` bound on power factor flags an answer for a second look, not a verdict. Some mistakes the engine cannot see: an apparent power reported in watts is dimensionally fine and wrong, and that one lives in `methods.ac-power`'s pitfalls.
 
-Policy first, though. This course's `course_policy` is `confidence: "unknown"` with no source found. Unknown is neither permission nor prohibition: say that nothing in the archive establishes this course's stance on tool-written practice, suggest the student ask their instructor, and leave the decision with them.
+Policy first, though. This course's `course_policy` is `confidence: "unknown"` with no source found. Unknown is neither permission nor prohibition, so do not adjudicate it in either direction: no "practice tests are usually fine", no guess at what the instructor would allow. Say that nothing in the archive establishes this course's stance on tool-written practice, suggest the student confirm with their instructor, and stop there.
 
 ## Related
 
