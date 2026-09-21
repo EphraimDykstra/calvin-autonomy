@@ -27,6 +27,84 @@ class UnitError(ValueError):
 _BASE_SYMBOLS = ("kg", "m", "s", "K", "A", "mol")
 DIMENSIONLESS = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 
+# Names an expression may use without being given them.  A review of any
+# geometry or rotation problem needs pi, and failing with "Missing variable:
+# pi" before it reaches the student's actual mistake is a check that gets in
+# the way of the thing it exists to do.
+#
+# The list is one entry long on purpose, because a built-in is not free: it
+# turns a loud "Missing variable" into a silent default, so it is only worth
+# it for a name nobody writes meaning something else.  "pi" qualifies.  "e"
+# does not: it is ordinary notation for eccentricity, a void ratio or an error
+# term, so a host that meant its own variable and forgot to supply it would
+# silently compute with 2.718, and exp() already covers the exponential.  "g"
+# is impossible: it is already the symbol for the gram, and a dimensioned
+# gravity that varies by unit system is exactly the kind of prior this project
+# does not hold on a student's behalf.
+BUILTIN_CONSTANTS: dict[str, float] = {"pi": math.pi}
+
+
+def power_notation_hint(expression) -> str:
+    """Name the caret mistake, because the notation really is inconsistent.
+
+    A unit string writes a power with a caret, "in^2", and an expression
+    writes one with two stars, "d**2".  A host that has just typed the first
+    naturally types the second the same way, and Python reads that caret as a
+    bitwise operator on a quantity that is not an integer, so the check
+    refuses with a message about unsupported expressions that says nothing
+    about powers.
+
+    The caret is never reinterpreted as a power.  Silently changing what an
+    operator means is how a wrong answer gets certified; this only explains
+    the refusal.
+    """
+    if not isinstance(expression, str) or "^" not in expression:
+        return ""
+    return (
+        " A power in an expression is written '**', not '^', which reads as a bitwise "
+        f"operator here: write {expression.replace('^', '**')!r}. Unit strings are the "
+        "other way round and do use '^', as in 'in^2'."
+    )
+
+
+def shadowed_constants(variables) -> list[dict]:
+    """Report a supplied value that stands in for a built-in.
+
+    A step may legitimately supply its own pi: a course can say to use 3.14,
+    and the check must then use 3.14, because checking a student against a
+    number they did not use is not checking their work.  So the supplied value
+    wins.  But it wins visibly.  Preferring it in silence would hide the other
+    case, where the value is 3 because somebody mistyped it, and the check
+    would confirm an answer computed from a wrong constant.
+
+    There is no materiality threshold here on purpose.  Any difference is
+    reported and the reader judges it; a cutoff would be an invented number
+    the check would then be quietly enforcing.  An exactly equal value reports
+    nothing, so a step that passes math.pi is not noise.
+    """
+    if not isinstance(variables, dict):
+        return []
+    shadows = []
+    for name, builtin in BUILTIN_CONSTANTS.items():
+        if name not in variables:
+            continue
+        supplied = variables[name]
+        # Both shapes: a bare number in arithmetic mode, {value, unit} where
+        # units are declared.
+        if isinstance(supplied, dict):
+            supplied = supplied.get("value")
+        if isinstance(supplied, bool) or not isinstance(supplied, (int, float)):
+            continue
+        if float(supplied) == builtin:
+            continue
+        shadows.append({
+            "name": name,
+            "supplied": float(supplied),
+            "builtin": builtin,
+            "relative_difference": abs(float(supplied) - builtin) / abs(builtin),
+        })
+    return shadows
+
 
 def _d(M=0, L=0, T=0, Th=0, I=0, N=0):
     return (float(M), float(L), float(T), float(Th), float(I), float(N))
@@ -43,6 +121,9 @@ _PRESSURE = _d(M=1, L=-1, T=-2)
 _VOLUME = _d(L=3)
 _VOLTAGE = _d(M=1, L=2, T=-3, I=-1)
 _RESISTANCE = _d(M=1, L=2, T=-3, I=-2)
+_CAPACITANCE = _d(M=-1, L=-2, T=4, I=2)
+_INDUCTANCE = _d(M=1, L=2, T=-2, I=-2)
+_CHARGE = _d(T=1, I=1)
 
 _PSI = 6894.757293168
 
@@ -55,6 +136,12 @@ _REGISTRY: dict[str, tuple[float, tuple, float | None]] = {
     "percent": (0.01, DIMENSIONLESS, None),
     "%": (0.01, DIMENSIONLESS, None),
     "rad": (1.0, DIMENSIONLESS, None),
+    # A phasor angle is written in degrees throughout the circuits course.
+    # "deg" is the angle; "degC" and "degF" are temperatures, and the three
+    # are separate symbols so neither can be read as the other.
+    "deg": (math.pi / 180.0, DIMENSIONLESS, None),
+    # "krad/s" is how the circuits course writes a corner frequency.
+    "krad": (1e3, DIMENSIONLESS, None),
     "rev": (2 * math.pi, DIMENSIONLESS, None),
     # mass
     "kg": (1.0, _MASS, None),
@@ -74,6 +161,9 @@ _REGISTRY: dict[str, tuple[float, tuple, float | None]] = {
     # Celsius difference: course files are plain text and do not carry the
     # micro sign reliably.
     "us": (1e-6, _TIME, None),
+    "ms": (1e-3, _TIME, None),
+    # The circuits course writes an angular frequency as "200 rad/sec".
+    "sec": (1.0, _TIME, None),
     "min": (60.0, _TIME, None),
     "h": (3600.0, _TIME, None),
     "hr": (3600.0, _TIME, None),
@@ -92,6 +182,8 @@ _REGISTRY: dict[str, tuple[float, tuple, float | None]] = {
     "deltaF": (5.0 / 9.0, _TEMP, None),
     # current and amount
     "A": (1.0, _d(I=1), None),
+    "mA": (1e-3, _d(I=1), None),
+    "uA": (1e-6, _d(I=1), None),
     "mol": (1.0, _d(N=1), None),
     "kmol": (1e3, _d(N=1), None),
     # force
@@ -108,8 +200,19 @@ _REGISTRY: dict[str, tuple[float, tuple, float | None]] = {
     "MJ": (1e6, _ENERGY, None),
     # power
     "W": (1.0, _POWER, None),
+    "mW": (1e-3, _POWER, None),
+    "uW": (1e-6, _POWER, None),
     "kW": (1e3, _POWER, None),
     "MW": (1e6, _POWER, None),
+    # Apparent power (VA) and reactive power (var) carry the watt's dimension,
+    # so the engine reads an apparent power given in W as dimensionally fine.
+    # It is: the three differ by which part of the complex power they name,
+    # not by dimension, and no linear registry can tell them apart.  The
+    # circuits pack carries that as a method pitfall, where a host can catch
+    # it; registering them at least lets a student write what the course
+    # writes instead of being refused.
+    "VA": (1.0, _POWER, None),
+    "var": (1.0, _POWER, None),
     # pressure
     "Pa": (1.0, _PRESSURE, None),
     "kPa": (1e3, _PRESSURE, None),
@@ -127,12 +230,42 @@ _REGISTRY: dict[str, tuple[float, tuple, float | None]] = {
     "mL": (1e-6, _VOLUME, None),
     # electrical
     "V": (1.0, _VOLTAGE, None),
+    "mV": (1e-3, _VOLTAGE, None),
+    "kV": (1e3, _VOLTAGE, None),
     "ohm": (1.0, _RESISTANCE, None),
     "ohms": (1.0, _RESISTANCE, None),
+    "kohm": (1e3, _RESISTANCE, None),
+    "kohms": (1e3, _RESISTANCE, None),
+    # Capacitance and inductance.  The farad and the coulomb are spelled out
+    # because their symbols are taken: "F" is Fahrenheit and "C" is Celsius
+    # here, decided by the thermodynamics files where they appear constantly
+    # and never as an electrical unit.  Changing either would break those
+    # courses, so the circuits course gets the prefixed forms it actually
+    # writes, plus a spelled-out name for the base unit.
+    "farad": (1.0, _CAPACITANCE, None),
+    "mF": (1e-3, _CAPACITANCE, None),
+    "uF": (1e-6, _CAPACITANCE, None),
+    "nF": (1e-9, _CAPACITANCE, None),
+    "pF": (1e-12, _CAPACITANCE, None),
+    "fF": (1e-15, _CAPACITANCE, None),
+    "H": (1.0, _INDUCTANCE, None),
+    "mH": (1e-3, _INDUCTANCE, None),
+    "coulomb": (1.0, _CHARGE, None),
+    "uC": (1e-6, _CHARGE, None),
     # frequency and rotation
     "Hz": (1.0, _d(T=-1), None),
     "kHz": (1e3, _d(T=-1), None),
+    "MHz": (1e6, _d(T=-1), None),
     "RPM": (2 * math.pi / 60.0, _d(T=-1), None),
+    "rpm": (2 * math.pi / 60.0, _d(T=-1), None),
+}
+
+# The electrical symbols the registry deliberately does not hold, and what a
+# student who typed one meant.  Consulted only when a conversion fails, so a
+# thermodynamics file that means Fahrenheit is never second-guessed.
+_ELECTRICAL_SPELLING: dict[str, tuple[tuple, str]] = {
+    "F": (_CAPACITANCE, "farads are written uF, nF, pF, mF or 'farad' here, because 'F' is Fahrenheit"),
+    "C": (_CHARGE, "coulombs are written uC or 'coulomb' here, because 'C' is Celsius"),
 }
 
 # The decibel is deliberately absent, and this note is here so it is not added
@@ -259,6 +392,24 @@ def describe(dimension: tuple) -> str:
     return " ".join(parts) or "dimensionless"
 
 
+def _electrical_spelling_hint(a: Unit, b: Unit) -> str:
+    """Explain a bare F or C that was meant as an electrical unit.
+
+    "10 F" parses, as Fahrenheit, so nothing refuses it and a student who
+    meant farads gets a temperature.  The mistake only becomes visible when
+    the conversion fails against the unit on the other side, and that is the
+    one place where the intended meaning can be read off rather than guessed:
+    the other unit is a capacitance, or a charge.
+    """
+    for one, other in ((a, b), (b, a)):
+        if one.text not in _ELECTRICAL_SPELLING:
+            continue
+        dimension, advice = _ELECTRICAL_SPELLING[one.text]
+        if same_dimension(other.dimension, dimension):
+            return f" If {one.text!r} was meant as an electrical unit: {advice}."
+    return ""
+
+
 def convert(value: float, source: str, target: str) -> float:
     """Convert ``value`` between two units of the same dimension."""
     a, b = parse_unit(source), parse_unit(target)
@@ -275,6 +426,7 @@ def convert(value: float, source: str, target: str) -> float:
         raise UnitError(
             f"Cannot convert {source} ({describe(a.dimension)}) "
             f"to {target} ({describe(b.dimension)}): different dimensions."
+            + _electrical_spelling_hint(a, b)
         )
     return b.from_si(a.to_si(value))
 
@@ -299,6 +451,11 @@ def expression_dimension(expression: str, dimensions: dict[str, tuple]) -> tuple
             return DIMENSIONLESS
         if isinstance(node, ast.Name):
             if node.id not in dimensions:
+                # A supplied variable of the same name has already won: it is
+                # in `dimensions`, so this is only reached when nothing was
+                # supplied.  Every built-in is a pure number.
+                if node.id in BUILTIN_CONSTANTS:
+                    return DIMENSIONLESS
                 raise UnitError(f"Missing variable: {node.id}")
             return dimensions[node.id]
         if isinstance(node, ast.UnaryOp):
@@ -337,7 +494,9 @@ def expression_dimension(expression: str, dimensions: dict[str, tuple]) -> tuple
                         f"not {describe(argument)}."
                     )
                 return DIMENSIONLESS
-        raise UnitError("Unsupported expression for dimensional checking.")
+        raise UnitError(
+            "Unsupported expression for dimensional checking." + power_notation_hint(expression)
+        )
 
     return visit(tree.body)
 

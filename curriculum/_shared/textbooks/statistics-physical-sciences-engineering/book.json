@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "statistics-physical-sciences-engineering",
+    "citation": "Statistics for the Physical Sciences and Engineering (January 2021 printing)",
+    "pages_total": 249,
+    "courses": [
+      "stats241"
+    ],
+    "author_withheld": "Cited by title and edition only. This repository forbids Calvin instructor names in tracked files, with no exception for bibliography.",
+    "index_coverage": {
+      "chapters": "complete: all 11 chapters (numbered 0-10)",
+      "appendix": "THERE IS NONE, and this is a finding rather than a gap. This book carries no statistical tables at all: no t, z, chi-square or F table. It is built around R throughout. A student must not be sent here to 'look up the t table', because the table does not exist in this text - not merely in this index.",
+      "chapter_tables": "NOT indexed"
+    },
+    "appendix_note": "This book does not include traditional statistical tables (t, z, chi-square, F distributions). All computations use R software throughout."
+  },
+  "pointer_policy": "Pointers only. This file names which chapter or which appendix table to open. It never carries a value from a table body, and none may be added. Checks that the lookup was well formed. It cannot tell whether the value you read is correct.",
+  "addressing": "Ids are literal addresses, reached as appendix.<item-id> and chapters.<item-id>. A table and a figure sharing a number get different ids (appendix.table-a-9 vs appendix.figure-a-9) so a request for a table can never silently return a chart. The list is called `appendix` rather than `tables` because it also holds figures and, in some books, lettered appendices that are not tables at all. Table numbers are NOT portable between books.",
+  "chapters": [
+    {
+      "id": "ch-0",
+      "title": "Where do numbers come from?",
+      "page": 7,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "0",
+      "topics": "Introduction to data sources and numerical methods"
+    },
+    {
+      "id": "ch-1",
+      "title": "Graphical Summaries of Data",
+      "page": 9,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "1",
+      "topics": "RStudio, Data in R, Graphical and Numerical Summaries, Scatterplots, Distributions, Reproducible Research, R Markdown, knitr"
+    },
+    {
+      "id": "ch-2",
+      "title": "Numerical Summaries",
+      "page": 35,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "2",
+      "topics": "Tabulating Data, Measures of Center, Mean, Median, Measures of Spread, Variance, Standard Deviation, Categorical Variables, Relationships Between Variables"
+    },
+    {
+      "id": "ch-3",
+      "title": "Probability",
+      "page": 47,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "3",
+      "topics": "Key Definitions, Empirical Probability, Theoretical Probability, Conditional Probability, Bayes' Theorem"
+    },
+    {
+      "id": "ch-4",
+      "title": "Random Variables",
+      "page": 65,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "4",
+      "topics": "Discrete Random Variables, Continuous Random Variables, Mean, Variance, Normal Distribution, Exponential Distribution, Weibull, Fitting Distributions, Quantile-Quantile Plots"
+    },
+    {
+      "id": "ch-5",
+      "title": "Transformation and Combinations of Random Variables",
+      "page": 107,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "5",
+      "topics": "Simulations, Propagation of Mean and Variance, Normal distributions, Central Limit Theorem, Sampling, Confidence Intervals"
+    },
+    {
+      "id": "ch-6",
+      "title": "Propagation of Uncertainty",
+      "page": 133,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "6",
+      "topics": "Error and Uncertainty, Reporting Measurements, Measurement Uncertainty, Experimental Error, Significant Figures, Uncertainty Analysis"
+    },
+    {
+      "id": "ch-7",
+      "title": "Linear Models",
+      "page": 151,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "7",
+      "topics": "Simple Linear Regression, Fitting Models, Estimating Response, Parameter Estimates, Checking Assumptions, Residual Analysis, Confidence and Prediction Intervals"
+    },
+    {
+      "id": "ch-8",
+      "title": "Beyond Linear Regression",
+      "page": 173,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "8",
+      "topics": "Nonlinear Models, Linearizing Transformations, Log-Log Plots, Power Laws, Exponential Models, Optimization, Newton's Law of Cooling"
+    },
+    {
+      "id": "ch-9",
+      "title": "Hypothesis Testing",
+      "page": 205,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "9",
+      "topics": "Null and Alternative Hypotheses, P-values, Type I and Type II Errors, t-tests, Chi-Square Tests, ANOVA, Confidence Intervals"
+    },
+    {
+      "id": "ch-10",
+      "title": "More Examples",
+      "page": 231,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "10",
+      "topics": "Heat Exchanger Analysis, Real Laboratory Experiments, Statistical Analysis of Experimental Data, Practical Applications"
+    }
+  ]
+}

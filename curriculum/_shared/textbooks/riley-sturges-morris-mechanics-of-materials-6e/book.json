@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "riley-sturges-morris-mechanics-of-materials-6e",
+    "citation": "Riley, W.F., Sturges, L.D., Morris, D.H. Mechanics of Materials, Sixth Edition",
+    "pages_total": 736,
+    "courses": [
+      "engr305"
+    ],
+    "index_coverage": {
+      "chapters": "complete: all 10 chapters",
+      "appendix": "NOT indexed, but it EXISTS: Appendix B, Tables of Properties, printed pp. 683-705. Its individual tables are not recorded here.",
+      "chapter_tables": "NOT indexed",
+      "note": "This PDF is a JPG scan and its text layer garbles titles, so chapter titles here are OCR-normalised reconstructions rather than verbatim transcription."
+    },
+    "appendix_note": "Appendix B: Tables of Properties (pages 683-705)",
+    "title_fidelity": "OCR-NORMALISED. This PDF is a JPG scan; its text layer garbled several chapter titles (e.g. 'Prmsure', 'Shafls', 'Flexaral', 'Colmnns'). Titles here are the corrected forms, not the literal OCR output. They are normalised for searchability; treat them as high-confidence reconstructions rather than verbatim transcription."
+  },
+  "pointer_policy": "Pointers only. This file names which chapter or which appendix table to open. It never carries a value from a table body, and none may be added. Checks that the lookup was well formed. It cannot tell whether the value you read is correct.",
+  "addressing": "Ids are literal addresses, reached as appendix.<item-id> and chapters.<item-id>. A table and a figure sharing a number get different ids (appendix.table-a-9 vs appendix.figure-a-9) so a request for a table can never silently return a chart. The list is called `appendix` rather than `tables` because it also holds figures and, in some books, lettered appendices that are not tables at all. Table numbers are NOT portable between books.",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "title": "Introduction and Review of Statics",
+      "page": 1,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "1",
+      "topics": "equilibrium, rigid bodies, forces, internal forces, free-body diagrams, reactions"
+    },
+    {
+      "id": "ch-2",
+      "title": "Analysis of Stress: Concepts and Definitions",
+      "page": 48,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "2",
+      "topics": "normal stress, shearing stress, bearing stress, axial loading, plane stress, principal stresses, Mohr's circle"
+    },
+    {
+      "id": "ch-3",
+      "title": "Analysis of Strain: Concepts and Definitions",
+      "page": 121,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "3",
+      "topics": "displacement, deformation, strain, strain transformation, principal strains, Mohr's circle for strain, strain measurement, rosette analysis"
+    },
+    {
+      "id": "ch-4",
+      "title": "Material Properties and Stress-Strain Relationships",
+      "page": 153,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "4",
+      "topics": "stress-strain diagrams, Hooke's law, thermal strain, orthotropic materials, elastic properties"
+    },
+    {
+      "id": "ch-5",
+      "title": "Axial Loading Applications and Pressure Vessels",
+      "page": 189,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "5",
+      "topics": "axial deformation, statically indeterminate members, thermal effects, stress concentrations, inelastic behavior, thin-walled pressure vessels, thick-walled cylinders, design"
+    },
+    {
+      "id": "ch-6",
+      "title": "Torsional Loading of Shafts",
+      "page": 276,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "6",
+      "topics": "torsional strain, torsional stress, elastic torsion formula, torsional displacements, oblique planes, power transmission, statically indeterminate torsion, combined axial-torsional loading, stress concentrations, noncircular sections, thin-walled tubes, design"
+    },
+    {
+      "id": "ch-7",
+      "title": "Flexural Loading: Stresses in Beams",
+      "page": 349,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "7",
+      "topics": "flexural strains, flexural stresses, elastic flexure formula, shear forces, bending moments, shearing stresses, principal stresses, unsymmetrical bending, stress concentrations, inelastic behavior, thin-walled sections, two-material beams, reinforced concrete, curved beams, combined loading, design"
+    },
+    {
+      "id": "ch-8",
+      "title": "Flexural Loading: Beam Deflections",
+      "page": 487,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "8",
+      "topics": "differential equation of elastic curve, deflection by integration, singularity functions, deflections by superposition, shearing stress effects, energy methods, Castigliano's theorem, statically indeterminate beams, design"
+    },
+    {
+      "id": "ch-9",
+      "title": "Columns",
+      "page": 578,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "9",
+      "topics": "buckling, column stability, end conditions, Euler formula, empirical column formulas, eccentric loading, design"
+    },
+    {
+      "id": "ch-10",
+      "title": "Energy Methods and Theories of Failure",
+      "page": 614,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "10",
+      "topics": "strain energy, elastic strain energy, impact loading, failure theories, ductile materials, brittle materials, design criteria"
+    }
+  ]
+}

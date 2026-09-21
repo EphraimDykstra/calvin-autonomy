@@ -13,13 +13,13 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "Both graded deliverable families have a readable instructor prompt that states its format rules: the fluid-flow lab handout for the technical memo and the plant design project prompt for the group report. But the lab handout defers to 'Technical Memo instructions on Moodle', which were not kept, and each family has exactly one completed submission, both of which depart from their prompts. So the prompts are the rules here and the submissions are shape only. No syllabus survives. Homework left nothing readable. Three of the five exam files are image-only scans, and exams are out of scope anyway. A second pass over the archived course folder found the same design project report and the team's spreadsheets, and nothing instructor-written, so the prompts stay the only source of rules. Two other workbooks in that folder were excluded as evidence: one from a different course and term, and one another student's work on a different process."
+    "notes": "Absence claims in this pack describe one search, not the world: a listing of this course's folders in the student's iCloud term archive and his university OneDrive, in September 2026. Both graded deliverable families have a readable instructor prompt that states its format rules: the fluid-flow lab handout for the technical memo and the plant design project prompt for the group report. But the lab handout defers to 'Technical Memo instructions on Moodle', which were not kept, and each family has exactly one completed submission, both of which depart from their prompts. So the prompts are the rules here and the submissions are shape only. No syllabus survives. Homework left nothing readable. Three of the five exam files are image-only scans, and exams are out of scope anyway. A second pass over the archived course folder found the same design project report and the team's spreadsheets, and nothing instructor-written, so the prompts stay the only source of rules. Two other workbooks in that folder were excluded as evidence: one from a different course and term, and one another student's work on a different process."
   },
   "course_policy": {
     "source": "none found (no syllabus in the archive)",
     "confidence": "unknown",
     "term_observed": null,
-    "summary": "No syllabus or generative-AI policy for this course was found in the archive. Ask the student to confirm the current policy with the instructors.",
+    "summary": "No syllabus or generative-AI policy for this course was found in the student's iCloud term folders or his university OneDrive, searched September 2026. Ask the student to confirm the current policy with the instructors.",
     "permitted": [],
     "prohibited": [],
     "student_asked": null,
@@ -144,7 +144,7 @@
         "Assuming the reset point (for example the midpoint) instead of sweeping it.",
         "An off-by-one in the day index, which shifts every day's conversion.",
         "Reporting the profit without checking the production constraint.",
-        "Deciding silently whether the first charge of the consumable is itself a cost. One archived team's model charged it, so N replacements paid for N+1 charges. That is observed practice in one submission, not confirmed against the prompt, which was not in the archived folder. Check the prompt, state the choice in the report, and apply it identically in the hand calculation and the spreadsheet."
+        "Deciding silently whether the first charge of the consumable is itself a cost. One archived team's model charged it, so N replacements paid for N+1 charges. That is observed practice in one submission. This pitfall used to add that the prompt 'was not in the archived folder', which was wrong and contradicted this pack's own coverage notes: the design project prompt does survive, is readable, and is already this pack's primary source of rules. It states the answer directly, so do not leave this to the student's judgement. Read the prompt's operating-cost section, follow what it says, and apply it identically in the hand calculation and the spreadsheet."
       ]
     },
     {

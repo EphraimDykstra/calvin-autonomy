@@ -1,0 +1,3802 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "cengel-ghajar-heat-mass-transfer-5e",
+    "citation": "Çengel, Y. A., & Ghajar, A. J., Heat and Mass Transfer: Fundamentals and Applications, 5th ed.",
+    "pages_total": 991,
+    "courses": [
+      "engr319",
+      "engr328"
+    ],
+    "index_coverage": {
+      "chapters": "complete: all 17 chapters, including the three web chapters",
+      "appendix": "complete: all 20 SI appendix items (A-1..A-20) indexed",
+      "chapter_tables": "complete: all 70 in-chapter tables indexed",
+      "chapter_figures": "PARTIAL: 303 of 440 indexed. 137 captions could not be cleanly extracted from this two-column scan and were dropped rather than guessed at; several were pulling property values out of adjacent worked examples, which this index must never carry. A figure absent from this record may still exist in the book.",
+      "titles": "102 of the 373 in-chapter entries carry title_partial. A caption ends at a period; one that never reached its period may have adjacent body text in its tail, so the title is shown but should not be trusted as the book's exact wording. The pointer itself - the label and the printed page - is unaffected.",
+      "english_units": "NOT indexed. Appendix 2 repeats the SI tables in English units as A-1E..A-17E, printed pp. 935-958. Labels are not recorded here.",
+      "note": "Chapters 15-17 are web chapters with no printed page numbers and are not in the main PDF; their tables and figures are not indexed."
+    },
+    "appendix_title": "Appendix 1 — Property Tables and Charts (SI Units)",
+    "unit_system": "SI",
+    "printed_pages": "907-934",
+    "note": "Appendix 2 is the same material in English units, printed pp. 935-958, labelled A-1E..A-17E."
+  },
+  "pointer_policy": "Pointers only. This file names which chapter or which appendix table to open. It never carries a value from a table body, and none may be added. Checks that the lookup was well formed. It cannot tell whether the value you read is correct.",
+  "addressing": "Ids are literal addresses, reached as appendix.<item-id> and chapters.<item-id>. A table and a figure sharing a number get different ids (appendix.table-a-9 vs appendix.figure-a-9) so a request for a table can never silently return a chart. The list is called `appendix` rather than `tables` because it also holds figures and, in some books, lettered appendices that are not tables at all. Table numbers are NOT portable between books.",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "title": "Introduction and Basic Concepts",
+      "page": 1,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "1",
+      "topics": "conduction, convection, radiation, energy balance, units",
+      "items": [
+        {
+          "id": "figure-1-1",
+          "title": "We are normally interested in how long it takes for the hot coffee in a thermos bottle to cool to a certain temperature, which cannot be",
+          "kind": "figure",
+          "label": "1-1",
+          "page": 2,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-2",
+          "title": "Heat flows in the direction of decreasing temperature",
+          "kind": "figure",
+          "label": "1-2",
+          "page": 2,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-4",
+          "title": "In the early nineteenth century, heat was thought to be an invisible fluid called the caloric that flowed from warmer bodies to the cooler ones",
+          "kind": "figure",
+          "label": "1-4",
+          "page": 4,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-6",
+          "title": "Mathematical modeling of physical problems",
+          "kind": "figure",
+          "label": "1-6",
+          "page": 6,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-10",
+          "title": "The specific heat of a substance changes with temperature",
+          "kind": "figure",
+          "label": "1-10",
+          "page": 8,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-11",
+          "title": "The cv and cp values of incompressible substances are identical and are denoted by c",
+          "kind": "figure",
+          "label": "1-11",
+          "page": 8,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-13",
+          "title": "Heat flux is heat transfer per unit time and per unit area, and is equal",
+          "kind": "figure",
+          "label": "1-13",
+          "page": 10,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-14",
+          "title": "Schematic for Example 1–1",
+          "kind": "figure",
+          "label": "1-14",
+          "page": 10,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-16",
+          "title": "In the absence of any work interactions, the change in the energy content of a closed system is equal to the net heat transfer",
+          "kind": "figure",
+          "label": "1-16",
+          "page": 12,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-20",
+          "title": "Schematic for Example 1–2",
+          "kind": "figure",
+          "label": "1-20",
+          "page": 14,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-22",
+          "title": "Schematic for Example 1–4",
+          "kind": "figure",
+          "label": "1-22",
+          "page": 16,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-23",
+          "title": "Heat conduction through a large plane wall of thickness Dx and area A",
+          "kind": "figure",
+          "label": "1-23",
+          "page": 18,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-24",
+          "title": "The rate of heat conduction through a solid is directly proportional to its thermal conductivity",
+          "kind": "figure",
+          "label": "1-24",
+          "page": 18,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-27",
+          "title": "Schematic for Example 1–5",
+          "kind": "figure",
+          "label": "1-27",
+          "page": 20,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-30",
+          "title": "The mechanisms of heat conduction in different phases of a substance",
+          "kind": "figure",
+          "label": "1-30",
+          "page": 22,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-32",
+          "title": "Determine the thermal conductivity of the sample",
+          "kind": "figure",
+          "label": "1-32",
+          "page": 24,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-34",
+          "title": "Heat transfer from a hot surface to air by convection",
+          "kind": "figure",
+          "label": "1-34",
+          "page": 26,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-35",
+          "title": "The cooling of a boiled egg by forced and natural convection",
+          "kind": "figure",
+          "label": "1-35",
+          "page": 26,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-38",
+          "title": "Blackbody radiation represents the maximum amount of radiation that can be emitted from a surface at a specified temperature",
+          "kind": "figure",
+          "label": "1-38",
+          "page": 28,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-39",
+          "title": "The absorption of radiation incident on an opaque surface of absorptivity a",
+          "kind": "figure",
+          "label": "1-39",
+          "page": 28,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-42",
+          "title": "Although there are three mechanisms of heat transfer, a medium may involve only two of them simultaneously",
+          "kind": "figure",
+          "label": "1-42",
+          "page": 30,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-44",
+          "title": "Schematic for Example 1–11",
+          "kind": "figure",
+          "label": "1-44",
+          "page": 32,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-48",
+          "title": "Process of solving problems with application of PtD concepts occur through spilling of hot liquid or accidental immersion into hot liquid",
+          "kind": "figure",
+          "label": "1-48",
+          "page": 36,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-50",
+          "title": "A step-by-step approach can greatly simplify problem solving",
+          "kind": "figure",
+          "label": "1-50",
+          "page": 38,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-54",
+          "title": "An excellent word-processing program does not make a person a good writer; it simply makes a good writer a better and more efficient writer",
+          "kind": "figure",
+          "label": "1-54",
+          "page": 40,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-56",
+          "title": "A result with more significant digits than that of given data falsely implies more accuracy",
+          "kind": "figure",
+          "label": "1-56",
+          "page": 42,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-60",
+          "title": "A thermally comfortable environment",
+          "kind": "figure",
+          "label": "1-60",
+          "page": 46,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-1-63",
+          "title": "In hot environments, a body can dissipate a large amount of metabolic heat by sweating since the sweat absorbs the body heat and evaporates",
+          "kind": "figure",
+          "label": "1-63",
+          "page": 48,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-1-1",
+          "title": "The thermal conductivities of some materials at room temperature",
+          "kind": "table",
+          "label": "1-1",
+          "page": 20,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        },
+        {
+          "id": "table-1-2",
+          "title": "The thermal conductivity of an alloy is usually much lower than the thermal conductivity of either metal of which it is composed",
+          "kind": "table",
+          "label": "1-2",
+          "page": 22,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-1-3",
+          "title": "Thermal conductivities of materials vary with temperature",
+          "kind": "table",
+          "label": "1-3",
+          "page": 23,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-1-5",
+          "title": "Typical values of convection heat transfer coefficient",
+          "kind": "table",
+          "label": "1-5",
+          "page": 26,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        },
+        {
+          "id": "table-1-6",
+          "title": "Emissivities of some materials at 300 K",
+          "kind": "table",
+          "label": "1-6",
+          "page": 28,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        },
+        {
+          "id": "table-1-7",
+          "title": "Metabolic rates during various activities (from ASHRAE Handbook of Fundamentals, Chap. 8, Table 4)",
+          "kind": "table",
+          "label": "1-7",
+          "page": 44,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        }
+      ]
+    },
+    {
+      "id": "ch-2",
+      "title": "Heat Conduction Equation",
+      "page": 67,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "2",
+      "topics": "Fourier's law, general conduction equation, boundary conditions",
+      "items": [
+        {
+          "id": "figure-2-1",
+          "title": "Heat transfer has direction as well as magnitude, and thus it is a vector quantity",
+          "kind": "figure",
+          "label": "2-1",
+          "page": 68,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-2",
+          "title": "Indicating direction for heat transfer (positive in the positive direction; negative in the negative direction)",
+          "kind": "figure",
+          "label": "2-2",
+          "page": 68,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-5",
+          "title": "Two-dimensional heat transfer in a long rectangular bar",
+          "kind": "figure",
+          "label": "2-5",
+          "page": 70,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-6",
+          "title": "Heat transfer through the window of a house can be taken to be one-dimensional",
+          "kind": "figure",
+          "label": "2-6",
+          "page": 70,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-9",
+          "title": "Heat is generated in the heating coils of an electric range as a result of the conversion of electrical energy to heat",
+          "kind": "figure",
+          "label": "2-9",
+          "page": 72,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-10",
+          "title": "The absorption of solar radiation by water can be treated as heat generation",
+          "kind": "figure",
+          "label": "2-10",
+          "page": 72,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-15",
+          "title": "Two equivalent forms of the",
+          "kind": "figure",
+          "label": "2-15",
+          "page": 76,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-16",
+          "title": "One-dimensional heat conduction",
+          "kind": "figure",
+          "label": "2-16",
+          "page": 76,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-18",
+          "title": "Schematic for Example 2–3",
+          "kind": "figure",
+          "label": "2-18",
+          "page": 78,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-24",
+          "title": "Schematic for Example 2–5",
+          "kind": "figure",
+          "label": "2-24",
+          "page": 82,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-31",
+          "title": "Schematic for Example 2–6",
+          "kind": "figure",
+          "label": "2-31",
+          "page": 86,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-34",
+          "title": "Schematic for Example 2–7",
+          "kind": "figure",
+          "label": "2-34",
+          "page": 88,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-35",
+          "title": "Radiation boundary conditions on both surfaces of a plane wall",
+          "kind": "figure",
+          "label": "2-35",
+          "page": 88,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-39",
+          "title": "Basic steps involved in the solution of heat transfer problems",
+          "kind": "figure",
+          "label": "2-39",
+          "page": 92,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-40",
+          "title": "Schematic for Example 2–10",
+          "kind": "figure",
+          "label": "2-40",
+          "page": 92,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-45",
+          "title": "Schematic for Example 2–12",
+          "kind": "figure",
+          "label": "2-45",
+          "page": 96,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-47",
+          "title": "Schematic for Example 2–13",
+          "kind": "figure",
+          "label": "2-47",
+          "page": 98,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-51",
+          "title": "Basic steps involved in the solution of the steady one-dimensional heat conduction equation in cylindrical coordinates",
+          "kind": "figure",
+          "label": "2-51",
+          "page": 102,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-54",
+          "title": "Heat generation in solids is # commonly encountered in practice",
+          "kind": "figure",
+          "label": "2-54",
+          "page": 104,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-56",
+          "title": "Heat conducted through a cylindrical shell of radius r is equal to the heat generated within a shell",
+          "kind": "figure",
+          "label": "2-56",
+          "page": 106,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-57",
+          "title": "The maximum temperature in a symmetrical solid with uniform heat generation occurs at its center",
+          "kind": "figure",
+          "label": "2-57",
+          "page": 106,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-60",
+          "title": "The thermal symmetry condition at the centerline of a wire in which heat is generated uniformly",
+          "kind": "figure",
+          "label": "2-60",
+          "page": 108,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-63",
+          "title": "Variation of the thermal conductivity of some solids with temperature",
+          "kind": "figure",
+          "label": "2-63",
+          "page": 112,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-66",
+          "title": "Schematic for Example 2–22",
+          "kind": "figure",
+          "label": "2-66",
+          "page": 114,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-67",
+          "title": "(Fig. 2–67) The derivative of a function at a point represents the slope of the tangent line of the function at that point",
+          "kind": "figure",
+          "label": "2-67",
+          "page": 116,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-70",
+          "title": "A differential equation that is (a) nonlinear and (b) linear. When checking for linearity, we examine the dependent variable only",
+          "kind": "figure",
+          "label": "2-70",
+          "page": 118,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-2-71",
+          "title": "A differential equation with (a) constant coefficients and (b) variable coefficients",
+          "kind": "figure",
+          "label": "2-71",
+          "page": 118,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        }
+      ]
+    },
+    {
+      "id": "ch-3",
+      "title": "Steady Heat Conduction",
+      "page": 142,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "3",
+      "topics": "thermal resistance, contact resistance, fins, critical radius",
+      "items": [
+        {
+          "id": "figure-3-3",
+          "title": "Analogy between thermal and electrical resistance concepts",
+          "kind": "figure",
+          "label": "3-3",
+          "page": 144,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-6",
+          "title": "The thermal resistance network for heat transfer through a plane wall subjected to convection on both sides, and the electrical analogy",
+          "kind": "figure",
+          "label": "3-6",
+          "page": 146,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-9",
+          "title": "The thermal resistance network for",
+          "kind": "figure",
+          "label": "3-9",
+          "page": 148,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-12",
+          "title": "Example 3–2",
+          "kind": "figure",
+          "label": "3-12",
+          "page": 151,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-13",
+          "title": "Schematic for Example 3–3",
+          "kind": "figure",
+          "label": "3-13",
+          "page": 152,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-17",
+          "title": "Schematic for Example 3–4",
+          "kind": "figure",
+          "label": "3-17",
+          "page": 156,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-19",
+          "title": "Thermal resistance network for two parallel layers",
+          "kind": "figure",
+          "label": "3-19",
+          "page": 158,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-20",
+          "title": "Thermal resistance network for combined series-parallel arrangement",
+          "kind": "figure",
+          "label": "3-20",
+          "page": 158,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-22",
+          "title": "Alternative thermal resistance network for Example 3–6 for the case of surfaces parallel to the primary direction of heat",
+          "kind": "figure",
+          "label": "3-22",
+          "page": 160,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-25",
+          "title": "The thermal resistance network for a cylindrical (or spherical)",
+          "kind": "figure",
+          "label": "3-25",
+          "page": 162,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-26",
+          "title": "The thermal resistance network for heat transfer through a three-layered composite cylinder subjected to convection on both sides",
+          "kind": "figure",
+          "label": "3-26",
+          "page": 163,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-27",
+          "title": "The ratio #DT/R across any layer is equal to Q, which remains constant in one-dimensional steady conduction",
+          "kind": "figure",
+          "label": "3-27",
+          "page": 164,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-28",
+          "title": "Schematic for Example 3–7",
+          "kind": "figure",
+          "label": "3-28",
+          "page": 164,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-30",
+          "title": "An insulated cylindrical pipe Rins 1 Rconv exposed to convection from the outer 2pLk",
+          "kind": "figure",
+          "label": "3-30",
+          "page": 168,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-31",
+          "title": "The variation of heat transfer rate with the outer radius of the insulation r2 when r1 , rcr",
+          "kind": "figure",
+          "label": "3-31",
+          "page": 168,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-33",
+          "title": "Presumed cooling fins on dinosaur stegosaurus",
+          "kind": "figure",
+          "label": "3-33",
+          "page": 170,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-39",
+          "title": "Under steady conditions, heat transfer from the exposed surfaces of the fin is equal to heat conduction to the fin at the base",
+          "kind": "figure",
+          "label": "3-39",
+          "page": 174,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-42",
+          "title": "Ideal and actual temperature distribution along a fin",
+          "kind": "figure",
+          "label": "3-42",
+          "page": 176,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-44",
+          "title": "Efficiency of annular fins of constant thickness t",
+          "kind": "figure",
+          "label": "3-44",
+          "page": 179,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-45",
+          "title": "The effectiveness of a fin",
+          "kind": "figure",
+          "label": "3-45",
+          "page": 180,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-48",
+          "title": "Schematic for Example 3–10",
+          "kind": "figure",
+          "label": "3-48",
+          "page": 184,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-50",
+          "title": "Schematic for Example 3–13",
+          "kind": "figure",
+          "label": "3-50",
+          "page": 186,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-51",
+          "title": "Schematic for Example 3–14",
+          "kind": "figure",
+          "label": "3-51",
+          "page": 190,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-55",
+          "title": "Ventilation paths for a naturally ventilated attic and the appropriate size of the flow areas around the 16 to 42 percent compared to an attic with the same insulation level and",
+          "kind": "figure",
+          "label": "3-55",
+          "page": 200,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-56",
+          "title": "Three possible locations for an attic radiant barrier",
+          "kind": "figure",
+          "label": "3-56",
+          "page": 202,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-3-57",
+          "title": "Thermal resistance network for a Aroof pitched roof–attic–ceiling combination for the case of an unvented attic",
+          "kind": "figure",
+          "label": "3-57",
+          "page": 202,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-3-2",
+          "title": "Thermal contact conductance of some metal surfaces in air (from various sources) Surface Material Identical Metal Pairs",
+          "kind": "table",
+          "label": "3-2",
+          "page": 156,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-3-3",
+          "title": "Efficiency and surface areas of common fin configurations",
+          "kind": "table",
+          "label": "3-3",
+          "page": 177,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-3-4",
+          "title": "Modified Bessel functions of the first and second kinds* where Afin is the total surface area of the fin. This relation enables us to deter-",
+          "kind": "table",
+          "label": "3-4",
+          "page": 178,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-3-5",
+          "title": "The variation of heat transfer from a fin relative to that from an",
+          "kind": "table",
+          "label": "3-5",
+          "page": 182,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true,
+          "title_partial": true
+        },
+        {
+          "id": "table-3-6",
+          "title": "Combined natural convection and radiation thermal resistance of various heat sinks used in the cooling of electronic devices between the heat sink and the surroundings. All fins are made of aluminum 6063T-5, are black anodized, and are 76 mm (3 in) long",
+          "kind": "table",
+          "label": "3-6",
+          "page": 183,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)"
+        },
+        {
+          "id": "table-3-7",
+          "title": "Conduction shape factors S for several configurations, for steady heat transfer through a medium of thermal conductivity k between surfaces at temperatures T1 and T2",
+          "kind": "table",
+          "label": "3-7",
+          "page": 193,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true,
+          "title_note": "the printed title also states the shape-factor relation itself; the equation is omitted here because the scan garbles its symbols"
+        },
+        {
+          "id": "table-3-8",
+          "title": "Unit thermal resistance (the R-value) of common components used in buildings",
+          "kind": "table",
+          "label": "3-8",
+          "page": 198,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-3-10",
+          "title": "Emissivities e of various surfaces and the effective emissivity of air spaces (from ASHRAE Handbook of Fundamentals, Chap. 22,",
+          "kind": "table",
+          "label": "3-10",
+          "page": 200,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-3-11",
+          "title": "Unit thermal resistances (R-values) of well-sealed plane air spaces (from ASHRAE Handbook of Fundamentals, Chap. 22, Table 2) (a) SI units (in m2·°C/W) 20-mm Air Space Effective",
+          "kind": "table",
+          "label": "3-11",
+          "page": 201,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        }
+      ]
+    },
+    {
+      "id": "ch-4",
+      "title": "Transient Heat Conduction",
+      "page": 237,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "4",
+      "topics": "lumped capacitance, Biot number, one-term approximation, semi-infinite solid",
+      "items": [
+        {
+          "id": "figure-4-1",
+          "title": "A small copper ball can be modeled as a lumped system, but a roast beef cannot",
+          "kind": "figure",
+          "label": "4-1",
+          "page": 238,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-2",
+          "title": "The geometry and parameters involved in the lumped system analysis",
+          "kind": "figure",
+          "label": "4-2",
+          "page": 238,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-5",
+          "title": "Jean-Baptiste Biot (1774–1862) was a French physicist, astronomer, and mathematician born in Paris, France",
+          "kind": "figure",
+          "label": "4-5",
+          "page": 240,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-9",
+          "title": "When the convection coefficient h is high and k is low, large temperature The temperature of a gas stream is to be measured by a thermocouple whose differences occur between the inner",
+          "kind": "figure",
+          "label": "4-9",
+          "page": 242,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-10",
+          "title": "Schematic for Example 4–1",
+          "kind": "figure",
+          "label": "4-10",
+          "page": 242,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-12",
+          "title": "Variation of plate temperature with the air velocity at the exit of the cooling chamber",
+          "kind": "figure",
+          "label": "4-12",
+          "page": 244,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-17",
+          "title": "Transient temperature and heat transfer charts for a plane wall of thickness 2L initially at a uniform temperature Ti subjected to convection from both sides to an environment at temperature T` with a convection coefficient of h",
+          "kind": "figure",
+          "label": "4-17",
+          "page": 252,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-19",
+          "title": "Transient temperature and heat transfer charts for a sphere of radius ro initially at a uniform temperature Ti subjected to convection from all sides to an environment at temperature T` with a convection coefficient of h",
+          "kind": "figure",
+          "label": "4-19",
+          "page": 254,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-21",
+          "title": "The fraction of total heat transfer Q/Qmax up to a specified time t is determined using the Gröber charts",
+          "kind": "figure",
+          "label": "4-21",
+          "page": 256,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-22",
+          "title": "Fourier number at time t can be viewed as the ratio of the rate of heat conducted to the rate of heat stored at that time",
+          "kind": "figure",
+          "label": "4-22",
+          "page": 256,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-27",
+          "title": "Transformation of variables in the derivatives of the heat conduction equation by the use of chain rule",
+          "kind": "figure",
+          "label": "4-27",
+          "page": 262,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-28",
+          "title": "Error function is a standard mathematical function, just like the sinus and tangent functions, whose value varies between 0 and 1",
+          "kind": "figure",
+          "label": "4-28",
+          "page": 262,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-31",
+          "title": "Variation of temperature with position and time in a semi-infinite solid initially at temperature Ti subjected to convection to an environment at T∞ with a convection heat transfer coefficient of h (plotted using EES)",
+          "kind": "figure",
+          "label": "4-31",
+          "page": 266,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-32",
+          "title": "Contact of two semi-infinite solids of different initial temperatures",
+          "kind": "figure",
+          "label": "4-32",
+          "page": 266,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-34",
+          "title": "Schematic for Example 4–7",
+          "kind": "figure",
+          "label": "4-34",
+          "page": 268,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-39",
+          "title": "Schematic for Example 4–8",
+          "kind": "figure",
+          "label": "4-39",
+          "page": 272,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-40",
+          "title": "Schematic for Example 4–10",
+          "kind": "figure",
+          "label": "4-40",
+          "page": 274,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-42",
+          "title": "Typical growth curve of microorganisms",
+          "kind": "figure",
+          "label": "4-42",
+          "page": 276,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-43",
+          "title": "The factors that affect the rate of growth of microorganisms",
+          "kind": "figure",
+          "label": "4-43",
+          "page": 276,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-45",
+          "title": "Freezing may stop the growth of microorganisms, but it may not necessarily kill them",
+          "kind": "figure",
+          "label": "4-45",
+          "page": 278,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-46",
+          "title": "Recommended refrigeration and freezing temperatures for most perishable foods",
+          "kind": "figure",
+          "label": "4-46",
+          "page": 278,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-48",
+          "title": "Typical cooling curve of a beef carcass in the chilling and holding rooms at an average temperature of 0°C",
+          "kind": "figure",
+          "label": "4-48",
+          "page": 280,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-54",
+          "title": "The storage life of fresh poultry decreases exponentially with increasing storage temperature",
+          "kind": "figure",
+          "label": "4-54",
+          "page": 284,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-4-57",
+          "title": "Schematic for Example 4–12",
+          "kind": "figure",
+          "label": "4-57",
+          "page": 286,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-4-1",
+          "title": "Summary of the solutions for one-dimensional transient conduction in a plane wall of thickness 2L, a cylinder of radius ro and a sphere of radius ro subjected to convention from all surfaces.* eometry",
+          "kind": "table",
+          "label": "4-1",
+          "page": 249,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-4-2",
+          "title": "Coefficients used in the one-term approximate solution of transient one-dimensional heat conduction in plane walls, cylinders, and spheres",
+          "kind": "table",
+          "label": "4-2",
+          "page": 251,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true,
+          "title_note": "the printed title also defines the Biot number for each geometry; the definitions are omitted here"
+        },
+        {
+          "id": "table-4-4",
+          "title": "The complementary error function",
+          "kind": "table",
+          "label": "4-4",
+          "page": 263,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-4-5",
+          "title": "Multidimensional solutions expressed as products of one-dimensional solutions for bodies that are initially at a uniform temperature Ti and exposed to convection from all surfaces to a medium at T`",
+          "kind": "table",
+          "label": "4-5",
+          "page": 270,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-4-7",
+          "title": "Storage life of frozen meat products at different storage temperatures (from ASHRAE Handbook: Refrigeration, Chap. 10, Table 7)",
+          "kind": "table",
+          "label": "4-7",
+          "page": 282,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        }
+      ]
+    },
+    {
+      "id": "ch-5",
+      "title": "Numerical Methods in Heat Conduction",
+      "page": 307,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "5",
+      "topics": "finite difference, nodal equations, explicit and implicit schemes",
+      "items": [
+        {
+          "id": "figure-5-4",
+          "title": "Some analytical solutions are very complex and difficult to use",
+          "kind": "figure",
+          "label": "5-4",
+          "page": 310,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-5",
+          "title": "The ready availability of high-powered computers with sophisticated software packages has made numerical solution the norm rather than the exception",
+          "kind": "figure",
+          "label": "5-5",
+          "page": 310,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-6",
+          "title": "The derivative of a function at a point represents the slope of the function at that point",
+          "kind": "figure",
+          "label": "5-6",
+          "page": 312,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-7",
+          "title": "Schematic of the nodes and the nodal temperatures used in the development of the finite difference formulation of heat transfer in a plane wall",
+          "kind": "figure",
+          "label": "5-7",
+          "page": 312,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-9",
+          "title": "Finite difference mesh for two-dimensional conduction in rectangular coordinates",
+          "kind": "figure",
+          "label": "5-9",
+          "page": 314,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-10",
+          "title": "The nodal points and volume elements for the finite difference formulation of one-dimensional conduction in a plane wall",
+          "kind": "figure",
+          "label": "5-10",
+          "page": 314,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-12",
+          "title": "The assumed direction of heat transfer at surfaces of a volume element has no effect on the finite difference formulation",
+          "kind": "figure",
+          "label": "5-12",
+          "page": 316,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-15",
+          "title": "Schematic for the finite difference Dx formulation of combined convection and radiation on the left boundary",
+          "kind": "figure",
+          "label": "5-15",
+          "page": 318,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-16",
+          "title": "Schematic for the finite difference formulation of the interface boundary condition for two mediums A and B that are in perfect thermal contact",
+          "kind": "figure",
+          "label": "5-16",
+          "page": 318,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-19",
+          "title": "Despite being approximate in nature, highly accurate results can be obtained by numerical methods",
+          "kind": "figure",
+          "label": "5-19",
+          "page": 320,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-22",
+          "title": "Two general categories of solution methods for solving systems of algebraic equations",
+          "kind": "figure",
+          "label": "5-22",
+          "page": 324,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-25",
+          "title": "The finite difference formulation of a boundary node is obtained by writing an energy balance on its volume element",
+          "kind": "figure",
+          "label": "5-25",
+          "page": 326,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-28",
+          "title": "Schematics for energy balances on the volume elements of nodes 3 and 4",
+          "kind": "figure",
+          "label": "5-28",
+          "page": 328,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-31",
+          "title": "Approximating an irregular boundary with a rectangular mesh",
+          "kind": "figure",
+          "label": "5-31",
+          "page": 330,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-35",
+          "title": "Schematics for energy balances on the volume elements of nodes 7 and 9",
+          "kind": "figure",
+          "label": "5-35",
+          "page": 332,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-42",
+          "title": "The stability criterion of the explicit method requires all primary coefficients to be positive or zero",
+          "kind": "figure",
+          "label": "5-42",
+          "page": 338,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-45",
+          "title": "Schematic for the explicit finite Node 2 is a boundary node subjected to convection, and the finite difference difference formulation of the formulation at that node is obtained by writing an energy balance on the vol-",
+          "kind": "figure",
+          "label": "5-45",
+          "page": 340,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-47",
+          "title": "The nodal network for the Trombe wall discussed in Example 5–6",
+          "kind": "figure",
+          "label": "5-47",
+          "page": 344,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-51",
+          "title": "Schematic and nodal network for Example 5–7",
+          "kind": "figure",
+          "label": "5-51",
+          "page": 348,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-56",
+          "title": "The local and global discretization errors of the finite difference method at the third time step at a specified nodal point",
+          "kind": "figure",
+          "label": "5-56",
+          "page": 352,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-5-58",
+          "title": "As the mesh or time step size decreases, the discretization error decreases but the round-off error increases",
+          "kind": "figure",
+          "label": "5-58",
+          "page": 354,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-5-2",
+          "title": "Application of the Gauss-Seidel iterative method to the finite difference equations of Example 5–2",
+          "kind": "table",
+          "label": "5-2",
+          "page": 324,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)"
+        },
+        {
+          "id": "table-5-4",
+          "title": "The variation of the nodal temperatures in Example 5–5 with time obtained by the implicit method",
+          "kind": "table",
+          "label": "5-4",
+          "page": 342,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-5-5",
+          "title": "The hourly variation of monthly average ambient temperature and solar heat flux incident on a vertical",
+          "kind": "table",
+          "label": "5-5",
+          "page": 343,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-5-6",
+          "title": "The temperatures at the nodes of a Trombe wall at various times",
+          "kind": "table",
+          "label": "5-6",
+          "page": 346,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        }
+      ]
+    },
+    {
+      "id": "ch-6",
+      "title": "Fundamentals of Convection",
+      "page": 379,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "6",
+      "topics": "boundary layer, Nusselt number, Reynolds and Prandtl number",
+      "items": [
+        {
+          "id": "figure-6-1",
+          "title": "Heat transfer from a hot surface to the surrounding fluid by convection and conduction",
+          "kind": "figure",
+          "label": "6-1",
+          "page": 380,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-2",
+          "title": "Heat transfer through a fluid sandwiched between two parallel plates",
+          "kind": "figure",
+          "label": "6-2",
+          "page": 380,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-5",
+          "title": "Wilhelm Nusselt (1882–1957), was a German engineer, born in Nuremberg, Germany. He studied machinery at the Technical Universities of",
+          "kind": "figure",
+          "label": "6-5",
+          "page": 382,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-9",
+          "title": "The flow of an originally uniform fluid stream over a flat plate, and the regions of viscous flow (next to the plate on both sides) and inviscid flow",
+          "kind": "figure",
+          "label": "6-9",
+          "page": 384,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-10",
+          "title": "Internal flows are dominated by the influence of viscosity throughout the External flow over a tennis ball, and flow field. In external flows the viscous effects are limited to boundary layers the turbulent wake region behind",
+          "kind": "figure",
+          "label": "6-10",
+          "page": 384,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-14",
+          "title": "The development of the boundary layer for flow over a flat plate, and the different flow regimes",
+          "kind": "figure",
+          "label": "6-14",
+          "page": 387,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-15",
+          "title": "The development of a boundary layer on a surface is due to the no-slip condition and friction",
+          "kind": "figure",
+          "label": "6-15",
+          "page": 388,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-16",
+          "title": "The viscosity of liquids decreases and the viscosity of gases increases with temperature",
+          "kind": "figure",
+          "label": "6-16",
+          "page": 388,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-18",
+          "title": "Ludwig Prandtl (1875–1953), was a German Physicist famous for his work in aeronautics, born in Freising, Bavaria. His discovery in 1904 of",
+          "kind": "figure",
+          "label": "6-18",
+          "page": 390,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-21",
+          "title": "Most flows encountered in engineering practice are turbulent, and thus it is Osborne Reynolds (1842–1912), an English engineer and physicist best known for his work in the fields of",
+          "kind": "figure",
+          "label": "6-21",
+          "page": 392,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-25",
+          "title": "Fluid particle moving upward through a differential area dA as a result of the velocity fluctuation v9",
+          "kind": "figure",
+          "label": "6-25",
+          "page": 394,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-26",
+          "title": "The velocity gradients at the wall, and thus the wall shear stress, are much larger for turbulent flow than they are for laminar flow, even though the",
+          "kind": "figure",
+          "label": "6-26",
+          "page": 394,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-28",
+          "title": "During steady flow, a fluid may not accelerate in time at a fixed point, but it may accelerate in space",
+          "kind": "figure",
+          "label": "6-28",
+          "page": 396,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-29",
+          "title": "Differential control volume used in the derivation of x-momentum equation in velocity boundary layer in two-dimensional flow over a surface",
+          "kind": "figure",
+          "label": "6-29",
+          "page": 396,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-31",
+          "title": "The energy transfers by heat and mass flow associated with a differential control volume in the thermal boundary layer in steady",
+          "kind": "figure",
+          "label": "6-31",
+          "page": 398,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-32",
+          "title": "Example 6–2",
+          "kind": "figure",
+          "label": "6-32",
+          "page": 399,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-35",
+          "title": "Two geometrically similar the similarity parameters have identical solutions. For example, determining bodies have the same value of the convection heat transfer coefficient for flow over a given surface requires",
+          "kind": "figure",
+          "label": "6-35",
+          "page": 406,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-36",
+          "title": "FUNCTIONAL FORMS OF FRICTION The number of parameters is reduced greatly by The three nondimensionalized boundary layer equations (Eqs. 6–64, 6–65,",
+          "kind": "figure",
+          "label": "6-36",
+          "page": 406,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-40",
+          "title": "Sir Thomas Edward Stanton (1865–1931), was a British engineer,",
+          "kind": "figure",
+          "label": "6-40",
+          "page": 408,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-6-44",
+          "title": "Fluid-thermal characteristics inside a microchannel",
+          "kind": "figure",
+          "label": "6-44",
+          "page": 412,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-6-1",
+          "title": "Dynamic viscosities of some fluids at 1 atm and 20°C (unless otherwise stated)",
+          "kind": "table",
+          "label": "6-1",
+          "page": 389,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-6-2",
+          "title": "Typical ranges of Prandtl numbers for common fluids Fluid flow regime in the first case is said to be laminar, characterized by smooth",
+          "kind": "table",
+          "label": "6-2",
+          "page": 390,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-6-3",
+          "title": "Similarity function f and its derivatives for laminar boundary",
+          "kind": "table",
+          "label": "6-3",
+          "page": 403,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        }
+      ]
+    },
+    {
+      "id": "ch-7",
+      "title": "External Forced Convection",
+      "page": 424,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "7",
+      "topics": "flat plate, cylinder and sphere in cross flow, tube banks, drag",
+      "items": [
+        {
+          "id": "figure-7-3",
+          "title": "(a) Drag force acting on a flat plate parallel to the flow depends on wall shear only. (b) Drag force acting on a flat plate normal to the flow",
+          "kind": "figure",
+          "label": "7-3",
+          "page": 426,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-7-6",
+          "title": "Laminar and turbulent regions of the boundary layer during flow over a flat plate",
+          "kind": "figure",
+          "label": "7-6",
+          "page": 428,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-7-8",
+          "title": "For turbulent flow, surface roughness may cause the friction coefficient to increase severalfold",
+          "kind": "figure",
+          "label": "7-8",
+          "page": 430,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-7-15",
+          "title": "Schematic for Example 7–3",
+          "kind": "figure",
+          "label": "7-15",
+          "page": 436,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-7-19",
+          "title": "The effect of surface roughness on the drag coefficient of a sphere",
+          "kind": "figure",
+          "label": "7-19",
+          "page": 440,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-7-21",
+          "title": "Example 7–4",
+          "kind": "figure",
+          "label": "7-21",
+          "page": 441,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-7-22",
+          "title": "Variation of the local heat transfer coefficient along the circumference of a circular cylinder in cross flow of air",
+          "kind": "figure",
+          "label": "7-22",
+          "page": 442,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-7-23",
+          "title": "Schematic for Example 7–5",
+          "kind": "figure",
+          "label": "7-23",
+          "page": 444,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-7-25",
+          "title": "Flow patterns for in-line and staggered tube banks",
+          "kind": "figure",
+          "label": "7-25",
+          "page": 446,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-7-27",
+          "title": "Friction factor f and correction factor x for tube banks",
+          "kind": "figure",
+          "label": "7-27",
+          "page": 450,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-7-1",
+          "title": "Empirical correlations for the average Nusselt number for forced convection over circular and noncircular cylinders in cross flow (from Zukauskas, 1972, Jakob 1949, and Sparrow et al., 2004)",
+          "kind": "table",
+          "label": "7-1",
+          "page": 443,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-7-2",
+          "title": "Nusselt number correlations for cross flow over tube banks (from Zukauskas, 1987)",
+          "kind": "table",
+          "label": "7-2",
+          "page": 448,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true,
+          "title_partial": true,
+          "title_note": "the printed title also states the row-count and Prandtl-number ranges of validity; omitted here because the scan garbles the inequality signs"
+        },
+        {
+          "id": "table-7-3",
+          "title": "Correction factor F to be used in the tube-bank Nusselt correlation (from Zukauskas, 1987)",
+          "kind": "table",
+          "label": "7-3",
+          "page": 448,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true,
+          "title_partial": true,
+          "title_note": "the printed title states the row-count and Reynolds-number conditions; omitted because the scan garbles the inequality signs"
+        }
+      ]
+    },
+    {
+      "id": "ch-8",
+      "title": "Internal Forced Convection",
+      "page": 473,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "8",
+      "topics": "pipe flow, entry length, laminar and turbulent Nusselt correlations, friction factor",
+      "items": [
+        {
+          "id": "figure-8-1",
+          "title": "Circular pipes can withstand large pressure differences between the inside and the outside without undergoing any significant distortion,",
+          "kind": "figure",
+          "label": "8-1",
+          "page": 474,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-2",
+          "title": "Average velocity Vavg is defined as the average speed through a cross section",
+          "kind": "figure",
+          "label": "8-2",
+          "page": 474,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-5",
+          "title": "In transitional flow, the flow switches between laminar and turbulent in a In the transitional flow region of the flow switches between laminar and disorderly fashion (Fig. 8–5). It should be kept in mind that laminar flow can",
+          "kind": "figure",
+          "label": "8-5",
+          "page": 476,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-7",
+          "title": "The development of the thermal boundary layer in a tube. (The fluid in the tube is being cooled.)",
+          "kind": "figure",
+          "label": "8-7",
+          "page": 478,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-8",
+          "title": "Variation of the friction factor and the convection heat transfer coefficient in the flow direction for flow in a tube (Pr . 1)",
+          "kind": "figure",
+          "label": "8-8",
+          "page": 478,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-9",
+          "title": "Variation of local Nusselt number along a tube in turbulent flow for both constant surface temperature and",
+          "kind": "figure",
+          "label": "8-9",
+          "page": 480,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-10",
+          "title": "The heat transfer to a fluid flowing in a tube is equal to the increase in the",
+          "kind": "figure",
+          "label": "8-10",
+          "page": 480,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-16",
+          "title": "Schematic for Example 8–1",
+          "kind": "figure",
+          "label": "8-16",
+          "page": 484,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-18",
+          "title": "Free-body diagram of a fluid disk element of radius R and length dx in fully developed laminar flow in a",
+          "kind": "figure",
+          "label": "8-18",
+          "page": 486,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-20",
+          "title": "The pumping power requirement for a laminar flow piping system can be reduced by a factor of 16 by doubling the tube diameter",
+          "kind": "figure",
+          "label": "8-20",
+          "page": 488,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-22",
+          "title": "In laminar flow in a tube with constant surface temperature, both the friction factor and the heat transfer coefficient remain constant in the fully developed",
+          "kind": "figure",
+          "label": "8-22",
+          "page": 490,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-23",
+          "title": "Leo Graetz (1856–1941), a German physicist, was born at Breslau (then in Germany, now called Wroclaw and in Poland). His scientific work",
+          "kind": "figure",
+          "label": "8-23",
+          "page": 492,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-25",
+          "title": "Example 8–2",
+          "kind": "figure",
+          "label": "8-25",
+          "page": 493,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-26",
+          "title": "SOLUTION Oil flows in a pipeline that passes through icy waters of a lake at Schematic for Example 8–3",
+          "kind": "figure",
+          "label": "8-26",
+          "page": 494,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-28",
+          "title": "In turbulent flow, the velocity profile is nearly a straight line in the core region, and any significant velocity",
+          "kind": "figure",
+          "label": "8-28",
+          "page": 500,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-29",
+          "title": "A double-tube heat exchanger that consists of two concentric tubes",
+          "kind": "figure",
+          "label": "8-29",
+          "page": 500,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-31",
+          "title": "Example 8–4",
+          "kind": "figure",
+          "label": "8-31",
+          "page": 501,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-32",
+          "title": "Schematic for Example 8–5",
+          "kind": "figure",
+          "label": "8-32",
+          "page": 502,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-34",
+          "title": "Schematic for Example 8–7",
+          "kind": "figure",
+          "label": "8-34",
+          "page": 506,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-36",
+          "title": "Fully developed friction coeffficients for three different inlet configurations and heat fluxes (filled symbols designate the start and end of the transition region for each inlet)",
+          "kind": "figure",
+          "label": "8-36",
+          "page": 509,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-37",
+          "title": "Influence of different inlet configurations on the isothermal fully developed friction coefficients (filled symbols designate the start and end of",
+          "kind": "figure",
+          "label": "8-37",
+          "page": 510,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-39",
+          "title": "Variation of local Nusselt number with length for the re-entrant, square- edged, and bell-mouth inlets in the transition region",
+          "kind": "figure",
+          "label": "8-39",
+          "page": 514,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-8-40",
+          "title": "(a) Sectional view of the micro-fin tube; (b) The plain and micro- fin tubes",
+          "kind": "figure",
+          "label": "8-40",
+          "page": 514,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-8-1",
+          "title": "Nusselt number and friction factor for fully developed laminar flow in tubes of various cross sections",
+          "kind": "table",
+          "label": "8-1",
+          "page": 491,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true,
+          "title_note": "the printed title also defines hydraulic diameter, Reynolds and Nusselt number; definitions omitted here"
+        },
+        {
+          "id": "table-8-3",
+          "title": "The entry lengths for turbulent flow are typically short, often just 10 tube diam- Equivalent roughness values for new commercial pipes* eters long, and thus the Nusselt number determined for fully developed turbulent",
+          "kind": "table",
+          "label": "8-3",
+          "page": 500,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-8-5",
+          "title": "Constants for transition friction coefficient correlation Inlet Geometry Re-entrant Square-edged",
+          "kind": "table",
+          "label": "8-5",
+          "page": 508,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-8-6",
+          "title": "Transition Reynolds numbers for friction coefficient",
+          "kind": "table",
+          "label": "8-6",
+          "page": 509,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        },
+        {
+          "id": "table-8-7",
+          "title": "Constants and ranges of independent variables for transition friction factor correlation",
+          "kind": "table",
+          "label": "8-7",
+          "page": 510,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        },
+        {
+          "id": "table-8-8",
+          "title": "Constants for transition heat transfer and are given in Table 8–8. The viscosity ratio accounts for the temperature correlation based on their database of 1290 points (441 points for re-entrant inlet, 416",
+          "kind": "table",
+          "label": "8-8",
+          "page": 512,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-8-9",
+          "title": "The lower and upper limits of the heat transfer transition Reynolds numbers Inlet Geometry Re-entrant Square-edged",
+          "kind": "table",
+          "label": "8-9",
+          "page": 513,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-8-10",
+          "title": "Specifications of the test tubes Outer dia., Tube Type Plain tube",
+          "kind": "table",
+          "label": "8-10",
+          "page": 514,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-8-11",
+          "title": "Summary of transition Reynolds number ranges for various stainless steel tube sizes (From Ghajar et al., 2010.) Tube I.D. [mm]",
+          "kind": "table",
+          "label": "8-11",
+          "page": 517,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        }
+      ]
+    },
+    {
+      "id": "ch-9",
+      "title": "Natural Convection",
+      "page": 533,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "9",
+      "topics": "Grashof and Rayleigh number, vertical plates, enclosures, combined convection",
+      "items": [
+        {
+          "id": "figure-9-2",
+          "title": "The warming up of a cold drink in a warmer environment by natural convection",
+          "kind": "figure",
+          "label": "9-2",
+          "page": 534,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-7",
+          "title": "Forces acting on a differential volume element in the natural convection boundary layer over a vertical flat r au",
+          "kind": "figure",
+          "label": "9-7",
+          "page": 538,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-8",
+          "title": "German ̈sseldorf, unding",
+          "kind": "figure",
+          "label": "9-8",
+          "page": 539,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-10",
+          "title": "The relative importance of convection heat transfer regimes for flow near a hot sphere",
+          "kind": "figure",
+          "label": "9-10",
+          "page": 540,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-14",
+          "title": "Natural convection flows on the upper and lower surfaces of a horizontal hot plate",
+          "kind": "figure",
+          "label": "9-14",
+          "page": 544,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-15",
+          "title": "Natural convection flow over a horizontal hot cylinder",
+          "kind": "figure",
+          "label": "9-15",
+          "page": 544,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-18",
+          "title": "Schematic for Example 9–2",
+          "kind": "figure",
+          "label": "9-18",
+          "page": 546,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-19",
+          "title": "Natural convection flow through a channel between two isothermal vertical plates",
+          "kind": "figure",
+          "label": "9-19",
+          "page": 548,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-24",
+          "title": "Convective currents in a vertical rectangular enclosure",
+          "kind": "figure",
+          "label": "9-24",
+          "page": 552,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-25",
+          "title": "Convective currents in a horizontal enclosure with (a) hot plate at the top and (b) hot plate at the bottom",
+          "kind": "figure",
+          "label": "9-25",
+          "page": 552,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-28",
+          "title": "An inclined rectangular enclosure with isothermal surfaces",
+          "kind": "figure",
+          "label": "9-28",
+          "page": 554,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-31",
+          "title": "Lc Two concentric isothermal spheres",
+          "kind": "figure",
+          "label": "9-31",
+          "page": 556,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-33",
+          "title": "Schematic for Example 9–5",
+          "kind": "figure",
+          "label": "9-33",
+          "page": 558,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-35",
+          "title": "Variation of the local Nusselt number Nux for combined natural and forced convection from a hot isothermal vertical plate",
+          "kind": "figure",
+          "label": "9-35",
+          "page": 562,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-36",
+          "title": "Natural convection can enhance or inhibit heat transfer, depending on the relative directions of buoyancy-induced motion and the forced convection motion",
+          "kind": "figure",
+          "label": "9-36",
+          "page": 563,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-37",
+          "title": "The variation of specific heat and thermal conductivity with temperature for carbon dioxide at different pressures",
+          "kind": "figure",
+          "label": "9-37",
+          "page": 565,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-41",
+          "title": "The thermal resistance network for heat transfer through the center section of a double-pane window Udouble 2pane (center region) hi hspace",
+          "kind": "figure",
+          "label": "9-41",
+          "page": 568,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-42",
+          "title": "The variation of the U-factor for the center section of double- and triple-pane windows with uniform spacing between the panes From ASHRAE Handbook of Fundamentals, Chap. 27, Fig. 1",
+          "kind": "figure",
+          "label": "9-42",
+          "page": 570,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-45",
+          "title": "Example 9–9",
+          "kind": "figure",
+          "label": "9-45",
+          "page": 575,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-9-46",
+          "title": "Schematic for Example 9–10",
+          "kind": "figure",
+          "label": "9-46",
+          "page": 576,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-9-1",
+          "title": "Empirical correlations for the average Nusselt number for natural convection over surfaces Characteristic Geometry Vertical plate",
+          "kind": "table",
+          "label": "9-1",
+          "page": 542,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-9-2",
+          "title": "Critical angles for inclined rectangular enclosures Aspect ratio, Nuu5908 u/ucr",
+          "kind": "table",
+          "label": "9-2",
+          "page": 554,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-9-3",
+          "title": "The heat transfer coefficient hspace for the air space trapped between the two vertical parallel glass layers for 13-mm- and 6-mm-thick air spaces (from Building Materials and Structures, Report 151, U.S. Dept. of Commerce)",
+          "kind": "table",
+          "label": "9-3",
+          "page": 569,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-9-5",
+          "title": "Combined convection and radiation heat transfer coefficient",
+          "kind": "table",
+          "label": "9-5",
+          "page": 572,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true,
+          "title_partial": true
+        },
+        {
+          "id": "table-9-6",
+          "title": "Overall U-factors (heat transfer coefficients) for various windows and skylights in W/m2·K (from ASHRAE Handbook of Fundamentals, Chap. 27, Table 5)",
+          "kind": "table",
+          "label": "9-6",
+          "page": 573,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        }
+      ]
+    },
+    {
+      "id": "ch-10",
+      "title": "Boiling and Condensation",
+      "page": 598,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "10",
+      "topics": "nucleate boiling, critical heat flux, Rohsenow correlation, film condensation",
+      "items": [
+        {
+          "id": "figure-10-4",
+          "title": "Classification of boiling on the basis of the presence of bulk liquid temperature",
+          "kind": "figure",
+          "label": "10-4",
+          "page": 600,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-6",
+          "title": "Typical boiling curve for water at 1 atm pressure",
+          "kind": "figure",
+          "label": "10-6",
+          "page": 602,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-9",
+          "title": "An attempt to increase the boiling heat flux beyond the critical value often causes the temperature of the heating element to jump suddenly to a",
+          "kind": "figure",
+          "label": "10-9",
+          "page": 604,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-10",
+          "title": "Different relations are used to determine the heat flux in different boiling regimes",
+          "kind": "figure",
+          "label": "10-10",
+          "page": 604,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-13",
+          "title": "The cavities on a rough surface act as nucleation sites and enhance boiling heat transfer",
+          "kind": "figure",
+          "label": "10-13",
+          "page": 608,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-14",
+          "title": "The enhancement of boiling heat transfer in Freon-12 by a mechanically roughened surface, thermoexcel-E",
+          "kind": "figure",
+          "label": "10-14",
+          "page": 608,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-16",
+          "title": "Schematic for Example 10–2",
+          "kind": "figure",
+          "label": "10-16",
+          "page": 610,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-18",
+          "title": "Internal flow boiling, commonly referred to as two-phase flow, is much The effect of forced convection on more complicated in nature because there is no free surface for the vapor to external flow boiling for different flow",
+          "kind": "figure",
+          "label": "10-18",
+          "page": 612,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-20",
+          "title": "When a vapor is exposed to a surface at a temperature below Tsat, condensation in the form of a liquid film or individual droplets occurs on",
+          "kind": "figure",
+          "label": "10-20",
+          "page": 614,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-21",
+          "title": "Film condensation on a vertical plate",
+          "kind": "figure",
+          "label": "10-21",
+          "page": 614,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-23",
+          "title": "Flow regimes during film condensation on a vertical plate",
+          "kind": "figure",
+          "label": "10-23",
+          "page": 616,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-24",
+          "title": "The volume element of condensate on a vertical plate considered in Nusselt’s analysis",
+          "kind": "figure",
+          "label": "10-24",
+          "page": 616,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-26",
+          "title": "Nondimensionalized heat transfer coefficients for the wave-free laminar, wavy laminar, and turbulent flow of condensate on vertical plates",
+          "kind": "figure",
+          "label": "10-26",
+          "page": 620,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-29",
+          "title": "The presence of a noncondensable gas in a vapor prevents the vapor molecules from reaching the cold surface easily, and thus impedes",
+          "kind": "figure",
+          "label": "10-29",
+          "page": 622,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-31",
+          "title": "Schematic for Example 10–5",
+          "kind": "figure",
+          "label": "10-31",
+          "page": 624,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-32",
+          "title": "Schematic for Example 10–6",
+          "kind": "figure",
+          "label": "10-32",
+          "page": 624,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-34",
+          "title": "Condensate flow in a horizontal tube with high and low vapor velocities",
+          "kind": "figure",
+          "label": "10-34",
+          "page": 626,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-36",
+          "title": "Dropwise condensation of water on a vertical surface",
+          "kind": "figure",
+          "label": "10-36",
+          "page": 628,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-38",
+          "title": "Flow patterns in downward vertical two-phase flow",
+          "kind": "figure",
+          "label": "10-38",
+          "page": 630,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-10-39",
+          "title": "Flow patterns in horizontal two-phase flow",
+          "kind": "figure",
+          "label": "10-39",
+          "page": 630,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-10-2",
+          "title": "Surface tension of some fluids (from Suryanarayana, 1995, originally based on data from Jasper, 1972) Substance and Temp. Range Ammonia, –75 to –408C:",
+          "kind": "table",
+          "label": "10-2",
+          "page": 606,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-10-3",
+          "title": "Values of the coefficient Csf and n for various fluid–surface combinations Fluid–Heating Surface Combination Water–copper (polished) Water–copper (scored)",
+          "kind": "table",
+          "label": "10-3",
+          "page": 606,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-10-4",
+          "title": "Values of the coefficient Ccr for use in Eq. 10-3 for maximum heat flux",
+          "kind": "table",
+          "label": "10-4",
+          "page": 606,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true,
+          "title_note": "the printed title also defines the dimensionless heater-size parameter; the definition is omitted here because the scan garbles its symbols"
+        }
+      ]
+    },
+    {
+      "id": "ch-11",
+      "title": "Heat Exchangers",
+      "page": 649,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "11",
+      "topics": "LMTD, effectiveness-NTU, overall heat transfer coefficient, fouling",
+      "items": [
+        {
+          "id": "figure-11-1",
+          "title": "Cold Different flow regimes and associated temperature profiles in a double-pipe heat exchanger",
+          "kind": "figure",
+          "label": "11-1",
+          "page": 650,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-5",
+          "title": "The schematic of a shell-and-tube heat exchanger (one-shell pass and one-tube pass)",
+          "kind": "figure",
+          "label": "11-5",
+          "page": 652,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-6",
+          "title": "Multipass flow arrangements in shell-and-tube heat exchangers",
+          "kind": "figure",
+          "label": "11-6",
+          "page": 652,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-7",
+          "title": "A plate-and-frame liquid-to-liquid",
+          "kind": "figure",
+          "label": "11-7",
+          "page": 653,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-8",
+          "title": "Thermal resistance network associated with heat transfer in a double-pipe heat exchanger",
+          "kind": "figure",
+          "label": "11-8",
+          "page": 654,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-9",
+          "title": "The two heat transfer surface areas on which it is based is specified. This is especially the case when one side of associated with a double-pipe heat the tube wall is finned and the other side is not, since the surface area of the",
+          "kind": "figure",
+          "label": "11-9",
+          "page": 654,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-10",
+          "title": "Precipitation fouling of ash particles on superheater tubes",
+          "kind": "figure",
+          "label": "11-10",
+          "page": 656,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-11",
+          "title": "Schematic for Example 11–1",
+          "kind": "figure",
+          "label": "11-11",
+          "page": 658,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-14",
+          "title": "Variation of fluid temperatures in a heat exchanger when one of the fluids condenses or boils",
+          "kind": "figure",
+          "label": "11-14",
+          "page": 662,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-16",
+          "title": "The DT1 and DT2 expressions in parallel-flow and counter-flow heat exchangers",
+          "kind": "figure",
+          "label": "11-16",
+          "page": 664,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-19",
+          "title": "Correction factor F charts for common t2 – t1 shell-and-tube and cross-flow heat",
+          "kind": "figure",
+          "label": "11-19",
+          "page": 666,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-20",
+          "title": "Example 11–3",
+          "kind": "figure",
+          "label": "11-20",
+          "page": 667,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-21",
+          "title": "Schematic for Example 11–4",
+          "kind": "figure",
+          "label": "11-21",
+          "page": 668,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-23",
+          "title": "Example 11–6",
+          "kind": "figure",
+          "label": "11-23",
+          "page": 671,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-27",
+          "title": "Effectiveness for heat exchangers",
+          "kind": "figure",
+          "label": "11-27",
+          "page": 678,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-30",
+          "title": "Schematic for Example 11–8",
+          "kind": "figure",
+          "label": "11-30",
+          "page": 680,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-31",
+          "title": "Schematic for Example 11–9",
+          "kind": "figure",
+          "label": "11-31",
+          "page": 682,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-33",
+          "title": "Schematic for Example 11–11",
+          "kind": "figure",
+          "label": "11-33",
+          "page": 688,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-11-35",
+          "title": "Blood temperature variation in the human arm for both a cold and hot environment",
+          "kind": "figure",
+          "label": "11-35",
+          "page": 690,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-11-1",
+          "title": "Representative values of the overall heat transfer coefficients in heat exchangers Type of heat exchanger Water-to-water",
+          "kind": "table",
+          "label": "11-1",
+          "page": 655,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-11-3",
+          "title": "Nusselt number for fully developed laminar flow in a circular annulus",
+          "kind": "table",
+          "label": "11-3",
+          "page": 659,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-11-4",
+          "title": "Effectiveness relations for heat exchangers",
+          "kind": "table",
+          "label": "11-4",
+          "page": 677,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true,
+          "title_note": "the printed title also defines NTU and the capacity ratio; definitions omitted here"
+        },
+        {
+          "id": "table-11-5",
+          "title": "NTU relations for heat exchangers",
+          "kind": "table",
+          "label": "11-5",
+          "page": 680,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true,
+          "title_note": "the printed title also defines NTU and the capacity ratio; definitions omitted here"
+        }
+      ]
+    },
+    {
+      "id": "ch-12",
+      "title": "Fundamentals of Thermal Radiation",
+      "page": 715,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "12",
+      "topics": "blackbody, emissivity, absorptivity, Planck and Stefan-Boltzmann law",
+      "items": [
+        {
+          "id": "figure-12-1",
+          "title": "A hot object in a vacuum chamber loses heat by radiation only",
+          "kind": "figure",
+          "label": "12-1",
+          "page": 716,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-2",
+          "title": "Unlike conduction and convection, heat transfer by radiation can occur between two bodies, even when they are separated by a medium colder",
+          "kind": "figure",
+          "label": "12-2",
+          "page": 716,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-5",
+          "title": "Food is heated or cooked in a microwave oven by absorbing the electromagnetic radiation energy generated by the magnetron of the",
+          "kind": "figure",
+          "label": "12-5",
+          "page": 718,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-10",
+          "title": "A surface that reflects red while absorbing the remaining parts of the incident light appears red to the eye",
+          "kind": "figure",
+          "label": "12-10",
+          "page": 722,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-11",
+          "title": "Consider a 20-cm-diameter spherical ball at 800 K suspended in air as shown On an Ebl–l chart, the area under in Fig. 12–12. Assuming the ball closely approximates a blackbody, determine a curve for a given temperature",
+          "kind": "figure",
+          "label": "12-11",
+          "page": 722,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-17",
+          "title": "Describing the size of a slice of pizza by a plane angle, and the size of a",
+          "kind": "figure",
+          "label": "12-17",
+          "page": 726,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-19",
+          "title": "Radiation intensity is based on projected area, and thus the calculation of radiation emission from a surface involves the projection of the surface",
+          "kind": "figure",
+          "label": "12-19",
+          "page": 728,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-22",
+          "title": "Integration of a “spectral” quantity for all wavelengths gives the “total” quantity",
+          "kind": "figure",
+          "label": "12-22",
+          "page": 730,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-25",
+          "title": "The effect of diffuse and gray approximations on the emissivity of a surface",
+          "kind": "figure",
+          "label": "12-25",
+          "page": 734,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-26",
+          "title": "Typical variations of emissivity with direction for electrical conductors and nonconductors",
+          "kind": "figure",
+          "label": "12-26",
+          "page": 734,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-27",
+          "title": "Comparison of the emissivity (a) and T = const",
+          "kind": "figure",
+          "label": "12-27",
+          "page": 734,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-31",
+          "title": "The absorption, reflection, and Transmissivity: transmission of incident radiation by a semitransparent material",
+          "kind": "figure",
+          "label": "12-31",
+          "page": 736,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-32",
+          "title": "Different types of reflection from a surface: (a) actual or irregular, (b) diffuse, and (c) specular or mirrorlike",
+          "kind": "figure",
+          "label": "12-32",
+          "page": 738,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-33",
+          "title": "Variation of absorptivity with the temperature of the source of irradiation for various common materials at room temperature",
+          "kind": "figure",
+          "label": "12-33",
+          "page": 738,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-36",
+          "title": "Schematic for Example 12–5",
+          "kind": "figure",
+          "label": "12-36",
+          "page": 740,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-37",
+          "title": "The spectral transmissivity of low-iron glass at room temperature for different thicknesses",
+          "kind": "figure",
+          "label": "12-37",
+          "page": 742,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-38",
+          "title": "A greenhouse traps energy by allowing the solar radiation to come in but not allowing the infrared radiation to go out",
+          "kind": "figure",
+          "label": "12-38",
+          "page": 742,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-42",
+          "title": "Air molecules scatter blue light much more than they do red light. At sunset, light travels through a thicker layer of atmosphere, which removes much",
+          "kind": "figure",
+          "label": "12-42",
+          "page": 744,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-43",
+          "title": "The direct and diffuse radiation incident on a horizontal surface on earth’s surface",
+          "kind": "figure",
+          "label": "12-43",
+          "page": 744,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-45",
+          "title": "The cycle that water undergoes in a hydroelectric power plant",
+          "kind": "figure",
+          "label": "12-45",
+          "page": 746,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-47",
+          "title": "The variation of the transmittance of typical architectural glass with wavelength",
+          "kind": "figure",
+          "label": "12-47",
+          "page": 748,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-50",
+          "title": "A properly sized overhang blocks off the sun’s rays completely in summer while letting them in in winter",
+          "kind": "figure",
+          "label": "12-50",
+          "page": 752,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-12-51",
+          "title": "Draperies reduce heat gain in summer by reflecting back solar radiation, and reduce heat loss in winter by forming an air space before the window",
+          "kind": "figure",
+          "label": "12-51",
+          "page": 752,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-12-1",
+          "title": "The wavelength ranges of different colors",
+          "kind": "table",
+          "label": "12-1",
+          "page": 718,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        },
+        {
+          "id": "table-12-2",
+          "title": "Blackbody radiation functions fl lT, mm.K",
+          "kind": "table",
+          "label": "12-2",
+          "page": 724,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-12-4",
+          "title": "Hourly variation of solar radiation incident on various surfaces and the daily totals throughout the year (from ASHRAE Handbook of Fundamentals, Chap. 27, Table 15)",
+          "kind": "table",
+          "label": "12-4",
+          "page": 750,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        },
+        {
+          "id": "table-12-5",
+          "title": "Shading coefficient SC and solar transmissivity tsolar for some",
+          "kind": "table",
+          "label": "12-5",
+          "page": 751,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        }
+      ]
+    },
+    {
+      "id": "ch-13",
+      "title": "Radiation Heat Transfer",
+      "page": 767,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "13",
+      "topics": "view factors, radiation networks, two- and three-surface enclosures, shields, gas radiation",
+      "items": [
+        {
+          "id": "figure-13-1",
+          "title": "Radiation heat exchange between surfaces depends on the orientation of the surfaces relative to each other, and this dependence on orientation is",
+          "kind": "figure",
+          "label": "13-1",
+          "page": 768,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-2",
+          "title": "Geometry for the determination of the view factor between two surfaces",
+          "kind": "figure",
+          "label": "13-2",
+          "page": 768,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-3",
+          "title": "The view factor from a surface to itself is zero for plane or convex surfaces and nonzero for concave surfaces",
+          "kind": "figure",
+          "label": "13-3",
+          "page": 770,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-7",
+          "title": "View factor between two coaxial parallel disks",
+          "kind": "figure",
+          "label": "13-7",
+          "page": 774,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup.",
+          "collision_note": "SAME QUANTITY, TWO FORMS. This is the CHART of the view factor between two coaxial parallel disks, for reading by eye. The identical relationship is available as a closed-form expression in the coaxial-parallel-disks row of table-13-1, which is what a solver-based method uses. Do not send a student here for a value their method computes algebraically."
+        },
+        {
+          "id": "figure-13-8",
+          "title": "View factors for two concentric cylinders of finite length: (a) outer cylinder to inner cylinder; (b) outer cylinder to itself",
+          "kind": "figure",
+          "label": "13-8",
+          "page": 774,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-10",
+          "title": "The geometry considered in Example 13–1",
+          "kind": "figure",
+          "label": "13-10",
+          "page": 776,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-13",
+          "title": "Two surfaces that are symmetric about a third surface will have the same view factor from the third surface",
+          "kind": "figure",
+          "label": "13-13",
+          "page": 778,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-16",
+          "title": "Determination of the view factor F1 S 2 by the application of the crossed-strings method",
+          "kind": "figure",
+          "label": "13-16",
+          "page": 780,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-18",
+          "title": "Two general black surfaces maintained at uniform temperatures T1 and T2",
+          "kind": "figure",
+          "label": "13-18",
+          "page": 782,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-22",
+          "title": "Electrical analogy of space resistance to radiation",
+          "kind": "figure",
+          "label": "13-22",
+          "page": 786,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-24",
+          "title": "Schematic of a two-surface enclosure and the radiation network associated with it",
+          "kind": "figure",
+          "label": "13-24",
+          "page": 788,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-25",
+          "title": "SOLUTION Two large parallel plates are maintained at uniform temperatures",
+          "kind": "figure",
+          "label": "13-25",
+          "page": 788,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-26",
+          "title": "Schematic of a three-surface enclosure and the radiation network associated with it",
+          "kind": "figure",
+          "label": "13-26",
+          "page": 790,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-27",
+          "title": "The cylindrical furnace considered in Example 13–8",
+          "kind": "figure",
+          "label": "13-27",
+          "page": 790,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-28",
+          "title": "R1 1 a The triangular furnace considered in Example 13–9",
+          "kind": "figure",
+          "label": "13-28",
+          "page": 792,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-31",
+          "title": "A thermometer used to measure the temperature of a fluid in a channel",
+          "kind": "figure",
+          "label": "13-31",
+          "page": 798,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-34",
+          "title": "Schematic for Example 13–13",
+          "kind": "figure",
+          "label": "13-34",
+          "page": 800,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-35",
+          "title": "The attenuation of a radiation beam while passing through an absorbing medium of thickness L",
+          "kind": "figure",
+          "label": "13-35",
+          "page": 802,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-41",
+          "title": "Schematic for Example 13–15",
+          "kind": "figure",
+          "label": "13-41",
+          "page": 808,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-42",
+          "title": "Mechanisms of heat loss from the human body and relative magnitudes for a resting person",
+          "kind": "figure",
+          "label": "13-42",
+          "page": 810,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-13-48",
+          "title": "Clothing serves as insulation, and the room temperature needs to be raised when a person is unclothed to maintain the same comfort level",
+          "kind": "figure",
+          "label": "13-48",
+          "page": 814,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-13-1",
+          "title": "View factor expressions for some common geometries of finite size (3-D)",
+          "kind": "table",
+          "label": "13-1",
+          "page": 771,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "collision_note": "SAME QUANTITY, TWO FORMS. This table carries the closed-form view-factor EXPRESSIONS, including the row for coaxial parallel disks. The same relationship is also plotted as a chart at figure-13-7. If the work is being solved in a solver such as EES, this table is the right object: a chart cannot be typed into an equation solver. Confirmed against the book: this table's rows are aligned parallel rectangles, coaxial parallel disks, and perpendicular rectangles with a common edge."
+        },
+        {
+          "id": "table-13-2",
+          "title": "View factor expressions for some infinitely long (2-D) geometries",
+          "kind": "table",
+          "label": "13-2",
+          "page": 772,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-13-3",
+          "title": "Radiation heat transfer relations for some familiar two-surface arrangments",
+          "kind": "table",
+          "label": "13-3",
+          "page": 789,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-13-4",
+          "title": "Mean beam length L for various gas volume shapes Gas Volume Geometry Hemisphere of radius R radiating to the center of its base Sphere of diameter D radiating to its surface",
+          "kind": "table",
+          "label": "13-4",
+          "page": 806,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        }
+      ]
+    },
+    {
+      "id": "ch-14",
+      "title": "Mass Transfer",
+      "page": 835,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "14",
+      "topics": "Fick's law, diffusion coefficients, mass convection, analogy with heat transfer",
+      "items": [
+        {
+          "id": "figure-14-1",
+          "title": "Whenever there is concentration difference of a physical quantity in a medium, nature tends to equalize things by forcing a flow from the high",
+          "kind": "figure",
+          "label": "14-1",
+          "page": 836,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-4",
+          "title": "Analogy between heat and mass transfer",
+          "kind": "figure",
+          "label": "14-4",
+          "page": 838,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-5",
+          "title": "Unlike heat radiation, there is no such thing as mass radiation",
+          "kind": "figure",
+          "label": "14-5",
+          "page": 838,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-6",
+          "title": "Analogy between heat conduction and mass diffusion",
+          "kind": "figure",
+          "label": "14-6",
+          "page": 838,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-8",
+          "title": "Different ways of expressing the concentration of species A of a binary mixture A and B",
+          "kind": "figure",
+          "label": "14-8",
+          "page": 840,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-11",
+          "title": "Analogy between Fourier’s law of heat conduction and Fick’s law of mass diffusion",
+          "kind": "figure",
+          "label": "14-11",
+          "page": 842,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-12",
+          "title": "Example 14–1",
+          "kind": "figure",
+          "label": "14-12",
+          "page": 845,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-14",
+          "title": "An impermeable surface in mass transfer is analogous to an insulated surface in heat transfer",
+          "kind": "figure",
+          "label": "14-14",
+          "page": 846,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-21",
+          "title": "One-dimensional mass diffusion through a cylindrical or spherical shell",
+          "kind": "figure",
+          "label": "14-21",
+          "page": 852,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-22",
+          "title": "The diffusion rate of a gas species through a solid can be determined from a knowledge of the partial pressures",
+          "kind": "figure",
+          "label": "14-22",
+          "page": 852,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-28",
+          "title": "Schematic for Example 14–7",
+          "kind": "figure",
+          "label": "14-28",
+          "page": 860,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-33",
+          "title": "When the total pressure P and temperature T of a binary mixture of ideal gases is held constant, then the molar concentration C of the mixture",
+          "kind": "figure",
+          "label": "14-33",
+          "page": 866,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-34",
+          "title": "Diffusion of a vapor A through a stagnant gas B",
+          "kind": "figure",
+          "label": "14-34",
+          "page": 866,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-35",
+          "title": "Equimolar isothermal counterdiffusion of two gases A and B",
+          "kind": "figure",
+          "label": "14-35",
+          "page": 868,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-38",
+          "title": "Schematic for Example 14–10",
+          "kind": "figure",
+          "label": "14-38",
+          "page": 872,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-41",
+          "title": "In mass transfer, the Schmidt number plays the role of the Prandtl number in heat transfer",
+          "kind": "figure",
+          "label": "14-41",
+          "page": 874,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-42",
+          "title": "The relative growth of the velocity and thermal boundary layers in laminar Ernst Heinrich Wilhelm Schmidt flow is governed by the Prandtl number, whereas the relative growth of the (1892–1975), a German engineer, was",
+          "kind": "figure",
+          "label": "14-42",
+          "page": 874,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-46",
+          "title": "Sherwood number: Thomas Kilgore Sherwood (1903–1976), an American chemical engineer, was born in Columbus,",
+          "kind": "figure",
+          "label": "14-46",
+          "page": 876,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true,
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-47",
+          "title": "In mass transfer, the Sherwood number plays the role the Nusselt number plays in heat transfer",
+          "kind": "figure",
+          "label": "14-47",
+          "page": 876,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-51",
+          "title": "When the friction or heat transfer coefficient is known, the mass transfer coefficient can be determined directly from the Chilton–Colburn analogy",
+          "kind": "figure",
+          "label": "14-51",
+          "page": 878,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "figure-14-57",
+          "title": "Schematic for Example 14–13",
+          "kind": "figure",
+          "label": "14-57",
+          "page": 884,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+        },
+        {
+          "id": "table-14-1",
+          "title": "Binary diffusion coefficients of some gases in air at 1 atm pressure",
+          "kind": "table",
+          "label": "14-1",
+          "page": 842,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        },
+        {
+          "id": "table-14-2",
+          "title": "Binary diffusion coefficients of dilute gas mixtures at 1 atm (from Barrer, 1941; Geankoplis, 1972; Perry, 1963; and Reid et al., 1977)",
+          "kind": "table",
+          "label": "14-2",
+          "page": 843,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-14-3",
+          "title": "Binary diffusion coefficients of dilute liquid solutions and solid solutions at 1 atm (from Barrer, 1941; Reid et al., 1977; Thomas, 1991; and van Black, 1980) (a) Diffusion through Liquids Substance A",
+          "kind": "table",
+          "label": "14-3",
+          "page": 844,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-14-4",
+          "title": "In a binary ideal gas mixture of species A and B, the diffusion coefficient of A in B is equal to the diffusion coefficient of B in A,",
+          "kind": "table",
+          "label": "14-4",
+          "page": 844,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-14-5",
+          "title": "Solubility of two inorganic compounds in water at various temperatures, in kg, in 100 kg of water [from Handbook of Chemistry",
+          "kind": "table",
+          "label": "14-5",
+          "page": 846,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-14-6",
+          "title": "Henry's constant H (in bars) for selected gases in water at low to moderate pressures (from Mills, 1995)",
+          "kind": "table",
+          "label": "14-6",
+          "page": 847,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        },
+        {
+          "id": "table-14-7",
+          "title": "Solubility of selected gases and solids",
+          "kind": "table",
+          "label": "14-7",
+          "page": 848,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        },
+        {
+          "id": "table-14-8",
+          "title": "Analogy between heat conduction and mass diffusion in a stationary medium",
+          "kind": "table",
+          "label": "14-8",
+          "page": 850,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        },
+        {
+          "id": "table-14-9",
+          "title": "Saturation pressure of water at various temperatures",
+          "kind": "table",
+          "label": "14-9",
+          "page": 856,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "caption_recovered": true
+        },
+        {
+          "id": "table-14-13",
+          "title": "Sherwood number relations in mass convection for specified concentration at the surface corresponding to the Nusselt number relations in heat convection for specified surface temperature Convective Heat Transfer 1. Forced Convection over a Flat Plate",
+          "kind": "table",
+          "label": "14-13",
+          "page": 880,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        },
+        {
+          "id": "table-14-14",
+          "title": "Various expressions for evaporation rate of a liquid into a gas through an interface area As under various approximations (subscript v stands for vapor, s for liquid–gas interface, and ` away from surface) Assumption",
+          "kind": "table",
+          "label": "14-14",
+          "page": 884,
+          "basis": "caption printed in the book body (single source; chapter items are not listed in the front matter)",
+          "title_partial": true
+        }
+      ]
+    },
+    {
+      "id": "ch-15",
+      "title": "Cooling of Electronic Equipment",
+      "page": null,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "15",
+      "topics": "electronics cooling"
+    },
+    {
+      "id": "ch-16",
+      "title": "Heating and Cooling of Buildings",
+      "page": null,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "16",
+      "topics": "building loads, heating and cooling design"
+    },
+    {
+      "id": "ch-17",
+      "title": "Refrigeration and Freezing of Foods",
+      "page": null,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "17",
+      "topics": "food refrigeration, freezing loads"
+    }
+  ],
+  "appendix": [
+    {
+      "id": "table-a-1",
+      "title": "Molar mass, gas constant, and ideal-gas specific heats of some substances",
+      "kind": "table",
+      "label": "A-1",
+      "page": 908,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "substance"
+    },
+    {
+      "id": "table-a-2",
+      "title": "Boiling and freezing point properties",
+      "kind": "table",
+      "label": "A-2",
+      "page": 909,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "substance"
+    },
+    {
+      "id": "table-a-3",
+      "title": "Properties of solid metals",
+      "kind": "table",
+      "label": "A-3",
+      "page": "910-912",
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "material"
+    },
+    {
+      "id": "table-a-4",
+      "title": "Properties of solid nonmetals",
+      "kind": "table",
+      "label": "A-4",
+      "page": 913,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "material"
+    },
+    {
+      "id": "table-a-5",
+      "title": "Properties of building materials",
+      "kind": "table",
+      "label": "A-5",
+      "page": "914-915",
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "material",
+      "note": "tabulated at a mean temperature of 24 °C"
+    },
+    {
+      "id": "table-a-6",
+      "title": "Properties of insulating materials",
+      "kind": "table",
+      "label": "A-6",
+      "page": 916,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "material"
+    },
+    {
+      "id": "table-a-7",
+      "title": "Properties of common foods",
+      "kind": "table",
+      "label": "A-7",
+      "page": "917-918",
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "food"
+    },
+    {
+      "id": "table-a-8",
+      "title": "Properties of miscellaneous materials",
+      "kind": "table",
+      "label": "A-8",
+      "page": 919,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "material"
+    },
+    {
+      "id": "table-a-9",
+      "title": "Properties of saturated water",
+      "kind": "table",
+      "label": "A-9",
+      "page": 920,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "gives": "saturation pressure, density, enthalpy of vaporization h_fg, specific heat cp, thermal conductivity k, dynamic viscosity, Prandtl number, for liquid and vapor",
+      "indexed_by": "temperature, T in °C",
+      "header_verified": true,
+      "collision_note": "LABEL COLLISION. 'A-9' means three different things across the Cengel texts these courses use. HERE it is Properties of saturated water. In cengel-boles-thermodynamics-8e - the OTHER book for these same two courses - A-9 is a FIGURE (T-s diagram) and saturated water by temperature is table-a-4. In cengel-cimbala-fluid-mechanics-4e (ENGR 209) table-a-9 is Properties of Air at 1 atm, and saturated water is table-a-3."
+    },
+    {
+      "id": "table-a-10",
+      "title": "Properties of saturated refrigerant-134a",
+      "kind": "table",
+      "label": "A-10",
+      "page": 921,
+      "basis": "contents listing only (-layout and -raw reconciled); no body caption confirmed",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-11",
+      "title": "Properties of saturated ammonia",
+      "kind": "table",
+      "label": "A-11",
+      "page": 922,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-12",
+      "title": "Properties of saturated propane",
+      "kind": "table",
+      "label": "A-12",
+      "page": 923,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-13",
+      "title": "Properties of liquids",
+      "kind": "table",
+      "label": "A-13",
+      "page": 924,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "liquid and temperature"
+    },
+    {
+      "id": "table-a-14",
+      "title": "Properties of liquid metals",
+      "kind": "table",
+      "label": "A-14",
+      "page": 925,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "metal and temperature"
+    },
+    {
+      "id": "table-a-15",
+      "title": "Properties of air at 1 atm pressure",
+      "kind": "table",
+      "label": "A-15",
+      "page": 926,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-16",
+      "title": "Properties of gases at 1 atm pressure",
+      "kind": "table",
+      "label": "A-16",
+      "page": "927-928",
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "gas and temperature"
+    },
+    {
+      "id": "table-a-17",
+      "title": "Properties of the atmosphere at high altitude",
+      "kind": "table",
+      "label": "A-17",
+      "page": 929,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "altitude"
+    },
+    {
+      "id": "table-a-18",
+      "title": "Emissivities of surfaces",
+      "kind": "table",
+      "label": "A-18",
+      "page": "930-931",
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "surface material"
+    },
+    {
+      "id": "table-a-19",
+      "title": "Solar radiative properties of materials",
+      "kind": "table",
+      "label": "A-19",
+      "page": 932,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "material"
+    },
+    {
+      "id": "figure-a-20",
+      "title": "The Moody chart for friction factor for fully developed flow in circular pipes",
+      "kind": "figure",
+      "label": "A-20",
+      "page": 933,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "note": "A FIGURE, not a table.",
+      "collision_note": "The Moody chart is A-20 here but figure-a-12 in cengel-cimbala-fluid-mechanics-4e. A FIGURE in both."
+    }
+  ]
+}

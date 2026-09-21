@@ -14,13 +14,13 @@
     "format": "none",
     "methods": "none",
     "assignments": "none",
-    "notes": "No completed deliverable exists, and that is how the course was designed, not a filing gap. The archived syllabus puts all homework on an online platform, where answers are typed into the site and nothing is written up or kept as a file. Tests and the final are paper, closed-technology, and were never scanned. The archive holds the syllabus, the open textbook, study guides, formula and equation sheets, and blank practice problems for each test and the final. That is enough to know the course's topics, but not how any written work should look, because no written work was ever turned in digitally. A student asking for help should get the method for the specific problem, not a formatted deliverable."
+    "notes": "This pack's absences are structural rather than a search result, which is a stronger claim than 'not found' and is made deliberately. No completed deliverable exists, and that is how the course was designed, not a filing gap. The archived syllabus puts all homework on an online platform, where answers are typed into the site and nothing is written up or kept as a file. Tests and the final are paper, closed-technology, and were never scanned. The archive holds the syllabus, the open textbook, study guides, formula and equation sheets, and blank practice problems for each test and the final. That is enough to know the course's topics, but not how any written work should look, because no written work was ever turned in digitally. A student asking for help should get the method for the specific problem, not a formatted deliverable."
   },
   "course_policy": {
     "source": "syllabus (archived, Fall 2023)",
     "confidence": "unknown",
     "term_observed": "Fall 2023",
-    "summary": "The archived syllabus has an academic-integrity section but no generative-AI statement. The current terms are unknown.",
+    "summary": "The archived syllabus has an academic-integrity section but no generative-AI statement in its extractable text. That syllabus is outdated by the student's own account, so it does not establish the current terms, which are unknown: ask the student.",
     "permitted": [],
     "prohibited": [],
     "student_asked": null,

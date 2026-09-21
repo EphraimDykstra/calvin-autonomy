@@ -12,13 +12,13 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "Only one lab handout survives (Lab 01, measurement and density), and its 'What You'll Turn In' list is the only format rule stated by an instructor. Three completed group reports (Labs 06-08) follow a looser version of that list, and their handouts were not kept, so their question numbering cannot be checked. The lecture syllabus says lab writing standards are in separate handouts, which were not retained. There are no graded returns. The completed reports contain unit and uncertainty errors, so they show structure only. The uncertainty method is well specified because Lab 01 teaches it in full."
+    "notes": "Absence claims in this pack describe one search, not the world: a listing of this course's folders in the student's iCloud term archive and his university OneDrive, in September 2026. Only one lab handout survives (Lab 01, measurement and density), and its 'What You'll Turn In' list is the only format rule stated by an instructor. Three completed group reports (Labs 06-08) follow a looser version of that list, and their handouts were not kept, so their question numbering cannot be checked. The lecture syllabus says lab writing standards are in separate handouts, which were not retained. There are no graded returns. The completed reports contain unit and uncertainty errors, so they show structure only. The uncertainty method is well specified because Lab 01 teaches it in full."
   },
   "course_policy": {
     "source": "lecture syllabus (archived, Spring 2024)",
     "confidence": "unknown",
     "term_observed": "Spring 2024",
-    "summary": "The archived lecture syllabus covers collaboration and plagiarism, but no generative-AI statement was found in it, and the lab has no syllabus of its own. The current terms are unknown.",
+    "summary": "The archived lecture syllabus covers collaboration and plagiarism, but no generative-AI statement was found in its extractable text, and no syllabus of the lab's own was found in the student's iCloud term folders or his university OneDrive, searched September 2026. The lecture syllabus is outdated by the student's own account, so it does not establish the current terms, which are unknown: ask the student.",
     "permitted": [],
     "prohibited": [],
     "student_asked": null,

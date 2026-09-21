@@ -170,6 +170,57 @@ class ReviewCommandTests(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertFalse(report["steps"][0]["magnitude"]["plausible"])
 
+    def _one_step(self):
+        return {"steps": [step("a + b", {"a": {"value": 1, "unit": "m"}, "b": {"value": 1, "unit": "m"}}, 9, "m")]}
+
+    def test_an_unknown_course_id_is_reported_rather_than_passed_over(self):
+        # Before this, an id matching no pack ran with no ranges and said
+        # nothing, so a host that mistyped a pack id lost magnitude checking
+        # silently.  It stays non-fatal: the arithmetic was still checked.
+        code, report = self._run(self._one_step(), "--course", "engr999")
+        self.assertEqual(code, 0)
+        self.assertFalse(report["course_pack"]["installed"])
+        self.assertEqual(report["course_pack"]["requested"], "engr999")
+        self.assertEqual(report["course_pack"]["magnitude_ranges"], "unavailable")
+        self.assertEqual(report["course_pack"]["did_you_mean"], [])
+        self.assertEqual(report["checked"], 1)
+
+    def test_a_near_match_is_named_using_the_pack_resolver(self):
+        # engr315 is not a pack; engr315-lab is.  The near match comes from
+        # pack_query.find, the same resolver `pack find` uses, rather than from
+        # a second one written here.
+        code, report = self._run(self._one_step(), "--course", "engr315")
+        self.assertEqual(code, 0)
+        self.assertEqual(report["course_pack"]["did_you_mean"], ["engr315-lab"])
+
+    def test_a_course_id_with_nothing_to_match_on_is_still_not_fatal(self):
+        # pack_query.find refuses a string with no alphanumerics.  That is a
+        # reason to report no near matches, never to fail a review that ran.
+        code, report = self._run(self._one_step(), "--course", "@@@")
+        self.assertEqual(code, 0)
+        self.assertFalse(report["course_pack"]["installed"])
+        self.assertEqual(report["course_pack"]["did_you_mean"], [])
+
+    def test_a_known_course_and_no_course_both_report_nothing(self):
+        # Absent when there is nothing to say, so the ordinary result is
+        # unchanged and the field means something when it does appear.
+        for extra in ((), ("--course", "engr319")):
+            with self.subTest(extra=extra):
+                code, report = self._run(self._one_step(), *extra)
+                self.assertEqual(code, 0)
+                self.assertNotIn("course_pack", report)
+
+    def test_a_missing_range_does_not_claim_a_pack_that_is_not_there(self):
+        # With no ranges loaded there is no pack to have been missing an entry.
+        # Saying so would contradict the line reporting the unknown id.
+        code, report = self._run(
+            {"steps": [step("a + b", {"a": {"value": 1, "unit": "m"}, "b": {"value": 1, "unit": "m"}},
+                            2, "m", magnitude="some quantity")]},
+            "--course", "engr999")
+        self.assertEqual(code, 0)
+        self.assertNotIn("in the course pack", report["steps"][0]["error"])
+        self.assertIn("no magnitude ranges are loaded", report["steps"][0]["error"])
+
 
 if __name__ == "__main__":
     unittest.main()

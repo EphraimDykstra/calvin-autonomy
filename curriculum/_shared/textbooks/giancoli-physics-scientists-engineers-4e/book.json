@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "giancoli-physics-scientists-engineers-4e",
+    "citation": "Giancoli, Douglas C.; Physics for Scientists and Engineers with Modern Physics, 4th Edition, Pearson Prentice Hall, 2009",
+    "pages_total": 1322,
+    "courses": [
+      "phys133",
+      "phys235"
+    ],
+    "index_coverage": {
+      "chapters": "complete: all 44 chapters, serving both Physics 133 and Physics 235",
+      "appendix": "NOT indexed, but they EXIST: Appendices A-F, including Mathematical Formulas, Derivatives and Integrals, Dimensional Analysis and Selected Isotopes. Their individual entries are not recorded here.",
+      "chapter_tables": "NOT indexed"
+    },
+    "appendix_note": "Appendices A-F: Mathematical Formulas (A-1), Derivatives and Integrals (A-6), Dimensional Analysis (A-8), Gravitational Force (A-9), Maxwell's Equations Differential Form (A-12), Selected Isotopes (A-14)"
+  },
+  "pointer_policy": "Pointers only. This file names which chapter or which appendix table to open. It never carries a value from a table body, and none may be added. Checks that the lookup was well formed. It cannot tell whether the value you read is correct.",
+  "addressing": "Ids are literal addresses, reached as appendix.<item-id> and chapters.<item-id>. A table and a figure sharing a number get different ids (appendix.table-a-9 vs appendix.figure-a-9) so a request for a table can never silently return a chart. The list is called `appendix` rather than `tables` because it also holds figures and, in some books, lettered appendices that are not tables at all. Table numbers are NOT portable between books.",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "title": "Introduction, Measurement, Estimating",
+      "page": 1,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "1",
+      "topics": "measurement, significant figures, SI units, uncertainty, dimensional analysis"
+    },
+    {
+      "id": "ch-2",
+      "title": "Describing Motion: Kinematics in One Dimension",
+      "page": 18,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "2",
+      "topics": "kinematics, displacement, velocity, acceleration, free fall"
+    },
+    {
+      "id": "ch-3",
+      "title": "Kinematics in Two or Three Dimensions; Vectors",
+      "page": 51,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "3",
+      "topics": "vectors, vector addition, projectile motion, relative velocity"
+    },
+    {
+      "id": "ch-4",
+      "title": "Dynamics: Newton's Laws of Motion",
+      "page": 83,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "4",
+      "topics": "Newton's laws, force, mass, free-body diagrams"
+    },
+    {
+      "id": "ch-5",
+      "title": "Using Newton's Laws: Friction, Circular Motion, Drag Forces",
+      "page": 112,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "5",
+      "topics": "friction, circular motion, drag forces, terminal velocity"
+    },
+    {
+      "id": "ch-6",
+      "title": "Gravitation and Newton's Synthesis",
+      "page": 139,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "6",
+      "topics": "gravitation, Newton's law of universal gravitation, Kepler's laws, satellites"
+    },
+    {
+      "id": "ch-7",
+      "title": "Work and Energy",
+      "page": 163,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "7",
+      "topics": "work, kinetic energy, work-energy principle, scalar product"
+    },
+    {
+      "id": "ch-8",
+      "title": "Conservation of Energy",
+      "page": 183,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "8",
+      "topics": "conservation of energy, potential energy, mechanical energy, power"
+    },
+    {
+      "id": "ch-9",
+      "title": "Linear Momentum",
+      "page": 214,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "9",
+      "topics": "momentum, impulse, conservation of momentum, collisions, center of mass"
+    },
+    {
+      "id": "ch-10",
+      "title": "Rotational Motion",
+      "page": 248,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "10",
+      "topics": "angular quantities, torque, rotational inertia, rotational kinetic energy, rolling"
+    },
+    {
+      "id": "ch-11",
+      "title": "Angular Momentum; General Rotation",
+      "page": 284,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "11",
+      "topics": "angular momentum, vector cross product, conservation of angular momentum, gyroscope"
+    },
+    {
+      "id": "ch-12",
+      "title": "Static Equilibrium; Elasticity and Fracture",
+      "page": 311,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "12",
+      "topics": "equilibrium, stress and strain, elasticity, fracture, structures"
+    },
+    {
+      "id": "ch-13",
+      "title": "Fluids",
+      "page": 339,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "13",
+      "topics": "density, pressure, buoyancy, flow, continuity equation, Bernoulli's equation"
+    },
+    {
+      "id": "ch-14",
+      "title": "Oscillations",
+      "page": 369,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "14",
+      "topics": "simple harmonic motion, springs, pendulum, damped oscillations, resonance"
+    },
+    {
+      "id": "ch-15",
+      "title": "Wave Motion",
+      "page": 395,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "15",
+      "topics": "waves, wave equation, superposition, interference, standing waves, diffraction"
+    },
+    {
+      "id": "ch-16",
+      "title": "Sound",
+      "page": 424,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "16",
+      "topics": "sound waves, intensity, decibels, Doppler effect, interference, resonance, ultrasound"
+    },
+    {
+      "id": "ch-17",
+      "title": "Temperature, Thermal Expansion, and the Ideal Gas Law",
+      "page": 454,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "17",
+      "topics": "temperature, thermal expansion, gas laws, ideal gas, thermometry"
+    },
+    {
+      "id": "ch-18",
+      "title": "Kinetic Theory of Gases",
+      "page": 476,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "18",
+      "topics": "kinetic theory, molecular speeds, phase changes, mean free path, diffusion"
+    },
+    {
+      "id": "ch-19",
+      "title": "Heat and the First Law of Thermodynamics",
+      "page": 496,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "19",
+      "topics": "heat, internal energy, specific heat, latent heat, first law of thermodynamics"
+    },
+    {
+      "id": "ch-20",
+      "title": "Second Law of Thermodynamics",
+      "page": 528,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "20",
+      "topics": "second law, heat engines, Carnot engine, entropy, refrigerators"
+    },
+    {
+      "id": "ch-21",
+      "title": "Electric Charge and Electric Field",
+      "page": 559,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "21",
+      "topics": "electric charge, Coulomb's law, electric field, field lines, conductors"
+    },
+    {
+      "id": "ch-22",
+      "title": "Gauss's Law",
+      "page": 591,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "22",
+      "topics": "Gauss's law, electric flux, applications of Gauss's law"
+    },
+    {
+      "id": "ch-23",
+      "title": "Electric Potential",
+      "page": 607,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "23",
+      "topics": "electric potential energy, potential difference, equipotential surfaces, electron volt"
+    },
+    {
+      "id": "ch-24",
+      "title": "Electric Energy Storage",
+      "page": 628,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "24",
+      "topics": "capacitors, capacitance, dielectrics, energy storage"
+    },
+    {
+      "id": "ch-25",
+      "title": "Electric Currents and Resistance",
+      "page": 651,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "25",
+      "topics": "electric current, Ohm's law, resistivity, power, superconductivity"
+    },
+    {
+      "id": "ch-26",
+      "title": "DC Circuits",
+      "page": 677,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "26",
+      "topics": "EMF, terminal voltage, resistors in series and parallel, Kirchhoff's rules, RC circuits"
+    },
+    {
+      "id": "ch-27",
+      "title": "Magnetism",
+      "page": 707,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "27",
+      "topics": "magnetic fields, magnetic force on currents and charges, torque, magnetic dipole"
+    },
+    {
+      "id": "ch-28",
+      "title": "Sources of Magnetic Field",
+      "page": 733,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "28",
+      "topics": "magnetic field from wire, Ampere's law, solenoid, ferromagnetism, magnetic materials"
+    },
+    {
+      "id": "ch-29",
+      "title": "Electromagnetic Induction and Faraday's Law",
+      "page": 758,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "29",
+      "topics": "induced EMF, Faraday's law, Lenz's law, generators, transformers"
+    },
+    {
+      "id": "ch-30",
+      "title": "Inductance, Electromagnetic Oscillations, and AC Circuits",
+      "page": 785,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "30",
+      "topics": "self-inductance, mutual inductance, LC circuits, AC circuits, resonance, impedance"
+    },
+    {
+      "id": "ch-31",
+      "title": "Maxwell's Equations and Electromagnetic Waves",
+      "page": 812,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "31",
+      "topics": "Maxwell's equations, electromagnetic waves, EM spectrum, Poynting vector, radiation pressure"
+    },
+    {
+      "id": "ch-32",
+      "title": "Light: Reflection and Refraction",
+      "page": 837,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "32",
+      "topics": "light rays, reflection, mirrors, refraction, Snell's law, total internal reflection"
+    },
+    {
+      "id": "ch-33",
+      "title": "Lenses and Optical Instruments",
+      "page": 866,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "33",
+      "topics": "thin lenses, focal length, magnification, cameras, human eye, telescopes, microscopes"
+    },
+    {
+      "id": "ch-34",
+      "title": "The Wave Nature of Light; Interference",
+      "page": 900,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "34",
+      "topics": "wave-particle duality, Huygens' principle, double-slit interference, thin film interference"
+    },
+    {
+      "id": "ch-35",
+      "title": "Diffraction and Polarization",
+      "page": 921,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "35",
+      "topics": "single-slit diffraction, diffraction grating, resolution, X-ray diffraction, polarization"
+    },
+    {
+      "id": "ch-36",
+      "title": "Special Theory of Relativity",
+      "page": 951,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "36",
+      "topics": "Galilean relativity, postulates of special relativity, time dilation, length contraction, E=mc²"
+    },
+    {
+      "id": "ch-37",
+      "title": "Early Quantum Theory and Models of the Atom",
+      "page": 987,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "37",
+      "topics": "blackbody radiation, photoelectric effect, Compton effect, Bohr model, de Broglie"
+    },
+    {
+      "id": "ch-38",
+      "title": "Quantum Mechanics",
+      "page": 1017,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "38",
+      "topics": "wave function, Heisenberg uncertainty principle, Schrodinger equation, tunneling"
+    },
+    {
+      "id": "ch-39",
+      "title": "Quantum Mechanics of Atoms",
+      "page": 1044,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "39",
+      "topics": "hydrogen atom, quantum numbers, exclusion principle, periodic table, X-ray spectra, lasers"
+    },
+    {
+      "id": "ch-40",
+      "title": "Molecules and Solids",
+      "page": 1071,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "40",
+      "topics": "molecular bonding, van der Waals forces, molecular spectra, band theory, semiconductors, transistors"
+    },
+    {
+      "id": "ch-41",
+      "title": "Nuclear Physics and Radioactivity",
+      "page": 1104,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "41",
+      "topics": "nuclear structure, binding energy, radioactivity, alpha decay, beta decay, half-life, nuclear dating"
+    },
+    {
+      "id": "ch-42",
+      "title": "Nuclear Energy; Effects and Uses of Radiation",
+      "page": 1131,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "42",
+      "topics": "nuclear reactions, fission, fusion, radiation effects, dosimetry, radiation therapy, medical imaging"
+    },
+    {
+      "id": "ch-43",
+      "title": "Elementary Particles",
+      "page": 1164,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "43",
+      "topics": "particle accelerators, particle exchange, antiparticles, quarks, standard model, grand unified theories"
+    },
+    {
+      "id": "ch-44",
+      "title": "Astrophysics and Cosmology",
+      "page": 1193,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "44",
+      "topics": "stars and galaxies, stellar evolution, cosmological distance, general relativity, expanding universe, Big Bang, dark matter"
+    }
+  ]
+}

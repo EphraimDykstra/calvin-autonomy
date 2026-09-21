@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "dorf-bishop-modern-control-systems-13e",
+    "citation": "Dorf, Richard C. and Bishop, Robert H., Modern Control Systems, Thirteenth Edition",
+    "pages_total": 1106,
+    "courses": [
+      "engr315"
+    ],
+    "index_coverage": {
+      "chapters": "complete: all 13 chapters",
+      "appendix": "NOT indexed, but the appendices EXIST and are in this PDF. The publisher designates Appendices A-I as web resources; this file bundles them. Verified present: A MATLAB Basics, C Symbols/Units/Conversion Factors, D Laplace Transform Pairs, F Decibel Conversion, G Complex Numbers, H z-Transform Pairs, I Discrete-Time Evaluation. D and H are the ones a control-systems student is usually sent to. Their individual entries are not indexed here.",
+      "note": "Appendix pages use letter-prefixed numbering (D-1, H-1), NOT the body's continuous numbering, so an appendix must never be cited by a body page number."
+    },
+    "appendix_note": "Appendices A-I are designated WEB RESOURCES by the publisher, but THIS PDF bundles all of them. Verified present in-file: A MATLAB Basics, C Symbols/Units/Conversion Factors, D Laplace Transform Pairs, F Decibel Conversion, G Complex Numbers, H z-Transform Pairs, I Discrete-Time Evaluation. Appendix pages use LETTER-PREFIXED numbering (D-1, H-1), NOT the body's continuous numbering - never cite an appendix by a body page number."
+  },
+  "pointer_policy": "Pointers only. This file names which chapter or which appendix table to open. It never carries a value from a table body, and none may be added. Checks that the lookup was well formed. It cannot tell whether the value you read is correct.",
+  "addressing": "Ids are literal addresses, reached as appendix.<item-id> and chapters.<item-id>. A table and a figure sharing a number get different ids (appendix.table-a-9 vs appendix.figure-a-9) so a request for a table can never silently return a chart. The list is called `appendix` rather than `tables` because it also holds figures and, in some books, lettered appendices that are not tables at all. Table numbers are NOT portable between books.",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "title": "Introduction to Control Systems",
+      "page": 1,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "1",
+      "topics": "control system basics, history of automatic control, engineering design process, control design process, mechatronic systems, sequential design example"
+    },
+    {
+      "id": "ch-2",
+      "title": "Mathematical Models of Systems",
+      "page": 51,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "2",
+      "topics": "differential equations, Laplace transform, transfer functions, block diagram models, signal-flow graphs, system simulation"
+    },
+    {
+      "id": "ch-3",
+      "title": "State Variable Models",
+      "page": 156,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "3",
+      "topics": "state variables, state differential equations, state transition matrix, time response, transfer function from state equation"
+    },
+    {
+      "id": "ch-4",
+      "title": "Feedback Control System Characteristics",
+      "page": 228,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "4",
+      "topics": "error signal analysis, system sensitivity, disturbance rejection, transient response, steady-state error, cost of feedback"
+    },
+    {
+      "id": "ch-5",
+      "title": "The Performance of Feedback Control Systems",
+      "page": 293,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "5",
+      "topics": "test input signals, second-order system response, pole-zero locations, steady-state error, performance indices, system simplification"
+    },
+    {
+      "id": "ch-6",
+      "title": "The Stability of Linear Feedback Systems",
+      "page": 366,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "6",
+      "topics": "stability concept, Routh-Hurwitz criterion, relative stability, state variable systems, stability analysis"
+    },
+    {
+      "id": "ch-7",
+      "title": "The Root Locus Method",
+      "page": 418,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "7",
+      "topics": "root locus concept, root locus procedure, parameter design, PID controllers, Ziegler-Nichols tuning, negative gain root locus"
+    },
+    {
+      "id": "ch-8",
+      "title": "Frequency Response Methods",
+      "page": 517,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "8",
+      "topics": "frequency response plots, Bode plots, frequency response measurements, performance specifications, design methods"
+    },
+    {
+      "id": "ch-9",
+      "title": "Stability in the Frequency Domain",
+      "page": 594,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "9",
+      "topics": "Nyquist criterion, Bode plots, Nichols charts, relative stability, time-domain criteria in frequency domain, bandwidth, Nyquist plots, PID controllers"
+    },
+    {
+      "id": "ch-10",
+      "title": "The Design of Feedback Control Systems",
+      "page": 700,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "10",
+      "topics": "cascade compensators, phase-lead design, phase-lag design, lead compensators, lag compensators, Bode plot design, prefilter design, deadbeat response"
+    },
+    {
+      "id": "ch-11",
+      "title": "The Design of State Variable Feedback Systems",
+      "page": 784,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "11",
+      "topics": "controllability, observability, full-state feedback design, observer design, pole placement, optimal control, internal model design"
+    },
+    {
+      "id": "ch-12",
+      "title": "Robust Control Systems",
+      "page": 854,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "12",
+      "topics": "robust control, system sensitivity, robustness analysis, uncertain parameters, robust design, robust PID controllers, internal model control, quantitative feedback"
+    },
+    {
+      "id": "ch-13",
+      "title": "Digital Control Systems",
+      "page": 917,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "13",
+      "topics": "sampled-data systems, z-transform, closed-loop feedback sampled-data systems, digital compensation, root locus of digital systems, digital controller implementation"
+    }
+  ]
+}

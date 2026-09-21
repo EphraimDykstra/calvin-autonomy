@@ -5,7 +5,7 @@ import ast
 import math
 import operator
 
-from .units import describe, expression_dimension, parse_unit, same_dimension
+from .units import BUILTIN_CONSTANTS, describe, expression_dimension, parse_unit, power_notation_hint, same_dimension, shadowed_constants
 
 OPS = {ast.Add: operator.add, ast.Sub: operator.sub, ast.Mult: operator.mul,
        ast.Div: operator.truediv, ast.Pow: operator.pow}
@@ -31,6 +31,10 @@ def evaluate(expression: str, variables: dict) -> float:
             return finite(node.value)
         if isinstance(node, ast.Name):
             if node.id not in variables:
+                # Reached only when nothing of this name was supplied: a
+                # supplied value is already in `variables` and wins there.
+                if node.id in BUILTIN_CONSTANTS:
+                    return BUILTIN_CONSTANTS[node.id]
                 raise ValueError(f"Missing variable: {node.id}")
             return variables[node.id]
         if isinstance(node, ast.BinOp) and type(node.op) in OPS:
@@ -42,7 +46,10 @@ def evaluate(expression: str, variables: dict) -> float:
             return visit(node.operand) * (-1 if isinstance(node.op, ast.USub) else 1)
         if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id in FUNCTIONS and len(node.args) == 1 and not node.keywords:
             return finite(FUNCTIONS[node.func.id](visit(node.args[0])))
-        raise ValueError("Unsupported expression; only numeric arithmetic and sqrt/exp/log/abs are allowed.")
+        raise ValueError(
+            "Unsupported expression; only numeric arithmetic and sqrt/exp/log/abs are allowed."
+            + power_notation_hint(expression)
+        )
 
     return visit(tree.body)
 
@@ -104,6 +111,10 @@ def check_calculation(check: dict) -> dict:
         # Say which check ran.  A pass in arithmetic mode says nothing about
         # units, and a reader must be able to tell that from the result alone.
         result["mode"] = mode
+        # A supplied constant wins, and says so: see shadowed_constants.
+        shadows = shadowed_constants(variables)
+        if shadows:
+            result["shadowed_constants"] = shadows
         if mode == "dimensional":
             actual = _evaluate_dimensional(check, variables)
         else:

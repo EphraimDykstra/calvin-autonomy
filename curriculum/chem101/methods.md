@@ -4,7 +4,7 @@
 
 The lab syllabus says each report was written and handed in on paper before the end of the lab period, following that week's lab manual, which was posted online and not kept. So no lab report ever existed as a file. Nobody lost it.
 
-What is known is what reports were graded on: calculations done correctly, units shown, proper significant figures, and reasonable answers to the questions. The data itself was usually not graded. That is the whole of `lab-report-in-period` in `pack.json`.
+What is known is what reports were graded on: calculations done correctly, units shown, proper significant figures, and reasonable answers to the questions. The data itself was usually not graded. That is the whole of `assignment_families.lab-report-in-period`.
 
 ## Sustainability essay: the prompt is missing
 

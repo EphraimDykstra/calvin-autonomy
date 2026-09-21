@@ -1,8 +1,8 @@
 # EES for Calvin thermal-fluids courses
 
-This is for the host model. It covers how to write EES the way ENGR 319, ENGR 328 and ENGR 333 expect: what to hand the student, what to ask them to bring back, and how to check what comes back. The rules are derived from course handouts, lab manuals and one student's EES files. `pack.json` holds the same rules in structured form, and each rule has a `basis` field naming its source by document type.
+This is for the host model. It covers how to write EES the way ENGR 319, ENGR 328 and ENGR 333 expect: what to hand the student, what to ask them to bring back, and how to check what comes back. The rules are derived from course handouts, lab manuals and one student's EES files. The pack's rule nodes hold the same rules in structured form, and each rule has a `basis` field naming its source by document type.
 
-**You cannot run EES.** It is Windows-only and runs on the engineering lab machines or the remote desktop. Every file you write is unverified until the student solves it and sends back the results. The exemplars in `exemplars/` have never been solved in EES either. Treat them as idiom, not as tested code.
+**You cannot run EES.** It is Windows-only and runs on the engineering lab machines or the remote desktop. Every file you write is unverified until the student solves it and sends back the results. The exemplars (`exemplars.<id>`) have never been solved in EES either. Treat them as idiom, not as tested code.
 
 ## 1. Before writing anything
 

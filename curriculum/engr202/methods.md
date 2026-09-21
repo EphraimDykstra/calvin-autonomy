@@ -1,6 +1,6 @@
 # ENGR 202 (Statics and Dynamics): what this pack knows
 
-Nothing about how this course sets, presents, or grades work. The folder holds the publisher's textbook and one image-only personal cheat sheet. Listing this course's folder in the student's iCloud term archive and his university OneDrive in September 2026 turned up no syllabus, prompt, or completed homework. That is what was searched; the course's online platform was not reachable, and material that only ever lived there would not appear in either archive.
+Nothing about how this course sets, presents, or grades work. The folder holds the publisher's textbook and one personal cheat sheet, image-dominant but not image-only; a second cheat sheet for this course sits elsewhere in OneDrive, filed under another course. Listing this course's folder in the student's iCloud term archive and his university OneDrive in September 2026 turned up no syllabus, prompt, or completed homework. That is what was searched; the course's online platform was not reachable, and material that only ever lived there would not appear in either archive.
 
 ## What to tell the student
 

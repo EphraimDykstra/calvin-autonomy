@@ -667,28 +667,57 @@ def load_book(path: Path) -> dict[str, Any]:
                 f"({course} or {course}-*); the book would never appear on a course's card"
             )
 
-    for key, items in book.items():
-        if not isinstance(items, list):
-            continue
-        seen: set[str] = set()
-        for item in items:
-            item = _require_mapping(item, f"{where}: an entry in {key}")
-            item_id = item.get("id")
-            if not isinstance(item_id, str) or not item_id:
-                raise CurriculumError(f"{where}: an entry in {key} has no id")
-            if "." in item_id:
-                raise CurriculumError(
-                    f"{where}: {key} id {item_id!r} contains '.', which separates the parts of an "
-                    "address, so the entry could never be fetched"
-                )
-            if item_id in seen:
-                raise CurriculumError(f"{where}: {key} id {item_id!r} appears more than once")
-            seen.add(item_id)
-            if not isinstance(item.get("title"), str) or not item["title"].strip():
-                raise CurriculumError(f"{where}: {key}.{item_id} needs a title")
-            if not any(isinstance(item.get(k), str) and item[k].strip() for k in ("basis", "source")):
-                raise CurriculumError(f"{where}: {key}.{item_id} needs a basis saying how the pointer was verified")
+    # A miss in an index means one of two things, "not indexed" or "not in the
+    # book", and only the record can say which.  So every book states what its
+    # index covers, in words a host shows as they are.  Absent is not the same
+    # as complete, and a book that says nothing would read as complete.
+    index_coverage = record.get("index_coverage")
+    if (
+        not isinstance(index_coverage, dict) or not index_coverage
+        or not all(isinstance(v, str) and v.strip() for v in index_coverage.values())
+    ):
+        raise CurriculumError(
+            f"{where}: book.index_coverage must say, section by section, what this index "
+            "covers and what it leaves out"
+        )
+
+    for key, value in book.items():
+        _check_book_entries(value, key, where)
     return book
+
+
+def _check_book_entries(node: Any, address: str, where: str) -> None:
+    """Hold every list of entries in a book to the same rules, at any depth.
+
+    A chapter holds its own tables and figures, so checking only the top-level
+    lists left most of a book unchecked: a dotted id or an empty title one
+    level down loaded clean and produced an entry no address could reach.
+    """
+    if isinstance(node, dict):
+        for key, value in node.items():
+            _check_book_entries(value, f"{address}.{key}", where)
+        return
+    if not isinstance(node, list) or not any(isinstance(item, dict) for item in node):
+        return
+    seen: set[str] = set()
+    for item in node:
+        item = _require_mapping(item, f"{where}: an entry in {address}")
+        item_id = item.get("id")
+        if not isinstance(item_id, str) or not item_id:
+            raise CurriculumError(f"{where}: an entry in {address} has no id")
+        if "." in item_id:
+            raise CurriculumError(
+                f"{where}: {address} id {item_id!r} contains '.', which separates the parts of an "
+                "address, so the entry could never be fetched"
+            )
+        if item_id in seen:
+            raise CurriculumError(f"{where}: {address} id {item_id!r} appears more than once")
+        seen.add(item_id)
+        if not isinstance(item.get("title"), str) or not item["title"].strip():
+            raise CurriculumError(f"{where}: {address}.{item_id} needs a title")
+        if not any(isinstance(item.get(k), str) and item[k].strip() for k in ("basis", "source")):
+            raise CurriculumError(f"{where}: {address}.{item_id} needs a basis saying how the pointer was verified")
+        _check_book_entries(item, f"{address}.{item_id}", where)
 
 
 def books_for_pack(pack_id: str, root: Path) -> list[str]:

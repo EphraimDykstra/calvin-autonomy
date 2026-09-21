@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "macaulay-new-way-things-work-1998",
+    "citation": "David Macaulay with Neil Ardley, The New Way Things Work (Revised Edition, Dorling Kindersley 1998)",
+    "pages_total": 402,
+    "courses": [
+      "engr322"
+    ],
+    "index_coverage": {
+      "structure": "complete: all 39 parts and sections. This is an illustrated reference organised in named parts, not a problem-set textbook with numbered chapters.",
+      "appendix": "THERE IS NONE: the book ends with an index (p. 396) and carries no appendix",
+      "chapter_tables": "NOT indexed; this book has no numbered tables to cite"
+    },
+    "structure": "named-parts"
+  },
+  "pointer_policy": "Pointers only. This file names which chapter or which appendix table to open. It never carries a value from a table body, and none may be added. Checks that the lookup was well formed. It cannot tell whether the value you read is correct.",
+  "addressing": "Ids are literal addresses, reached as appendix.<item-id> and chapters.<item-id>. A table and a figure sharing a number get different ids (appendix.table-a-9 vs appendix.figure-a-9) so a request for a table can never silently return a chart. The list is called `appendix` rather than `tables` because it also holds figures and, in some books, lettered appendices that are not tables at all. Table numbers are NOT portable between books.",
+  "chapters": [
+    {
+      "id": "part-1",
+      "title": "The Mechanics of Movement",
+      "page": 6,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1",
+      "topics": "levers, wheels, gears, pulleys, screws, springs, friction, mechanical principles",
+      "kind": "part"
+    },
+    {
+      "id": "ch-1-1",
+      "title": "Introduction",
+      "page": 8,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1.1",
+      "topics": "overview, principles, mechanical systems"
+    },
+    {
+      "id": "ch-1-2",
+      "title": "The Inclined Plane",
+      "page": 10,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1.2",
+      "topics": "inclined plane, wedge, ramp, mechanical advantage, work, effort, distance"
+    },
+    {
+      "id": "ch-1-3",
+      "title": "Levers",
+      "page": 18,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1.3",
+      "topics": "lever, fulcrum, effort, load, mechanical advantage, classes"
+    },
+    {
+      "id": "ch-1-4",
+      "title": "The Wheel & Axle",
+      "page": 30,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1.4",
+      "topics": "wheel, axle, rotation, torque, mechanical advantage"
+    },
+    {
+      "id": "ch-1-5",
+      "title": "Gears & Belts",
+      "page": 36,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1.5",
+      "topics": "gears, belts, power transmission, speed, torque, efficiency"
+    },
+    {
+      "id": "ch-1-6",
+      "title": "Cams & Cranks",
+      "page": 48,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1.6",
+      "topics": "cam, crank, linkage, reciprocating motion, rotary motion"
+    },
+    {
+      "id": "ch-1-7",
+      "title": "Pulleys",
+      "page": 54,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1.7",
+      "topics": "pulley, mechanical advantage, belt, rope, block and tackle"
+    },
+    {
+      "id": "ch-1-8",
+      "title": "Screws",
+      "page": 62,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1.8",
+      "topics": "screw, thread, mechanical advantage, fastening, rotational motion"
+    },
+    {
+      "id": "ch-1-9",
+      "title": "Rotating Wheels",
+      "page": 70,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1.9",
+      "topics": "gyroscope, angular momentum, rotation, stability"
+    },
+    {
+      "id": "ch-1-10",
+      "title": "Springs",
+      "page": 78,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1.10",
+      "topics": "spring, elasticity, energy storage, resonance, oscillation"
+    },
+    {
+      "id": "ch-1-11",
+      "title": "Friction",
+      "page": 82,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1.11",
+      "topics": "friction, resistance, bearings, lubrication, efficiency"
+    },
+    {
+      "id": "part-2",
+      "title": "Harnessing the Elements",
+      "page": 90,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "2",
+      "topics": "floating, flying, pressure, heat, nuclear power, buoyancy, aerodynamics",
+      "kind": "part"
+    },
+    {
+      "id": "ch-2-1",
+      "title": "Introduction",
+      "page": 92,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "2.1",
+      "topics": "overview, molecules, elements, energy, principles"
+    },
+    {
+      "id": "ch-2-2",
+      "title": "Floating",
+      "page": 94,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "2.2",
+      "topics": "buoyancy, density, water displacement, ships, boats, submarines"
+    },
+    {
+      "id": "ch-2-3",
+      "title": "Flying",
+      "page": 106,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "2.3",
+      "topics": "aerodynamics, lift, wing, aircraft, pressure, air resistance"
+    },
+    {
+      "id": "ch-2-4",
+      "title": "Pressure Power",
+      "page": 120,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "2.4",
+      "topics": "pressure, pumps, compressors, hydraulic systems, pneumatic systems"
+    },
+    {
+      "id": "ch-2-5",
+      "title": "Exploiting Heat",
+      "page": 142,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "2.5",
+      "topics": "heat, temperature, combustion, engines, thermodynamics, expansion"
+    },
+    {
+      "id": "ch-2-6",
+      "title": "Nuclear Power",
+      "page": 164,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "2.6",
+      "topics": "nuclear fission, uranium, reactor, chain reaction, electricity generation"
+    },
+    {
+      "id": "part-3",
+      "title": "Working with Waves",
+      "page": 174,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "3",
+      "topics": "light, sound, waves, energy, photography, telecommunications, printing",
+      "kind": "part"
+    },
+    {
+      "id": "ch-3-1",
+      "title": "Introduction",
+      "page": 176,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "3.1",
+      "topics": "overview, waves, energy, frequency, wavelength, senses"
+    },
+    {
+      "id": "ch-3-2",
+      "title": "Light & Images",
+      "page": 178,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "3.2",
+      "topics": "light, optics, lenses, mirrors, telescopes, microscopes, holography"
+    },
+    {
+      "id": "ch-3-3",
+      "title": "Photography",
+      "page": 198,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "3.3",
+      "topics": "photography, camera, film, exposure, lenses, image formation"
+    },
+    {
+      "id": "ch-3-4",
+      "title": "Printing",
+      "page": 208,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "3.4",
+      "topics": "printing, ink, type, colour, offset printing, reproduction"
+    },
+    {
+      "id": "ch-3-5",
+      "title": "Sound & Music",
+      "page": 218,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "3.5",
+      "topics": "sound, waves, frequency, pitch, music, recording, speakers"
+    },
+    {
+      "id": "ch-3-6",
+      "title": "Telecommunications",
+      "page": 234,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "3.6",
+      "topics": "telephone, radio, television, satellites, signals, transmission"
+    },
+    {
+      "id": "part-4",
+      "title": "Electricity & Automation",
+      "page": 254,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "4",
+      "topics": "electricity, magnetism, motors, generators, automation, control, sensors",
+      "kind": "part"
+    },
+    {
+      "id": "ch-4-1",
+      "title": "Introduction",
+      "page": 256,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "4.1",
+      "topics": "overview, electrons, electrical power, automation, control systems"
+    },
+    {
+      "id": "ch-4-2",
+      "title": "Electricity",
+      "page": 258,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "4.2",
+      "topics": "electric current, voltage, resistance, circuits, generators, motors"
+    },
+    {
+      "id": "ch-4-3",
+      "title": "Magnetism",
+      "page": 274,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "4.3",
+      "topics": "magnetic field, electromagnets, magnetic force, attraction, repulsion"
+    },
+    {
+      "id": "ch-4-4",
+      "title": "Sensors & Detectors",
+      "page": 290,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "4.4",
+      "topics": "sensors, detectors, measurement, feedback, automation, control"
+    },
+    {
+      "id": "part-5",
+      "title": "The Digital Domain",
+      "page": 310,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "5",
+      "topics": "binary, bits, digital, computing, processing, storage, automation",
+      "kind": "part"
+    },
+    {
+      "id": "ch-1",
+      "title": "Making Bits",
+      "page": 310,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1",
+      "topics": "binary, bit, binary representation, digital conversion"
+    },
+    {
+      "id": "ch-2",
+      "title": "Storing Bits",
+      "page": 327,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "2",
+      "topics": "memory, storage, digital storage, information, data"
+    },
+    {
+      "id": "ch-3",
+      "title": "Processing Bits",
+      "page": 338,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "3",
+      "topics": "processing, logic, computation, algorithms, digital logic"
+    },
+    {
+      "id": "ch-4",
+      "title": "Sending Bits",
+      "page": 346,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "4",
+      "topics": "transmission, communication, signals, networks, data transfer"
+    },
+    {
+      "id": "ch-5",
+      "title": "Using Bits",
+      "page": 354,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "5",
+      "topics": "applications, software, programming, digital systems, control"
+    },
+    {
+      "id": "ch-5-6",
+      "title": "Digital Systems",
+      "page": 366,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "5.6",
+      "topics": "systems, integration, applications, automation, digital technology"
+    },
+    {
+      "id": "ch-5-7",
+      "title": "Epilogue",
+      "page": 372,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "5.7",
+      "topics": "conclusion, summary, mammoth narrative"
+    }
+  ]
+}

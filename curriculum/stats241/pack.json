@@ -13,13 +13,13 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "One family only: seven weekly R/Quarto problem sets, each a .qmd source kept beside its rendered PDF, all built from one instructor-supplied Quarto template. The template header is strong evidence for the source format. There are no assignment prompts, no syllabus, no rubric, no graded returns and no answer key. The one test is a phone scan with no text layer. Methods are inferred from the student's own R code and comments, not from course notes, and some of those comments contain statistical errors (listed as pitfalls). This repo cannot render, run or verify a .qmd deliverable: its renderer produces pdf, docx and xlsx only and never executes R. The host can draft the source, but the student must render it in their own Quarto and R install and check the PDF."
+    "notes": "Absence claims in this pack describe one search, not the world: a listing of this course's folders in the student's iCloud term archive and his university OneDrive, in September 2026. One family only: seven weekly R/Quarto problem sets, each a .qmd source kept beside its rendered PDF, all built from one instructor-supplied Quarto template. The template header is strong evidence for the source format. There are no assignment prompts, no syllabus, no rubric, no graded returns and no answer key. The one test is a phone scan with no text layer. Methods are inferred from the student's own R code and comments, not from course notes, and some of those comments contain statistical errors (listed as pitfalls). This repo cannot render, run or verify a .qmd deliverable: its renderer produces pdf, docx and xlsx only and never executes R. The host can draft the source, but the student must render it in their own Quarto and R install and check the PDF."
   },
   "course_policy": {
     "source": "none found",
     "confidence": "unknown",
     "term_observed": null,
-    "summary": "No syllabus or generative-AI policy for this course was found in the archive.",
+    "summary": "No syllabus or generative-AI policy for this course was found in the student's iCloud term folders or his university OneDrive, searched September 2026.",
     "permitted": [],
     "prohibited": [],
     "student_asked": null,
@@ -198,7 +198,7 @@
       "deliverables": [],
       "what_good_looks_like": [],
       "exemplars": [],
-      "basis": "One test survives as a phone scan with no text layer and no key. Nothing about its format or grading is covered."
+      "basis": "One test survives as a phone scan with no text layer and no key. Nothing about its format or grading is covered. The 2026-09 audit did not re-check this: the file is exam content, which is never opened, so the claim stands on the original survey and cannot be confirmed or refuted from here."
     }
   ]
 }

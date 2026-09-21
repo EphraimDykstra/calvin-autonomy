@@ -13,13 +13,13 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "Two weeks of a semester-long lab. Each of the first two labs has a written handout ending in a report checklist, and each has a completed report, so the report format is specified rather than guessed, but later labs (Simulink, hardware) may add requirements that are not here. The Week 3 folder holds only an empty outline and no handout, and a second pass over the archive found no handout, report, or code after Week 2. Methods cover MATLAB scripting and the closed-form second-order response; nothing on transfer-function toolbox work, Simulink, or physical-rig measurement. No syllabus was found. MATLAB conventions live in the shared MATLAB tool pack. The host cannot execute MATLAB, so results in a drafted report stay unverified until the student runs the m-file and returns its output."
+    "notes": "Two weeks of a semester-long lab. Each of the first two labs has a written handout ending in a report checklist, and each has a completed report, so the report format is specified rather than guessed, but later labs (Simulink, hardware) may add requirements that are not here. There is no Week 3 folder. One loose file, Week 3 Lab Report, sits beside the Week 1 and Week 2 folders in OneDrive. It is a hand-algebra draft: two labelled experiments on block-diagram reduction to a transfer function and a step response, with no prose, no report sections, no code, and no sign it was submitted. It shows what one student worked through, not what was required, and it says nothing about the Week 3 report format. Searched by name and by modification date since mid August 2026: all seven iCloud term folders and OneDrive. Found no Week 3 handout, no later report, and no Simulink or toolbox file. File contents were read only for the ENGR 315 lab items, so a handout filed under an unrelated name would be missed. The Lab 1 handout is kept in the iCloud ENGR 315 LAB folder, not in the OneDrive folder. Methods cover MATLAB scripting, the closed-form second-order response, and (provisionally, from that one draft) hand block-diagram reduction; nothing on transfer-function toolbox work, Simulink, or physical-rig measurement. No syllabus was found. MATLAB conventions live in the shared MATLAB tool pack. The host cannot execute MATLAB, so results in a drafted report stay unverified until the student runs the m-file and returns its output."
   },
   "course_policy": {
     "source": "none found (no syllabus in the archive)",
     "confidence": "unknown",
     "term_observed": null,
-    "summary": "No syllabus for this lab was found, so its policy on AI use is unknown. Both lab handouts separately require each student to write and run their own MATLAB files; that is an individual-work rule, not an AI policy.",
+    "summary": "No syllabus for this lab was found in the student's iCloud term folders or his university OneDrive, searched September 2026, so its policy on AI use is unknown. Both lab handouts separately require each student to write and run their own MATLAB files; that is an individual-work rule, not an AI policy.",
     "permitted": [],
     "prohibited": [],
     "student_asked": null,
@@ -187,6 +187,24 @@
         "Leaving a simplified transfer function with a fraction inside the numerator or denominator."
       ],
       "basis": "Lab 1 handout (Experiment 8); the Week 1 submitted report."
+    },
+    {
+      "id": "block-diagram-reduction-step-response",
+      "title": "Block-diagram reduction and step response (provisional)",
+      "when": "A lab asks for the transfer function of a block diagram with a feedback path, and the response to a step input. The evidence is one student draft of a Week 3 lab and no handout for it was found, so read the lab's own handout first and treat this as a starting point.",
+      "steps": [
+        "Define the transfer function as output over input, T = Y/R, so that Y = T R.",
+        "Reduce the loop symbolically first: for negative feedback, the closed-loop transfer function is the forward-path product over one plus the loop product. Name every block before substituting anything, and check the sign at the summing junction.",
+        "Substitute the numeric blocks only after the symbolic result is written.",
+        "Clear the inner denominators by multiplying the numerator and the denominator by their common denominator, until T is one polynomial over one polynomial.",
+        "Spot-check: evaluate the unreduced T and the reduced T at one test value of s that makes no denominator zero. They must agree.",
+        "For a step of size A the input is R(s) = A / s. Multiply T by it to get Y(s); the step adds a pole at the origin.",
+        "If the handout asks for a plot or a toolbox result, the student runs MATLAB and brings the numbers back. Nothing in this method is evidence about that work."
+      ],
+      "pitfalls": [
+        "Turning 1/(1 + a) into 1 + 1/a when simplifying a complex fraction. They are not equal. The draft's numeric reduction did this, and the spot check catches it."
+      ],
+      "basis": "Observed practice in one student draft (a hand-algebra file with two labelled experiments, not known to have been submitted), not a requirement: no handout for the lab was found. The draft does the ordering, the step input and the loop reduction. The spot check is this pack's recommendation. The 1/(1 + a) pitfall is a generic algebra slip that the draft happens to show. The draft says nothing about toolbox work, Simulink, or hardware."
     }
   ],
   "assignment_families": [

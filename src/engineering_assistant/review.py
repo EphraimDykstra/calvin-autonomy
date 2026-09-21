@@ -23,7 +23,7 @@ import math
 from typing import Any
 
 from .calculations import _evaluate_dimensional
-from .units import DIMENSIONLESS, UnitError, convert, describe, expression_dimension, parse_unit, same_dimension
+from .units import BUILTIN_CONSTANTS, DIMENSIONLESS, UnitError, convert, describe, expression_dimension, parse_unit, same_dimension, shadowed_constants
 
 SCHEMA_VERSION = 1
 
@@ -134,6 +134,13 @@ def review_step(step: dict[str, Any], magnitudes: list[dict[str, Any]] | None = 
         if isinstance(tolerance, bool) or not isinstance(tolerance, (int, float)) or not 0 <= tolerance < 1:
             raise ValueError("tolerance is a fraction between 0 and 1")
 
+        # A step may supply its own pi, and then its value is the one used.
+        # Recorded either way, because a small discrepancy explained by
+        # pi = 3.14 is a thing the reader has to be able to see.
+        shadows = shadowed_constants(inputs)
+        if shadows:
+            result["shadowed_constants"] = shadows
+
         # Compare dimensions before evaluating.  A mismatch is a finding about
         # the student's answer, not a failure of the check, and an inverted
         # ratio shows up here first.  Anything else that goes wrong is an
@@ -167,6 +174,22 @@ def review_step(step: dict[str, Any], magnitudes: list[dict[str, Any]] | None = 
             # looser limit than the stated one.
             correct=abs(claimed - actual) <= tolerance * abs(actual) + 1e-12,
         )
+        if shadows:
+            # Say whether "correct" is load-bearing on the supplied constant.
+            # A step that supplies pi = 3, which a host can do by transcribing
+            # it out of the student's own work, marks an answer of 3.0 in^2
+            # correct for a circle whose area is 3.1416: the check adopts the
+            # student's error as a premise and then confirms it.  Recomputing
+            # with the built-in answers that without inventing a threshold,
+            # and it separates the case where the constant changed nothing
+            # from the case where it is the only reason the step passed.
+            plain = {name: spec for name, spec in inputs.items() if name not in BUILTIN_CONSTANTS}
+            try:
+                exact = _evaluate_dimensional({"expression": step["method"], "unit": answer["unit"]}, plain)
+            except (ValueError, KeyError, TypeError, UnitError, ZeroDivisionError, OverflowError):
+                result["correct_with_builtin"] = None
+            else:
+                result["correct_with_builtin"] = abs(claimed - exact) <= tolerance * abs(exact) + 1e-12
         if not result["correct"]:
             dimensionless = same_dimension(declared.dimension, (0.0,) * 6)
             temperature = same_dimension(declared.dimension, parse_unit("K").dimension)
@@ -176,6 +199,15 @@ def review_step(step: dict[str, Any], magnitudes: list[dict[str, Any]] | None = 
         if wanted is not None:
             entry = next((m for m in magnitudes or [] if m.get("quantity") == wanted), None)
             if entry is None:
+                # Two different failures, and saying the wrong one is a false
+                # claim the student reads: with no ranges loaded at all there
+                # is no pack to have been missing an entry, and the block would
+                # otherwise assert one exists right below a line saying it does
+                # not.
+                if not magnitudes:
+                    raise ValueError(
+                        f"no magnitude ranges are loaded, so {wanted!r} could not be checked for size"
+                    )
                 raise ValueError(f"no magnitude in the course pack is named {wanted!r}")
             # Judge the student's own number: a correct recomputation says
             # nothing about whether the inputs they started from were sensible.
@@ -185,18 +217,31 @@ def review_step(step: dict[str, Any], magnitudes: list[dict[str, Any]] | None = 
     return result
 
 
-def review_work(steps: list[dict[str, Any]], magnitudes: list[dict[str, Any]] | None = None) -> dict[str, Any]:
-    """Review every step and summarise, without judging the student."""
+def review_work(
+    steps: list[dict[str, Any]],
+    magnitudes: list[dict[str, Any]] | None = None,
+    course_pack: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Review every step and summarise, without judging the student.
+
+    ``course_pack`` is passed in rather than looked up here.  Resolving a
+    course id means reading the installed curriculum, and this module stays a
+    pure recomputation of what the student wrote; the caller that already had
+    to find the pack is the one that knows whether it found it.
+    """
     if not isinstance(steps, list) or not steps:
         raise ValueError("review needs at least one step")
     results = [review_step(step, magnitudes) for step in steps]
-    return {
-        "schema_version": SCHEMA_VERSION,
-        "steps": results,
-        "checked": sum(1 for r in results if "error" not in r),
-        "correct": sum(1 for r in results if r.get("correct")),
-        "needs_attention": [r["id"] for r in results if not r.get("correct") or "error" in r],
-    }
+    out: dict[str, Any] = {"schema_version": SCHEMA_VERSION}
+    # Ahead of the steps, because it qualifies every one of them.  Absent
+    # entirely when there is nothing to say, so the common result is unchanged.
+    if course_pack is not None:
+        out["course_pack"] = course_pack
+    out["steps"] = results
+    out["checked"] = sum(1 for r in results if "error" not in r)
+    out["correct"] = sum(1 for r in results if r.get("correct"))
+    out["needs_attention"] = [r["id"] for r in results if not r.get("correct") or "error" in r]
+    return out
 
 
 __all__ = ["classify_discrepancy", "review_step", "review_work"]

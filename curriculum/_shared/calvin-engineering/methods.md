@@ -89,6 +89,6 @@ Then tell the student which rules you applied from this file, and that they are 
 
 These show shape only. Every value in them is an invented stand-in.
 
-- `exemplars/department-default-report-shape.md`: a formal lab report under the department default.
-- `exemplars/title-page-short-report-shape.md`: the thermo-fluids "technical memo", including an error-comparison table.
-- `exemplars/executive-summary-memo-shape.md`: the header-style memo, with placeholders.
+- `exemplars.department-default-report-shape`: a formal lab report under the department default.
+- `exemplars.title-page-short-report-shape`: the thermo-fluids "technical memo", including an error-comparison table.
+- `exemplars.executive-summary-memo-shape`: the header-style memo, with placeholders.

@@ -14,13 +14,13 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "The only evidence is the student's own Python files: 20 lab-exercise files across Labs 1-7 (two are near-copies of other files) plus 6 homework programs, 26 .py files in all. There are no assignment prompts, no syllabus, no style guide, no rubric, no tests or autograder output, and no graded returns. The module docstring header is consistent and clearly template-derived, so the header format is well evidenced. Everything else (structure, naming, libraries) is observed practice, not a stated rule. The course number is itself unconfirmed (see course.code_note). This repo cannot run or test a Python deliverable: the host can draft the .py file, and only the student can run it and confirm its behaviour."
+    "notes": "Every absence stated in this pack describes one search, not the world: a listing of this course's folder in the student's iCloud term archive and of his university OneDrive, in September 2026. Within it the only evidence is the student's own Python files: 20 lab-exercise files across Labs 1-7 (two are near-copies of other files) plus 6 homework programs, 26 .py files in all. There are no assignment prompts, no syllabus, no style guide, no rubric, no tests or autograder output, and no graded returns. The module docstring header is consistent and clearly template-derived, so the header format is well evidenced. Everything else (structure, naming, libraries) is observed practice, not a stated rule. The course number is itself unconfirmed (see course.code_note). This repo cannot run or test a Python deliverable: the host can draft the .py file, and only the student can run it and confirm its behaviour."
   },
   "course_policy": {
     "source": "none found",
     "confidence": "unknown",
     "term_observed": null,
-    "summary": "No syllabus or generative-AI policy for this course was found in the archive.",
+    "summary": "No syllabus or generative-AI policy for this course was found in the student's iCloud term folders or his university OneDrive, searched September 2026.",
     "permitted": [],
     "prohibited": [],
     "student_asked": null,

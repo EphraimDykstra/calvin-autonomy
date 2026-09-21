@@ -1,4 +1,4 @@
-# ENGR 209 (Material Balances and Fluid Mechanics): read this before producing a deliverable
+# ENGR 209 (Material Balances and Fluid Mechanics): guide
 
 ## What this pack can and cannot tell you
 
@@ -49,7 +49,7 @@ In the lab memo the relationship is lighter. The spreadsheet's digested calculat
 
 ## Methods
 
-`pack.json` carries four methods with steps and pitfalls:
+The pack carries four methods (`methods.<id>`) with steps and pitfalls:
 
 - `material-balance-dof`: labeled flow diagram, basis, degree-of-freedom analysis, solution order, and a sanity check. The take-home grading scheme scores each of these as its own step.
 - `reactor-recycle-economics`: fractional conversion, recycle closure, and converting streams into the units their prices use.
@@ -58,7 +58,7 @@ In the lab memo the relationship is lighter. The spreadsheet's digested calculat
 
 ## Checking a result
 
-In a check-my-work session, compare the student's result against `magnitudes` in `pack.json` before building anything on it. Each range is physical plausibility, and its `basis` says so, or names the handout where one states a value. It is not a course rule. An out-of-range value is a question to ask, not a verdict: the `note` says what it usually means. Read the note for an in-range value too, because some slips land inside the range (standard sea-level air density used instead of the tube conditions).
+In a check-my-work session, compare the student's result against the pack's `magnitudes` node before building anything on it. Each range is physical plausibility, and its `basis` says so, or names the handout where one states a value. It is not a course rule. An out-of-range value is a question to ask, not a verdict: the `note` says what it usually means. Read the note for an in-range value too, because some slips land inside the range (standard sea-level air density used instead of the tube conditions).
 
 ## When producing work for this course
 

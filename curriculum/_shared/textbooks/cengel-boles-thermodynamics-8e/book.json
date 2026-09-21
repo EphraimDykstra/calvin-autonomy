@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "cengel-boles-thermodynamics-8e",
+    "citation": "Çengel, Y. A., & Boles, M. A., Thermodynamics: An Engineering Approach, 8th ed.",
+    "pages_total": 1023,
+    "courses": [
+      "engr319",
+      "engr328"
+    ],
+    "index_coverage": {
+      "appendix": "complete: all 34 SI appendix items (A-1..A-34), tables and figures alike",
+      "chapters": "NOT indexed. This book has no chapter list in this record at all, so a chapter or a chapter-numbered table such as 'Table 3-1' cannot be resolved here. Only its appendix is indexed.",
+      "chapter_tables": "NOT indexed; see chapters above",
+      "english_units": "NOT indexed. Appendix 2 repeats the SI tables in English units as A-1E..A-31E, printed pp. 947-987. Note A-15E does not exist: that appendix runs A-14E to A-16E."
+    },
+    "appendix_title": "Appendix 1 — Property Tables and Charts (SI Units)",
+    "unit_system": "SI",
+    "printed_pages": "897-946",
+    "note": "Appendix 2 is the same material in English units, printed pp. 947-987, labelled A-1E..A-31E. A-15E does not exist: the English appendix goes A-14E to A-16E."
+  },
+  "pointer_policy": "Pointers only. This file names which chapter or which appendix table to open. It never carries a value from a table body, and none may be added. Checks that the lookup was well formed. It cannot tell whether the value you read is correct.",
+  "addressing": "Ids are literal addresses, reached as appendix.<item-id> and chapters.<item-id>. A table and a figure sharing a number get different ids (appendix.table-a-9 vs appendix.figure-a-9) so a request for a table can never silently return a chart. The list is called `appendix` rather than `tables` because it also holds figures and, in some books, lettered appendices that are not tables at all. Table numbers are NOT portable between books.",
+  "appendix": [
+    {
+      "id": "table-a-1",
+      "title": "Molar mass, gas constant, and critical-point properties",
+      "kind": "table",
+      "label": "A-1",
+      "page": 898,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "substance"
+    },
+    {
+      "id": "table-a-2",
+      "title": "Ideal-gas specific heats of various common gases",
+      "kind": "table",
+      "label": "A-2",
+      "page": 899,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "substance; parts (a) at 300 K, (b) at various temperatures, (c) as a function of temperature"
+    },
+    {
+      "id": "table-a-3",
+      "title": "Properties of common liquids, solids, and foods",
+      "kind": "table",
+      "label": "A-3",
+      "page": 902,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "substance"
+    },
+    {
+      "id": "table-a-4",
+      "title": "Saturated water—Temperature table",
+      "kind": "table",
+      "label": "A-4",
+      "page": 904,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "gives": "v, u, h, s for saturated water (f, fg, g)",
+      "indexed_by": "temperature, T in °C",
+      "header_verified": true
+    },
+    {
+      "id": "table-a-5",
+      "title": "Saturated water—Pressure table",
+      "kind": "table",
+      "label": "A-5",
+      "page": 906,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "gives": "v, u, h, s for saturated water (f, fg, g)",
+      "indexed_by": "pressure"
+    },
+    {
+      "id": "table-a-6",
+      "title": "Superheated water",
+      "kind": "table",
+      "label": "A-6",
+      "page": 908,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature at a stated pressure"
+    },
+    {
+      "id": "table-a-7",
+      "title": "Compressed liquid water",
+      "kind": "table",
+      "label": "A-7",
+      "page": 912,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature at a stated pressure"
+    },
+    {
+      "id": "table-a-8",
+      "title": "Saturated ice–water vapor",
+      "kind": "table",
+      "label": "A-8",
+      "page": 913,
+      "basis": "contents listing only (-layout and -raw reconciled); no body caption confirmed",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "figure-a-9",
+      "title": "T-s diagram for water",
+      "kind": "figure",
+      "label": "A-9",
+      "page": 914,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "note": "A FIGURE, not a table. Never send a student here for a numeric property lookup.",
+      "collision_note": "LABEL COLLISION. 'A-9' means three different things across the Cengel texts these courses use. HERE it is a FIGURE (T-s diagram for water) - not a lookup table. In cengel-ghajar-heat-mass-transfer-5e (same courses) table-a-9 is Properties of saturated water. In cengel-cimbala-fluid-mechanics-4e (ENGR 209) table-a-9 is Properties of Air at 1 atm. For saturated water BY TEMPERATURE in this book, use table-a-4."
+    },
+    {
+      "id": "figure-a-10",
+      "title": "Mollier diagram for water",
+      "kind": "figure",
+      "label": "A-10",
+      "page": 915,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+    },
+    {
+      "id": "table-a-11",
+      "title": "Saturated refrigerant-134a—Temperature table",
+      "kind": "table",
+      "label": "A-11",
+      "page": 916,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-12",
+      "title": "Saturated refrigerant-134a—Pressure table",
+      "kind": "table",
+      "label": "A-12",
+      "page": 918,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "pressure"
+    },
+    {
+      "id": "table-a-13",
+      "title": "Superheated refrigerant-134a",
+      "kind": "table",
+      "label": "A-13",
+      "page": 919,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature at a stated pressure"
+    },
+    {
+      "id": "figure-a-14",
+      "title": "P-h diagram for refrigerant-134a",
+      "kind": "figure",
+      "label": "A-14",
+      "page": 921,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+    },
+    {
+      "id": "figure-a-15",
+      "title": "Nelson–Obert generalized compressibility chart",
+      "kind": "figure",
+      "label": "A-15",
+      "page": 922,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+    },
+    {
+      "id": "table-a-16",
+      "title": "Properties of the atmosphere at high altitude",
+      "kind": "table",
+      "label": "A-16",
+      "page": 923,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "altitude"
+    },
+    {
+      "id": "table-a-17",
+      "title": "Ideal-gas properties of air",
+      "kind": "table",
+      "label": "A-17",
+      "page": 924,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "gives": "h, u, s° for air as an ideal gas",
+      "indexed_by": "temperature, T",
+      "header_verified": true
+    },
+    {
+      "id": "table-a-18",
+      "title": "Ideal-gas properties of nitrogen, N2",
+      "kind": "table",
+      "label": "A-18",
+      "page": 926,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-19",
+      "title": "Ideal-gas properties of oxygen, O2",
+      "kind": "table",
+      "label": "A-19",
+      "page": 928,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-20",
+      "title": "Ideal-gas properties of carbon dioxide, CO2",
+      "kind": "table",
+      "label": "A-20",
+      "page": 930,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-21",
+      "title": "Ideal-gas properties of carbon monoxide, CO",
+      "kind": "table",
+      "label": "A-21",
+      "page": 932,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-22",
+      "title": "Ideal-gas properties of hydrogen, H2",
+      "kind": "table",
+      "label": "A-22",
+      "page": 934,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-23",
+      "title": "Ideal-gas properties of water vapor, H2O",
+      "kind": "table",
+      "label": "A-23",
+      "page": 935,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-24",
+      "title": "Ideal-gas properties of monatomic oxygen, O",
+      "kind": "table",
+      "label": "A-24",
+      "page": 937,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-25",
+      "title": "Ideal-gas properties of hydroxyl, OH",
+      "kind": "table",
+      "label": "A-25",
+      "page": 937,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-26",
+      "title": "Enthalpy of formation, Gibbs function of formation, and absolute entropy at 25 °C, 1 atm",
+      "kind": "table",
+      "label": "A-26",
+      "page": 938,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "substance"
+    },
+    {
+      "id": "table-a-27",
+      "title": "Properties of some common fuels and hydrocarbons",
+      "kind": "table",
+      "label": "A-27",
+      "page": 939,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "fuel"
+    },
+    {
+      "id": "table-a-28",
+      "title": "Natural logarithms of the equilibrium constant Kp",
+      "kind": "table",
+      "label": "A-28",
+      "page": 940,
+      "basis": "contents listing only (-layout and -raw reconciled); no body caption confirmed",
+      "indexed_by": "reaction and temperature"
+    },
+    {
+      "id": "figure-a-29",
+      "title": "Generalized enthalpy departure chart",
+      "kind": "figure",
+      "label": "A-29",
+      "page": 941,
+      "basis": "contents listing only (-layout and -raw reconciled); no body caption confirmed",
+      "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+    },
+    {
+      "id": "figure-a-30",
+      "title": "Generalized entropy departure chart",
+      "kind": "figure",
+      "label": "A-30",
+      "page": 942,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+    },
+    {
+      "id": "figure-a-31",
+      "title": "Psychrometric chart at 1 atm total pressure",
+      "kind": "figure",
+      "label": "A-31",
+      "page": 943,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "note": "A FIGURE, not a table. Never cite it for a numeric lookup."
+    },
+    {
+      "id": "table-a-32",
+      "title": "One-dimensional isentropic compressible-flow functions for an ideal gas with k = 1.4",
+      "kind": "table",
+      "label": "A-32",
+      "page": 944,
+      "basis": "contents listing only (-layout and -raw reconciled); no body caption confirmed",
+      "indexed_by": "Mach number"
+    },
+    {
+      "id": "table-a-33",
+      "title": "One-dimensional normal-shock functions for an ideal gas with k = 1.4",
+      "kind": "table",
+      "label": "A-33",
+      "page": 945,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "Mach number"
+    },
+    {
+      "id": "table-a-34",
+      "title": "Rayleigh flow functions for an ideal gas with k = 1.4",
+      "kind": "table",
+      "label": "A-34",
+      "page": 946,
+      "basis": "contents listing only (-layout and -raw reconciled); no body caption confirmed",
+      "indexed_by": "Mach number"
+    }
+  ]
+}

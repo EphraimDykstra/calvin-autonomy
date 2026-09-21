@@ -295,7 +295,8 @@ def _book(**overrides):
     book = {
         "schema_version": SCHEMA_VERSION,
         "book": {"id": "example-thermo-1e", "citation": "Example Thermodynamics, 1st ed.",
-                 "pages_total": 900, "courses": ["engr000"]},
+                 "pages_total": 900, "courses": ["engr000"],
+                 "index_coverage": {"appendix": "complete", "chapter_figures": "PARTIAL: 1 of 3 indexed."}},
         "pointer_policy": "Pointers only. It cannot tell whether the value you read is correct.",
         "addressing": "Ids are literal addresses.",
         "appendix": [
@@ -352,6 +353,90 @@ class BookTests(_Store):
             self.assertEqual(show(pack_id, root=self.root)["books"], ["book:example-thermo-1e"], pack_id)
         self.assertNotIn("books", show("engr0001", root=self.root))
         self.assertNotIn("table-a-9", json.dumps(show("engr000", root=self.root)))
+
+    def _nested(self):
+        return _book(chapters=[{
+            "id": "ch-13", "title": "Radiation heat transfer", "page": 700, "number": "13",
+            "basis": "contents listing", "topics": ["view factors"],
+            "items": [
+                {"id": "table-13-1", "title": "View factor expressions", "kind": "table", "page": 706,
+                 "basis": "caption printed in the book body (single source)"},
+                {"id": "figure-13-7", "title": "View factor between two coaxial disks", "kind": "figure",
+                 "page": 710, "basis": "caption printed in the book body (single source)"},
+            ],
+        }])
+
+    def test_a_table_inside_a_chapter_is_reached_through_its_chapter(self):
+        self._install_book(self._nested())
+        (node,) = get("book:example-thermo-1e", ["chapters.ch-13.items.table-13-1"], root=self.root)["results"]
+        self.assertEqual(node["status"], "found")
+        self.assertEqual(node["body"]["page"], 706)
+        self.assertEqual(node["basis"], "caption printed in the book body (single source)")
+        # The card names chapters, not the hundreds of things inside them.
+        self.assertNotIn("table-13-1", json.dumps(show("book:example-thermo-1e", root=self.root)["contents"]))
+
+    def test_a_miss_deep_in_a_store_lists_what_is_beside_it(self):
+        # The whole store's contents would show the chapter list again, which
+        # is no help to a host that already found the right chapter.
+        self._install_book(self._nested())
+        out = get("book:example-thermo-1e", ["chapters.ch-13.items.table-13-99"], root=self.root)
+        self.assertEqual(out["status"], "no_such_address")
+        (miss,) = out["results"]
+        self.assertNotIn("body", miss)
+        self.assertEqual(miss["resolved_to"], "chapters.ch-13.items")
+        self.assertEqual(
+            miss["children"],
+            [{"address": "chapters.ch-13.items.table-13-1", "title": "View factor expressions"},
+             {"address": "chapters.ch-13.items.figure-13-7", "title": "View factor between two coaxial disks"}],
+        )
+        self.assertNotIn("contents", out)
+        # Titles help a host choose, but the addresses are what it cannot do
+        # without.  When the titles would break the budget, they go first.
+        one_byte_short = _compact(out) - 1
+        tight = get("book:example-thermo-1e", ["chapters.ch-13.items.table-13-99"], root=self.root, max_bytes=one_byte_short)
+        self.assertEqual(
+            tight["results"][0]["children"],
+            [{"address": "chapters.ch-13.items.table-13-1"}, {"address": "chapters.ch-13.items.figure-13-7"}],
+        )
+        # A miss near the top still gets everything, as before.
+        shallow = get("book:example-thermo-1e", ["appendix.table-a-10"], root=self.root)
+        self.assertIn("chapters", shallow["contents"])
+        self.assertNotIn("resolved_to", shallow["results"][0])
+
+    def test_a_miss_in_a_book_says_what_the_index_does_not_cover(self):
+        # "Not indexed" and "does not exist" are different answers, and only
+        # the record can tell a host which one a miss is.
+        self._install_book(self._nested())
+        out = get("book:example-thermo-1e", ["chapters.ch-13.items.figure-13-9"], root=self.root)
+        self.assertEqual(out["coverage_notes"]["chapter_figures"], "PARTIAL: 1 of 3 indexed.")
+
+    def test_a_flaw_one_level_down_is_refused_like_one_at_the_top(self):
+        # The loader once checked only top-level lists, so a dotted id or an
+        # empty title inside a chapter loaded clean.
+        def nested_with(**change):
+            book = self._nested()
+            book["chapters"][0]["items"][0].update(change)
+            return book
+
+        twice = self._nested()
+        twice["chapters"][0]["items"][1]["id"] = "table-13-1"
+        no_basis = self._nested()
+        del no_basis["chapters"][0]["items"][0]["basis"]
+        for label, book, message in (
+            ("a dotted id inside a chapter", nested_with(id="table-13.1"), "contains '.'"),
+            ("an empty title inside a chapter", nested_with(title=""), "title"),
+            ("no basis inside a chapter", no_basis, "basis"),
+            ("one id twice inside a chapter", twice, "more than once"),
+            ("no statement of what the index covers", _book(book={k: v for k, v in _book()["book"].items() if k != "index_coverage"}), "index_coverage"),
+        ):
+            with self.subTest(label):
+                with tempfile.TemporaryDirectory() as tmp:
+                    self.root = Path(tmp)
+                    self._install("engr000", _pack())
+                    self._install_book(book)
+                    with self.assertRaises(CurriculumError) as raised:
+                        show("book:example-thermo-1e", root=self.root)
+                    self.assertIn(message, str(raised.exception))
 
     def test_a_book_that_cannot_be_trusted_is_refused(self):
         dotted = _book()
@@ -435,63 +520,91 @@ def _addresses(card):
             yield f"{block}.{item if isinstance(item, str) else item['id']}"
 
 
+def _compact(value):
+    return len(json.dumps(value, separators=(",", ":")).encode("utf-8"))
+
+
+def _on_disk(node, address):
+    """Walk ``address`` through parsed JSON the way the pack's own layout reads."""
+    for segment in address.split("."):
+        node = node[segment] if isinstance(node, dict) else next(x for x in node if x.get("id") == segment)
+    return node
+
+
+def round_trip(case, root):
+    """Check every address every card under ``root`` offers.  Returns how many.
+
+    A function rather than a method so the same check can be pointed at a
+    curriculum that is not the shipped one.
+    """
+    stores = [(p.parent.name, p) for p in sorted(root.glob("*/pack.json")) if not p.parent.name.startswith("_")]
+    case.assertTrue(stores, "no packs found")
+    # Tool packs and textbook indexes are queried the same way, so they owe
+    # the same guarantee.
+    stores += [(f"tool:{p.parent.name}", p) for p in sorted(root.glob("_shared/*/pack.json"))]
+    stores += [(f"book:{p.parent.name}", p) for p in sorted(root.glob("_shared/textbooks/*/book.json"))]
+    checked = 0
+    for ref, store_file in stores:
+        on_disk = json.loads(store_file.read_text(encoding="utf-8"))
+        guide = store_file.parent / "methods.md"
+        guide_text = guide.read_text(encoding="utf-8") if guide.is_file() else ""
+        card = show(ref, root=root)
+        case.assertEqual(card["status"], "found", ref)
+        # A card is read on most questions, so it is held to the budget too.
+        case.assertLessEqual(_compact(card), DEFAULT_MAX_BYTES, f"{ref}: the card alone is over budget")
+        # Blocks served from a file beside the store rather than from a key in
+        # it.  The disk-side test below checks those byte for byte.
+        from_files = {"guide", "exemplars"} - set(on_disk)
+        # Nothing on disk may be missing from the card, or a rule exists that
+        # no host following the card could ever reach.
+        case.assertEqual(
+            set(card["contents"]) - from_files,
+            {k for k, v in on_disk.items() if v is not None}
+            - {"schema_version", "course", "book", "coverage", "pointer_policy", "addressing"},
+            ref,
+        )
+        pending = list(_addresses(card))
+        while pending:
+            address = pending.pop()
+            checked += 1
+            with case.subTest(store=ref, address=address):
+                out = get(ref, [address], root=root, max_bytes=DEFAULT_MAX_BYTES)
+                (result,) = out["results"]
+                if result["status"] == "over_budget":
+                    # A container: a chapter holding its own tables, say.  The
+                    # right answer is a list of its children, and that list is
+                    # what must fit, or a host can never get past it.  A node
+                    # over budget with no children could not be fetched at all.
+                    case.assertTrue(result["children"], "over budget, and nothing smaller to ask for")
+                    case.assertLessEqual(_compact(out), DEFAULT_MAX_BYTES, "a listing of children is itself over budget")
+                    pending += [child["address"] for child in result["children"]]
+                    continue
+                case.assertEqual(result["status"], "found")
+                head = address.split(".")[0]
+                if head == "guide":
+                    case.assertIn(result["body"], guide_text)
+                elif head not in from_files:
+                    case.assertEqual(result["body"], _on_disk(on_disk, address))
+    return checked
+
+
 class ShippedPackRoundTripTests(unittest.TestCase):
     """There is no index to drift, so the guarantee is checked directly.
 
-    Every address a card offers must resolve to exactly what is on disk, and
-    every leaf must fit the default budget, or a host following the card would
-    be refused the rule it was just told exists.
+    Every address a card offers must resolve to exactly what is on disk.  What
+    is too large to return whole must list children that can be fetched, down
+    to leaves that fit, and every listing must fit too.  Otherwise a host
+    following the card is refused the rule it was just told exists, or pays
+    for a table of contents the size of a pack.
     """
 
     def test_every_address_on_every_card_resolves_to_the_disk_subtree(self):
-        shipped = [(p.parent.name, p) for p in sorted(DEFAULT_CURRICULUM.glob("*/pack.json"))
-                   if not p.parent.name.startswith("_")]
-        self.assertTrue(shipped, "no shipped packs found")
-        # Tool packs and textbook indexes are queried the same way, so they owe
-        # the same guarantee.
-        shipped += [(f"tool:{p.parent.name}", p) for p in sorted(DEFAULT_CURRICULUM.glob("_shared/*/pack.json"))]
-        shipped += [(f"book:{p.parent.name}", p) for p in sorted(DEFAULT_CURRICULUM.glob("_shared/textbooks/*/book.json"))]
-        checked = 0
-        for pack_id, pack_file in shipped:
-            on_disk = json.loads(pack_file.read_text(encoding="utf-8"))
-            guide = (pack_file.parent / "methods.md")
-            guide_text = guide.read_text(encoding="utf-8") if guide.is_file() else ""
-            card = show(pack_id)
-            self.assertEqual(card["status"], "found", pack_id)
-            # Nothing on disk may be missing from the card, or a rule exists
-            # that no host following the card could ever reach.
-            # Blocks served from a file beside the pack rather than from a key in
-            # it.  The disk-side test below checks those byte for byte.
-            from_files = {"guide", "exemplars"} - set(on_disk)
-            self.assertEqual(
-                set(card["contents"]) - from_files,
-                {k for k, v in on_disk.items() if v is not None}
-                - {"schema_version", "course", "book", "coverage", "pointer_policy", "addressing"},
-                pack_id,
-            )
-            for address in _addresses(card):
-                checked += 1
-                with self.subTest(pack=pack_id, address=address):
-                    out = get(pack_id, [address], max_bytes=DEFAULT_MAX_BYTES)
-                    self.assertEqual(out["status"], "found")
-                    head, _, rest = address.partition(".")
-                    if head == "guide":
-                        self.assertIn(out["results"][0]["body"], guide_text)
-                        continue
-                    if head in from_files:
-                        continue
-                    block = on_disk[head]
-                    if not rest:
-                        expected = block
-                    elif isinstance(block, dict):
-                        expected = block[rest]
-                    else:
-                        expected = next(x for x in block if isinstance(x, dict) and x.get("id") == rest)
-                    self.assertEqual(out["results"][0]["body"], expected)
+        checked = round_trip(self, DEFAULT_CURRICULUM)
         # A loop over nothing passes every assertion inside it.  579 addresses
         # were checked when this was written; packs only grow, so far fewer
         # means the cards have stopped listing what is on disk.
         self.assertGreaterEqual(checked, 500)
+
 
 
 # Files that ship under the curriculum and are deliberately served by no

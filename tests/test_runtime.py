@@ -341,7 +341,12 @@ class RuntimeTests(unittest.TestCase):
    self.assertNotIn('one or more deliverable artifacts are not inspected',result['readiness']['blockers'])
 
    after=status_run(workspace,'rejected')
-   self.assertEqual(after['effective_stage'],'rejected')
+   # 'rejected' is a pipeline position, not a verdict.  `effective_stage` is a
+   # closed set of four verdicts, so a turned-down run reports 'blocked' there
+   # and keeps 'rejected' in `pipeline_stage`.  Both are asserted: the verdict
+   # is tightened, and none of what this test knew is given up.
+   self.assertEqual(after['effective_stage'],'blocked')
+   self.assertEqual(after['pipeline_stage'],'rejected')
    self.assertEqual([item['status'] for item in after['inspections']],['rejected'])
    self.assertEqual(after['inspections'][0]['artifact'],relative)
    self.assertTrue(after['inspections'][0]['findings'])

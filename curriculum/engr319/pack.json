@@ -297,21 +297,25 @@
         "State properties for a cycle are tabulated per state point with units, and the cycle is shown on a T-s or P-h diagram.",
         "The appendix computations are commented well enough to follow without the software."
       ],
-      "ai_use": {
-        "status": "prohibited",
-        "severity": "hard_stop",
-        "summary": "In the observed term the computer-problem prompt itself prohibited AI assistance. It framed the problem as a test, open book and open note but not open to other groups, and cited the engineering department's academic honesty policy, stating that violations would be prosecuted.",
-        "applies_to": "Every assignment in this family, including a draft, a partial model, a check of the student's own numbers, a rewrite of their text, and any help getting unstuck.",
-        "default_when_unknown": "Treat a computer problem in this course as prohibited unless the student's own current prompt for that assignment shows no such prohibition. The prohibition was read off one term's prompt; assume it carries forward, because being wrong in the restrictive direction costs the student nothing they cannot recover by showing the prompt.",
-        "required_behaviour": [
-          "Decline to produce, check, correct or unblock any part of the work for this family.",
-          "Say why in one or two sentences. Do not lecture, moralise, or repeat the refusal.",
-          "Name the one thing that lifts it: the student's own current prompt for this assignment showing no AI prohibition. The student's assurance on its own does not lift it; the prompt does.",
-          "Declining is not conditional on being asked directly. It applies when the request is framed as formatting, as a check, or as a question about method."
-        ],
-        "not_generalised": "This is the computer-problem prompt speaking for itself. It says nothing about labs or homework in this course, and it is not read across to them. See course_policy, which stays unknown for the course as a whole.",
-        "basis": "The first computer-problem prompt, an instructor document, read directly. The prompt is an image-only scan with no text layer and was read as an image."
-      },
+      "assistance_rules": [
+        {
+          "id": "no-ai-assistance",
+          "kind": "ai_use",
+          "status": "prohibited",
+          "severity": "hard_stop",
+          "summary": "In the observed term the computer-problem prompt itself prohibited AI assistance. It framed the problem as a test, open book and open note but not open to other groups, and cited the engineering department's academic honesty policy, stating that violations would be prosecuted.",
+          "applies_to": "Every assignment in this family, including a draft, a partial model, a check of the student's own numbers, a rewrite of their text, and any help getting unstuck.",
+          "default_when_unknown": "Treat a computer problem in this course as prohibited unless the student's own current prompt for that assignment shows no such prohibition. The prohibition was read off one term's prompt; assume it carries forward, because being wrong in the restrictive direction costs the student nothing they cannot recover by showing the prompt.",
+          "required_behaviour": [
+            "Decline to produce, check, correct or unblock any part of the work for this family.",
+            "Say why in one or two sentences. Do not lecture, moralise, or repeat the refusal.",
+            "Name the one thing that lifts it: the student's own current prompt for this assignment showing no AI prohibition. The student's assurance on its own does not lift it; the prompt does.",
+            "Declining is not conditional on being asked directly. It applies when the request is framed as formatting, as a check, or as a question about method."
+          ],
+          "not_generalised": "This is the computer-problem prompt speaking for itself. It says nothing about labs or homework in this course, and it is not read across to them. See course_policy, which stays unknown for the course as a whole.",
+          "basis": "The first computer-problem prompt, an instructor document, read directly. The prompt is an image-only scan with no text layer and was read as an image."
+        }
+      ],
       "exemplars": ["computer-problem-shape"],
       "basis": "both computer-problem prompts read directly (the first as an image, the second as text), and two completed group reports"
     },
@@ -321,8 +325,25 @@
       "stages": ["assigned weekly", "due the following week"],
       "deliverables": ["worked solutions with units on every quantity"],
       "what_good_looks_like": [],
+      "assistance_rules": [
+        {
+          "id": "supplied-answers",
+          "kind": "supplied_answers",
+          "status": "restricted",
+          "severity": "surface_once",
+          "summary": "The weekly prompts supply the expected final answer for most problems, sometimes with a unit-conversion or modelling warning attached. Checking work in this course is therefore not neutral: if the student's number matches the supplied answer, that is agreement with a value the assignment handed them, and it verifies nothing about how they reached it.",
+          "applies_to": "Any request to check, confirm or verify homework work in this course, however it is phrased.",
+          "required_behaviour": [
+            "The prompt supplies the answer, so agreement with it is never a check of the student's reasoning: say that once before checking homework in this course, and never call their work correct on that basis alone.",
+            "Check the method, check the units, and check that the student's own work actually reproduces the student's own number.",
+            "When their result disagrees with the supplied answer, the useful work is to rebuild their steps from the givens and name the step where it diverges. A student in that position already knows they are wrong and does not know why; locating the divergence is the whole job.",
+            "The supplied answer is a given the student brings from their own current prompt at run time. It is not recorded in this pack and must never be guessed or reconstructed."
+          ],
+          "basis": "The weekly prompts for the observed term, read directly; the supplied answers are visible on most problems across the set. The behaviour required here is this pack's own rule about what honest checking means when the answer is given, not a rule the course states."
+        }
+      ],
       "exemplars": [],
-      "basis": "Prompts with bare final answers only. No worked submission survives, so how solutions should be presented is not covered. The only stated requirement is units on every answer (archived syllabus)."
+      "basis": "The weekly prompts, read directly. They carry day-by-day topic structure, full problem statements, instructional asides, and a supplied answer for most problems, so they are richer than the bare-answer sheets an earlier round recorded. No completed submission survives in either archive searched, so how solutions should be presented is still not covered. Units on every answer remains the only stated presentation requirement, and it comes from an archived syllabus whose current terms are unknown."
     }
   ]
 }

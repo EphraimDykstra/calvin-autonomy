@@ -11,7 +11,7 @@
     "format": "high",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "The formal lab report is well specified by two instructor-side sources: the department report standards appended to the lab assignment, and the instructor's own blank report template, which carries section-by-section guidance and the figure, table, equation, and appendix rules. Format is high on that basis. Methods and assignments stay partial. The only completed formal report in the archive is a student's own, written in a complaint register and of unknown submission status, so it supports layout only and is not a model of prose or tone. The short-form reports rest on two informal student submissions that appear to be filled-in copies of the instructor's short-form templates (their file metadata credits the instructor, and the filter report's table rows cite the assignment's own step numbers), so their layout is probably the instructor's; the blank templates are not in the archive and the prose in the submissions is not a model. The weekly digital-logic worksheets carry handwritten answers with no text layer. The PSpice homework and Quartus project files are tool output with no prompts or answers and were not used. No syllabus, rubric, test, or answer key was found; the lab has weekly worksheets and reports, and no tests."
+    "notes": "Format is rated high for the FORMAL LAB REPORT only, on two instructor sources that agree: the Week 10 lab assignment, whose Appendix A is the Engineering Department Report Standards, and the instructor's report template. It does not cover the other two families. For the short-form reports (op-amp and active-filter labs) the assignments list what the report must contain, but the blank templates they point to were not found, so typography and page layout are unspecified. For the weekly digital-logic worksheets each handout states what to hand in, but the page layout is the handout's own. Methods and assignments are partial. Absence claims in this pack describe one search, not the world: all seven term folders of the student's iCloud archive and his university OneDrive, searched by course number and file name in September 2026. The report template the pack rests on is a student-saved copy (its metadata gives 2025-04-08, one revision, one minute of editing) with no student content. Its guidance sentences appear word for word in a second, partly student-written file, and its placeholders, company field, and text point to the instructor, but it cannot be shown to be byte-identical to the original. A file in the iCloud term folder that is named as the SP24 template is not the template: it is a student's draft saved over it, and no rule rests on its student pages. The only completed formal report found is a student's own, written in a complaint register; a near-identical copy is named as the assignment prescribes, but nothing shows it was submitted or graded, so it supports layout only and is not a model of prose or tone. The two short-form reports appear to be filled-in copies of the instructor's short-form templates (their file metadata credits the instructor, and the filter report's table rows cite the assignment's own step numbers), so their layout is probably the instructor's, and their prose is not a model. The printed instructor text on the weekly turn-in pages is extractable and was read for what to hand in; the students' answers on those pages are handwritten, so no completed answer was read. The PSpice homework and Quartus project files are tool output with no prompts or answers and were not used. No syllabus, rubric, test, or answer key for the lab was found in that search; the lab has weekly worksheets and reports, and no tests."
   },
   "course_policy": {
     "source": "none found",
@@ -26,28 +26,28 @@
   "format": {
     "deliverable": "formal engineering lab report (analog labs); short-form lab report (design-project labs)",
     "precedence": [
-      "the specific lab assignment",
+      "the specific lab assignment and its report steps (for the formal report, the Week 10 assignment)",
       "the instructor's report template, including the guidance text inside it",
-      "the department report standards appended to the lab assignment",
+      "Appendix A of that assignment, the Engineering Department Report Standards",
       "patterns observed in completed submissions"
     ],
     "page": {
       "size": "letter",
       "margins_in": 1,
-      "margin_note": "At least 1 inch on every side; figures and tables stay inside the margins.",
-      "source": "department standards + instructor template"
+      "margin_note": "At least 1 inch on every side; figures and tables stay inside the margins, and nothing is written in the margins.",
+      "source": "Appendix A + instructor template"
     },
     "typography": {
       "line_spacing": 2.0,
       "paragraph_separation": "Every paragraph break is visible: either an indented first line or an extra blank line.",
       "large_table_exception": "In appendices, a smaller font is acceptable to keep a wide table on one page if it stays legible.",
-      "source": "instructor template"
+      "source": "instructor template + Appendix A (double spacing)"
     },
     "title_page": {
       "required": true,
       "fields": ["title", "author", "date", "course and lab section", "instructor", "experiment partner"],
       "carries_abstract": false,
-      "source": "department standards + observed"
+      "source": "Appendix A (title, author, date, class, professor) + instructor template (experiment partner line). Lab section is listed in neither; the file-naming rule uses the section letter and the observed reports show it."
     },
     "abstract": {
       "placement": "the instructor template allows the abstract on its own page or on the title page. Own page after the title page is the safe default: it is what the observed report does and it keeps the title page uncluttered.",
@@ -55,7 +55,7 @@
       "content": "brief introduction, the kinds of experiments performed, and a summary of results without detailed numeric data. An abstract is not an introduction: it summarizes the whole report.",
       "forbidden": ["references to figures or tables, because the reader may not have the rest of the report in front of them"],
       "section_numbered": false,
-      "source": "instructor template + department standards"
+      "source": "instructor template + Appendix A"
     },
     "page_numbering": {
       "first_numbered_page": "the abstract page is page 1",
@@ -63,11 +63,11 @@
       "source": "instructor template"
     },
     "body": {
-      "section_numbering": "outline style, up to three levels (1., 1.1, 1.2.1), built with Word heading styles",
+      "section_numbering": "outline style built with Word heading styles (1., 1.1, and deeper if needed). The template's own sections use two levels. A third level (1.2.1) appears in a student's report; 'up to three levels' is not a limit either source states.",
       "sections_template": [
         "1. Introduction and Goals",
-        "1.1 Goals and Objectives",
-        "1.2 Background and Context",
+        "1.1 Goals or Objectives",
+        "1.2 Second Section Title (the template leaves this title to the author; a student's report used Background and Context)",
         "2. Experimental Procedure",
         "2.1 Equipment Used",
         "2.2 Experimental Setup",
@@ -78,22 +78,23 @@
         "4. Conclusion",
         "Appendices"
       ],
-      "sections_note": "The template's sections are a model. Different sections are acceptable when the author has a clear reason for them.",
+      "sections_note": "The template's sections are a model. Different sections are acceptable when the author has a clear reason for them and can best communicate with the reader that way. The template's second introduction section holds background theory, equations, and diagrams of the system.",
       "section_openers": "Every section starts with a leading paragraph that introduces it, and the introduction previews the subsections that follow.",
       "subsections": "A section that has subsections has at least two.",
       "required_elements": ["purpose", "theory or analytical explanation", "analysis of results", "statement of accuracy and conclusions"],
       "length": "Should not exceed about 8-10 written pages. The strongest reports run about 5 pages of text, excluding graphs, sketches, and tables.",
-      "no_flipping": "Figures necessary to follow the analysis stay in the body, not the appendices.",
+      "no_flipping": "Figures necessary to follow the analysis stay in the body, not the appendices, so a reader does not flip back and forth. Pictures and graphs go where they are discussed.",
+      "writing_for_the_reader": "Write so that another student with the same educational background could duplicate the results. Use equations for mathematical relationships. Be precise about which quantity is meant: label a voltage with a polarity on the circuit diagram and name it (for example, V_R1 measured with the oscilloscope probe), not 'the voltage was measured'.",
       "procedure_section": "Experimental Procedure reports what happened, so a reader could repeat it, and does not tell the reader what to do. The equipment section is not a bare list: it says why each instrument was needed. Simulations and other model checks go under Other Verification Methods, naming the tools.",
       "results_section": "Present all recorded data, measured, theoretical, and simulated. Use graphs to show trends unless the data set is very small, and move large tables to an appendix with a reference in the text.",
-      "source": "instructor template + department standards"
+      "source": "instructor template (section names, lead paragraphs, subsections, procedure and results guidance) + Appendix A (required elements, length, no flipping, writing for the reader)"
     },
     "equations": {
       "typeset_with": "Word equation editor",
-      "placement": "in the body, carried over from the pre-lab work",
+      "placement": "in the body, carried over from the pre-lab work (the Week 9 handout says they may be included directly, and the Week 10 assignment says to paste them into the main part of the report)",
       "size_rule": "A small equation may sit inside a sentence. If the line spacing changes to fit it, treat it as large: center it between the margins and set it off with white space.",
-      "numbering_observed": "labeled Equation N in the lab templates",
-      "source": "instructor template + lab assignment + pre-lab template"
+      "numbering_observed": "The Week 9 pre-lab template labels equations Equation N and the handout cites them as Eq. N. The formal-report template does not say whether to number them; a student's report did.",
+      "source": "instructor template (equation editor, size rule) + Week 9 and Week 10 assignments"
     },
     "figures": {
       "caption_position": "below",
@@ -102,17 +103,19 @@
       "text_reference": "Every figure and table is cited in the text, and the citation comes before the figure or table it points to.",
       "naming": "If a thing cannot be called a table, call it a figure, not a diagram or a picture.",
       "plot_rules": [
-        "no title text inside the graph; the caption titles it",
-        "measured data as markers only, not connected by lines",
+        "no title text inside the graph; the caption titles it, so an Excel graph title is removed",
+        "measured data as markers only (circles, squares, triangles), not connected by lines",
         "simulation and equation data as smooth lines with no markers (solid, dashed, dotted)",
         "every axis labeled with variable and units",
         "logarithmic frequency axis for frequency sweeps",
         "axis limits matched to the data range",
         "a legend identifying every trace",
-        "distinguishable in black-and-white print"
+        "distinguishable in black-and-white print, since colors mostly are not",
+        "traces that exactly overlap are acceptable; say so when describing the graph"
       ],
-      "schematics": "circuit diagrams from PSpice pasted into the body as captioned figures",
-      "source": "instructor template + department standards + lab assignment"
+      "prelab_exception": "The Week 9 pre-lab turn-in asks for graphs 'properly titled with legends', and its example graphs carry titles. The no-title rule applies to graphs in the formal report, where the caption is the title.",
+      "schematics": "circuit diagrams from PSpice pasted into the body as captioned figures (pasting as a picture works best). Sketches drawn with CAD tools are preferred to hand sketches because they are embedded in the document.",
+      "source": "Week 10 assignment + Appendix A part IV + instructor template"
     },
     "tables": {
       "caption_position": "above",
@@ -121,47 +124,48 @@
         "units on every quantity",
         "display precision set to a reasonable number of significant digits; ordinary notation is preferred over scientific when it stays readable",
         "cited in the text before the table appears, and placed in the order cited",
-        "a very large table goes in an appendix with a reference in the text"
+        "a very large table goes in an appendix with a reference in the text",
+        "a list table may hold instrument settings in place of a run of 'the supply was set to X' sentences"
       ],
-      "source": "instructor template + department standards + lab assignment"
+      "source": "instructor template + Appendix A + Week 10 assignment (significant digits)"
     },
     "appendices": {
-      "contents": ["raw data", "sample calculations", "spreadsheet model tables", "PSpice exported data", "the source-resistance measurement procedure"],
+      "contents": ["raw data", "sample calculations", "the Excel model and data tables", "PSpice exported data", "the complete source-resistance measurement procedure, with a short description of it in the body"],
       "rules": [
         "each appendix is referred to from the body",
         "large tables fit the page width rather than splitting across pages",
         "the body summarizes and explains whatever the appendix holds, so a reader who never opens the appendix still follows the report"
       ],
       "delivery": "appendices uploaded as a separate PDF alongside the Word report",
-      "source": "instructor template + department standards + lab assignment"
+      "source": "instructor template (separate PDF upload) + Appendix A part III.D (raw data, sample calculations) + Week 10 assignment (Excel tables, source-resistance procedure)"
     },
     "voice": {
-      "person": "The department default is third person and past tense for what was done. The instructor template prefers active voice where possible without I or we, and allows we or I only as a last resort.",
+      "person": "Appendix A: third person (no I or we) and past tense for what took place, with first person and active voice permitted in some situations, so check with the instructor. The instructor template prefers active voice where possible without I or we, allows we or I only as a last resort, and says staying passive may be best.",
       "tense": "Past for procedure, present for discussing results, future for future work; one tense per paragraph.",
-      "style": "Report what was done. Do not rewrite the lab manual as instructions to the reader.",
-      "source": "department standards + instructor template"
+      "style": "Report what was done. Do not rewrite the lab notebook, and do not write it as step-by-step instructions to the reader.",
+      "source": "Appendix A + instructor template"
     },
     "units_and_numbers": {
       "units_everywhere": true,
       "significant_digits": "set display precision to a reasonable number of significant digits; prefer ordinary notation over scientific when it stays readable",
-      "source": "department standards + lab assignment"
+      "source": "Appendix A (proper units with all numerical results) + Week 10 assignment (significant digits)"
     },
     "terminology": {
-      "software_first_reference": "Give the simulator's full trademarked name on first reference and the short name after that, consistently capitalized.",
-      "source": "lab assignment"
+      "software_first_reference": "Give the simulator's full trademarked name (Cadence PSpice) on first reference and PSpice after that, not PSPICE, Pspice, or pspice.",
+      "source": "Week 10 assignment"
     },
     "tooling": {
       "calculation": "Excel for equation-based models and measured-data reduction",
       "simulation": "Cadence PSpice (Schematics) for ideal and realistic circuit models",
       "writing": "Microsoft Word with the equation editor",
-      "source": "lab assignment"
+      "source": "Week 9 and Week 10 assignments"
     },
     "submission": {
-      "draft": "A good draft goes to lab for peer review against a rubric, in three printed copies with the name page omitted. The draft .docx is also uploaded.",
-      "final": "Word report plus an appendices PDF",
+      "draft": "A good draft goes to lab the following week for peer review against a rubric, in three printed copies (stapled, name page omitted). The draft is also submitted to Moodle as a Word file. The Rhetoric Center is available before the draft is due.",
+      "final": "Word report plus an appendices PDF, uploaded together to Moodle. A printed report is stapled, with no paper clips.",
       "file_naming": "[StudentName]_Report_204L[section letter].docx",
       "individual_work": "Measured data may be shared with a lab partner. Graphs, tables, analysis, and prose are individual.",
-      "source": "lab assignment + instructor template"
+      "source": "Week 10 assignment (draft, file naming, individual work) + instructor template (final upload) + Appendix A (stapling)"
     }
   },
   "methods": [
@@ -211,7 +215,7 @@
       "steps": [
         "Compute the ideal component values from the design equations.",
         "Choose the nearest available nominal values.",
-        "Compute the worst-case minimum and maximum performance from the component tolerances, pairing the extremes that push the result furthest each way.",
+        "Compute the worst-case minimum and maximum performance from the component tolerances, pairing the extremes that push the result furthest each way. The active-filter assignment gives the tolerances: resistors +/-5%, capacitors +/-20%.",
         "Measure the actual components and recompute.",
         "Compare design goal, nominal, tolerance range, simulated, and measured values in one table."
       ],
@@ -227,7 +231,7 @@
       "when": "Op-amp design-project labs.",
       "steps": [
         "Take the filter type, pass-band gain, and corner frequency from the assignment's parameter procedure.",
-        "Fix the capacitor, then solve the gain and corner-frequency expressions for the two resistors. For the inverting first-order low-pass in the observed submission, the pass-band gain magnitude is R2/R1 and the corner frequency is 1/(2 pi R2 C); its design values reproduce with these.",
+        "Fix the capacitor, then solve the gain and corner-frequency expressions for the two resistors. The assignment states them: low-pass |H0| = R2/R1 and fc = 1/(2 pi R2 C); high-pass |H0| = R2/R1 and fc = 1/(2 pi R1 C).",
         "Carry through the tolerance-range method.",
         "Simulate the nominal and actual circuits with the simple op-amp model, then read the pass-band gain and the frequency where gain falls to 0.707 of it.",
         "Build and measure the circuit, and plot the simulated traces as lines with the measured points as markers."
@@ -244,7 +248,7 @@
       "id": "formal-lab-report",
       "title": "Formal analog lab report",
       "stages": [
-        "pre-lab: equation and simulation models with nominal values",
+        "pre-lab (Week 9): equations typeset in Word, equation and PSpice models with nominal values, turned in printed at the start of the next lab",
         "lab: measure components and the frequency response",
         "re-model with measured values",
         "good draft taken to peer review",
@@ -255,41 +259,58 @@
         "appendices PDF: model tables, simulation data, measured data, procedures"
       ],
       "what_good_looks_like": [
-        "The abstract summarizes the experiments and the findings in one paragraph with no figure references and no detailed numbers.",
-        "The background section gives a reader with the same training what they need to follow the analysis, including the ideal and realistic circuit schematics as captioned figures.",
-        "The results graphs overlay every model and the measurement on a log axis, with markers for data, lines for models, and a legend.",
-        "The analysis has at least one paragraph per comparison the assignment lists, explaining discrepancies, naming where error crept in, how significant it was, and whether a procedural change would remove it.",
+        "The abstract summarizes the experiments and the findings in one short paragraph, up to about eight sentences, with no figure references and no detailed numbers.",
+        "The introduction gives a reader with the same training what they need to follow the analysis: the goals, then the background theory, equations, and diagrams of the system. The assignment requires the PSpice circuit diagrams to be pasted into the body; where they sit in the introduction is the author's choice.",
+        "The results graphs overlay the five traces the assignment names (measured, simulation ideal, simulation realistic, equation ideal, equation realistic) on a log axis, with markers for data, lines for models, and a legend.",
+        "Only measured component values feed the models in the report. The nominal-value pre-lab runs are left out, and Cadence PSpice is named in full on first mention.",
+        "The analysis gives at least a paragraph to each comparison the Week 10 assignment lists: series against parallel behavior, calculated against measured resonant frequency, models against measurements, ideal against realistic models, and the two modeling methods (Excel equations against PSpice). Each names where error crept in, how significant it was, and whether a procedural change would remove it.",
         "The models are compared on more than accuracy, for example simplicity or cost, because the template asks whether other factors should influence the choice of a model.",
         "The equipment section says why each instrument was needed, not only what it was.",
         "The conclusion ties the results back to the stated goals and suggests follow-up work.",
         "Appendices are referenced from the body, and each data table fits on its page."
       ],
       "exemplars": ["formal-lab-report-shape"],
-      "basis": "the instructor's blank report template with its section-by-section guidance, the department report standards and report instructions appended to the lab assignment. The one completed formal report in the archive is a student's own of unknown submission status and complaint register; its layout follows the template, so it supports structure only and is not a model of prose."
+      "basis": "the Week 10 lab assignment (instructor-written, with its report steps and Appendix A, the Engineering Department Report Standards) and the instructor's report template, which the assignment says gives essential instructions. The template file found is a student-saved copy (metadata 2025-04-08, one revision, one minute of editing) with no student content; its guidance sentences appear word for word in a second, partly student-written file, and its placeholders, company field, and text point to the instructor, but it cannot be shown to be byte-identical to the original. A file in the iCloud term folder named as the SP24 template is not the template: it is a student's draft saved over it, with only its introduction and closing guidance pages left as template text, and no rule rests on its student pages. The one completed formal report found is a student's own, written in a complaint register and not shown to have been submitted (a near-identical copy is named as the assignment prescribes, but no submission or grade exists), so it supports layout only and is not a model of prose."
     },
     {
       "id": "short-form-lab-report",
       "title": "Short-form lab report (op-amp and filter design labs)",
       "stages": ["simulate", "build and measure", "individual analysis and submission"],
-      "deliverables": ["a short report following the step list in the assignment"],
+      "deliverables": ["a short report built on the instructor's Moodle template and following the assignment's report list; the op-amp assignment asks for two pages if possible"],
       "what_good_looks_like": [
-        "A header block with title, author, lab section, and date.",
-        "The design requirements and the equations used to meet them, typeset.",
-        "The assignment's comparison table filled completely, with units and sensible digits.",
-        "One graph with simulated traces as lines and measured points as markers.",
-        "A sentence or two comparing each result to its design goal, which is what the assignment's analysis step asks for."
+        "Name, lab section, and date of the experiment filled in (the op-amp assignment's first item).",
+        "The measured component values, and for the op-amp lab a short section on what the input increase showed about the op-amp rails.",
+        "The assignment's table filled completely, with units and sensible digits. The op-amp gain-bandwidth table uses gains in V/V, never dB, and is followed by a description of what the data show.",
+        "One graph with simulated traces as lines (different line types, no markers) and measured points as markers with no connecting lines, with axis titles and a legend.",
+        "The PSpice circuit diagram as a screen capture, and the measured and simulated data copied from the spreadsheet without the graph, with a sensible number of significant digits and text no smaller than 8 pt if the table is shrunk to fit.",
+        "For the filter design lab: the equations for the resistor values entered with the equation editor, and a sentence or two comparing each result with the design goals. Partners may share the design and data through step 6, and each student writes step 7 and submits the full report to Moodle individually."
       ],
       "exemplars": [],
-      "basis": "two assignment prompts and two completed submissions. The prompts refer to an instructor template whose blank copy is not in the archive. Both submissions appear to be filled-in copies of it (their file metadata credits the instructor, and the filter report's comparison-table rows cite the assignment's own step numbers), so the header fields, section labels, and table rows are probably instructor-specified with moderate confidence, but nothing states which text was original. All prose in them is the student's, is informal, and contains errors listed under methods, so they support layout only."
+      "basis": "the op-amp and active-filter lab assignments (instructor-written; they list the report contents, and each says a report template with placeholders is on Moodle). The blank templates were not found in the seven iCloud term folders or in OneDrive, so typography and page layout are unspecified. Two student reports appear to be filled-in copies (their file metadata credits the instructor, and the filter report's comparison-table rows cite the assignment's own step numbers), so their header fields, section labels, and table rows are probably the instructor's with moderate confidence, but nothing states which text was original. All prose in them is the student's, is informal, and contains errors listed under methods, so they support layout only."
     },
     {
       "id": "weekly-digital-worksheet",
       "title": "Weekly digital-logic turn-in worksheet",
-      "stages": ["in-lab completion of a fill-in handout"],
-      "deliverables": ["completed worksheet (truth tables, Karnaugh maps, schematics)"],
-      "what_good_looks_like": [],
+      "stages": [
+        "complete the fill-in handout page during the lab (truth tables, Karnaugh maps, expressions, timing diagrams, or state tables, by week)",
+        "build and simulate the design in Quartus, then program the device and test it on the breadboard",
+        "have the instructor or lab assistant sign off the working circuit when the week's handout calls for it",
+        "assemble the hand-in the way that week's handout says, on paper or on Moodle as the instructor directs"
+      ],
+      "deliverables": [
+        "the completed fill-in page (the self-test pages carry a Name line)",
+        "the attachments that week's hand-in line names, such as an Excel truth table, minimization work, a state table, a Quartus schematic, and Quartus simulation waveforms"
+      ],
+      "what_good_looks_like": [
+        "Every blank on the handout page is filled in: truth tables, the Karnaugh map, the simplified expression, and the circuit drawn in the box provided.",
+        "The hand-in matches that week's own hand-in line, which differs by week. Weeks 3 and 6 want the schematic and the simulation waveforms with the minimization work; week 5 wants a printed state table, minimization work, and schematic and says the simulation printout is not needed; the week 2 self-test wants the Excel truth table, the minimization work, the Quartus schematic, and the simulation; week 4 part 2 wants the completed page and the simulation waveforms.",
+        "Quartus schematics and simulations are copied into one Word document with snip or print screen, and the number of sheets is kept down by putting several items on one sheet.",
+        "A working circuit is demonstrated to the instructor or lab assistant for sign-off (weeks 3, 5, and 6); the sign-off is not a document.",
+        "Partners: a partner may share the final verification step when the two designs are identical (week 3). In week 6 partners submit identical files with both names stated and the sequence they worked on identified.",
+        "Where a handout says there is nothing to turn in (the week 2 tool exercise), nothing is turned in, and the instructor may give specific instructions on how to submit."
+      ],
       "exemplars": [],
-      "basis": "Handouts survive, but the answers were handwritten and have no text layer. This family's format is not covered."
+      "basis": "the printed instructor text of the weekly handouts and turn-in pages for weeks 1 to 6, each of which carries its own hand-in line (hundreds to a few thousand extractable characters per turn-in file). The students' answers on those pages are handwritten and have no text layer, so no completed answer was read; this pass recorded structure and conventions only, with no problem content and no values. The handouts carry copyright years from 2023 to 2025, so a handout can predate the term it was used in. No handout was found for weeks 7 and 11 in the iCloud term folder; the analog weeks are covered by the other two families."
     }
   ],
   "magnitudes": [
@@ -297,7 +318,7 @@
       "quantity": "function-generator output resistance from the open-circuit and loaded voltage method",
       "unit": "ohm",
       "typical_range": [40, 65],
-      "basis": "Physical plausibility, not a course rule: bench function generators are built with a 50 ohm output, and the one measurement seen in the archive was about 52 ohm. The bounds are a margin around 50.",
+      "basis": "Physical plausibility, not a course rule: bench function generators are built with a 50 ohm output, and the one measurement seen, in a student's Spring 2025 lab notes, was about 52 ohm. The bounds are a margin around 50.",
       "note": "Near zero or in the hundreds: the open-circuit and loaded readings were swapped, or one was peak-to-peak and the other RMS. A loaded reading larger than the open-circuit reading is impossible. Measure it on the generator in use. A generator that is not a 50 ohm design would fall outside this range legitimately."
     },
     {
@@ -311,7 +332,7 @@
       "quantity": "gain-bandwidth product of an inverting op-amp stage built on a 741-type op amp",
       "unit": "Hz",
       "typical_range": [300000, 1500000],
-      "basis": "Physical plausibility, not a course rule: a 741-type op amp has a unity-gain bandwidth near 1 MHz, and pass-band gain times corner frequency stays near it across gain settings. The archive's own table lists roughly 0.9 to 1.0 MHz simulated and 0.6 to 0.7 MHz on the bench.",
+      "basis": "Physical plausibility, not a course rule: a 741-type op amp has a unity-gain bandwidth near 1 MHz, and pass-band gain times corner frequency stays near it across gain settings. A student's Spring 2025 op-amp report lists roughly 0.9 to 1.0 MHz simulated and 0.6 to 0.7 MHz on the bench.",
       "note": "Too high: the gain was left in dB where V/V is needed. A 13 dB stage then gives 13 in place of about 4.6, roughly 3 times too high, but a 33 dB stage gives 33 in place of about 46, which stays inside this range, so read the column heading and not only the range. Off by 1000: the corner was multiplied in kHz as if it were Hz. The simple op-amp model has no roll-off and gives no corner, so this applies only to the detailed 741 model."
     }
   ]

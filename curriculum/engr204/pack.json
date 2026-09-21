@@ -12,15 +12,15 @@
   },
   "coverage": {
     "format": "partial",
-    "methods": "none",
+    "methods": "partial",
     "assignments": "partial",
-    "notes": "All 11 weekly homework prompts survive, and each states the same grading rule, so the problem-set format and what earns credit are known from instructor documents. No completed homework survives anywhere, so nothing shows how a solution was laid out or what the grader accepted. The two test papers and their keys are image-only scans, and the cheat sheets are personal. There is no syllabus. Methods are not covered. The prompts name topics and circuit-simulator tasks but contain no worked solution, and the selected answers at the end of each prompt are final values only. The lab has its own pack (engr204-lab). A lecture writing handout on audience, abstracts, graphing, and conclusions sits in this folder, and it bears on the lab reports, not the homework."
+    "notes": "Absence claims in this pack describe one search, not the world: a listing of this course's folders in the student's iCloud term archive and his university OneDrive, in September 2026. All 11 weekly homework prompts survive, and each states the same grading rule, so the problem-set format and what earns credit are known from instructor documents. No completed homework survives anywhere, so nothing shows how a solution was laid out or what the grader accepted. One test paper and two keys are present as camera scans; an earlier pass counted two test papers. Those three documents were opened, under the student's explicit instruction, for exam SHAPE and for the method and presentation conventions the keys show, and for nothing else: no question, number, figure or answer from a real problem is recorded anywhere in this pack. The cheat sheets are the student's own and their contents stay out. No syllabus was found in either of the student's two archives as of September 2026. Methods now cover fourteen techniques, one per topic the prompts set: reduction, node and mesh analysis, Thevenin and Norton equivalents, capacitor and inductor relations, transients, phasor analysis, AC power, filters and resonance, op-amps, diodes, three-phase and safety, decibels and frequency ratios, and how a solution is presented. Eight of those rest on a prompt and a key together; mesh analysis, transients, diodes, and three-phase rest on the prompts alone, because no key covering them survives, and each says so in its own basis. Nothing here covers the chapters the course reached after Test 2 in the instructor's own worked hand. The prompts name topics and circuit-simulator tasks but contain no worked solution, and the selected answers at the end of each prompt are final values only. The lab has its own pack (engr204-lab). A lecture writing handout on audience, abstracts, graphing, and conclusions sits in this folder; it bears on the lab reports, and one Test 2 short-answer slot asks about report sections, so it reaches the lecture test too."
   },
   "course_policy": {
     "source": "none found",
     "confidence": "unknown",
     "term_observed": null,
-    "summary": "No syllabus or generative-AI policy for this course was found. Ask the student to confirm the current policy with the instructor.",
+    "summary": "No syllabus or generative-AI policy for this course was found in the student's iCloud term folders or his university OneDrive, searched September 2026. Ask the student to confirm the current policy with the instructor.",
     "permitted": [],
     "prohibited": [],
     "student_asked": null,
@@ -48,19 +48,299 @@
     ],
     "basis": "11 homework prompts (readable text)"
   },
+  "methods": [
+    {
+      "id": "dc-resistive-reduction",
+      "title": "Reduce a network to one equivalent between two terminals",
+      "when": "Any 'find the equivalent resistance seen between A and B' or 'find the equivalent capacitance' problem, and as the first move inside a larger problem.",
+      "reading": "Zekavat ch 3 (Resistive Circuits) for resistive combination; ch 4 (Capacitance and Inductance) for capacitors and inductors.",
+      "steps": [
+        "Name the two terminals the equivalent is asked for. An equivalent is always with respect to a node pair, and the answer changes if the pair does.",
+        "Redraw the network whenever the drawing hides the relationships; the prompts give that as a standing hint.",
+        "Mark on the drawing which components are genuinely in series (the same current passes through both, with no branch between them) and which are in parallel (both ends on the same two nodes).",
+        "Write the combination symbolically with the components lettered before substituting any value, so the structure is visible and a wrong grouping is caught before arithmetic hides it.",
+        "Combine inward toward the named terminals, one stage per redraw.",
+        "For capacitors the rules invert: parallel capacitances add, series capacitances combine as the product over the sum. Inductors follow the resistor rules.",
+        "State the result with its unit, in the prefix the problem uses."
+      ],
+      "pitfalls": [
+        "Calling two components in series because they are drawn end to end when a node branches between them.",
+        "Carrying the resistor rules over to capacitors without inverting them.",
+        "Answering for a different node pair than the one named."
+      ],
+      "basis": "The 11 homework prompts STATE the problems (find Req, find the resistance seen between two nodes, find the equivalent capacitance) and state the redraw hint in the instructor's own words. The Test 1 key SHOWS the technique: components lettered, the series and parallel groups marked on the figure, the combination written symbolically and then evaluated, and the capacitor rules written out before use. The key is a camera scan of handwriting, read by eye."
+    },
+    {
+      "id": "node-voltage-analysis",
+      "title": "Node voltage equations",
+      "when": "A circuit with several nodes where voltages are wanted, and any problem that asks for the equations rather than their solution.",
+      "reading": "Zekavat ch 3 (Resistive Circuits).",
+      "steps": [
+        "Choose a reference node, mark it, and name the unknown node voltages.",
+        "Write KCL at each non-reference node, taking every branch current as leaving the node and expressing it through the element that carries it.",
+        "Keep every term in the node voltages themselves; no branch current survives into the final equations.",
+        "Handle a voltage source between two nodes as a constraint between them rather than as a branch current.",
+        "Stop here when the problem asks only for the equations; the course sets that as a problem in its own right.",
+        "Solve when asked, then read the sign: a negative node voltage means the true polarity is opposite to the reference chosen."
+      ],
+      "pitfalls": [
+        "Mixing assumed current directions between the terms of one equation.",
+        "Solving when only the set-up was asked for, or setting up when the value was wanted.",
+        "Writing an equation at the reference node as well, which adds a dependent equation."
+      ],
+      "basis": "Homework 3 STATES node voltage problems, including ones that say the equations need not be solved, and homework 8 states node equations written at an op-amp's inverting node. The Test 1 key SHOWS a set of node equations laid out, with the technique named before the algebra starts. Camera scan, read by eye."
+    },
+    {
+      "id": "mesh-current-analysis",
+      "title": "Mesh current equations",
+      "when": "A planar circuit where currents are wanted, or where the prompt names the mesh method.",
+      "reading": "Zekavat ch 3 (Resistive Circuits).",
+      "steps": [
+        "Identify the meshes and mark a mesh current in each, all circulating the same way.",
+        "Write KVL around each mesh; an element shared by two meshes carries the difference of their mesh currents.",
+        "Treat a current source shared between two meshes as a supermesh, with the source giving the constraint between the two mesh currents.",
+        "Stop at the equations when that is what was asked.",
+        "Convert a mesh current back into the branch current the question named, and state its direction, not only its size."
+      ],
+      "pitfalls": [
+        "Sign errors on a shared element, which is where this method fails most often.",
+        "Reporting a mesh current where a branch current was asked for.",
+        "Giving a magnitude with no direction when the prompt asks which way the current flows."
+      ],
+      "basis": "Homework 3 STATES the mesh problems, including one that asks only for the meshes and their marked currents and one that asks for the direction of a current. No surviving key shows a worked mesh solution, so the presentation conventions here are carried over from the node method; that carry-over is an inference, not something a key shows."
+    },
+    {
+      "id": "thevenin-norton-equivalents",
+      "title": "Thevenin and Norton equivalents at a terminal pair",
+      "when": "A source network is to be replaced by its equivalent at named terminals, or a load is to be swept or matched.",
+      "reading": "Zekavat ch 3 (Resistive Circuits); with phasors, ch 6 (Steady-State AC Analysis).",
+      "steps": [
+        "Name the terminals and remove the load, if one is drawn, before anything else.",
+        "Successive source transformation is the route the course's own worked solution takes: redraw the network at each stage, label the step, and carry the transformation toward the terminals.",
+        "Otherwise find two of the three quantities: the open-circuit voltage, the short-circuit current, and the resistance seen with every independent source deactivated (a voltage source shorted, a current source opened).",
+        "Combine what is left after deactivation by the reduction method to get the equivalent resistance.",
+        "Present both equivalents as drawn circuits with their element values, when both are asked.",
+        "Check the two against each other: the source current of the Norton form is the Thevenin voltage over the equivalent resistance."
+      ],
+      "pitfalls": [
+        "Deactivating a dependent source. Only independent sources are deactivated.",
+        "Leaving the load connected while finding the equivalent resistance.",
+        "Giving one equivalent when the problem asked for both."
+      ],
+      "basis": "Homework 3 STATES the deactivation problems and the sketch that follows each. The Test 1 key SHOWS the full chain worked by successive source transformation, each stage redrawn and labelled, both equivalents drawn at the end, and the two forms cross-checked against each other. Camera scan, read by eye."
+    },
+    {
+      "id": "capacitor-inductor-relations",
+      "title": "Capacitors and inductors: relations, steady state, stored energy",
+      "when": "An energy-storage element appears and something time-varying or steady-state is asked about it.",
+      "reading": "Zekavat ch 4 (Capacitance and Inductance); ch 5 (Transient Analysis) for the steady-state substitution.",
+      "steps": [
+        "Write the governing relation before substituting anything: current through a capacitor is C times the rate of change of its voltage, voltage across an inductor is L times the rate of change of its current, and the integral forms run the other way.",
+        "For a DC steady state, replace every inductor with a short and every capacitor with an open, say so in the work, and redraw before solving.",
+        "Stored energy is one half C times voltage squared, or one half L times current squared.",
+        "Combine several elements by the reduction method, remembering that the capacitor rules are the inverted ones.",
+        "Keep the prefix the problem uses and give the answer in it."
+      ],
+      "pitfalls": [
+        "Applying the relation in the wrong direction, integrating where the derivative was wanted.",
+        "Losing the sign that comes out of differentiating a decaying exponential.",
+        "Using the resistor combination rules on capacitors."
+      ],
+      "basis": "Homework 4 STATES the relations, the steady-state problems and the energy problems. The Test 1 key SHOWS the convention of writing the governing relation first, the steady-state substitutions written out before the redraw, and the final expression boxed. Camera scan, read by eye."
+    },
+    {
+      "id": "rc-rl-transients",
+      "title": "First-order transients, and classifying a second-order response",
+      "when": "A switch opens or closes and a voltage or current is wanted as a function of time.",
+      "reading": "Zekavat ch 5 (Transient Analysis).",
+      "steps": [
+        "Find the initial value at the instant before switching, and carry across the quantity that cannot jump: a capacitor's voltage and an inductor's current are continuous through the switching instant.",
+        "Find the final value from the DC steady state of the circuit after switching.",
+        "Find the time constant from the network the element sees after switching: resistance times capacitance, or inductance over resistance.",
+        "Assemble the first-order form: the final value, plus the difference between the initial and final values, decaying exponentially with that time constant.",
+        "Recover any other quantity from the one just solved by KVL or KCL rather than starting again.",
+        "For a second-order circuit, classify the damping from the roots of the characteristic equation: distinct real roots are overdamped, repeated real roots critically damped, complex roots underdamped."
+      ],
+      "pitfalls": [
+        "Using the resistance of the pre-switch circuit in the time constant.",
+        "Assuming a resistor voltage is continuous across the switching instant. It is not; only the capacitor voltage and the inductor current are.",
+        "Solving a second quantity from scratch when one line of KVL gives it."
+      ],
+      "basis": "Homework 11 STATES all of this, including the before-and-after instants, the derivations from a switched circuit, and the damping classification. No surviving key shows a transient solution, so nothing here rests on an instructor's worked example."
+    },
+    {
+      "id": "phasor-analysis",
+      "title": "Transform to the phasor domain and solve there",
+      "when": "Sources are sinusoidal and the circuit is in the steady state.",
+      "reading": "Zekavat ch 6 (Steady-State AC Analysis).",
+      "steps": [
+        "Read the angular frequency off the time function first and write it down; every impedance depends on it.",
+        "Convert each source to a phasor in magnitude and angle form, and be explicit about whether the magnitude is an amplitude or an RMS value, because the course uses both.",
+        "Replace each element with its impedance: the resistance as it stands, the inductor as j times the frequency times the inductance, the capacitor as the negative j reciprocal of the frequency times the capacitance. Evaluate each on its own line.",
+        "Redraw the circuit in the phasor domain before solving it.",
+        "Solve with the same techniques as a DC circuit, now over complex arithmetic: reduction, dividers, node or mesh.",
+        "Give the answer in polar form with the angle in degrees, and convert back to a time function only when the problem asks for one."
+      ],
+      "pitfalls": [
+        "Mixing amplitude and RMS between the source and the answer.",
+        "Dropping the j from a reactance, which turns a phase shift into a resistance.",
+        "Leaving a result in rectangular form where the course writes polar, or losing the degree mark on an angle."
+      ],
+      "basis": "Homework 5 STATES the phasor problems, including transforming a circuit and running node analysis in the phasor domain. The Test 2 key SHOWS the order: frequency extracted first, each impedance evaluated separately, the phasor circuit redrawn, answers in polar form with degrees. Camera scan, read by eye."
+    },
+    {
+      "id": "ac-power",
+      "title": "AC power at a load",
+      "when": "Real, reactive, apparent or complex power is wanted, or a power factor is to be found or corrected.",
+      "reading": "Zekavat ch 6 (Steady-State AC Analysis).",
+      "steps": [
+        "Get the phasor voltage across the load and the phasor current through it, in the same convention; the course works these in RMS.",
+        "Complex power is the voltage phasor times the conjugate of the current phasor. Conjugating is the step that is skipped most often.",
+        "Read the parts off the result: the real part is the average power, the imaginary part the reactive power, the magnitude the apparent power.",
+        "Power factor is the cosine of the angle of the complex power, equivalently of the load impedance, and it is lagging for an inductive load and leading for a capacitive one. A power factor is never larger than one.",
+        "For maximum power transfer to a load, the load impedance is the complex conjugate of the source impedance.",
+        "To correct a power factor, place a reactive element in parallel with the load and size it from the reactive power that has to be cancelled."
+      ],
+      "pitfalls": [
+        "Forgetting the conjugate, which flips the sign of the reactive power and turns a lagging load into a leading one.",
+        "Reporting an apparent power in watts, or a reactive power in watts. The unit engine cannot catch this: volt-amperes, vars and watts all carry the same dimension, and only the reader knows which part of the complex power was meant.",
+        "Reading a positive impedance angle as leading. A positive angle is inductive, and inductive is lagging."
+      ],
+      "basis": "Homework 6 STATES the real, reactive, apparent and complex power problems, the power-factor correction problem, and the leading and lagging hint in the instructor's own words. The Test 2 key SHOWS complex power written as the voltage times the conjugated current, the result given in both polar and rectangular form, and the power factor identified as lagging from the sign of the impedance angle. Camera scan, read by eye."
+    },
+    {
+      "id": "filters-and-resonance",
+      "title": "Identify a filter, then find its corner, bandwidth and quality",
+      "when": "A circuit's behaviour against frequency is asked about, or a component is to be chosen for a target frequency.",
+      "reading": "Zekavat ch 7 (Frequency Analysis).",
+      "steps": [
+        "Identify the type by inspection at the two limits rather than by the topology's name: at zero frequency a capacitor is an open and an inductor a short; at very high frequency the reverse. Say what the output does at each limit, and the type follows.",
+        "For a first-order filter, the corner frequency is the reciprocal of the time constant, built from the equivalent resistance the reactive element actually sees, not from the source resistance alone.",
+        "For a resonant circuit, the resonant frequency is the reciprocal of the square root of the inductance times the capacitance.",
+        "Get the bandwidth from the resonant topology, and the quality factor as the resonant frequency over the bandwidth.",
+        "To choose a component for a target resonance, rearrange the resonance relation for that component and check the magnitude of the result against the values the course uses.",
+        "Sketch gain against frequency, marking the passband, the stopband, and the half-power point."
+      ],
+      "pitfalls": [
+        "Using the source resistance where the equivalent resistance seen by the reactive element is meant.",
+        "Reading a frequency in hertz as one in radians per second, or the reverse; the course asks for both and they differ by two pi.",
+        "Deciding the filter type from one limit only, which cannot separate a band-pass from a band-reject."
+      ],
+      "basis": "Homework 6 and homework 7 STATE the corner-frequency, resonance, bandwidth and half-power problems, and ask for frequencies in both units. The Test 2 key SHOWS the limit reasoning written as two short lines before the answer, the equivalent resistance derived separately, and the gain curve sketched with the passband, stopband and half-power point marked. Camera scan, read by eye."
+    },
+    {
+      "id": "opamp-analysis",
+      "title": "Op-amp circuits under the ideal assumptions",
+      "when": "An operational amplifier appears and an output voltage, a gain, an input resistance or a bandwidth is wanted.",
+      "reading": "Zekavat ch 8 (Electronic Circuits).",
+      "steps": [
+        "Write the two ideal assumptions before anything else: the two inputs sit at the same voltage, and no current flows into either input. The course's own key opens with them.",
+        "Find the voltage at the non-inverting input, using a divider when a network sits there, and carry it to the inverting input by the first assumption.",
+        "Recognise the topology and apply its gain relation: inverting, non-inverting, summing, or difference.",
+        "When the feedback network is not one of those, write node equations at the inverting node and at any internal node, and solve for the gain symbolically first.",
+        "Input resistance is the source voltage divided by the current the source actually delivers, which is set by the resistors the source sees, not by the first resistor alone.",
+        "Closed-loop bandwidth follows from the gain-bandwidth product: gain times bandwidth is a constant for the part.",
+        "Check that the output sits inside the supply range when the problem gives one."
+      ],
+      "pitfalls": [
+        "Assuming the inverting input is at ground when the non-inverting input is not.",
+        "Taking the input resistance to be the nearest resistor instead of the source voltage over the source current.",
+        "Using the open-loop gain where the closed-loop gain is meant, or the reverse, in a bandwidth calculation."
+      ],
+      "basis": "Homework 8 STATES the gain, bandwidth, superposition and input-resistance problems. The Test 2 key SHOWS the assumptions written out as a header line before any algebra, the divider step, then the topology's gain relation, and the input resistance taken as the source voltage over the source current. Camera scan, read by eye."
+    },
+    {
+      "id": "diode-circuits",
+      "title": "Diode circuits by assumed state",
+      "when": "A diode appears and a current, a voltage or an output waveform is wanted.",
+      "reading": "Zekavat ch 8 (Electronic Circuits).",
+      "steps": [
+        "Use the model the prompt names, the ideal model or the constant voltage drop model, and say in the work which one is in use.",
+        "Assume a state for each diode, replace it with the model for that state, and solve the resulting linear circuit.",
+        "Check the assumption: an assumed-on diode must carry current in the forward direction, an assumed-off diode must sit under a reverse voltage. If a check fails, change the assumption and solve again.",
+        "For a waveform problem, work the input's two polarities separately and sketch the output over the input on the same axes, marking where the output clips and where it follows.",
+        "Report the model used alongside the answer, since the two models give different numbers for the same circuit."
+      ],
+      "pitfalls": [
+        "Keeping a diode on when the solved current runs backwards through it.",
+        "Using one model where the prompt directs the other, or answering with one when both were asked for.",
+        "Sketching the output with no input drawn against it, so the comparison the problem wants cannot be read."
+      ],
+      "basis": "Homework 9 STATES the two models, directs which to use where, and sets the waveform-sketching problems. No surviving key covers diodes, so nothing here rests on an instructor's worked solution."
+    },
+    {
+      "id": "three-phase-and-electrical-safety",
+      "title": "Three-phase loads, and the safety calculation",
+      "when": "A balanced three-phase supply drives a wye or delta load, or a shock-hazard question is asked.",
+      "reading": "Zekavat ch 9 (Power Systems and Transmission Lines) for three-phase; the safety chapter the prompts cite for shock hazard.",
+      "steps": [
+        "Identify the connection, wye or delta, and which quantity the problem gives, line or phase.",
+        "In a wye load the line voltage is the square root of three times the phase voltage, and the line and phase currents are equal.",
+        "In a delta load the line and phase voltages are equal, and the line current is the square root of three times the phase current.",
+        "Total power is three times the per-phase power. The factor here is three, not the square root of three.",
+        "Converting a balanced wye load to an equivalent delta scales each impedance by three, and the reverse divides by three.",
+        "For a shock question, take the current through the body as the contact voltage over the body resistance, and judge the hazard by that current, since the danger threshold is a current."
+      ],
+      "pitfalls": [
+        "Swapping which of voltage and current carries the square root of three for the connection in hand.",
+        "Multiplying the per-phase power by the square root of three instead of by three.",
+        "Answering a safety question with the voltage when the hazard is set by the current."
+      ],
+      "basis": "Homework 10 STATES the wye and delta problems, the power problems, the wye-delta conversions and the two body-resistance questions. No surviving key covers three-phase."
+    },
+    {
+      "id": "decibels-and-frequency-ratios",
+      "title": "Decibels, octaves and decades",
+      "when": "A gain is to be given in decibels, or a frequency is to be moved by octaves or decades.",
+      "reading": "Zekavat ch 7 (Frequency Analysis).",
+      "steps": [
+        "A voltage or current ratio in decibels is twenty times the base-ten logarithm of the ratio; a power ratio is ten times it. Write which factor is in use before the number.",
+        "An octave is a factor of two in frequency and a decade a factor of ten, so move by multiplying or dividing, never by adding.",
+        "The midpoint of two frequencies on a logarithmic scale is their geometric mean; on a linear scale it is their arithmetic mean. The course asks for both and they differ.",
+        "Convert a decibel figure back to a ratio before using it in any arithmetic that adds or scales quantities."
+      ],
+      "pitfalls": [
+        "Using the factor of twenty for a power ratio, or ten for a voltage ratio.",
+        "Treating an octave or a decade as an additive step in frequency.",
+        "Carrying decibels into ordinary arithmetic. The unit engine refuses the decibel outright for this reason: it is logarithmic, and adding two decibel figures is not adding the quantities."
+      ],
+      "basis": "Homework 6 STATES the decibel conversions and the octave, decade and midpoint questions. The Test 2 key SHOWS both decibel conversions written with the logarithm factor visible before the number, and the octave and decade moves written as multiplications and divisions. Camera scan, read by eye."
+    },
+    {
+      "id": "solution-presentation",
+      "title": "How a solution is set out in this course",
+      "when": "Every graded piece of work: a homework set, and an answer on a test.",
+      "steps": [
+        "Name the technique, or write the governing relation, before using it. Both the prompts and the instructor's own worked solutions open that way.",
+        "Show the substitution, not only the result. Credit here is for the shown attempt, and most homework final answers are printed in the prompt, so an unsupported answer earns nothing even when it matches.",
+        "Put the unit behind each quantity as it is written, not only on the last line.",
+        "Underline or box the final answer.",
+        "Mark the reference polarity or current direction on the figure when a sign convention is in play, and state what a negative result means: the true direction is opposite to the assumed reference.",
+        "Label a sketch's axes and mark on the curve the features the problem asks for.",
+        "Read back over the finished work for units, and for whether the method is legible to someone who did not write it."
+      ],
+      "pitfalls": [
+        "Handing in a bare final answer. It earns nothing in this course.",
+        "Units only on the last line, or missing altogether; one test states outright that missing units will cost points.",
+        "Leaving an assumed direction unstated, so a negative answer cannot be interpreted."
+      ],
+      "basis": "All 11 homework prompts STATE the grading rule in the same words: credit is for an honest shown attempt, and work must be shown because the answers are given. Both test headers STATE their own presentation rules, one asking that work be shown clearly and the answer highlighted by underlining, circling or boxing, the other that units be placed behind quantities; both close by telling the student to check units and the clarity of the work, and one adds that missing units will cost points. Both keys SHOW the same pattern: the technique named first, the substitution shown, the final answer boxed or underlined with its unit. The keys are camera scans of handwriting, read by eye."
+    }
+  ],
   "gaps": {
     "archive_holds": [
       "11 homework prompts with selected final answers",
       "a lecture writing handout",
-      "two tests and two keys (image-only scans)",
-      "personal cheat sheets and a study guide"
+      "the Test 1 paper and the Test 1 and Test 2 keys, as camera scans read by eye; the Test 2 key carries the printed problems, and no Test 2 paper of its own is in this folder",
+      "the instructor's final-exam study guide, as extractable text",
+      "the student's own cheat sheets, which stay out of the pack"
     ],
-    "missing": ["syllabus", "any completed or graded homework", "worked solutions", "readable test solutions"],
+    "missing": ["syllabus", "any completed or graded homework", "a worked solution for mesh analysis, transients, diodes or three-phase, which no surviving key covers", "the final's paper and key"],
     "student_can_supply": [
       "one graded, returned problem set, to fix how solutions should be laid out",
       "the syllabus, for the AI-use policy and how homework is submitted"
     ],
-    "basis": "direct listing and text extraction of the course folder"
+    "basis": "direct listing and text extraction of the course folder, plus a reading by eye of the one test paper and two keys it holds"
   },
   "assignment_families": [
     {
@@ -76,6 +356,175 @@
       ],
       "exemplars": [],
       "basis": "The grading rule and simulator instructions stated in the 11 prompts. No completed homework exists, so the layout of a good solution is unknown and no exemplar is given."
+    }
+  ],
+  "exam_profile": {
+    "confidence": "stated",
+    "status": "Shape only, and good for the two in-class tests: problem count, points per problem, one topic label per problem, the header rules, and the form of the instructor's keys, all read off the documents themselves. The final is known only through the instructor's study guide, which is the strongest single source here but describes an exam no surviving paper shows. No question, number, figure or answer from any real problem is recorded, and none may be.",
+    "basis": "The Test 1 paper (a camera scan of a graded returned paper, printed header dated February 24 2025), the Test 1 and Test 2 keys (camera scans of the instructor's handwritten worked solutions; the Test 2 key carries the printed problems, which is how Test 2's shape is known), and the instructor's final-exam study guide, a printed page of the course site. The scans are image-only and were read by eye, so a misread of a handwritten mark is possible in a way it is not for the extracted text of the study guide. Opened under the student's explicit instruction to record exam SHAPE for study and practice; content was never recorded. Both keys print class statistics: the fact is recorded here, the numbers are not, and no score or grader mark from the returned paper is. Read in September 2026 from the student's own iCloud term folder for this course, the only place these documents were looked for.",
+    "assessments": [
+      {
+        "id": "test-1",
+        "source": "the Test 1 paper and the Test 1 key",
+        "placement": "in class, February 24 2025, roughly the sixth week of the term",
+        "question_count": 9,
+        "points": "100 in total; per problem, as marked in brackets: 24, 6, 8, 12, 4, 8, 14, 6, 18",
+        "topics": [
+          "fundamentals short answer: sign convention, prefixes, dependent sources and schematic symbols",
+          "inductor voltage-current relationship",
+          "DC steady-state equivalent at a terminal pair",
+          "equivalent resistance and equivalent capacitance",
+          "transformer with a DC source",
+          "sinusoid: period, amplitude, frequency and RMS value",
+          "node voltage equations",
+          "voltage divider",
+          "Thevenin and Norton equivalents"
+        ],
+        "note": "Four printed pages, the problem count and page count stated in the header. The largest block of points sits on the multi-part fundamentals problem and the second largest on the equivalents problem. The key prints class statistics; they are not recorded."
+      },
+      {
+        "id": "test-2",
+        "source": "the Test 2 key, which carries the printed problems",
+        "placement": "in class, April 7 2025",
+        "question_count": 9,
+        "points": "100 in total; per problem, as marked in brackets: 28, 6, 8, 10, 14, 12, 14, 4, 4",
+        "topics": [
+          "short-answer set on AC quantities, frequency ratios and report sections",
+          "matching data types to plot styles",
+          "phasor-domain transformation",
+          "filter identification, resonance, bandwidth and quality",
+          "AC power at a load",
+          "filter type and corner frequency with a gain curve",
+          "op-amp output voltage and input resistance",
+          "op-amp gain-bandwidth product",
+          "one-line definition of an op-amp limit"
+        ],
+        "note": "The Test 2 paper itself is not in the folder searched, so this shape is read from the key, which reproduces the printed problems above the handwriting. One of the short-answer parts asks about technical-report sections rather than circuits, which is the lecture writing material appearing on a lecture test. The key prints class statistics; they are not recorded."
+      },
+      {
+        "id": "final",
+        "source": "the instructor's final-exam study guide",
+        "placement": "finals week, a single evening sitting of three hours",
+        "question_count": "not stated; the guide says only that the length is targeted at about fifty percent longer than an in-class test",
+        "points": "not stated",
+        "time_limit": "three hours, stated",
+        "topics": [
+          "SI units and prefixes",
+          "series and parallel components",
+          "Ohm's law, KVL and KCL",
+          "node voltage and mesh current methods",
+          "Thevenin and Norton equivalents",
+          "voltage and current dividers",
+          "superposition",
+          "maximum power transfer",
+          "inductors and capacitors",
+          "RL and RC transient analysis",
+          "AC phasor analysis",
+          "filters",
+          "AC power",
+          "transformers",
+          "op-amps",
+          "diodes and LEDs",
+          "three-phase power and power distribution",
+          "electrical safety",
+          "switches and motor basics"
+        ],
+        "note": "The guide states that material covered since Test 2 makes up thirty to forty percent of the exam, and that lab material and circuit-simulator use are not covered. No final paper and no final key are in the folder searched, so nothing about the final's problem count, point distribution or question wording is established."
+      }
+    ],
+    "aids_provided": {
+      "equation_sheet": "Student-prepared formula sheets, not an instructor sheet. One per test, and for the final the guide permits the Test 1 and Test 2 sheets plus one additional sheet of the same size, three in all, and says the student keeps them afterwards. Three such sheets survive in the folder; their contents are the student's own and are not recorded here.",
+      "calculator": "Permitted at the final: the guide's allowed list is pencils, pens, erasers, a calculator and the three formula sheets. Neither in-class test header states a calculator policy.",
+      "open_note": "Closed book and closed note at the final: the guide forbids notes, homework and the textbook, along with electronic communication devices, talking to another student about the test, and leaving the room during the exam. Neither in-class test header states such a list.",
+      "time_limit": "Three hours for the final, stated with the sitting time. Neither in-class test states a time limit; both headers tell the student to budget time well, which implies a fixed class period without naming its length.",
+      "not_documented": "Whether a calculator was allowed on the in-class tests, the physical size a formula sheet had to stay within, and whether anything beyond one sheet was allowed in class."
+    },
+    "question_shape": [
+      {
+        "type": "multi-part short answer carrying the largest single block of points",
+        "from_exam": true,
+        "source": "the Test 1 paper and the Test 2 key"
+      },
+      {
+        "type": "worked circuit analysis with one final value on a printed answer line",
+        "from_exam": true,
+        "source": "the Test 1 paper and the Test 2 key"
+      },
+      {
+        "type": "set up the governing equations without solving them, most of the credit for the setup",
+        "from_exam": true,
+        "source": "the Test 1 paper"
+      },
+      {
+        "type": "sketch on supplied axes, with named features marked on the curve",
+        "from_exam": true,
+        "source": "the Test 1 paper and the Test 2 key"
+      },
+      {
+        "type": "match items in one column to categories in another",
+        "from_exam": true,
+        "source": "the Test 2 key"
+      },
+      {
+        "type": "define or explain a term in a sentence",
+        "from_exam": true,
+        "source": "the Test 2 key"
+      },
+      {
+        "type": "redraw a circuit in a transformed or simplified form",
+        "from_exam": true,
+        "source": "the Test 1 paper and the Test 2 key"
+      },
+      {
+        "type": "short answer and longer problems, resembling homework problems",
+        "from_exam": false,
+        "source": "the final-exam study guide",
+        "note": "The guide says the final's question types are similar to previous tests, and that homework problems or problems similar to homework problems will likely appear. That is the instructor describing an exam, not a shape seen on a paper."
+      }
+    ],
+    "stated_rules": [
+      "The problem count and the page count are printed in the header, with the point values in brackets beside each problem, totalling 100.",
+      "Read the problems carefully.",
+      "Show your work clearly.",
+      "Highlight the answer by underlining, circling or boxing it.",
+      "Place units behind quantities.",
+      "Budget your time well."
+    ],
+    "pre_submission_checklist": [
+      "Go back and check that every answer carries an appropriate unit.",
+      "Go back and check that the work shows clearly how each problem was solved; one test states that missing units will cost points."
+    ],
+    "instructor_remarks": [
+      "Study guide: the final's question types are similar to previous tests, short answer and longer problems.",
+      "Study guide: homework problems, or problems similar to homework problems, will likely appear.",
+      "Study guide: the length is targeted at about fifty percent longer than an in-class test, with three hours to work.",
+      "Study guide: material covered since Test 2 will make up thirty to forty percent of the exam.",
+      "Study guide: lab material and circuit-simulator use are not covered on the final.",
+      "Study guide: review class notes, quizzes and handouts alongside the textbook chapters covered in lecture."
+    ],
+    "quizzes": "The final-exam study guide lists quizzes among the lecture material to review. That establishes that something the course called a quiz existed; it does not establish a graded quiz, a format, a length, a point value or a count, and no quiz paper is in the folder searched.",
+    "practice_generation_note": "A practice test for this course is built from this shape and never from a real question. Match the profile: nine problems for an in-class test, one topic per slot drawn from the labels above, the same relative point weights, the same mix of question forms, and the header rules restated as the instructions. Write new problems; the topic labels say what a slot is about, and deliberately do not say what any real problem contained. Solve each one and hand over a separate worked key in the form the instructor's own keys take: the technique named first, the substitution shown, the final answer boxed with its unit. Tell the student plainly that the shape is modelled on past tests in this course and that the content and the difficulty are the tool's own, and repeat what not_documented says is unknown, rather than filling those gaps with a guess.",
+    "not_documented": [
+      "the Test 2 paper itself",
+      "the final's paper and key",
+      "a time limit for the in-class tests",
+      "a calculator policy for the in-class tests",
+      "the size limit on a formula sheet",
+      "quiz format, count and weight",
+      "how partial credit was awarded",
+      "typical difficulty"
+    ]
+  },
+  "magnitudes": [
+    {
+      "quantity": "power factor of a load in an AC power problem",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.0,
+        1.0
+      ],
+      "basis": "Physical plausibility, not a course rule: a power factor is the cosine of the angle between voltage and current, so it cannot leave the interval from zero to one whatever the load is. The bound is the definition, not a habit of this course's problems.",
+      "note": "Above one: the apparent power and the real power were divided the wrong way round, or a reactive power was used where an apparent power belongs. Negative: the current phasor was not conjugated in the complex power, which flips the sign. The range says nothing about whether the factor is leading or lagging, which is the other half of the answer and is the student's to state."
     }
   ]
 }

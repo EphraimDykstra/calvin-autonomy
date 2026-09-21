@@ -151,7 +151,7 @@ class EvaluationTests(unittest.TestCase):
         ]
         for index, blocker in enumerate(observed, start=4):
             statuses[f"run-{index:02d}"] = {
-                "effective_stage": "checked",
+                "effective_stage": "blocked",
                 "readiness": {"ready": False, "blockers": [blocker]},
             }
 
@@ -228,7 +228,7 @@ class EvaluationTests(unittest.TestCase):
         # Keep the stale solution hash intentionally visible to verification as a failure.
         statuses = {
             case["run_ref"]: {
-                "effective_stage": "ready" if index == 0 else "checked",
+                "effective_stage": "ready" if index == 0 else "blocked",
                 "readiness": {
                     "ready": index == 0,
                     "blockers": [] if index == 0 else [case["expected"]["blockers"][0]],

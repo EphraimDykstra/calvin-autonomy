@@ -32,6 +32,11 @@ WRAP = 56
 
 # Label column: the longest label is "likely cause" at 12 characters.
 _LABEL = 12
+_VALUE_COLUMN = 2 + _LABEL + 2
+
+# What a step name may occupy on a verdict line.  The longest verdict is
+# "SIZE LOOKS WRONG", and three spaces separate the two.
+_NAME_WIDTH = WRAP - 3 - len("SIZE LOOKS WRONG")
 
 # A dimensionless answer has no unit to print.  ``parse_unit`` spells it "1"
 # or "dimensionless"; printing either after the number would read as a unit.
@@ -60,8 +65,28 @@ def _quantity(value: Any, unit: Any) -> str:
     return text
 
 
-def _field(label: str, value: str) -> str:
-    return f"  {label:<{_LABEL}}  {value}"
+def _clip(text: str, width: int) -> str:
+    """Shorten to `width`, marking that something was removed.
+
+    Used only on names, never on a number: a clipped quantity would be a
+    different answer, while a clipped name is still the name of the step.
+    """
+    if len(text) <= width:
+        return text
+    return text[: max(width - 3, 0)] + "..." if width > 3 else text[:width]
+
+
+def _field(label: str, value: str) -> list[str]:
+    """A labelled line, wrapped at the value column when the value is long.
+
+    The value carries a unit, and a unit is whatever the caller wrote, so it is
+    wrapped rather than allowed to run past the width this format promises.
+    The number always lands on the first line, ahead of any wrap.
+    """
+    head = f"  {label:<{_LABEL}}  "
+    return textwrap.wrap(
+        value, width=WRAP, initial_indent=head, subsequent_indent=" " * _VALUE_COLUMN
+    ) or [head.rstrip()]
 
 
 def _prose(text: str) -> list[str]:
@@ -69,12 +94,21 @@ def _prose(text: str) -> list[str]:
 
 
 def _label_for(step: dict[str, Any], index: int) -> str:
-    """Name a step.  ``id`` is optional in the input, so fall back to position."""
+    """Name a step.  ``id`` is optional in the input, so fall back to position.
+
+    Clipped here and nowhere else: this name is printed both on the verdict
+    line and in the attention list, and clipping at the call sites would let
+    one block spell the same step two different ways.
+    """
     value = step.get("id")
-    return str(value) if value else f"step {index}"
+    return _clip(str(value) if value else f"step {index}", _NAME_WIDTH)
 
 
-def _range_line(magnitude: dict[str, Any]) -> str:
+def _headline(name: str, verdict: str) -> str:
+    return f"{name}   {verdict}"
+
+
+def _range_line(magnitude: dict[str, Any]) -> list[str]:
     low, high = magnitude["range"]
     return _field("usual range", f"{_number(low)} to {_quantity(high, magnitude.get('unit'))}")
 
@@ -84,12 +118,30 @@ def _magnitude_note(magnitude: dict[str, Any]) -> list[str]:
     return _prose(note) if note else []
 
 
+def _course_pack_lines(note: dict[str, Any]) -> list[str]:
+    """Say that the named course pack is not installed, and what is.
+
+    The wording says what was unavailable rather than what "did not run": with
+    no pack there are no ranges to check against, and a step that named one
+    would have failed on its own terms anyway.  Unindented, because it is a
+    caveat about the whole review rather than about any one step.
+    """
+    text = (
+        f'No course pack is installed as "{note.get("requested")}", '
+        "so no magnitude ranges were available to check against."
+    )
+    near = [str(pack) for pack in note.get("did_you_mean") or []]
+    if near:
+        text += " Did you mean " + " or ".join(near) + "?"
+    return textwrap.wrap(text, width=WRAP)
+
+
 def format_step(step: dict[str, Any], index: int) -> list[str]:
     """Render one step.  Returns the block's lines, verdict first."""
     name = _label_for(step, index)
 
     if "error" in step:
-        return [f"{name}   COULD NOT CHECK", *_prose(step["error"])]
+        return [_headline(name, "COULD NOT CHECK"), *_prose(step["error"])]
 
     magnitude = step.get("magnitude")
     implausible = isinstance(magnitude, dict) and magnitude.get("plausible") is False
@@ -100,11 +152,18 @@ def format_step(step: dict[str, Any], index: int) -> list[str]:
         # says nothing about whether the inputs were sensible, and that is the
         # honest case this tool exists for.
         if not implausible:
-            return [f"{name}   OK   {_quantity(step.get('claimed'), step.get('unit'))}"]
+            value = _quantity(step.get("claimed"), step.get("unit"))
+            line = f"{_headline(name, 'OK')}   {value}"
+            # A long unit would push the one-liner past the width, so it falls
+            # back to the labelled form, which wraps predictably.  Short cases
+            # are untouched, which is what keeps the published blocks stable.
+            if len(line) <= WRAP:
+                return [line]
+            return [_headline(name, "OK"), *_field("you wrote", value)]
         return [
-            f"{name}   SIZE LOOKS WRONG",
-            _field("you wrote", _quantity(step.get("claimed"), step.get("unit"))),
-            _range_line(magnitude),
+            _headline(name, "SIZE LOOKS WRONG"),
+            *_field("you wrote", _quantity(step.get("claimed"), step.get("unit"))),
+            *_range_line(magnitude),
             # The framing comes before the pack's note, which can run long: the
             # student needs to know the arithmetic passed before reading why
             # the number is still suspect.
@@ -113,8 +172,8 @@ def format_step(step: dict[str, Any], index: int) -> list[str]:
         ]
 
     lines = [
-        f"{name}   NOT RIGHT",
-        _field("you wrote", _quantity(step.get("claimed"), step.get("unit"))),
+        _headline(name, "NOT RIGHT"),
+        *_field("you wrote", _quantity(step.get("claimed"), step.get("unit"))),
     ]
     # A dimension mismatch is reported before anything is recomputed, so there
     # is no recomputed value to show.  Printing a line for one would invent it.
@@ -124,12 +183,12 @@ def format_step(step: dict[str, Any], index: int) -> list[str]:
     # what the number is -- the value rebuilt from the problem's givens -- and
     # so tells a student where to look when a given was misread from a photo.
     if "actual" in step:
-        lines.append(_field("recomputed", _quantity(step["actual"], step.get("unit"))))
+        lines.extend(_field("recomputed", _quantity(step["actual"], step.get("unit"))))
 
     causes = step.get("likely_causes") or []
     if causes:
         for cause in causes:
-            lines.append(_field("likely cause", str(cause.get("cause", ""))))
+            lines.extend(_field("likely cause", str(cause.get("cause", ""))))
             if cause.get("hint"):
                 lines.extend(_prose(cause["hint"]))
     else:
@@ -137,7 +196,7 @@ def format_step(step: dict[str, Any], index: int) -> list[str]:
         lines.extend(_prose("No known slip shape matches this one."))
 
     if implausible:
-        lines.append(_range_line(magnitude))
+        lines.extend(_range_line(magnitude))
         lines.extend(_magnitude_note(magnitude))
     return lines
 
@@ -156,7 +215,15 @@ def format_review(result: dict[str, Any]) -> str:
         blocks.append(format_step(step, index))
 
     lines: list[str] = []
+    # A course id that matched no installed pack is said out loud, first,
+    # before any verdict: it changes what the rest of the block was able to
+    # check, and it is the whole point of the field being in the result.
+    note = result.get("course_pack")
+    if isinstance(note, dict) and note.get("installed") is False:
+        lines.extend(_course_pack_lines(note))
     if len(steps) > 1:
+        if lines:
+            lines.append("")
         # Counts come from the result object, never recounted here.  `checked`
         # already excludes steps that could not be checked at all.
         checked = result.get("checked", 0)

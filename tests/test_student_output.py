@@ -24,7 +24,7 @@ import re
 import unittest
 
 from engineering_assistant.review import review_work
-from engineering_assistant.student_output import WRAP, format_review
+from engineering_assistant.student_output import WRAP, _label_for, format_review
 
 FILM_TEMP = {
     "id": "film-temp",
@@ -285,14 +285,21 @@ class SummaryTests(unittest.TestCase):
         # used, which is the last place the text could drift from the JSON: if
         # the engine's rule for needing attention changed, nothing else in this
         # suite would notice the block still printing the old one.
-        result = review_work(ALL_SHAPES, MAGNITUDES)
+        # A long id is in the fixtures on purpose: names are clipped for the
+        # width, so `expected` is derived through `_label_for` rather than from
+        # the raw id.  The claim under test is that the printed list maps one
+        # to one onto `needs_attention`, not that the clip is any particular
+        # width -- deriving it the other way would make this test restate the
+        # formatter instead of checking it against the engine.
+        steps = ALL_SHAPES + [dict(FILM_TEMP, id="a-step-id-far-too-long-to-print-beside-a-verdict-word")]
+        result = review_work(steps, MAGNITUDES)
         text = format_review(result)
         printed = re.search(r"Needs attention: (.+?)(?:\n\n|\Z)", text, re.S).group(1)
         printed_names = [name.strip() for name in " ".join(printed.split()).split(",")]
         # `needs_attention` holds ids in step order, so an unnamed step is
         # recovered by its position among all the steps, not among these.
         expected = [
-            step.get("id") or f"step {index}"
+            _label_for(step, index)
             for index, step in enumerate(result["steps"], start=1)
             if step.get("id") in result["needs_attention"]
             or (step.get("id") is None and None in result["needs_attention"])
@@ -320,6 +327,125 @@ class SummaryTests(unittest.TestCase):
 
     def test_a_single_step_gets_no_summary_line(self):
         self.assertTrue(format_review(review_work([FILM_TEMP])).startswith("film-temp"))
+
+
+class CoursePackNoteTests(unittest.TestCase):
+    """An id that matched no installed pack is said, not passed over."""
+
+    NOTE = {
+        "requested": "engr315",
+        "installed": False,
+        "magnitude_ranges": "unavailable",
+        "did_you_mean": ["engr315-lab"],
+    }
+
+    def _rendered(self, note):
+        return format_review(review_work([FILM_TEMP], None, course_pack=note))
+
+    def _flat(self, note):
+        """Whitespace-normalised: the note wraps, and where it wraps is not the claim."""
+        return " ".join(self._rendered(note).split())
+
+    def test_the_note_is_said_first_because_it_qualifies_every_verdict(self):
+        self.assertTrue(self._rendered(self.NOTE).startswith('No course pack is installed as "engr315"'))
+        self.assertIn("so no magnitude ranges were available to check against", self._flat(self.NOTE))
+
+    def test_a_near_match_is_named(self):
+        self.assertIn("Did you mean engr315-lab?", self._flat(self.NOTE))
+
+    def test_no_near_match_claims_none(self):
+        text = self._flat(dict(self.NOTE, requested="engr999", did_you_mean=[]))
+        self.assertNotIn("Did you mean", text)
+        self.assertIn('installed as "engr999"', text)
+
+    def test_several_near_matches_are_all_named(self):
+        text = self._flat(dict(self.NOTE, did_you_mean=["engr204", "engr204-lab"]))
+        self.assertIn("Did you mean engr204 or engr204-lab?", text)
+
+    def test_nothing_is_printed_when_the_pack_was_found(self):
+        # The field is absent in the ordinary result, so the block is unchanged.
+        self.assertNotIn("course pack", format_review(review_work([FILM_TEMP])))
+
+    def test_the_note_does_not_disturb_the_verdict_block(self):
+        # The published block must survive the note being added above it.
+        plain = format_review(review_work([FILM_TEMP]))
+        self.assertTrue(self._rendered(self.NOTE).endswith(plain))
+
+    def test_the_note_stays_inside_the_width(self):
+        for note in (self.NOTE, dict(self.NOTE, did_you_mean=["engr204", "engr204-lab"])):
+            for line in self._rendered(note).splitlines():
+                with self.subTest(line=line):
+                    self.assertLessEqual(len(line), WRAP)
+
+
+class UnboundedInputTests(unittest.TestCase):
+    """The format promises 56 columns for inputs it did not choose.
+
+    A step id and a unit are both written by whoever built the steps file, so
+    neither may push a line past the width the whole design rests on.
+    """
+
+    LONG_ID = "film-temperature-at-the-plate-surface-for-part-b-of-question-four"
+    LONG_UNIT = "kg-m^2/s^3-K-mol-per-really-long-made-up-compound-unit"
+
+    def _long_id_step(self):
+        return dict(FILM_TEMP, id=self.LONG_ID)
+
+    def test_a_long_step_id_does_not_overflow_the_verdict_line(self):
+        for steps in ([self._long_id_step()], [self._long_id_step(), CORRECT, BROKEN]):
+            text = format_review(review_work(steps))
+            for line in text.splitlines():
+                with self.subTest(line=line):
+                    self.assertLessEqual(len(line), WRAP)
+
+    def test_a_clipped_id_is_marked_as_clipped(self):
+        text = format_review(review_work([self._long_id_step()]))
+        self.assertNotIn(self.LONG_ID, text)
+        self.assertIn("...", text)
+        self.assertIn("NOT RIGHT", text)
+
+    def test_the_block_and_the_attention_list_spell_a_long_id_the_same_way(self):
+        # Clipping happens in one place precisely so these cannot diverge.
+        result = review_work([self._long_id_step(), CORRECT])
+        text = format_review(result)
+        printed = _label_for(result["steps"][0], 1)
+        self.assertEqual(text.count(printed), 2, text)
+
+    # The unit registry refuses a symbol it does not know, so a unit this long
+    # cannot be produced through `review_work` today.  The formatter is still
+    # held to the width for one, because its promise is about its own input and
+    # not about which inputs another module currently allows: the registry
+    # gains symbols as courses are added, and a pack's magnitude unit is never
+    # checked against it at all.  Hence a result object built directly here.
+    def _synthetic(self, **over):
+        step = {"id": "u", "correct": False, "claimed": 0.24, "unit": self.LONG_UNIT,
+                "actual": 0.0024, "likely_causes": [], **over}
+        return {"schema_version": 1, "steps": [step], "checked": 1,
+                "correct": 1 if step.get("correct") else 0, "needs_attention": ["u"]}
+
+    def test_a_long_unit_wraps_instead_of_overflowing(self):
+        for line in format_review(self._synthetic()).splitlines():
+            with self.subTest(line=line):
+                self.assertLessEqual(len(line), WRAP)
+
+    def test_a_wrapped_value_keeps_its_number_on_the_first_line(self):
+        # The wrap may move the unit onto a continuation line; it may never
+        # split the number, which is what the derivation test reads back.
+        text = format_review(self._synthetic())
+        first = next(line for line in text.splitlines() if "you wrote" in line)
+        self.assertIn("0.24", first)
+
+    def test_a_correct_step_with_a_long_unit_falls_back_to_the_labelled_form(self):
+        text = format_review(self._synthetic(correct=True, claimed=15))
+        self.assertTrue(text.startswith("u   OK"))
+        self.assertIn("you wrote", text)
+        for line in text.splitlines():
+            self.assertLessEqual(len(line), WRAP)
+
+    def test_the_short_cases_are_untouched_by_the_guard(self):
+        # The guard must be invisible for ordinary input, or it would have
+        # silently changed the blocks the web page quotes.
+        self.assertEqual(format_review(review_work([CORRECT])), "ok-step   OK   15 m")
 
 
 class WidthTests(unittest.TestCase):

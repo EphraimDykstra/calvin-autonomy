@@ -392,6 +392,7 @@
     {
       "id": "ac-lab",
       "title": "Air-conditioning duct lab (psychrometrics and refrigeration)",
+      "instructor_support_window": "The lab schedule states that the instructor stops giving lab assistance some period before each submission is due, so that questions have to be asked ahead of it. The specific cut-off is a scheduling detail of the observed term and will drift, so it is deliberately not recorded as a rule. Tell the student the convention exists and have them check their own current schedule for the actual cut-off. The value of knowing it is that they plan questions before it bites them rather than after.",
       "stages": [
         "section-c-d",
         "section-b-c",
@@ -503,6 +504,61 @@
         "Corrections are expected between stages; the final is not the sum of the pre-submissions but a rewrite to a tighter budget.",
         "System-level cycle results (COP, isentropic efficiency, P-h and psychrometric charts) are required only at the final, though including charts earlier is harmless."
       ],
+      "intake": [
+        {
+          "id": "lab-handout",
+          "need": "The lab manual section for this lab and the current term's lab schedule.",
+          "why": "They carry the stage due dates and the instructor support cut-off, which the pack deliberately does not record because they drift each term.",
+          "provided_by": "student",
+          "basis": "spec; instructor_support_window and stage_details[].order_note"
+        },
+        {
+          "id": "stage",
+          "need": "Which submission this is: one of the three section pre-submissions, or the final report.",
+          "why": "The stage sets the section scope, the page budget, the number of error findings, and whether the cycle results are required at all.",
+          "provided_by": "handout",
+          "if_absent": "If no handout is supplied, ask the student which stage they are on; never assume the final.",
+          "see": "stages and stage_details[]",
+          "basis": "spec; stage_details[].max_body_pages, must_contain, error_findings"
+        },
+        {
+          "id": "raw-data",
+          "need": "The recorded readings for this stage, both seasons, as a sheet or spreadsheet.",
+          "why": "Forcing and response are computed from measurements; the tool holds none.",
+          "provided_by": "student",
+          "see": "stage_details[].measured_inputs",
+          "basis": "spec; stage_details[].measured_inputs and attachments"
+        },
+        {
+          "id": "ees-values",
+          "need": "The values the student's EES model returns, each with its unit.",
+          "why": "This tool cannot run EES, so every solved property or state has to come back from the student before anything is built on it.",
+          "provided_by": "student",
+          "basis": "spec; stage_details[].attachments 'EES code with output' and the EES convention that the student runs the model"
+        },
+        {
+          "id": "figures-on-hand",
+          "need": "Which required figures the student already has as image files, and which still have to be made.",
+          "why": "Each section needs its control-volume diagram, and the final also needs a psychrometric chart and an R134a P-h diagram per season; the tool cannot draw any of them.",
+          "provided_by": "student",
+          "see": "stage_details[].must_contain",
+          "basis": "spec; stage_details[].must_contain"
+        },
+        {
+          "id": "group-members",
+          "need": "The names of the group, if this is a group submission.",
+          "why": "The title page carries a group line, and the pack stores no names.",
+          "provided_by": "student",
+          "basis": "format.title_page.contents 'group, if applicable'"
+        },
+        {
+          "id": "instructor-surname",
+          "need": "The professor's surname, spelled as the student's own materials spell it.",
+          "why": "The title page must name the professor and the pack stores no name; the slot is otherwise left as a placeholder.",
+          "provided_by": "student",
+          "basis": "format.title_page.contents 'professor surname, spelled correctly'"
+        }
+      ],
       "deliverables": [
         "three stapled pre-submissions (2-3 body pages plus attachments each)",
         "one stapled final report (4 body pages plus lettered appendices)",
@@ -526,6 +582,7 @@
     {
       "id": "ic-lab",
       "title": "Single-cylinder IC engine lab (performance and energy balance)",
+      "instructor_support_window": "The same convention as the A/C lab: the instructor stops giving lab assistance some period before each submission is due. The specific cut-off is a scheduling detail of the observed term and is not recorded as a rule; have the student check their own current schedule for it.",
       "stages": [
         "power-curves",
         "energy-balance",
@@ -631,6 +688,66 @@
         "The observed EES grew from a single power-curve file into a combined power-curve plus energy-balance file, with the energy blocks appended below and unit fixes made to earlier blocks.",
         "The manual defines the energy balance at one operating point; extending it across every point is optional and costs page space."
       ],
+      "intake": [
+        {
+          "id": "lab-handout",
+          "need": "The lab manual section for this lab and the current term's lab schedule.",
+          "why": "They carry the stage due dates and the instructor support cut-off, which the pack deliberately does not record because they drift each term.",
+          "provided_by": "student",
+          "basis": "spec; instructor_support_window"
+        },
+        {
+          "id": "stage",
+          "need": "Which submission this is: power curves, energy balance, efficiency, or the final report.",
+          "why": "The stage sets the page budget, which analysis is in scope, and which plots and tables are required.",
+          "provided_by": "handout",
+          "if_absent": "If no handout is supplied, ask the student which stage they are on; never assume the final.",
+          "see": "stages and stage_details[]",
+          "basis": "spec; stage_details[].max_body_pages and must_contain"
+        },
+        {
+          "id": "raw-data",
+          "need": "The recorded readings for this stage, as a sheet or spreadsheet.",
+          "why": "Power, energy streams and efficiency are computed from measurements; the tool holds none.",
+          "provided_by": "student",
+          "see": "stage_details[].measured_inputs",
+          "basis": "spec; stage_details[].measured_inputs and attachments"
+        },
+        {
+          "id": "ees-values",
+          "need": "The values the student's EES model returns, each with its unit.",
+          "why": "This tool cannot run EES, so the combustion and energy-balance results have to come back from the student before anything is built on them.",
+          "provided_by": "student",
+          "stages": [
+            "energy-balance",
+            "efficiency",
+            "final-report"
+          ],
+          "basis": "spec; stage_details[].attachments 'EES code with output', which the power-curves stage does not list"
+        },
+        {
+          "id": "figures-on-hand",
+          "need": "Which required plots and diagrams the student already has as image files, and which still have to be made.",
+          "why": "The stages require a power-and-torque plot, an energy-flow diagram, and an efficiency-against-power plot; the tool cannot draw them.",
+          "provided_by": "student",
+          "see": "stage_details[].must_contain",
+          "basis": "spec; stage_details[].must_contain"
+        },
+        {
+          "id": "group-members",
+          "need": "The names of the group, if this is a group submission.",
+          "why": "The title page carries a group line, and the pack stores no names.",
+          "provided_by": "student",
+          "basis": "format.title_page.contents 'group, if applicable'"
+        },
+        {
+          "id": "instructor-surname",
+          "need": "The professor's surname, spelled as the student's own materials spell it.",
+          "why": "The title page must name the professor and the pack stores no name; the slot is otherwise left as a placeholder.",
+          "provided_by": "student",
+          "basis": "format.title_page.contents 'professor surname, spelled correctly'"
+        }
+      ],
       "deliverables": [
         "three stapled pre-submissions (power curves 2-3, energy 2-3, efficiency 2 body pages, plus attachments)",
         "one stapled final report (4 body pages plus lettered appendices)",
@@ -660,9 +777,26 @@
       "stage_details": [
         {
           "id": "weekly-set",
+          "assistance_rules": [
+            {
+              "id": "no-code-sharing",
+              "kind": "collaboration",
+              "status": "restricted",
+              "severity": "surface_once",
+              "summary": "The sets state that homework may be worked on together but that code must not be shared.",
+              "applies_to": "Any request to write, complete or repair EES code for a homework problem in this course.",
+              "not_generalised": "It is not clear how this applies to code a tool writes for the student, as opposed to code another student wrote. The rule predates the question and does not answer it. It is not resolved in either direction here.",
+              "required_behaviour": [
+                "Surface the rule to the student once, before helping with an EES homework problem, and say plainly that whether it covers tool-written code is a judgement for them and their professor, not for this tool.",
+                "Then follow their decision. Do not repeat it on every request.",
+                "Do not refuse on the strength of an ambiguity the course has not settled; inventing a prohibition substitutes this tool's judgement for the professor's."
+              ],
+              "basis": "The homework sets for the observed term, read directly. Stated on several of the later sets, not on every set, so it is treated as the course's standing rule rather than as specific to those weeks. The unresolved question about tool-written code is this pack's observation, not something the course says."
+            }
+          ],
           "must_contain": [
             "problems in the assigned order",
-            "printed EES code with key answers visible, for problems the set assigns to EES",
+            "printed EES code with key answers visible, for the specific problems that set names; which problems require EES is stated per set and is not a blanket rule",
             "for a problem solved in more than one tool, each solve printed and the results compared rather than one silently replacing the other"
           ],
           "tool_note": "Hand work is common for problems the set does not assign to EES, and the archive shows those written directly on the printed prompt. It is not the only alternative to EES, so do not treat the choice as EES-or-hand. The archive also shows a spreadsheet used to tabulate and plot results a solver produced, and a CAD thermal simulation used to re-solve a conduction problem that had already been solved numerically. Follow whatever the set assigns; where it assigns nothing, the tool is the student's choice.",

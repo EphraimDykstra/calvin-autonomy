@@ -1,4 +1,4 @@
-# Physics 133 Lab (introductory mechanics): read this before producing a deliverable
+# Physics 133 Lab (introductory mechanics): guide
 
 ## What this pack can and cannot tell you
 
@@ -33,7 +33,7 @@ The PDF and the LoggerPro file are submitted together, and **every group member 
 
 ## Methods
 
-`pack.json` carries five methods with steps and pitfalls:
+The pack carries five methods (`methods.<id>`) with steps and pitfalls:
 
 - `max-min-uncertainty`
 - `slope-as-measured-quantity`, which prefers a linear fit and reads the intercept physically

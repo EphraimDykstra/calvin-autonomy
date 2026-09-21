@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "zekavat-electrical-engineering-1e",
+    "citation": "S. A. Reza Zekavat, Electrical Engineering: Concepts and Applications (1st Edition, 2013)",
+    "pages_total": 714,
+    "courses": [
+      "engr204"
+    ],
+    "index_coverage": {
+      "chapters": "complete: all 15 chapters",
+      "appendix": "NOT indexed, but they EXIST: Appendix A Solving Linear Equations (p. 671), Appendix B Laplace Transform (p. 673), Appendix C Complex Numbers (p. 677). Appendix B is the one a circuits student is usually sent to. Their contents are not recorded here.",
+      "chapter_tables": "NOT indexed"
+    }
+  },
+  "pointer_policy": "Pointers only. This file names which chapter or which appendix table to open. It never carries a value from a table body, and none may be added. Checks that the lookup was well formed. It cannot tell whether the value you read is correct.",
+  "addressing": "Ids are literal addresses, reached as appendix.<item-id> and chapters.<item-id>. A table and a figure sharing a number get different ids (appendix.table-a-9 vs appendix.figure-a-9) so a request for a table can never silently return a chart. The list is called `appendix` rather than `tables` because it also holds figures and, in some books, lettered appendices that are not tables at all. Table numbers are NOT portable between books.",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "title": "Why Electrical Engineering?",
+      "page": 1,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "1",
+      "topics": "Introduction, Electrical Engineering Career, Real Applications, Active Structural Control, Chemical Process Control"
+    },
+    {
+      "id": "ch-2",
+      "title": "Fundamentals of Electric Circuits",
+      "page": 13,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "2",
+      "topics": "Charge, Current, Voltage, Kirchhoff's Laws, Ohm's Law, Resistors, Power, Energy, Independent and Dependent Sources, PSpice"
+    },
+    {
+      "id": "ch-3",
+      "title": "Resistive Circuits",
+      "page": 61,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "3",
+      "topics": "Series and Parallel Resistors, Voltage and Current Division, Nodal Analysis, Mesh Analysis, Super Node, Thevenin/Norton Equivalent, Superposition, Maximum Power Transfer"
+    },
+    {
+      "id": "ch-4",
+      "title": "Capacitance and Inductance",
+      "page": 135,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "4",
+      "topics": "Capacitors, Inductors, Charge-Voltage-Current Relationships, Series and Parallel Combinations, Energy Storage, Fuel Sensors, Vibration Sensors"
+    },
+    {
+      "id": "ch-5",
+      "title": "Transient Analysis",
+      "page": 164,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "5",
+      "topics": "First-Order Circuits, RC Circuits, RL Circuits, DC Steady State, Second-Order Circuits, Series RLC, Parallel RLC, Transient Response"
+    },
+    {
+      "id": "ch-6",
+      "title": "Steady-State AC Analysis",
+      "page": 215,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "6",
+      "topics": "Sinusoidal Voltages, Phasors, Complex Impedances, AC Circuit Analysis, Thevenin/Norton Equivalent with Phasors, AC Power, Power Factor, Reactive Power"
+    },
+    {
+      "id": "ch-7",
+      "title": "Frequency Analysis",
+      "page": 274,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "7",
+      "topics": "Transfer Functions, Filters, Low-Pass Filters, High-Pass Filters, Band-Pass Filters, Band-Stop Filters, Bode Plots, Decibels, MATLAB"
+    },
+    {
+      "id": "ch-8",
+      "title": "Electronic Circuits",
+      "page": 316,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "8",
+      "topics": "Semiconductors, Diodes, Rectifiers, Transistors, Bipolar Junction Transistors, Field-Effect Transistors, NMOS, CMOS, Operational Amplifiers"
+    },
+    {
+      "id": "ch-9",
+      "title": "Power Systems and Transmission Lines",
+      "page": 395,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "9",
+      "topics": "Three-Phase Systems, Phase Sequence, Y-Connected and Delta-Connected Loads, Power in Three-Phase Systems, Transmission Lines, Inductance, Capacitance"
+    },
+    {
+      "id": "ch-10",
+      "title": "Fundamentals of Logic Circuits",
+      "page": 440,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "10",
+      "topics": "Number Systems, Binary, Hexadecimal, Octal, Boolean Algebra, Boolean Operations, Logic Gates, Sequential Logic, Flip-Flops, Counters, Digital Logic"
+    },
+    {
+      "id": "ch-11",
+      "title": "Computer-Based Instrumentation Systems",
+      "page": 488,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "11",
+      "topics": "Sensors, Pressure Sensors, Temperature Sensors, Accelerometers, Strain Gauges, Acoustic Sensors, Signal Conditioning, Data Acquisition, Analog-to-Digital Conversion, Grounding"
+    },
+    {
+      "id": "ch-12",
+      "title": "Principles of Electromechanics",
+      "page": 524,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "12",
+      "topics": "Magnetic Fields, Magnetic Flux, Magnetic Field Intensity, Forces on Charges, Magnetic Circuits, Reluctance, Mutual Inductance, Transformers"
+    },
+    {
+      "id": "ch-13",
+      "title": "Electric Machines",
+      "page": 557,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "13",
+      "topics": "DC Motors, AC Motors, Generators, Speed Control, Three-Phase Synchronous Motors, Induction Motors, Stepper Motors, Brushless DC Motors"
+    },
+    {
+      "id": "ch-14",
+      "title": "Electrical Measurement Instruments",
+      "page": 615,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "14",
+      "topics": "Measurement Errors, Ammeter, Voltmeter, Ohmmeter, Multi-Meters, Oscilloscope, Spectrum Analyzer, Function Generator, Time Domain, Frequency Domain"
+    },
+    {
+      "id": "ch-15",
+      "title": "Electrical Safety",
+      "page": 646,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "15",
+      "topics": "Electric Shock, Shock Prevention, Electromagnetic Hazards, Radio Frequency Hazards, Arcs, Explosions, National Electric Code, Fire Prevention"
+    }
+  ]
+}

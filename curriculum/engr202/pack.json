@@ -13,13 +13,13 @@
     "format": "none",
     "methods": "none",
     "assignments": "none",
-    "notes": "Every absence stated in this pack is the result of one search: a direct listing of this course's folder in the student's iCloud term archive and of his university OneDrive, in September 2026. It describes that search, not the world. Within it, the course folder held no syllabus, no assignment prompt and no completed work. What it held was the assigned textbook, a publisher's text, and one personal test cheat sheet that is entirely images with no text layer. So nothing found shows how this course's homework or tests were set, presented, or graded. The real course material probably lived on Moodle and was never saved locally, which would mean it was never in either archive to find. A host must not infer a format from the textbook or from any other publisher material."
+    "notes": "Every absence stated in this pack is the result of one search: a direct listing of this course's folder in the student's iCloud term archive and of his university OneDrive, in September 2026. It describes that search, not the world. Within it, the course folder held no syllabus, no assignment prompt and no completed work. What it held was the assigned textbook, a publisher's text, and one personal test cheat sheet, which is image-dominant but not entirely images. A second personal cheat sheet for this course sits in OneDrive filed under a different course; it is attributed here by filename and date rather than confirmed. So nothing found shows how this course's homework or tests were set, presented, or graded. The real course material probably lived on Moodle and was never saved locally, which would mean it was never in either archive to find. A host must not infer a format from the textbook or from any other publisher material."
   },
   "course_policy": {
     "source": "none found",
     "confidence": "unknown",
     "term_observed": null,
-    "summary": "No syllabus or generative-AI policy for this course was found. Ask the student to confirm the current policy with the instructor.",
+    "summary": "No syllabus or generative-AI policy for this course was found in the student's iCloud term folders or his university OneDrive, searched September 2026. Ask the student to confirm the current policy with the instructor.",
     "permitted": [],
     "prohibited": [],
     "student_asked": null,
@@ -28,7 +28,7 @@
   "gaps": {
     "archive_holds": [
       "the assigned textbook (publisher material, not a course document)",
-      "one image-only personal cheat sheet"
+      "two personal cheat sheets, both image-dominant but not image-only (each carries a few hundred characters of extractable text); one sits in this course's folder, the second is filed under another course in OneDrive and is attributed here by filename and date, not confirmed"
     ],
     "missing": ["syllabus", "homework prompts", "completed or graded homework", "tests", "any statement of how solutions should be presented"],
     "student_can_supply": [

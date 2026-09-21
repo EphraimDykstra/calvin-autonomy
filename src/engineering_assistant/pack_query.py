@@ -74,7 +74,10 @@ _NEXT = {
         "This pack has no rules of this kind. Say so plainly and ask the student for a handout "
         "or a graded example. Do not substitute another course's rule or a generic one."
     ),
-    "no_such_address": "Nothing is at this address. Choose from `contents`, which lists every node in this pack.",
+    "no_such_address": (
+        "Nothing is at this address. Choose from `contents`, which lists every node here, or from the "
+        "`children` of the nearest node that does exist."
+    ),
     "over_budget": "Ask for the listed children one at a time, or raise --max-bytes deliberately.",
 }
 
@@ -235,6 +238,41 @@ def _resolve(entry: dict[str, Any], address: str) -> tuple[bool, Any, Any]:
     return True, node, parent
 
 
+def _nearest(entry: dict[str, Any], address: str) -> tuple[list[str], Any]:
+    """The deepest node on the way to ``address`` that does exist, and the way to it."""
+    node: Any = entry["pack"]
+    reached: list[str] = []
+    for segment in address.split("."):
+        match = [child for name, child in _children(node) if name == segment]
+        if not match:
+            break
+        node = match[0]
+        reached.append(segment)
+    return reached, node
+
+
+def _miss(entry: dict[str, Any], address: str) -> dict[str, Any]:
+    """A miss, with what sits beside it when the host got most of the way there.
+
+    Near the top, the whole store's contents is the useful list, and the answer
+    carries it.  Deep inside a store it is not: a host that found the right
+    chapter and asked for a table it does not hold needs that chapter's tables,
+    not the list of chapters again.
+    """
+    miss: dict[str, Any] = {"address": address, "status": "no_such_address"}
+    reached, near = _nearest(entry, address)
+    if len(reached) >= 2:
+        prefix = ".".join(reached)
+        miss["resolved_to"] = prefix
+        miss["children"] = [
+            {"address": f"{prefix}.{name}", "title": child["title"]}
+            if isinstance(child, dict) and isinstance(child.get("title"), str)
+            else {"address": f"{prefix}.{name}"}
+            for name, child in _children(near)
+        ]
+    return miss
+
+
 def _basis(node: Any, parent: Any, name: str) -> Any:
     if isinstance(node, dict):
         for key in _PROVENANCE_KEYS:
@@ -261,7 +299,7 @@ def _result(entry: dict[str, Any], address: str) -> dict[str, Any]:
     if not found or (node is None and level == "none"):
         if level == "none":
             return {"address": address, "status": "no_rules_for_dimension", "coverage": level}
-        return {"address": address, "status": "no_such_address"}
+        return _miss(entry, address)
 
     result = {"address": address, "status": "found", "coverage": level, "bytes": _size(node)}
     name = address.split(".")[-1]
@@ -355,6 +393,14 @@ def get(
             break
         results[found[-1]] = _over_budget(results[found[-1]])
         out = _answer(entry, results)
+    if _size(out) > max_bytes:
+        # A deep miss lists its neighbours with titles, which help a host
+        # choose.  The addresses are what it cannot do without, so when the
+        # listing is what breaks the budget the titles go and they stay.
+        for result in results:
+            if "resolved_to" in result:
+                result["children"] = [{"address": child["address"]} for child in result["children"]]
+        out = _answer(entry, results)
     return out
 
 
@@ -371,10 +417,15 @@ def _answer(entry: dict[str, Any], results: list[dict[str, Any]]) -> dict[str, A
     }
     if failed:
         out["next"] = _NEXT[failed[0]]
-        out["coverage_notes"] = (entry["pack"].get("coverage") or {}).get("notes")
-        # An over-budget node already lists its own children; a miss needs the
-        # whole pack's contents, so the host chooses from everything there is.
-        if set(failed) - {"over_budget"}:
+        # What this store admits it does not hold.  For a book that is what its
+        # index leaves out, which is how a host tells "not indexed" from "not
+        # in the book".
+        pack = entry["pack"]
+        out["coverage_notes"] = (pack.get("coverage") or {}).get("notes") or (pack.get("book") or {}).get("index_coverage")
+        # An over-budget node lists its own children, and so does a miss deep
+        # in a store.  Any other miss needs the whole store's contents, so the
+        # host chooses from everything there is.
+        if any(r["status"] != "over_budget" and "resolved_to" not in r for r in results if r["status"] != "found"):
             out["contents"] = _contents(entry)
     return out
 

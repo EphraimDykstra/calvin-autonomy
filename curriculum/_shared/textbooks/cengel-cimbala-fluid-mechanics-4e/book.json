@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "cengel-cimbala-fluid-mechanics-4e",
+    "citation": "Çengel, Y. A., & Cimbala, J. M., Fluid Mechanics: Fundamentals and Applications, 4th ed.",
+    "pages_total": 1051,
+    "courses": [
+      "engr209"
+    ],
+    "index_coverage": {
+      "chapters": "complete: all 15 chapters",
+      "appendix": "complete: all 16 SI appendix items (A-1..A-16), tables and figures alike",
+      "chapter_tables": "NOT indexed. In-chapter tables and figures were indexed only for the heat and mass transfer book, because only that course pair asked for them.",
+      "english_units": "NOT indexed. Appendix 2 repeats the SI tables in English units as A-1E..A-16E, printed pp. 965-977."
+    },
+    "appendix_title": "Appendix 1 — Property Tables and Charts (SI Units)",
+    "unit_system": "SI",
+    "printed_pages": "947-964",
+    "appendix_note": "Appendix 1 & 2: Property Tables and Charts (SI and English units), printed pages 947-977",
+    "note": "Appendix 2 is the same material in English units, printed pp. 965-977, labelled A-1E..A-16E. BEYOND THE BRIEFED SCOPE: scope 2 asked only for a chapter map for ENGR 209. This table index came free from the same front-matter extraction and is kept in a separate file so it can be dropped without touching anything else. Coordinator decides."
+  },
+  "pointer_policy": "Pointers only. This file names which chapter or which appendix table to open. It never carries a value from a table body, and none may be added. Checks that the lookup was well formed. It cannot tell whether the value you read is correct.",
+  "addressing": "Ids are literal addresses, reached as appendix.<item-id> and chapters.<item-id>. A table and a figure sharing a number get different ids (appendix.table-a-9 vs appendix.figure-a-9) so a request for a table can never silently return a chart. The list is called `appendix` rather than `tables` because it also holds figures and, in some books, lettered appendices that are not tables at all. Table numbers are NOT portable between books.",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "title": "Introduction and Basic Concepts",
+      "page": 1,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "1",
+      "topics": "fluid definition, fluid flow classification, dimensions and units, modeling"
+    },
+    {
+      "id": "ch-2",
+      "title": "Properties of Fluids",
+      "page": 37,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "2",
+      "topics": "density, vapor pressure, cavitation, energy, specific heats, compressibility, viscosity, surface tension"
+    },
+    {
+      "id": "ch-3",
+      "title": "Pressure and Fluid Statics",
+      "page": 77,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "3",
+      "topics": "pressure measurement, barometer, manometer, hydrostatic forces, buoyancy"
+    },
+    {
+      "id": "ch-4",
+      "title": "Fluid Kinematics",
+      "page": 137,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "4",
+      "topics": "Lagrangian and Eulerian descriptions, acceleration, flow patterns, streamlines, pathlines"
+    },
+    {
+      "id": "ch-5",
+      "title": "Bernoulli and Energy Equations",
+      "page": 189,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "5",
+      "topics": "Bernoulli equation, conservation of mass, conservation of energy, energy analysis"
+    },
+    {
+      "id": "ch-6",
+      "title": "Momentum Analysis of Flow Systems",
+      "page": 249,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "6",
+      "topics": "linear momentum, angular momentum, forces on control volumes, Reynolds transport theorem"
+    },
+    {
+      "id": "ch-7",
+      "title": "Dimensional Analysis and Modeling",
+      "page": 297,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "7",
+      "topics": "dimensional homogeneity, Buckingham Pi theorem, dynamic similarity, experimental testing"
+    },
+    {
+      "id": "ch-8",
+      "title": "Internal Flow",
+      "page": 351,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "8",
+      "topics": "laminar and turbulent flow, entrance region, friction losses, pipe flow, Moody chart, flowmeters"
+    },
+    {
+      "id": "ch-9",
+      "title": "Differential Analysis of Fluid Flow",
+      "page": 443,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "9",
+      "topics": "continuity equation, stream function, Navier-Stokes equation, Cauchy's equation, boundary conditions"
+    },
+    {
+      "id": "ch-10",
+      "title": "Approximate Solutions of the Navier–Stokes Equation",
+      "page": 519,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "10",
+      "topics": "creeping flow, inviscid flow, irrotational flow, boundary layer approximation, Bernoulli applications"
+    },
+    {
+      "id": "ch-11",
+      "title": "External Flow: Drag and Lift",
+      "page": 611,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "11",
+      "topics": "drag coefficients, friction drag, pressure drag, lift, flow separation, boundary layers"
+    },
+    {
+      "id": "ch-12",
+      "title": "Compressible Flow",
+      "page": 667,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "12",
+      "topics": "stagnation properties, isentropic flow, nozzles, shock waves, Rayleigh flow, Fanno flow"
+    },
+    {
+      "id": "ch-13",
+      "title": "Open-Channel Flow",
+      "page": 733,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "13",
+      "topics": "uniform flow, varied flow, Froude number, specific energy, hydraulic jump, channel design"
+    },
+    {
+      "id": "ch-14",
+      "title": "Turbomachinery",
+      "page": 793,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "14",
+      "topics": "pumps, turbines, pump performance, cavitation, turbine types, scaling laws, affinity laws"
+    },
+    {
+      "id": "ch-15",
+      "title": "Introduction to Computational Fluid Dynamics",
+      "page": 885,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "15",
+      "topics": "CFD fundamentals, grid generation, boundary conditions, laminar and turbulent flow calculations, heat transfer"
+    }
+  ],
+  "appendix": [
+    {
+      "id": "table-a-1",
+      "title": "Molar Mass, Gas Constant, and Ideal-Gas Specific Heats of Some Substances",
+      "kind": "table",
+      "label": "A-1",
+      "page": 948,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "substance"
+    },
+    {
+      "id": "table-a-2",
+      "title": "Boiling and Freezing Point Properties",
+      "kind": "table",
+      "label": "A-2",
+      "page": 949,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "substance"
+    },
+    {
+      "id": "table-a-3",
+      "title": "Properties of Saturated Water",
+      "kind": "table",
+      "label": "A-3",
+      "page": 950,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature",
+      "collision_note": "Same title, different number: Properties of Saturated Water is A-3 here but A-9 in cengel-ghajar-heat-mass-transfer-5e. Never carry a table number between books."
+    },
+    {
+      "id": "table-a-4",
+      "title": "Properties of Saturated Refrigerant-134a",
+      "kind": "table",
+      "label": "A-4",
+      "page": 951,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-5",
+      "title": "Properties of Saturated Ammonia",
+      "kind": "table",
+      "label": "A-5",
+      "page": 952,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-6",
+      "title": "Properties of Saturated Propane",
+      "kind": "table",
+      "label": "A-6",
+      "page": 953,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature"
+    },
+    {
+      "id": "table-a-7",
+      "title": "Properties of Liquids",
+      "kind": "table",
+      "label": "A-7",
+      "page": 954,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "liquid and temperature"
+    },
+    {
+      "id": "table-a-8",
+      "title": "Properties of Liquid Metals",
+      "kind": "table",
+      "label": "A-8",
+      "page": 955,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "metal and temperature"
+    },
+    {
+      "id": "table-a-9",
+      "title": "Properties of Air at 1 atm Pressure",
+      "kind": "table",
+      "label": "A-9",
+      "page": 956,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "temperature",
+      "collision_note": "LABEL COLLISION. 'A-9' means three different things across the Cengel texts these courses use. HERE it is Properties of Air at 1 atm. In cengel-ghajar-heat-mass-transfer-5e table-a-9 is Properties of saturated water. In cengel-boles-thermodynamics-8e A-9 is a FIGURE (T-s diagram). Saturated water in THIS book is table-a-3."
+    },
+    {
+      "id": "table-a-10",
+      "title": "Properties of Gases at 1 atm Pressure",
+      "kind": "table",
+      "label": "A-10",
+      "page": 957,
+      "basis": "contents listing only (-layout and -raw reconciled); no body caption confirmed",
+      "indexed_by": "gas and temperature"
+    },
+    {
+      "id": "table-a-11",
+      "title": "Properties of the Atmosphere at High Altitude",
+      "kind": "table",
+      "label": "A-11",
+      "page": 959,
+      "basis": "contents listing only (-layout and -raw reconciled); no body caption confirmed",
+      "indexed_by": "altitude"
+    },
+    {
+      "id": "figure-a-12",
+      "title": "The Moody Chart for the Friction Factor for Fully Developed Flow in Circular Pipes",
+      "kind": "figure",
+      "label": "A-12",
+      "page": 960,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "note": "A FIGURE, not a table. In Cengel/Ghajar HMT 5e the Moody chart is A-20 instead.",
+      "collision_note": "The Moody chart is A-12 here but figure-a-20 in cengel-ghajar-heat-mass-transfer-5e. A FIGURE in both."
+    },
+    {
+      "id": "table-a-13",
+      "title": "One-Dimensional Isentropic Compressible Flow Functions for an Ideal Gas with k = 1.4",
+      "kind": "table",
+      "label": "A-13",
+      "page": 961,
+      "basis": "contents listing and a caption in the book body, reconciled",
+      "indexed_by": "Mach number"
+    },
+    {
+      "id": "table-a-14",
+      "title": "One-Dimensional Normal Shock Functions for an Ideal Gas with k = 1.4",
+      "kind": "table",
+      "label": "A-14",
+      "page": 962,
+      "basis": "contents listing only (-layout and -raw reconciled); no body caption confirmed",
+      "indexed_by": "Mach number"
+    },
+    {
+      "id": "table-a-15",
+      "title": "Rayleigh Flow Functions for an Ideal Gas with k = 1.4",
+      "kind": "table",
+      "label": "A-15",
+      "page": 963,
+      "basis": "contents listing only (-layout and -raw reconciled); no body caption confirmed",
+      "indexed_by": "Mach number"
+    },
+    {
+      "id": "table-a-16",
+      "title": "Fanno Flow Functions for an Ideal Gas with k = 1.4",
+      "kind": "table",
+      "label": "A-16",
+      "page": 964,
+      "basis": "contents listing only (-layout and -raw reconciled); no body caption confirmed",
+      "indexed_by": "Mach number"
+    }
+  ]
+}

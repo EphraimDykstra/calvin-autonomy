@@ -1,4 +1,4 @@
-# Physics 235L (lab): read this before producing a deliverable
+# Physics 235L (lab): guide
 
 ## What this pack can and cannot tell you
 
@@ -25,7 +25,7 @@ The handouts are worksheets. They ask for predictions before building, drawings 
 
 ## Methods
 
-The recurring analytical moves are listed with steps and pitfalls in `pack.json`: predict, build, and compare; junction, loop, and power-balance checks on DC networks; scope-based amplitude, RMS, and reactance for AC circuits; and RC/RL time constants. The most common error in this material is **peak versus peak-to-peak**. Always state which quantity the instrument reported before converting it.
+The recurring analytical moves are listed with steps and pitfalls in the pack's method nodes (`methods.<id>`): predict, build, and compare; junction, loop, and power-balance checks on DC networks; scope-based amplitude, RMS, and reactance for AC circuits; and RC/RL time constants. The most common error in this material is **peak versus peak-to-peak**. Always state which quantity the instrument reported before converting it.
 
 ## When producing work for this lab
 

@@ -550,9 +550,25 @@ def inspect_artifact(workspace:Path,run_id:str,artifact:str,report:dict)->dict:
     # rather than hiding inside it: this is what the CLI prints.
     return {'inspection':'rejected' if findings else 'passed','artifact':artifact,'findings':findings,'state':state,'readiness':result}
 
+# The only words `effective_stage` may take.  It is a verdict, not a position
+# in the pipeline, and keeping it a closed set is the whole point: it used to
+# fall through to the raw stage whenever a run was neither ready nor
+# provisional, so a blocked run reported 'verified', 'checked', 'rendered' or
+# 'inspected' -- a pass word in the field whose name most invites trusting it.
+# Adding a stage must never again be able to put a new word here.
+EFFECTIVE_STAGES=('ready','provisional','stale','blocked')
+
 def status_run(workspace:Path,run_id:str)->dict:
     state=load_run(workspace,run_id); root=run_dir(workspace,run_id)
     current=readiness(state,root)
-    effective='ready' if current['ready'] else ('provisional' if current['provisional'] else ('stale' if state.get('stage')=='ready' else state.get('stage')))
+    # 'stale' is kept distinct from 'blocked' because it makes a different
+    # claim -- this run was certified and then something changed under it --
+    # and because `evaluation.py` detects exactly that word.
+    if current['ready']: effective='ready'
+    elif current['provisional']: effective='provisional'
+    elif state.get('stage')=='ready': effective='stale'
+    else: effective='blocked'
     inspections=[_inspection_status(root,artifact) for artifact in state.get('artifacts',[]) if isinstance(artifact,dict)]
-    return {'state':state,'effective_stage':effective,'readiness':current,'inspections':inspections,'discarded':state.get('discarded',[])}
+    # Where the run actually sits in the pipeline, for anyone who needs it,
+    # under a name that promises nothing about whether it can be handed in.
+    return {'state':state,'effective_stage':effective,'pipeline_stage':state.get('stage'),'readiness':current,'inspections':inspections,'discarded':state.get('discarded',[])}

@@ -1,8 +1,8 @@
 # ENGR 315 Lab (Control Systems Laboratory)
 
-This is for the host model. It covers the weekly lab report and the methods the first two labs teach. `pack.json` holds the same rules in structured form, each with a `basis`. The MATLAB conventions (script header, file naming, plotting for grayscale, checks before the screenshot) are in `curriculum/_shared/matlab/` and apply to every lab here. Read both.
+This is for the host model. It covers the weekly lab report and the methods the first two labs teach. The pack's rule nodes hold the same rules in structured form, each with a `basis`. The MATLAB conventions (script header, file naming, plotting for grayscale, checks before the screenshot) are in the shared MATLAB pack (`tool:matlab`) and apply to every lab here. Use both packs.
 
-**Evidence.** The Lab 1 and Lab 2 handouts, each ending in a report checklist, and a completed report for each. That covers two weeks of a semester. The Week 3 folder holds an empty outline and no handout. No syllabus was found, so the AI-use policy is unknown. Both handouts require each student to write and run their own m-files.
+**Evidence.** The Lab 1 and Lab 2 handouts, each ending in a report checklist, and a completed report for each. That covers two weeks of a semester. There is no Week 3 folder and no Week 3 handout. One loose Week 3 file exists, a hand-algebra draft (see section 6). No syllabus was found, so the AI-use policy is unknown. Both handouts require each student to write and run their own m-files.
 
 ## 1. How a lab runs
 
@@ -27,7 +27,7 @@ The handout's checklist is the specification. Read the current one before anythi
 - **Code** in the report, in the body or an appendix the procedure refers to.
 - **Not specified anywhere:** font, margins, spacing, references, title page. Do not invent requirements for them.
 
-See `exemplars/lab-report-shape.md`.
+See the exemplar `exemplars.lab-report-shape`.
 
 ## 3. Where the written guidelines and the submitted Lab 2 report differ
 
@@ -63,15 +63,27 @@ Lab 1's checklist asked for three sections and the report used three. It asked f
 
 **What the student brings back from the run.** Nothing here runs MATLAB, so ask for three things: y(0) for each zeta (every one must be 1, an identity of the handout's equation; the handout does not ask for it, but it is the quickest way to catch a sign-flipped overdamped curve), the figure exactly as the script draws it, and every number the analysis will quote. Do not put a number in the report that the run did not produce.
 
-**Checking a result.** `pack.json` carries two `magnitudes` for this lab, both derived from the handout's own equation and neither a course rule: y(0) divided by y0, and the ratio of successive extrema for an underdamped zeta below 0.5. An out-of-range value is a question to ask, not a verdict. The `note` says what it usually means.
+**Checking a result.** The pack carries two `magnitudes` for this lab, both derived from the handout's own equation and neither a course rule: y(0) divided by y0, and the ratio of successive extrema for an underdamped zeta below 0.5. An out-of-range value is a question to ask, not a verdict. The `note` says what it usually means.
 
 ### Supporting mathematics (Lab 1)
 
 Partial fractions, quadratic roots in `-a ± bj` form, block reduction to one polynomial over one polynomial (the transfer function), complex numbers as vectors and in polar form, and convergence of decaying exponentials. `roots` needs an explicit 0 for every missing power.
 
+### Block-diagram reduction and step response (provisional, Week 3 draft)
+
+The only evidence is one loose Week 3 draft that is not known to have been submitted. No handout for that lab was found, so this is observed practice, not a requirement. Read the lab's own handout first.
+
+- Define the transfer function as output over input, `T = Y/R`, so that `Y = T R`.
+- Reduce the loop symbolically first. For negative feedback the closed-loop transfer function is the forward-path product over one plus the loop product. Name every block before substituting numbers, and check the sign at the summing junction.
+- Substitute the numeric blocks only after the symbolic result is written, then clear the inner denominators by multiplying numerator and denominator by their common denominator, until `T` is one polynomial over one polynomial.
+- Spot-check by evaluating the unreduced and the reduced `T` at one test value of `s` that makes no denominator zero. They must agree. This is this pack's recommendation, not something the draft did.
+- For a step of size `A` the input is `R(s) = A/s`. Multiply `T` by it; the step adds a pole at the origin.
+- One slip to watch for: turning `1/(1 + a)` into `1 + 1/a` when simplifying a complex fraction. They are not equal. The draft's numeric reduction did this, and the spot check catches it.
+- If the handout asks for a plot or a toolbox result, the student runs MATLAB and brings the numbers back. Nothing here is evidence about that work.
+
 ## 6. What this pack does not know
 
-- Anything after Week 2: Simulink, toolbox functions (`tf`, `step`, root locus, Bode), hardware rigs, and whatever report changes those labs bring. A second pass over the archive found no handout, report, or code after Week 2, and the Week 3 file is still an empty outline. The Lab 2 handout lists textbook Section 2.9 (simulation with control design software) as reading and invites optional exploration of Simulink; neither is a requirement, and neither is evidence about the later labs.
+- Anything after Week 2: Simulink, toolbox functions (`tf`, `step`, root locus, Bode), hardware rigs, and whatever report changes those labs bring. A search by name and by modification date since mid August 2026 of all seven iCloud term folders and OneDrive found no Week 3 handout, no later report, and no Simulink or toolbox file. File contents were read only for the ENGR 315 lab items, so a handout filed under an unrelated name would be missed. The one loose Week 3 file is a hand-algebra draft of two experiments with no prose, no report sections, and no sign it was submitted. It says nothing about the Week 3 report format, toolbox work, Simulink, or hardware, so those gaps stay open. The Lab 2 handout lists textbook Section 2.9 (simulation with control design software) as reading and invites optional exploration of Simulink; neither is a requirement, and neither is evidence about the later labs.
 - The syllabus, the grading weights, and the AI-use policy.
 - The instructor's feedback on either report. There is no graded copy, so "matches the checklist" is the strongest claim available, not "scored well".
 
@@ -79,8 +91,8 @@ Partial fractions, quadratic roots in `-a ± bj` form, block reduction to one po
 
 Cited by type only. No course text is reproduced beyond a few words, no values from submitted work appear, and the exemplar uses an invented system.
 
-- **Lab 1 handout:** MATLAB introduction, math review, general report instructions and checklist, upload rule and penalty.
+- **Lab 1 handout:** MATLAB introduction, math review, general report instructions and checklist, upload rule and penalty. Kept in the iCloud ENGR 315 LAB folder, not in the OneDrive one.
 - **Lab 2 guidelines:** spring-mass-damper experiments, content and formatting checklists.
 - **Instructor m-file template.**
 - **Week 1 and Week 2 submitted reports**, and the Week 2 m-files and output-check notes.
-- **Week 3 folder:** an empty outline only.
+- **Week 3 Lab Report (a loose file, not a folder):** a hand-algebra draft of two experiments. Evidence of what one student worked through, not of what was required; it supports only the provisional block-diagram method above.

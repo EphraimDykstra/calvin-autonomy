@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "basic-machines-navpers-10624a",
+    "citation": "U.S. Bureau of Naval Personnel, Basic Machines and How They Work (Navy Training Course NAVPERS 10624.A; Dover Publications 1971, originally 1965)",
+    "pages_total": 168,
+    "courses": [
+      "engr322"
+    ],
+    "index_coverage": {
+      "chapters": "complete: all 15 chapters",
+      "appendix": "THERE IS NONE: this book's contents listing shows no appendix",
+      "chapter_tables": "NOT indexed"
+    },
+    "structure": "numbered-chapters"
+  },
+  "pointer_policy": "Pointers only. This file names which chapter or which appendix table to open. It never carries a value from a table body, and none may be added. Checks that the lookup was well formed. It cannot tell whether the value you read is correct.",
+  "addressing": "Ids are literal addresses, reached as appendix.<item-id> and chapters.<item-id>. A table and a figure sharing a number get different ids (appendix.table-a-9 vs appendix.figure-a-9) so a request for a table can never silently return a chart. The list is called `appendix` rather than `tables` because it also holds figures and, in some books, lettered appendices that are not tables at all. Table numbers are NOT portable between books.",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "title": "Levers",
+      "page": 1,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "1",
+      "topics": "lever, mechanical advantage, fulcrum, effort, load"
+    },
+    {
+      "id": "ch-2",
+      "title": "Block and Tackle",
+      "page": 10,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "2",
+      "topics": "pulley systems, block, tackle, mechanical advantage"
+    },
+    {
+      "id": "ch-3",
+      "title": "The Wheel and Axle",
+      "page": 16,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "3",
+      "topics": "wheel, axle, rotation, mechanical advantage, torque"
+    },
+    {
+      "id": "ch-4",
+      "title": "The Inclined Plane and Wedge",
+      "page": 23,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "4",
+      "topics": "inclined plane, wedge, ramp, mechanical advantage"
+    },
+    {
+      "id": "ch-5",
+      "title": "The Screw",
+      "page": 26,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "5",
+      "topics": "screw, thread, mechanical advantage, fastening"
+    },
+    {
+      "id": "ch-6",
+      "title": "Gears",
+      "page": 30,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "6",
+      "topics": "gears, gear teeth, mesh, speed, torque, power transmission"
+    },
+    {
+      "id": "ch-7",
+      "title": "Work",
+      "page": 39,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "7",
+      "topics": "work, energy, force, distance, calculation"
+    },
+    {
+      "id": "ch-8",
+      "title": "Power",
+      "page": 46,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "8",
+      "topics": "power, work rate, energy rate, efficiency"
+    },
+    {
+      "id": "ch-9",
+      "title": "Force and Pressure",
+      "page": 50,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "9",
+      "topics": "force, pressure, area, hydraulics, pneumatics"
+    },
+    {
+      "id": "ch-10",
+      "title": "Hydrostatic and Hydraulic Machines",
+      "page": 56,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "10",
+      "topics": "hydrostatic pressure, hydraulic systems, fluids, Pascal's principle"
+    },
+    {
+      "id": "ch-11",
+      "title": "Machine Elements and Basic Mechanisms",
+      "page": 69,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "11",
+      "topics": "linkages, bearings, shafts, couplings, mechanisms"
+    },
+    {
+      "id": "ch-12",
+      "title": "Complex Machines",
+      "page": 87,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "12",
+      "topics": "compound machines, combinations, systems, integration"
+    },
+    {
+      "id": "ch-13",
+      "title": "Internal Combustion Engine",
+      "page": 106,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "13",
+      "topics": "internal combustion, engine cycles, pistons, combustion"
+    },
+    {
+      "id": "ch-14",
+      "title": "Power Trains",
+      "page": 130,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "14",
+      "topics": "power transmission, gearing, shafts, efficiency"
+    },
+    {
+      "id": "ch-15",
+      "title": "Basic Computer Mechanisms",
+      "page": 150,
+      "basis": "contents listing; verification status: toc-only",
+      "number": "15",
+      "topics": "computer, mechanical computing, automation, control"
+    }
+  ]
+}

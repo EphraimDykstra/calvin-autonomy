@@ -250,5 +250,118 @@ class ModeTests(unittest.TestCase):
         self.assertIn("error", result)
 
 
+class CircuitUnitTests(unittest.TestCase):
+    """The units ENGR 204's own prompts write, and the two that cannot be.
+
+    The registry admits units that appear in course material, so each symbol
+    below was counted in the eleven ENGR 204 homework prompts, the final-exam
+    study guide, or the Test 1 paper before it was added.  A partial set is
+    worse than none for a student checking work: the check fails part-way
+    through a problem, on a unit rather than on the mistake it exists to find.
+    """
+
+    def test_prefixed_electrical_units_scale_to_their_base(self):
+        cases = (
+            ("mV", "V", 1e-3), ("kV", "V", 1e3),
+            ("mA", "A", 1e-3), ("uA", "A", 1e-6),
+            ("kohm", "ohm", 1e3), ("kohms", "ohm", 1e3),
+            ("mW", "W", 1e-3), ("uW", "W", 1e-6),
+            ("mF", "farad", 1e-3), ("uF", "farad", 1e-6),
+            ("nF", "farad", 1e-9), ("pF", "farad", 1e-12),
+            ("fF", "farad", 1e-15),
+            ("mH", "H", 1e-3),
+            ("uC", "coulomb", 1e-6),
+            ("MHz", "Hz", 1e6),
+            ("ms", "s", 1e-3),
+        )
+        for unit, base, factor in cases:
+            with self.subTest(unit=unit):
+                self.assertEqual(dimension_of(unit), dimension_of(base))
+                self.assertAlmostEqual(convert(1, unit, base), factor, delta=abs(factor) * 1e-9)
+
+    def test_electrical_dimensions_are_the_si_ones(self):
+        # Built from the defining relations, so a mistyped exponent in the
+        # registry shows up here rather than in a student's answer.
+        self.assertEqual(dimension_of("farad"), dimension_of("A-s/V"))
+        self.assertEqual(dimension_of("H"), dimension_of("V-s/A"))
+        self.assertEqual(dimension_of("coulomb"), dimension_of("A-s"))
+        self.assertEqual(dimension_of("V"), dimension_of("W/A"))
+        self.assertEqual(dimension_of("ohm"), dimension_of("V/A"))
+
+    def test_a_time_constant_reads_in_the_units_the_course_writes(self):
+        # tau = R*C, written kohm and uF, is milliseconds.
+        self.assertEqual(dimension_of("kohm-uF"), dimension_of("s"))
+        self.assertAlmostEqual(convert(1, "kohm-uF", "ms"), 1.0)
+
+    def test_a_resonant_frequency_reads_in_the_units_the_course_writes(self):
+        # 1/sqrt(L*C) with mH and uF is rad/s; the course writes krad/s.
+        self.assertEqual(dimension_of("1/mH^0.5-uF^0.5"), dimension_of("1/s"))
+        self.assertAlmostEqual(convert(10000, "rad/s", "krad/s"), 10.0)
+        self.assertAlmostEqual(convert(200, "rad/sec", "rad/s"), 200.0)
+
+    def test_degrees_are_angles_and_never_temperatures(self):
+        # A phasor angle round trip, and the separation that matters: "deg"
+        # is an angle, "degC" and "degF" are temperatures, and no conversion
+        # crosses between them.
+        self.assertAlmostEqual(convert(90, "deg", "rad"), math.pi / 2)
+        self.assertAlmostEqual(convert(math.pi, "rad", "deg"), 180.0)
+        self.assertAlmostEqual(convert(-36.3, "deg", "rad"), math.radians(-36.3))
+        for other in ("degC", "degF", "K", "deltaC"):
+            with self.subTest(other=other):
+                with self.assertRaises(UnitError):
+                    convert(1, "deg", other)
+                with self.assertRaises(UnitError):
+                    convert(1, other, "deg")
+
+    def test_apparent_and_reactive_power_carry_the_watts_dimension(self):
+        # Recorded, not hidden: VA, var and W are the same dimension, so the
+        # engine cannot tell an apparent power from a real one.  The course
+        # distinction is a method pitfall, not a dimensional one.
+        self.assertEqual(dimension_of("VA"), dimension_of("W"))
+        self.assertEqual(dimension_of("var"), dimension_of("W"))
+
+    def test_a_bare_f_or_c_is_still_the_temperature_it_has_always_been(self):
+        # The thermodynamics courses decide these two symbols, and adding
+        # electrical units must not move them.
+        self.assertAlmostEqual(convert(32, "F", "degC"), 0.0)
+        self.assertAlmostEqual(convert(25, "C", "K"), 298.15)
+
+    def test_a_bare_f_or_c_meant_electrically_is_told_how_to_write_it(self):
+        # "10 F" cannot refuse, because it parses as Fahrenheit.  The failure
+        # surfaces at the conversion, and that message has to name the real
+        # spelling or the student learns nothing from it.
+        with self.assertRaises(UnitError) as caught:
+            convert(10, "F", "uF")
+        self.assertIn("Fahrenheit", str(caught.exception))
+        self.assertIn("uF", str(caught.exception))
+        with self.assertRaises(UnitError) as caught:
+            convert(10, "uC", "C")
+        self.assertIn("Celsius", str(caught.exception))
+        self.assertIn("coulomb", str(caught.exception))
+
+    def test_a_temperature_mismatch_that_means_nothing_electrical_says_nothing_extra(self):
+        # The hint is consulted only when the other side is electrical, so an
+        # ordinary thermodynamics mismatch keeps its plain message.
+        with self.assertRaises(UnitError) as caught:
+            convert(10, "F", "m")
+        self.assertNotIn("Fahrenheit", str(caught.exception))
+
+    def test_capitalised_spellings_stay_refused(self):
+        # "KW" is already refused because it could be kelvin-watt; the same
+        # caution applies to the new symbols.  Guessing case is how a wrong
+        # conversion comes to look right.
+        for unit in ("KHZ", "Mhz", "KOhm", "MA", "NF"):
+            with self.subTest(unit=unit):
+                with self.assertRaises(UnitError):
+                    parse_unit(unit)
+
+    def test_the_decibel_is_still_refused_after_the_electrical_additions(self):
+        # dB is the one 204 unit deliberately left out: it is logarithmic and
+        # this registry is linear.  Named here so a later pass adding
+        # electrical units does not quietly sweep it in.
+        with self.assertRaises(UnitError):
+            parse_unit("dB")
+
+
 if __name__ == "__main__":
     unittest.main()

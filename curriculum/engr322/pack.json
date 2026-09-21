@@ -12,13 +12,13 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "The executive-summary memo is the best-evidenced format in this pack: the instructor wrote a one-page model memo for a homework, with the answer left as placeholders, and one student memo follows it closely. Everything else is thinner. Module homework prompts are typed and readable, but most answers are handwritten on the printed prompt, so how a worked solution should look is not covered. One time-stepping set has typed answers inline. There is no syllabus, no rubric beyond the one project handout, and no graded returns. Methods come from the prompts themselves, from the model memo, and from the student's test-correction notes. The SolidWorks study in the OneDrive archive is a native results database with no readable text. It was opened on a second pass and shows only a single-part linear static study with no contacts, so it says nothing about what a deliverable must show. Coverage gap: a student-built, module-numbered calculator workbook in the same archive (the student's own tool, not an instructor document) spans ten topics: eccentric bolts, screw jacks, welds and adhesives, fatigue, shafts, bearings, drive trains, hydraulics, springs, and brakes and clutches. The methods in this pack reach only two of those ten topics (bolts, including eccentric groups and preload torque, and welds). Hand-versus-FEA reconciliation and the time-stepping exercise are not among the ten. So most of the course's method content is not covered here. A textbook method for the rest is not a course convention, and none is recorded. Not used: the archive also holds a top-level file named for the 2025 ENGR 322 final exam and a solution key. Their file metadata says a script generated them and the student edited them, the key was created a minute after the exam, and the exam tells the reader to use the student's own calculator. The student was asked where they came from and answered that he or an AI tool generated them for practice. They are not instructor material, so the exclusion is permanent and the question is closed: nothing in this pack is derived from them, and no exam rule, checklist, exam profile or topic list should ever be taken from them."
+    "notes": "Absence claims in this pack describe one search, not the world: a listing of this course's folders in the student's iCloud term archive and his university OneDrive, in September 2026. The executive-summary memo is the best-evidenced format in this pack: the instructor wrote a one-page model memo for a homework, with the answer left as placeholders, and one student memo follows it closely. Everything else is thinner. Module homework prompts are typed and readable, but most answers are handwritten on the printed prompt, so how a worked solution should look is not covered. One time-stepping set has typed answers inline. There is no syllabus, no rubric beyond the one project handout, and no graded returns. Methods come from the prompts themselves, from the model memo, and from the student's test-correction notes. The SolidWorks study in the OneDrive archive is a native results database with no readable text. It was opened on a second pass and shows only a single-part linear static study with no contacts, so it says nothing about what a deliverable must show. Coverage gap: a student-built, module-numbered calculator workbook in the same archive (the student's own tool, not an instructor document) spans ten topics: eccentric bolts, screw jacks, welds and adhesives, fatigue, shafts, bearings, drive trains, hydraulics, springs, and brakes and clutches. The methods in this pack reach only three of those ten topics (bolts, including eccentric groups and preload torque; welds; and screw jacks, from the instructor's screw-jack module prompt). Hand-versus-FEA reconciliation and the time-stepping exercise are not among the ten. So most of the course's method content is not covered here. Fatigue is the clearest case of a gap the surviving material cannot fill: its module prompt was read in full and is a problem list plus two property tables with no method in it. A textbook method for the rest is not a course convention, and none is recorded. For screw-jack and fatigue material that search covered all seven iCloud term folders and the OneDrive archive, by module number and by the words screw and fatigue, and found only those prompts, the student's own calculator pages, and one fatigue-diagram spreadsheet at the OneDrive top level whose authorship is unverified and which is not used. Not used: the archive also holds a top-level file named for the 2025 ENGR 322 final exam and a solution key. Their file metadata says a script generated them and the student edited them, the key was created a minute after the exam, and the exam tells the reader to use the student's own calculator. The student was asked where they came from and answered that he or an AI tool generated them for practice. They are not instructor material, so the exclusion is permanent and the question is closed: nothing in this pack is derived from them, and no exam rule, checklist, exam profile or topic list should ever be taken from them."
   },
   "course_policy": {
     "source": "none found",
     "confidence": "unknown",
     "term_observed": null,
-    "summary": "No syllabus or generative-AI policy for this course was found in the archive.",
+    "summary": "No syllabus or generative-AI policy for this course was found in the student's iCloud term folders or his university OneDrive, searched September 2026.",
     "permitted": [],
     "prohibited": [],
     "student_asked": null,
@@ -205,6 +205,28 @@
         "Never testing the step size, even though the prompt asks how the step affects the answer.",
         "Using the current rather than the previous value in an explicit update, so the scheme no longer matches the stated equations."
       ]
+    },
+    {
+      "id": "screw-jack-torque-and-efficiency",
+      "title": "Screw-jack torque and efficiency, in the order the module prompt asks",
+      "when": "The screw-jack module homework: a single screw with a thrust collar, and a differential jack with two screws on one sleeve.",
+      "steps": [
+        "Fix the unit system each problem is posed in (the two problems use different systems) and work each one in its own. Where a load is written as a mass in the text and as a force on the figure, reconcile the two and say which you used.",
+        "Establish the thread geometry before any torque. The prompt lists pitch, lead, thread depth, mean pitch diameter and helix angle, in that order, and asks for pitch and lead separately because its jack uses a multi-start thread, so they are different numbers.",
+        "Before using the equation derived in class, decide whether the jack matches what that equation assumed. The instructor says in the prompt that it does not solve the differential jack.",
+        "Find the starting torque to raise the load and, separately, the starting torque to lower it. The prompt asks for both.",
+        "Give each contact its own friction. The prompt supplies one coefficient for the threads and another, with a mean diameter, for the thrust collar, which signals that the collar friction is meant to be counted as its own term.",
+        "Where the jack is turned by a handle, the answer asked for is a force at the handle's stated arm, so convert the torque to a force and state the arm.",
+        "Finish with the efficiency the prompt asks for: when raising for the single jack, overall for the differential jack."
+      ],
+      "pitfalls": [
+        "Applying the equation derived in class to the differential jack. The instructor warns against exactly this in the prompt. The class derivation survives in no document, so this pack can warn but cannot say what the right equation is. Ask the student for the derivation from class, and do not substitute a textbook one and present it as the course's.",
+        "Dropping the collar term when a collar friction coefficient and diameter are supplied, or folding the collar into the thread friction with one coefficient for both.",
+        "Treating a load written in mass units as a force, or mixing metric and inch quantities inside one problem.",
+        "Reporting the pitch where the prompt asks for the lead, or the reverse.",
+        "Reporting only the raising case when the prompt asks for lowering too, or answering with a torque when it asks for a handle force."
+      ],
+      "basis": "The instructor-authored screw-jack module prompt from Spring 2026 (a Word file whose author metadata names the instructor): two problems reproduced from other sources, a blank second page, and one instructor remark. This entry restates the order of the asks, the unit systems posed, what the prompt supplies and its one warning. No solution, rubric, worked example or presentation instruction survives, and the class derivation the remark refers to is in no surviving document, so no equation is given here. Searched for more of this module in all seven iCloud term folders and the OneDrive archive, by module number and by the words screw and fatigue: only the prompt and the student's own calculator pages turned up."
     }
   ],
   "assignment_families": [
@@ -229,9 +251,11 @@
       "title": "Module homework",
       "stages": ["reading assignment", "problems set by the module prompt", "hand solution, with a spreadsheet or FEA where the prompt calls for one"],
       "deliverables": ["worked answers, usually handwritten on the printed prompt"],
-      "what_good_looks_like": [],
+      "what_good_looks_like": [
+        "Only where a module prompt supplies a table of material properties (the fatigue module's does, for two problems; the screw-jack module's does not), use those values rather than a handbook value, and do not estimate an endurance limit the table supplies. The fatigue table names yield strength 'elastic strength' and gives it with the ultimate strength, endurance limit and modulus in both unit systems; work each problem in one system and say which."
+      ],
       "exemplars": [],
-      "basis": "about a dozen typed module prompts with text layers. Most answers are handwritten ink on the printed prompt with no text layer. One time-stepping set has typed answers inline. How solutions should be presented is not covered."
+      "basis": "about a dozen typed module prompts with text layers. Most answers are handwritten ink on the printed prompt with no text layer. One time-stepping set has typed answers inline. How solutions should be presented is not covered. The screw-jack and fatigue module prompts were read in full. The screw-jack prompt supports one method entry. The fatigue prompt is a list of problem numbers from the fatigue chapter of a named mechanics-of-materials text (fourth edition, on the course Moodle) plus two property tables. It states no method, convention or presentation rule, so no fatigue method is recorded, and the one rule above rests on the tables alone."
     },
     {
       "id": "hands-on-lab",
@@ -339,6 +363,16 @@
       ],
       "basis": "Physical plausibility, not a course rule: an explicit first-order scheme's error shrinks roughly in proportion to the step, so a step small enough to trust changes the result by only a few percent when halved. Numerical-methods property.",
       "note": "Tens of percent: the step is too large for the dynamics, or the update uses the current value instead of the previous one. Zero change: the step is not actually being used in the update."
+    },
+    {
+      "quantity": "efficiency of a screw jack when raising a load",
+      "unit": "dimensionless",
+      "typical_range": [
+        0.05,
+        0.7
+      ],
+      "basis": "Physical plausibility, not a course rule: efficiency is work out over work in, so it can never exceed 1, and a friction screw jack with ordinary thread friction and a thrust collar sits well below 0.5. The upper bound of 0.7 leaves room for a lubricated, steep-lead multi-start thread. The screw-jack prompt asks for an efficiency but states no target.",
+      "note": "A value above 1 is always wrong, since it would mean more work out than in. Look for an inverted ratio, or a friction term with the wrong sign (the lowering torque used for raising). A value between 5 and 70 is a percent written as a fraction. A collar term left out overstates the efficiency but can stay inside this range, so check that the collar term is there even when the value looks fine. Below 0.05: recheck the friction coefficients and the collar diameter first."
     }
   ]
 }

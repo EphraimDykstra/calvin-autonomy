@@ -72,6 +72,47 @@ class Engr328PackTest(unittest.TestCase):
             self.assertIn(f"`{stem}`", text)
             self.assertIn("[Student Name]", text)
 
+    def test_intake_is_addressable_and_grounded(self):
+        """Each lab family says what a student must hand over, as fetchable nodes.
+
+        The list is only reachable if every item carries a string ``id`` with no
+        dot in it: ``pack_query._children`` gives a list no children otherwise,
+        and a host would have to pull the whole block to read one line of it.
+        """
+        for family_id in ("ac-lab", "ic-lab"):
+            family = next(f for f in self.pack["assignment_families"] if f["id"] == family_id)
+            intake = family["intake"]
+            self.assertTrue(intake, family_id)
+            ids = [item["id"] for item in intake]
+            self.assertEqual(len(ids), len(set(ids)), family_id)
+            stages = set(family["stages"])
+            for item in intake:
+                where = f"{family_id}.{item['id']}"
+                self.assertRegex(item["id"], r"^[a-z0-9][a-z0-9-]*$", where)
+                for field in ("need", "why", "basis"):
+                    self.assertTrue(item[field].strip(), where)
+                # Every item says who supplies it, and an item the handout
+                # answers must say what to do when no handout arrives, so the
+                # list never dead-ends on a document the student does not have.
+                self.assertIn(item["provided_by"], {"student", "handout", "pack"}, where)
+                if item["provided_by"] == "handout":
+                    self.assertTrue(item["if_absent"].strip(), where)
+                # A stage list that names an unknown stage would send a host
+                # looking for a submission this family does not have.
+                self.assertLessEqual(set(item.get("stages", ())), stages, where)
+
+    def test_intake_never_restates_the_stage_details(self):
+        """Per-stage facts stay in ``stage_details``; intake points at them.
+
+        Copying a stage's measured inputs into intake would give one fact two
+        homes, and they would drift apart the first time a handout changed.
+        """
+        for family in self.pack["assignment_families"]:
+            for item in family.get("intake", []):
+                for stage in family["stage_details"]:
+                    for measured in stage.get("measured_inputs", []):
+                        self.assertNotIn(measured, item["need"], f"{family['id']}.{item['id']}")
+
     def test_page_budgets_follow_the_stated_limits(self):
         for family in ("ac-lab", "ic-lab"):
             fam = next(f for f in self.pack["assignment_families"] if f["id"] == family)

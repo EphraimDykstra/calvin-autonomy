@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "felder-rousseau-bullard-chemical-processes-4e",
+    "citation": "Felder, Rousseau & Bullard, Elementary Principles of Chemical Processes, 4th Edition",
+    "pages_total": 695,
+    "courses": [
+      "engr209"
+    ],
+    "index_coverage": {
+      "chapters": "complete: all 10 chapters",
+      "appendix": "NOT indexed, but it EXISTS: Appendix B, Physical Property Tables, printed pp. 627-653. Its individual tables are not recorded here.",
+      "chapter_tables": "NOT indexed"
+    },
+    "appendix_note": "Appendix B: Physical Property Tables, printed pages 627-653"
+  },
+  "pointer_policy": "Pointers only. This file names which chapter or which appendix table to open. It never carries a value from a table body, and none may be added. Checks that the lookup was well formed. It cannot tell whether the value you read is correct.",
+  "addressing": "Ids are literal addresses, reached as appendix.<item-id> and chapters.<item-id>. A table and a figure sharing a number get different ids (appendix.table-a-9 vs appendix.figure-a-9) so a request for a table can never silently return a chart. The list is called `appendix` rather than `tables` because it also holds figures and, in some books, lettered appendices that are not tables at all. Table numbers are NOT portable between books.",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "title": "What Some Chemical Engineers Do for a Living",
+      "page": 3,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "1",
+      "topics": "chemical engineering careers, industrial applications, process types"
+    },
+    {
+      "id": "ch-2",
+      "title": "Introduction to Engineering Calculations",
+      "page": 5,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "2",
+      "topics": "units, dimensional analysis, problem-solving, data analysis"
+    },
+    {
+      "id": "ch-3",
+      "title": "Processes and Process Variables",
+      "page": 45,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "3",
+      "topics": "mass, volume, flow rate, composition, pressure, temperature"
+    },
+    {
+      "id": "ch-4",
+      "title": "Fundamentals of Material Balances",
+      "page": 91,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "4",
+      "topics": "process classification, balance equations, material balances, stoichiometry, combustion"
+    },
+    {
+      "id": "ch-5",
+      "title": "Single-Phase Systems",
+      "page": 216,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "5",
+      "topics": "density, ideal gases, equations of state, compressibility"
+    },
+    {
+      "id": "ch-6",
+      "title": "Multiphase Systems",
+      "page": 273,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "6",
+      "topics": "phase equilibrium, Gibbs phase rule, vapor-liquid systems, solubility, adsorption"
+    },
+    {
+      "id": "ch-7",
+      "title": "Energy and Energy Balances",
+      "page": 355,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "7",
+      "topics": "thermodynamics, first law, kinetic and potential energy, mechanical energy balances"
+    },
+    {
+      "id": "ch-8",
+      "title": "Balances on Nonreactive Processes",
+      "page": 402,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "8",
+      "topics": "energy balance calculations, pressure changes, temperature changes, phase change, mixing"
+    },
+    {
+      "id": "ch-9",
+      "title": "Balances on Reactive Processes",
+      "page": 493,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "9",
+      "topics": "heats of reaction, heat of formation, combustion, fuels, reactive energy balances"
+    },
+    {
+      "id": "ch-10",
+      "title": "Balances on Transient Processes",
+      "page": 570,
+      "basis": "contents listing, reconciled across -layout and -raw extractions",
+      "number": "10",
+      "topics": "transient balances, unsteady-state processes, time-dependent systems"
+    }
+  ]
+}

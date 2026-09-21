@@ -19,6 +19,21 @@ from .student_output import format_review
 from .curriculum import DEFAULT_CURRICULUM,RENDERING_FIELDS,CurriculumError,coverage_report,load_packs,load_tool_packs,pack_for_course,pack_style
 from . import pack_query
 
+def _unknown_course_note(course:str)->dict:
+ """Report a course id that matches no installed pack, with near matches.
+
+ Never fatal.  Reviewing arithmetic for a course with no pack is legitimate,
+ so the review still runs and still returns 0; what changes is that the result
+ says the ranges were unavailable instead of behaving as though there were
+ none to apply.  `pack_query.find` is the resolver `pack find` already uses,
+ and it refuses a string with nothing alphanumeric in it, which is a reason to
+ report no near matches rather than to fail the run.
+ """
+ try: found=pack_query.find(course)
+ except (ValueError,OSError,CurriculumError): found={}
+ near=[m['pack'] for m in found.get('matches',[])] if found.get('status')=='found' else []
+ return {'requested':course,'installed':False,'magnitude_ranges':'unavailable','did_you_mean':near}
+
 def _json_input(path:Path,max_bytes:int|None=None)->dict:
  if not path.is_file() or path.is_symlink() or not permitted_source(path): raise ValueError('JSON input must be a permitted regular file')
  if max_bytes is not None and path.stat().st_size>max_bytes: raise ValueError('JSON input exceeds the permitted size')
@@ -133,7 +148,11 @@ def main(argv=None):
    # course's shipped pack when one is named.
    entry=pack_for_course(args.course) if args.course else None
    magnitudes=entry['pack'].get('magnitudes',[]) if entry else []
-   out=review_work(_json_input(args.steps).get('steps'),magnitudes)
+   # A named id that resolves to nothing is reported, never passed over: the
+   # ranges are simply absent, and until now nothing said so.  No id at all is
+   # not a finding, because checking arithmetic without a pack is legitimate.
+   note=_unknown_course_note(args.course) if args.course and entry is None else None
+   out=review_work(_json_input(args.steps).get('steps'),magnitudes,course_pack=note)
   elif args.cmd=='courses':
    # Shipped-pack coverage, not workspace state: what this install can honestly
    # claim about a course before the student has ingested anything.

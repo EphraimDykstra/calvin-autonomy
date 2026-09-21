@@ -1,12 +1,12 @@
-# ENGR 319: read this before producing a deliverable
+# ENGR 319: guide
 
 ENGR 319 is the junior thermal-fluids course that comes directly before ENGR 328. It shares that course's textbook family (Cengel) and its heat-transfer reference. The deliverable conventions, however, are **not** the ENGR 328 conventions. Do not carry a 328 report shape into 319 work.
 
 ## Course policy comes first
 
-**Computer problems: do not help.** The computer-problem prompt prohibits AI assistance in its own words. It calls the problem a test, open book and open note but not open to other groups, and cites the engineering department's academic honesty policy. Decline to produce, check, correct or unblock any part of a computer problem, including a draft, a partial model, a check of the student's own numbers, or help getting unstuck. Say why in one or two sentences and do not lecture. The one thing that lifts it is the student's own current prompt for that assignment showing no such prohibition; their assurance alone does not. This is the prompt speaking for itself and is not read across to labs or homework. Details in `assignment_families`, `computer-problem`, `ai_use`.
+**Computer problems: do not help.** The computer-problem prompt prohibits AI assistance in its own words. It calls the problem a test, open book and open note but not open to other groups, and cites the engineering department's academic honesty policy. Decline to produce, check, correct or unblock any part of a computer problem, including a draft, a partial model, a check of the student's own numbers, or help getting unstuck. Say why in one or two sentences and do not lecture. The one thing that lifts it is the student's own current prompt for that assignment showing no such prohibition; their assurance alone does not. This is the prompt speaking for itself and is not read across to labs or homework. Details in `assignment_families.computer-problem.assistance_rules.no-ai-assistance`.
 
-For the rest of the course, the archived syllabus for Fall 2025 included a generative-AI policy. Syllabi have since been revised, and the current terms are unknown. Before doing any graded work for this course, show the student `course_policy` from `pack.json` and ask them to get an answer from the professor that is specific to the assignment in front of them. When they have one, record it in `professor_answer`. Until then, treat the policy as unknown, not as permissive.
+For the rest of the course, the archived syllabus for Fall 2025 included a generative-AI policy. Syllabi have since been revised, and the current terms are unknown. Before doing any graded work for this course, show the student `course_policy` and ask them to get an answer from the professor that is specific to the assignment in front of them. When they have one, record it in `professor_answer`. Until then, treat the policy as unknown, not as permissive.
 
 ## What the deliverable is
 
@@ -39,16 +39,18 @@ The core method is the classical **state-point / property-table** analysis. Numb
 - **Calibration as a slope.** Plot measured against ideal and fit through the origin. The slope is the single constant.
 - **Parameter sweep.** Sweep one model parameter, compute the sum of squared error over every data point (or the cost, for a design), and prove the choice with a graph.
 
-`pack.json` lists steps and pitfalls for each method. The pitfalls come from real failure modes. Two to watch for:
+The method nodes (`methods.<id>`) list steps and pitfalls for each method. The pitfalls come from real failure modes. Two to watch for:
 
 1. A single mis-converted input, such as room temperature in the wrong absolute unit, propagates into every result and leaves no internal inconsistency to reveal it. Check each converted input against an independent conversion.
 2. When the prompt asks for a handbook or reference value on a graph, it has to be on the graph itself, with its source. A vague comparison to "online values" in the text does not meet that requirement. If the course text does not tabulate the exact surface condition, report the bracketing range and say so. Do not substitute a value for a different finish.
 
 ## Where coverage is thin
 
-- **Homework:** only prompts with bare answers survive. How solutions should be presented is unknown beyond "units on every answer."
+- **Homework:** the weekly prompts survive and are richer than an earlier round recorded, carrying day-by-day topic structure, full problem statements, instructional asides, and a supplied answer for most problems. What is still missing is any completed submission, so how solutions should be presented remains unknown beyond "units on every answer."
+
+  **The supplied answers change what checking means here.** If a student's number matches the one their prompt gave them, that is agreement with a value the assignment handed over and it verifies nothing about their reasoning; never present it as a check. Check the method, the units, and whether their own work reproduces their own number. When their result disagrees with the supplied answer, rebuild their steps from the givens and find the step where it diverges. That is the case where this is most useful: they already know they are wrong and do not know why. The supplied answer comes from the student's own current prompt at run time and is not recorded in this pack.
 - **Exams and equation sheets:** image-only scans, not read.
 - **Grading intent:** there are no instructor-annotated returns. The peer-review checklist in the first lab prompt is the closest thing to a rubric.
 - **First computer problem:** the prompt is a scan, as noted under tooling.
 
-Exemplars in `exemplars/` show structure only, with placeholder tokens where the substance goes.
+Exemplars (`exemplars.<id>`) show structure only, with placeholder tokens where the substance goes.

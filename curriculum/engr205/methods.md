@@ -1,8 +1,8 @@
-# ENGR 205 (Principles of Materials Science): read this before producing a deliverable
+# ENGR 205 (Principles of Materials Science): guide
 
 ## What this pack can and cannot tell you
 
-The rules here come from lab handouts and report sheets, one completed report sheet, one free-form write-up, one presentation deck, the course schedule, two lab workbooks, the instructor's lecture slides (chapters 6 to 8 and 12 to 18, read through their text only), and one instructor equation sheet. No syllabus survives. The report sheets refer students to "Lab Manual appendices" for how to label figures and tables, and those appendices are not in the archive. Every labeling rule below is therefore either something a report sheet asks for directly or an inference, and `pack.json` says which. There is no graded return anywhere.
+The rules here come from lab handouts and report sheets, one completed report sheet, one free-form write-up, one presentation deck, the course schedule, two lab workbooks, the instructor's lecture slides (chapters 6 to 8 and 12 to 18, read through their text only), and one instructor equation sheet. No syllabus survives. The report sheets refer students to "Lab Manual appendices" for how to label figures and tables, and those appendices are not in the archive. Every labeling rule below is therefore either something a report sheet asks for directly or an inference, and the pack says which. There is no graded return anywhere.
 
 The completed work is not a model. The one completed sheet reports some values without units and some loads where strengths were asked for. The free-form write-up is informal and first person. Use them for structure only.
 
@@ -28,7 +28,7 @@ Students most often get this wrong. The workbook and the Word sheet are one subm
 
 ## Methods
 
-`pack.json` carries four methods with steps and pitfalls:
+The pack carries four methods (`methods.<id>`) with steps and pitfalls:
 
 - `tensile-test-reduction`: engineering stress-strain, modulus from the slope, 0.2% offset yield, tensile strength, ductility, and resilience and toughness by the trapezoid rule.
 - `polymer-stress-relaxation`: relaxation modulus from a held-strain force decay.
@@ -42,7 +42,7 @@ The two errors seen in the archive's own workbooks are worth checking every time
 
 ## Checking a result
 
-In a check-my-work session, compare the student's result against `magnitudes` in `pack.json` before building anything on it. Each range is physical plausibility, and its `basis` says so, or names the handout where one states a value. It is not a course rule. An out-of-range value is a question to ask, not a verdict: the `note` says what it usually means. Read the note for an in-range value too, because some slips land inside the range (a peak force that happens to look like a strength).
+In a check-my-work session, compare the student's result against the pack's `magnitudes` node before building anything on it. Each range is physical plausibility, and its `basis` says so, or names the handout where one states a value. It is not a course rule. An out-of-range value is a question to ask, not a verdict: the `note` says what it usually means. Read the note for an in-range value too, because some slips land inside the range (a peak force that happens to look like a strength).
 
 ## When producing work for this course
 

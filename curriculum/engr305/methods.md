@@ -1,4 +1,4 @@
-# ENGR 305 (Mechanics of Materials): read this before producing a deliverable
+# ENGR 305 (Mechanics of Materials): guide
 
 ## What this pack can and cannot tell you
 
@@ -27,7 +27,7 @@ So before drafting either file, ask which one carries the answers. Then check th
 
 ## The FEA report
 
-Structure: a cover page carrying only the title block, then Introduction, Procedure, one section per loading case (axial, torsion, pressure vessel, stress concentration, plus optional extras), Discussion, Conclusion. See `exemplars/fea-report-shape.md`.
+Structure: a cover page carrying only the title block, then Introduction, Procedure, one section per loading case (axial, torsion, pressure vessel, stress concentration, plus optional extras), Discussion, Conclusion. See the exemplar `exemplars.fea-report-shape`.
 
 Each loading-case section gives the hand equation, a figure, a hand / FEA / percent table and the cause of the difference. The Discussion is the section the instructor weights most. It should draw the cases into one lesson, and honest criticism is acceptable. Tables are captioned above and figures below.
 
@@ -37,11 +37,11 @@ The FEA values and screenshots must come from the student's own model. This repo
 
 Hand-versus-FEA has one trap worth naming here: **a von Mises plot read against a hand hoop stress is not the same quantity.** In a plate in tension the two coincide. In a pressure vessel they can differ by several percent on their own (roughly 7 percent at the bore of a wall as thick as a scuba tank's), so a small "agreement" between them proves less than it looks. Name the FEA result you read, and pair it with the matching hand value.
 
-`pack.json` covers hand-versus-FEA validation, stress and strain transformation (angle from x to n, counter-clockwise positive), axial deflection with indeterminate and thermal cases, carrying units, and stress concentration. The single most costly error in this archive is **a moment left in foot-pounds inside a psi calculation**, a factor of 12. Both test-correction memos trace lost points to it.
+The pack's method nodes (`methods.<id>`) cover hand-versus-FEA validation, stress and strain transformation (angle from x to n, counter-clockwise positive), axial deflection with indeterminate and thermal cases, carrying units, and stress concentration. The single most costly error in this archive is **a moment left in foot-pounds inside a psi calculation**, a factor of 12. Both test-correction memos trace lost points to it.
 
 ## Checking a result
 
-In a check-my-work session, compare the student's result against `magnitudes` in `pack.json` before building anything on it. Each range is physical plausibility, and its `basis` says so, or names the handout where one states a value. It is not a course rule. An out-of-range value is a question to ask, not a verdict: the `note` says what it usually means. Read the note for an in-range value too, because some slips land inside the range (a moment left in ft-lb is off by 12, which a wide range cannot always see).
+In a check-my-work session, compare the student's result against the pack's `magnitudes` node before building anything on it. Each range is physical plausibility, and its `basis` says so, or names the handout where one states a value. It is not a course rule. An out-of-range value is a question to ask, not a verdict: the `note` says what it usually means. Read the note for an in-range value too, because some slips land inside the range (a moment left in ft-lb is off by 12, which a wide range cannot always see).
 
 ## When producing work for this course
 
