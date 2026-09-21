@@ -220,6 +220,102 @@ def set_plan(workspace:Path,run_id:str,plan:dict)->dict:
     atomic_json(root/'plan.json',plan)
     save_run(workspace,state); return state
 
+OUTSTANDING_INPUTS_FILE='outstanding-inputs.json'
+
+def outstanding_inputs_digest(state:dict)->str:
+    """The digest a verifier report binds, computed one way everywhere."""
+    items=state.get('outstanding_inputs',[]) or []
+    return digest({'outstanding_inputs':[dict(item) for item in items if isinstance(item,dict)]})
+
+def declare_outstanding_inputs(workspace:Path,run_id:str,inputs:list[dict])->dict:
+    """Record what this run is waiting on the student for.
+
+    A deliverable can be finished in every way this project can check and still
+    be waiting on something only the student has: a chart drawn from property
+    data, a photograph of the rig, a reading nobody wrote down.  Before this
+    existed the honest ways to say so both refused, so a run with one real gap
+    reported it twice, once truthfully and once as 'structured verifier report
+    is missing', and the student could not tell which one to act on.
+
+    Declaring an input never softens anything.  It lets a verifier report bind
+    while the requirement is openly unmet, and it adds a blocker of its own, so
+    the run stays blocked and can reach neither ready nor provisional.
+    """
+    state=load_run(workspace,run_id); root=run_dir(workspace,run_id)
+    if not isinstance(inputs,list) or any(not isinstance(item,dict) for item in inputs):
+        raise ValueError('outstanding inputs must be a list of objects')
+    requirement_ids={r.get('id') for r in state.get('plan',{}).get('requirements',[]) if isinstance(r,dict)}
+    seen=set(); needs=set()
+    for item in inputs:
+        identifier=item.get('id')
+        if not isinstance(identifier,str) or not identifier.strip(): raise ValueError('every outstanding input needs a non-empty id')
+        if identifier in seen: raise ValueError(f'outstanding input ids must be unique: {identifier}')
+        seen.add(identifier)
+        # The student reads this sentence in `status`, so it has to say what to
+        # do.  An empty one would produce a blocker that names nothing.
+        if not isinstance(item.get('need'),str) or not item['need'].strip():
+            raise ValueError(f'outstanding input {identifier} needs a need that says what to supply')
+        # Two inputs asking in the same words become one blocker, because
+        # readiness drops duplicate sentences.  The student would then be told
+        # once about two things and could reasonably send one and stop.
+        if item['need'].strip() in needs: raise ValueError(f'outstanding input {identifier} repeats another input\'s need word for word; say what distinguishes them')
+        needs.add(item['need'].strip())
+        wanted=item.get('requirement_ids')
+        if not isinstance(wanted,list) or not wanted: raise ValueError(f'outstanding input {identifier} must name the requirements it holds up')
+        unknown=[value for value in wanted if value not in requirement_ids]
+        if unknown: raise ValueError(f'outstanding input {identifier} names requirements this plan does not have: '+', '.join(map(str,unknown)))
+    # The report bound the previous declaration, so it describes a different run.
+    _note_discarded(state,'declare_outstanding_inputs',('structured verifier report',))
+    state['outstanding_inputs']=inputs
+    state['outstanding_inputs_sha256']=digest({'outstanding_inputs':inputs})
+    state.pop('verification_report',None); state.pop('verification_sha256',None)
+    atomic_json(root/OUTSTANDING_INPUTS_FILE,{'outstanding_inputs':inputs})
+    save_run(workspace,state); return state
+
+FIGURES_DIRNAME='figures'
+
+def add_supplied_figure(workspace:Path,run_id:str,source:Path,name:str | None=None)->dict:
+    """Place a figure the student supplied inside the run, and record its bytes.
+
+    A solution may reference a figure only by a path inside its own run, which
+    is what keeps a rendered deliverable reproducible from the run alone.  There
+    was no way to get a file there: a host had to copy it by hand, with nothing
+    checking what it copied and nothing recording what it was.  So the one thing
+    a student can always do for a figure this tool cannot draw -- send it --
+    ended outside the system.
+
+    The file is copied, never referenced in place, and its hash is recorded, so
+    a figure swapped afterwards shows up as a blocker instead of silently
+    standing behind a deliverable that was rendered from something else.
+    """
+    state=load_run(workspace,run_id); root=run_dir(workspace,run_id)
+    source=Path(source)
+    if source.is_symlink() or not source.is_file() or not permitted_source(source):
+        raise ValueError('a supplied figure must be a permitted regular file')
+    # A name, not a path.  Containment alone would accept '/tmp/chart.png' by
+    # quietly re-rooting it inside the run, which stores the file somewhere the
+    # caller did not ask for and did not refuse.
+    stored=str(name or source.name)
+    if '/' in stored or '\\' in stored or stored.startswith('.') or stored.strip()!=stored or not stored:
+        raise ValueError('a supplied figure is stored under a plain file name, not a path')
+    relative=f'{FIGURES_DIRNAME}/{stored}'
+    # The same containment the renderer demands, applied when the file arrives
+    # rather than only when it is drawn.
+    target=safe_relative(root,relative)
+    if target.is_symlink(): raise ValueError('a supplied figure must not be placed on a symlink')
+    try:
+        from PIL import Image
+        with Image.open(source) as image: image.verify()
+    except Exception as exc:
+        raise ValueError('a supplied figure must be an image this project can open') from exc
+    target.parent.mkdir(parents=True,exist_ok=True)
+    target.write_bytes(source.read_bytes())
+    record={'path':target.resolve().relative_to(root.resolve()).as_posix(),'sha256':sha256(target)}
+    figures=[item for item in state.get('supplied_figures',[]) if isinstance(item,dict) and item.get('path')!=record['path']]
+    figures.append(record)
+    state['supplied_figures']=sorted(figures,key=lambda item:item['path'])
+    save_run(workspace,state); return {'figure':record,'state':state}
+
 _REQUIRED_VISUAL_CHECKS=('all_pages_reviewed','legible','requirements_present','identity_checked','no_clipping')
 
 def _inspection_record_error(report,artifact_path,artifact_sha256)->str | None:
@@ -339,6 +435,21 @@ def readiness(state:dict, root:Path | None=None)->dict:
             # reach ready on an inspection that predates it.
             elif artifact.get('inspected') is not True: blockers.append('one or more deliverable artifacts are not inspected')
     if state.get('unresolved'): blockers.extend(state['unresolved'])
+    # A declared outstanding input blocks on its own, whether or not the
+    # verifier report mentions it.  Deriving the blocker from the declaration
+    # rather than from the report is what stops a run going quiet: withdrawing
+    # the declaration changes the digest the report binds, so the report goes
+    # stale and blocks in its place.  These are never course gaps, so a waiting
+    # run can reach neither ready nor provisional.
+    outstanding=state.get('outstanding_inputs',[])
+    if not isinstance(outstanding,list): blockers.append('declared outstanding inputs are invalid')
+    else:
+        for item in outstanding:
+            need=item.get('need') if isinstance(item,dict) else None
+            if isinstance(need,str) and need.strip(): blockers.append(f'waiting on you: {need.strip()}')
+            else: blockers.append('a declared outstanding input does not say what is needed')
+        if outstanding and state.get('outstanding_inputs_sha256')!=outstanding_inputs_digest(state):
+            blockers.append('declared outstanding inputs are missing or stale')
     plan=state.get('plan')
     if isinstance(plan,dict):
         if state.get('plan_sha256')!=digest(plan): blockers.append('plan hash is missing or stale')
@@ -408,7 +519,7 @@ def readiness(state:dict, root:Path | None=None)->dict:
             if input_path.is_symlink() or not input_path.is_file() or sha256(input_path)!=source.get('sha256'):
                 blockers.append('assignment input is missing or changed')
         except (KeyError,TypeError,OSError,ValueError): blockers.append('assignment input is missing or changed')
-        for filename,key,label in (('plan.json','plan_sha256','plan'),('solution.json','solution_sha256','solution'),('verification.json','verification_sha256','structured verifier report')):
+        for filename,key,label in (('plan.json','plan_sha256','plan'),('solution.json','solution_sha256','solution'),('verification.json','verification_sha256','structured verifier report'),(OUTSTANDING_INPUTS_FILE,'outstanding_inputs_sha256','declared outstanding inputs')):
             path=root/filename
             if key not in state: continue
             try:
@@ -416,6 +527,17 @@ def readiness(state:dict, root:Path | None=None)->dict:
                 value=json.loads(path.read_text())
                 if digest(value)!=state.get(key): blockers.append(f'{label} record is missing or changed')
             except (OSError,ValueError,TypeError,json.JSONDecodeError): blockers.append(f'{label} record is missing or changed')
+        # A figure the student supplied stands behind the deliverable as much as
+        # the solution does.  Swapping the file after the render leaves the
+        # artifact hash intact, so nothing else would notice.
+        for figure in state.get('supplied_figures',[]) if isinstance(state.get('supplied_figures'),list) else []:
+            if not isinstance(figure,dict) or not figure.get('path'):
+                blockers.append('a supplied figure record is invalid'); continue
+            try:
+                path=safe_relative(root,figure['path'])
+                if path.is_symlink() or not path.is_file() or sha256(path)!=figure.get('sha256'):
+                    blockers.append(f"a supplied figure is missing or changed: {figure['path']}")
+            except (OSError,TypeError,ValueError): blockers.append(f"a supplied figure is missing or changed: {figure['path']}")
         for artifact in state.get('artifacts',[]):
             if not isinstance(artifact,dict) or not artifact.get('path'): continue
             try:

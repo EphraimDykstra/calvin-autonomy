@@ -54,6 +54,8 @@ def main(argv=None):
  q=sub.add_parser('render'); q.add_argument('run_id'); q.add_argument('solution',type=Path)
  q=sub.add_parser('verify'); q.add_argument('run_id')
  q=sub.add_parser('verify-report'); q.add_argument('run_id'); q.add_argument('report',type=Path)
+ q=sub.add_parser('add-figure',help="place a figure the student supplied inside the run and record its bytes, so a solution can reference it and a later swap is caught"); q.add_argument('run_id'); q.add_argument('figure',type=Path); q.add_argument('--as',dest='name',help='the file name to store it under, inside the run figures folder')
+ q=sub.add_parser('declare-inputs',help="record what this run is waiting on the student for; it keeps the run blocked and lets a verifier report bind to a requirement that is openly unmet"); q.add_argument('run_id'); q.add_argument('inputs',type=Path)
  q=sub.add_parser('inspect'); q.add_argument('run_id'); q.add_argument('--artifact',required=True); q.add_argument('--report',required=True,type=Path)
  q=sub.add_parser('status'); q.add_argument('run_id')
  q=sub.add_parser('profile-set'); q.add_argument('profile',type=Path); q.add_argument('--course',required=True)
@@ -110,6 +112,8 @@ def main(argv=None):
    record_style_basis(ws,args.run_id,style_basis)
   elif args.cmd=='verify':
    st=load_run(ws,args.run_id); out=record_checks(ws,args.run_id,verify_solution(st.get('solution',{})))
+  elif args.cmd=='add-figure': out=add_supplied_figure(ws,args.run_id,args.figure,args.name)
+  elif args.cmd=='declare-inputs': out=declare_outstanding_inputs(ws,args.run_id,_json_input(args.inputs).get('outstanding_inputs'))
   elif args.cmd=='verify-report':
    document=_json_input(args.report)
    if 'bindings' not in document:

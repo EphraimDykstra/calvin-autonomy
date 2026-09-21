@@ -111,11 +111,15 @@ Run the pipeline in this order. It matters, and a step out of place fails in a w
 
 1. `start` the run with the student's assignment file
 2. `accept-plan` with the requirements, evidence, deliverables and verification
-3. `render` the solution, which records it and produces the file
-4. `verify`, which records the calculation checks, even when there are none
-5. `verify-report` with your findings: requirements, method, numerical, format, identity. Supply findings only; the report is bound to the run for you
-6. `inspect` each rendered artifact, after the verifier report, never before
-7. `status` to see where the run stands
+3. `add-figure`, once per image the student supplied, before the render that draws it: a solution may reference a figure only by a path inside its own run, and this is what puts one there and records its bytes
+4. `render` the solution, which records it and produces the file
+5. `verify`, which records the calculation checks, even when there are none
+6. `declare-inputs`, only when the deliverable is still waiting on something only the student can supply, and always before `verify-report`: it records what to send, in a sentence they can act on, and which requirements it holds up
+7. `verify-report` with your findings: requirements, method, numerical, format, identity. Supply findings only; the report is bound to the run for you
+8. `inspect` each rendered artifact, after the verifier report, never before
+9. `status` to see where the run stands
+
+A run that is waiting on the student is the one case where a requirement may be reported as not passing and the report still bind. Declare the input, then give that requirement `awaiting: <the declared id>` in place of `passed`, and everything else about the deliverable is still checked and recorded instead of the whole report being refused over one missing file. The run then reports `blocked`, with a `waiting on you: …` line naming what to send, and it can reach neither ready nor provisional until the file arrives. This records a gap; it never excuses one. Withdrawing the declaration does not make the run ready either: the report was bound to it, so it goes stale and must be rebuilt against the work as it now stands.
 
 Follow the course's format, not a generic one. Where the pack has the course's conventions, apply them exactly: which page the abstract sits on, how long the body may be, whether captions go above or below, what belongs in an appendix, how equations are numbered and referenced. Say which convention you applied and where it came from.
 

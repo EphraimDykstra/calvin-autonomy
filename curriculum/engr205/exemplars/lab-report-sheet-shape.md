@@ -1,6 +1,6 @@
 # Exemplar: ENGR 205 lab report sheet with workbook (shape only)
 
-This comes from the structure of the report-sheet handouts and one completed sheet, with every piece of substance replaced by a placeholder. The questions themselves come from the handout for that week. This shows how to answer in place and how the sheet relates to the workbook. It does not show what the answers are. See `methods.md`.
+This comes from the structure of the report-sheet handouts and one completed sheet (one answer on it is pasted chatbot output and is not used), with every piece of substance replaced by a placeholder. The polymers handout says answers may be typed directly into the document. The concrete 2 handout is silent on typing and its one handed-in copy is handwritten on the printed page, so follow the handout in hand. The questions themselves come from the handout for that week. This shows how to answer in place and how the sheet relates to the workbook. It does not show what the answers are. See `methods.md`.
 
 ---
 
@@ -15,7 +15,7 @@ This comes from the structure of the report-sheet handouts and one completed she
 
 **1.** [Question text stays as the handout gives it.]
 
-[Answer typed directly under the question: one or two sentences, or the selected option with a one-line reason.]
+[Answer directly under the question: one or two sentences, or the selected option with a one-line reason.]
 
 **2.** [Question asking for an equation.]
 

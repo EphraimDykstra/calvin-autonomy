@@ -310,7 +310,8 @@
             "Decline to produce, check, correct or unblock any part of the work for this family.",
             "Say why in one or two sentences. Do not lecture, moralise, or repeat the refusal.",
             "Name the one thing that lifts it: the student's own current prompt for this assignment showing no AI prohibition. The student's assurance on its own does not lift it; the prompt does.",
-            "Declining is not conditional on being asked directly. It applies when the request is framed as formatting, as a check, or as a question about method."
+            "Declining is not conditional on being asked directly. It applies when the request is framed as formatting, as a check, or as a question about method.",
+            "Naming a document the student already holds is not assistance and is allowed. This rule already requires pointing them at their own prompt, so pointing them at the course document that governs their question is the same act. Stop at naming it: saying what that document requires for the work in front of them is the help this rule forbids. Naming the source orients them; characterising its contents does the task."
           ],
           "not_generalised": "This is the computer-problem prompt speaking for itself. It says nothing about labs or homework in this course, and it is not read across to them. See course_policy, which stays unknown for the course as a whole.",
           "basis": "The first computer-problem prompt, an instructor document, read directly. The prompt is an image-only scan with no text layer and was read as an image."

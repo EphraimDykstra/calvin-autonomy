@@ -25,7 +25,7 @@
     "professor_answer": null
   },
   "format": {
-    "deliverable": "lab report sheet: the lab handout answered in place in Word, with every requested table and chart rebuilt as a numbered, captioned figure or table, plus the Excel workbook uploaded as its own file",
+    "deliverable": "lab report sheet: the lab handout answered in place (typed into the Word file where the handout says so; the concrete 2 handout is silent on typing and its one handed-in copy is handwritten on the printed page), with every requested table and chart brought in as a numbered, captioned figure or table, plus the Excel workbook uploaded as its own file",
     "precedence": [
       "the specific lab handout or report sheet, especially its hand-in list",
       "labeling rules the report sheets restate (the lab-manual appendices they cite were not retained)",
@@ -47,7 +47,7 @@
         "the chart each report figure is copied from"
       ],
       "report_holds": [
-        "the answer to every numbered question, typed under that question",
+        "the answer to every numbered question, under that question. The polymers handout says answers may be typed directly into the document. The concrete 2 sheet says only that the completed sheet is handed in, its one surviving handed-in copy is handwritten on the printed page, and its handout is silent on typing, so ask which the instructor wants",
         "each requested table and figure, numbered, captioned, and with units",
         "each derived property with its units and a sentence on how it was determined, because the polymers sheet asks for the method as well as the value"
       ],
@@ -57,7 +57,7 @@
         "a peak load reported where the question asks for a strength (a stress needs the load divided by the original area)",
         "a chart pasted without a figure number and caption"
       ],
-      "basis": "hand-in lists on the concrete 2 and polymers report sheets, one completed polymers sheet, the concrete workbook"
+      "basis": "hand-in lists on the concrete 2 and polymers report sheets, one completed polymers sheet, the concrete workbook. One answer on that completed sheet is pasted chatbot output (it carries literal markdown asterisks), and no rule here rests on that answer."
     },
     "header": {
       "fields": ["[Student Name]", "group or group number (group labs)"],
@@ -155,7 +155,8 @@
       "pitfalls": [
         "Reporting a list of moduli with no time attached.",
         "Taking the strain from a moment when the elongation was still rising, because the video shows it creeping for a few seconds after the pause."
-      ]
+      ],
+      "basis": "the polymers handout, the chapter 15 lecture slides (relaxation modulus, and relaxation versus creep), and the relaxation-modulus equation on the instructor's equation sheet"
     },
     {
       "id": "concrete-strength-statistics",
@@ -215,7 +216,7 @@
         "Trend and acceptance questions are answered with the relevant statistic or criterion named, not just yes or no."
       ],
       "exemplars": ["lab-report-sheet-shape"],
-      "basis": "two report-sheet handouts (polymers, concrete 2), one completed polymers sheet, the concrete workbook. No graded return exists."
+      "basis": "two report-sheet handouts (polymers, concrete 2), one completed polymers sheet, the concrete workbook. No graded return exists. One answer on the completed polymers sheet is pasted chatbot output (it carries literal markdown asterisks), and no rule here rests on that answer."
     },
     {
       "id": "tensile-lab-writeup",

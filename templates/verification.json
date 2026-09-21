@@ -1,5 +1,5 @@
 {
-  "schema_version": "verification-report-1",
+  "schema_version": "verification-report-2",
   "bindings": {
     "input_sha256": "REPLACE_FROM_CURRENT_RUN",
     "plan_sha256": "REPLACE_FROM_CURRENT_RUN",

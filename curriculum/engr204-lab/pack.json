@@ -17,14 +17,14 @@
     "source": "none found",
     "confidence": "unknown",
     "term_observed": null,
-    "summary": "No syllabus or generative-AI policy for this course was found in the archive.",
+    "summary": "No syllabus or generative-AI policy for this course was found in a search of all seven term folders of the student's iCloud archive and his university OneDrive, by course number, in September 2026. By the student's instruction an archived syllabus is treated as outdated and is not mined, so one that turned up would be excluded. The current policy is unknown: ask the student to confirm it with the instructor.",
     "permitted": [],
     "prohibited": [],
     "student_asked": null,
     "professor_answer": null
   },
   "format": {
-    "deliverable": "formal engineering lab report (analog labs); short-form lab report (design-project labs)",
+    "deliverable": "formal engineering lab report (analog labs); short-form lab report (design-project labs). The other format nodes state rules for the formal report only; the short-form reports and the weekly worksheets are described in their own family nodes.",
     "precedence": [
       "the specific lab assignment and its report steps (for the formal report, the Week 10 assignment)",
       "the instructor's report template, including the guidance text inside it",
@@ -35,19 +35,19 @@
       "size": "letter",
       "margins_in": 1,
       "margin_note": "At least 1 inch on every side; figures and tables stay inside the margins, and nothing is written in the margins.",
-      "source": "Appendix A + instructor template"
+      "source": "Stated for the formal report only: Appendix A + instructor template"
     },
     "typography": {
       "line_spacing": 2.0,
       "paragraph_separation": "Every paragraph break is visible: either an indented first line or an extra blank line.",
       "large_table_exception": "In appendices, a smaller font is acceptable to keep a wide table on one page if it stays legible.",
-      "source": "instructor template + Appendix A (double spacing)"
+      "source": "Stated for the formal report only: instructor template + Appendix A (double spacing)"
     },
     "title_page": {
       "required": true,
       "fields": ["title", "author", "date", "course and lab section", "instructor", "experiment partner"],
       "carries_abstract": false,
-      "source": "Appendix A (title, author, date, class, professor) + instructor template (experiment partner line). Lab section is listed in neither; the file-naming rule uses the section letter and the observed reports show it."
+      "source": "Stated for the formal report only: Appendix A (title, author, date, class, professor) + instructor template (experiment partner line). Lab section is listed in neither; the file-naming rule uses the section letter and the observed reports show it."
     },
     "abstract": {
       "placement": "the instructor template allows the abstract on its own page or on the title page. Own page after the title page is the safe default: it is what the observed report does and it keeps the title page uncluttered.",
@@ -55,12 +55,12 @@
       "content": "brief introduction, the kinds of experiments performed, and a summary of results without detailed numeric data. An abstract is not an introduction: it summarizes the whole report.",
       "forbidden": ["references to figures or tables, because the reader may not have the rest of the report in front of them"],
       "section_numbered": false,
-      "source": "instructor template + Appendix A"
+      "source": "Stated for the formal report only: instructor template + Appendix A"
     },
     "page_numbering": {
       "first_numbered_page": "the abstract page is page 1",
       "appendices": "same margin and numbering rules as the body",
-      "source": "instructor template"
+      "source": "Stated for the formal report only: instructor template"
     },
     "body": {
       "section_numbering": "outline style built with Word heading styles (1., 1.1, and deeper if needed). The template's own sections use two levels. A third level (1.2.1) appears in a student's report; 'up to three levels' is not a limit either source states.",
@@ -87,14 +87,14 @@
       "writing_for_the_reader": "Write so that another student with the same educational background could duplicate the results. Use equations for mathematical relationships. Be precise about which quantity is meant: label a voltage with a polarity on the circuit diagram and name it (for example, V_R1 measured with the oscilloscope probe), not 'the voltage was measured'.",
       "procedure_section": "Experimental Procedure reports what happened, so a reader could repeat it, and does not tell the reader what to do. The equipment section is not a bare list: it says why each instrument was needed. Simulations and other model checks go under Other Verification Methods, naming the tools.",
       "results_section": "Present all recorded data, measured, theoretical, and simulated. Use graphs to show trends unless the data set is very small, and move large tables to an appendix with a reference in the text.",
-      "source": "instructor template (section names, lead paragraphs, subsections, procedure and results guidance) + Appendix A (required elements, length, no flipping, writing for the reader)"
+      "source": "Stated for the formal report only: instructor template (section names, lead paragraphs, subsections, procedure and results guidance) + Appendix A (required elements, length, no flipping, writing for the reader)"
     },
     "equations": {
       "typeset_with": "Word equation editor",
       "placement": "in the body, carried over from the pre-lab work (the Week 9 handout says they may be included directly, and the Week 10 assignment says to paste them into the main part of the report)",
       "size_rule": "A small equation may sit inside a sentence. If the line spacing changes to fit it, treat it as large: center it between the margins and set it off with white space.",
       "numbering_observed": "The Week 9 pre-lab template labels equations Equation N and the handout cites them as Eq. N. The formal-report template does not say whether to number them; a student's report did.",
-      "source": "instructor template (equation editor, size rule) + Week 9 and Week 10 assignments"
+      "source": "Stated for the formal report only: instructor template (equation editor, size rule) + Week 9 and Week 10 assignments"
     },
     "figures": {
       "caption_position": "below",
@@ -115,7 +115,7 @@
       ],
       "prelab_exception": "The Week 9 pre-lab turn-in asks for graphs 'properly titled with legends', and its example graphs carry titles. The no-title rule applies to graphs in the formal report, where the caption is the title.",
       "schematics": "circuit diagrams from PSpice pasted into the body as captioned figures (pasting as a picture works best). Sketches drawn with CAD tools are preferred to hand sketches because they are embedded in the document.",
-      "source": "Week 10 assignment + Appendix A part IV + instructor template"
+      "source": "Stated for the formal report only: Week 10 assignment + Appendix A part IV + instructor template"
     },
     "tables": {
       "caption_position": "above",
@@ -127,7 +127,7 @@
         "a very large table goes in an appendix with a reference in the text",
         "a list table may hold instrument settings in place of a run of 'the supply was set to X' sentences"
       ],
-      "source": "instructor template + Appendix A + Week 10 assignment (significant digits)"
+      "source": "Stated for the formal report only: instructor template + Appendix A + Week 10 assignment (significant digits)"
     },
     "appendices": {
       "contents": ["raw data", "sample calculations", "the Excel model and data tables", "PSpice exported data", "the complete source-resistance measurement procedure, with a short description of it in the body"],
@@ -137,35 +137,35 @@
         "the body summarizes and explains whatever the appendix holds, so a reader who never opens the appendix still follows the report"
       ],
       "delivery": "appendices uploaded as a separate PDF alongside the Word report",
-      "source": "instructor template (separate PDF upload) + Appendix A part III.D (raw data, sample calculations) + Week 10 assignment (Excel tables, source-resistance procedure)"
+      "source": "Stated for the formal report only: instructor template (separate PDF upload) + Appendix A part III.D (raw data, sample calculations) + Week 10 assignment (Excel tables, source-resistance procedure)"
     },
     "voice": {
       "person": "Appendix A: third person (no I or we) and past tense for what took place, with first person and active voice permitted in some situations, so check with the instructor. The instructor template prefers active voice where possible without I or we, allows we or I only as a last resort, and says staying passive may be best.",
       "tense": "Past for procedure, present for discussing results, future for future work; one tense per paragraph.",
       "style": "Report what was done. Do not rewrite the lab notebook, and do not write it as step-by-step instructions to the reader.",
-      "source": "Appendix A + instructor template"
+      "source": "Stated for the formal report only: Appendix A + instructor template"
     },
     "units_and_numbers": {
       "units_everywhere": true,
       "significant_digits": "set display precision to a reasonable number of significant digits; prefer ordinary notation over scientific when it stays readable",
-      "source": "Appendix A (proper units with all numerical results) + Week 10 assignment (significant digits)"
+      "source": "Stated for the formal report only: Appendix A (proper units with all numerical results) + Week 10 assignment (significant digits)"
     },
     "terminology": {
       "software_first_reference": "Give the simulator's full trademarked name (Cadence PSpice) on first reference and PSpice after that, not PSPICE, Pspice, or pspice.",
-      "source": "Week 10 assignment"
+      "source": "Stated for the formal report only: Week 10 assignment"
     },
     "tooling": {
       "calculation": "Excel for equation-based models and measured-data reduction",
       "simulation": "Cadence PSpice (Schematics) for ideal and realistic circuit models",
       "writing": "Microsoft Word with the equation editor",
-      "source": "Week 9 and Week 10 assignments"
+      "source": "Stated for the formal report only: Week 9 and Week 10 assignments"
     },
     "submission": {
       "draft": "A good draft goes to lab the following week for peer review against a rubric, in three printed copies (stapled, name page omitted). The draft is also submitted to Moodle as a Word file. The Rhetoric Center is available before the draft is due.",
       "final": "Word report plus an appendices PDF, uploaded together to Moodle. A printed report is stapled, with no paper clips.",
       "file_naming": "[StudentName]_Report_204L[section letter].docx",
       "individual_work": "Measured data may be shared with a lab partner. Graphs, tables, analysis, and prose are individual.",
-      "source": "Week 10 assignment (draft, file naming, individual work) + instructor template (final upload) + Appendix A (stapling)"
+      "source": "Stated for the formal report only: Week 10 assignment (draft, file naming, individual work) + instructor template (final upload) + Appendix A (stapling)"
     }
   },
   "methods": [

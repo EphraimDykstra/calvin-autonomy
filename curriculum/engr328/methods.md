@@ -65,6 +65,24 @@ A single-cylinder engine drives a dynamometer, and a counter-flow water calorime
 - **Efficiency** (2 pages). Overall thermal efficiency is shaft power over (LHV × fuel flow), computed at every speed. The key finding is **efficiency plotted against engine power**, not against speed or run number, with a discussion of the trend with load.
 - **Final** combines all three. It closes with a brief conclusion on each energy stream, then overall conclusions on energies, efficiencies, and whether the results are reasonable.
 
+## What to collect, and what to do when something is missing
+
+*This section describes how a host drives a 328 lab report. It lives here because the course it applies to is this one; when the shared playbooks land it moves there, and this copy goes, so that nobody maintains two.*
+
+**Collect before you start.** Each lab family carries an intake list at `assignment_families.<family>.intake`: fetch it and ask only for what the student has not already given. It says what is needed, why, and who has it, and it points at the stage details rather than repeating them, so the stage the student names decides the section scope and the page budget. Two of its items exist because this pack holds no names: the group, if the submission is a group one, and the professor's surname.
+
+**The title page needs both of those.** Pass them in the solution's `metadata` as `group` and `instructor`, along with `course`, `section` and `date`. An instructor you were not given prints as the literal `[Instructor]`, which is a visibly unfinished page rather than a wrong one; do not guess a name and do not leave the line out. The student fills it in, or tells you and you re-render.
+
+**Place a student's image before you render it.** A solution may reference a figure only by a path inside its own run, so a file the student sends has to be put there first: `add-figure` copies it in, refuses anything that is not an image it can open, and records its hash so a file swapped afterwards is caught rather than quietly standing behind a finished deliverable. Do this before `render`, because the render draws what the solution points at.
+
+**Two of this course's required charts are permanently the student's to supply.** The final report asks for a psychrometric chart and an R134a pressure-enthalpy diagram for each season. Both are property-data backgrounds, and property data is cited here and brought back by the student, never shipped or redrawn by this tool. So these are not a feature that is missing: they are an input, like the EES values, and they arrive the same way. The control-volume diagram each section needs is the student's too, for the simpler reason that nothing here draws one.
+
+**When something like that is still outstanding, say so in the run rather than in prose.** `declare-inputs`, before `verify-report`, records what the run is waiting for: an id, the sentence the student reads, and the requirements it holds up. The requirement's own finding then records `awaiting: <id>` in place of passing, and the verifier report binds — so everything else about the deliverable still gets checked and reported, instead of the whole report being refused because one input has not arrived. `status` then reports the run **blocked**, with a plain `waiting on you: …` line naming exactly what to send. It can reach neither ready nor provisional while anything is outstanding, which is the point: this records a gap, it does not excuse one.
+
+Write the sentence so a tired student can act on it alone: "Send the psychrometric chart for each season, summer and winter, as image files" rather than "charts missing". Two inputs may not ask in the same words, because identical sentences would collapse into one line and the student would send one thing and stop.
+
+**When it arrives:** `add-figure` the file, declare whatever is still outstanding (an empty list when nothing is), put the figure in the solution, re-render, and re-bind the verifier report with the requirement genuinely passed. Withdrawing a declaration on its own does not make a run ready: the report was bound to the old declaration, so it goes stale and has to be rebuilt against the work as it now stands.
+
 ## EES in this course
 
 EES is the expected tool for any lab analysis beyond simple plots. The manuals ask for raw data in and as few hand-entered numbers as possible, with units, conversions, and property lookups left to the software. Code is printed in the appendix with its solution output. Homework sets that assign EES expect printed code with the answers visible as key variables. For EES syntax, unit handling, property functions, and file layout, use the shared EES pack (`coursework pack show tool:ees`); this pack does not duplicate it. The course-specific traps are in `pack.json` under each method's pitfalls: refrigerant pressures in moist-air calls, gauge pressure, unit tags, and torque units that a case-insensitive solver reads as nanometres.

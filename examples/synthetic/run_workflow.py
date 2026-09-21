@@ -182,6 +182,11 @@ class Driver:
             "solution_sha256": solution_hash,
             "calculation_checks_sha256": _digest({"checks": state["checks"]}),
             "calculation_checks_for_solution_sha256": solution_hash,
+            # A run with nothing outstanding still binds the empty declaration,
+            # so withdrawing one later cannot leave an old report looking current.
+            "outstanding_inputs_sha256": _digest(
+                {"outstanding_inputs": state.get("outstanding_inputs", [])}
+            ),
             "artifacts": artifacts,
             "artifact_manifest_sha256": _digest({"artifacts": artifacts}),
         }
@@ -198,7 +203,7 @@ class Driver:
             for index, requirement in enumerate(state["plan"]["requirements"], start=1)
         ]
         return {
-            "schema_version": "verification-report-1",
+            "schema_version": "verification-report-2",
             "bindings": bindings,
             "findings": {
                 "requirements": requirements,

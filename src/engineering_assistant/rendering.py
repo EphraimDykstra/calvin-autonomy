@@ -318,16 +318,8 @@ def render_text_docx(
     elif report and title_page:
         title_paragraph = document.add_paragraph(title, style="Title")
         title_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        details = solution.get("metadata", {}) if isinstance(solution.get("metadata", {}), dict) else {}
-        for value in (
-            details.get("course"),
-            details.get("section"),
-            metadata["display_name"],
-            metadata["student_id"],
-            details.get("date"),
-        ):
-            if value:
-                add_text(value, centered=True)
+        for value in title_page_lines(solution, metadata["display_name"], metadata["student_id"]):
+            add_text(value, centered=True)
         if rendering.get("abstract", False) and not solution.get("abstract"):
             raise ValueError("course profile requires an abstract")
         if solution.get("abstract"):
@@ -437,6 +429,37 @@ def _refuse_unrendered_abstract(solution: dict, report: bool, title_page: bool) 
 
 MEMO_FIELDS = (("to", "To"), ("from", "From"), ("cc", "CC"), ("date", "Date"), ("re", "Re"))
 
+# A title page that names the instructor is common enough to be a rule in a
+# course pack, and no pack may hold the name: it belongs to the student's own
+# materials and arrives at run time.  When it has not arrived, the page says so
+# in the same visible way an unsupplied student name does, because a blank line
+# where a name belongs reads as a finished page and a placeholder does not.
+INSTRUCTOR_PLACEHOLDER = "[Instructor]"
+
+
+def title_page_lines(solution: dict, display_name: str, student_id: str | None = None) -> list[str]:
+    """Return the centred lines under a report title, in the order a page states them.
+
+    Both renderers draw the same lines from this one list, so a field cannot
+    reach the DOCX title page and quietly miss the PDF one.  ``group`` prints
+    only when there is a group, since a course asks for it "if applicable";
+    the instructor line always prints, as a placeholder when unsupplied.
+    """
+    details = solution.get("metadata", {})
+    if not isinstance(details, dict):
+        details = {}
+    instructor = str(details.get("instructor") or "").strip() or INSTRUCTOR_PLACEHOLDER
+    ordered = (
+        details.get("course"),
+        details.get("section"),
+        details.get("group"),
+        display_name,
+        student_id,
+        instructor,
+        details.get("date"),
+    )
+    return [str(value).strip() for value in ordered if value and str(value).strip()]
+
 
 def memo_header_rows(solution: dict, display_name: str) -> list[tuple[str, str]]:
     """Return a header memo's To, From, CC, Date and Re lines, or refuse an incomplete one.
@@ -507,9 +530,8 @@ def render_text_pdf(solution:dict, output:Path, *, identity:dict | None = None, 
         story.extend([header,Spacer(1,0.08*inch),HRFlowable(width='100%',thickness=0.75,color=colors.black),Spacer(1,0.14*inch)])
     elif report and title_page:
         story.extend([Spacer(1,1.1*inch),Paragraph(escape(title),styles['Title']),Spacer(1,0.35*inch)])
-        details=solution.get('metadata',{}) if isinstance(solution.get('metadata',{}),dict) else {}
-        for value in (details.get('course'),details.get('section'),metadata['display_name'],details.get('date')):
-            if value: story.append(Paragraph(escape(str(value)),centered))
+        for value in title_page_lines(solution,metadata['display_name']):
+            story.append(Paragraph(escape(value),centered))
         if rendering.get('abstract',False) and not solution.get('abstract'): raise ValueError('course profile requires an abstract')
         if solution.get('abstract'):
             story.extend([Spacer(1,0.35*inch),Paragraph('Abstract',styles['Heading2'])])
