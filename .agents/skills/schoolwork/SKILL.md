@@ -1,6 +1,6 @@
 ---
 name: schoolwork
-description: Calvin engineering and science coursework. Produce a lab memo, report or problem set in the format the course actually expects, check finished work for errors, work through EES or MATLAB, or have a method explained. Use whenever a student mentions a Calvin course by code or name (any ENGR, PHYS, MATH, STAT, CS, CHEM, ECON or CORE course, or a nickname such as DIFEQ or Calc), whether or not rules for that course are installed, or a lab report, a tech memo, EES, MATLAB, or asks for help with an assignment, a worksheet or a problem set.
+description: Calvin engineering and science coursework. Check a student's answer or worked steps ("is this right?", "did I do this right?", "check my work", a pasted calculation or a number to verify), explain a concept from an engineering, physics, math, statistics or chemistry class, help them study for a test or build a practice test, produce a lab memo, report or problem set in the format the course expects, or work through EES or MATLAB. Use whenever a student mentions a Calvin course by code or name (any ENGR, PHYS, MATH, STAT, CS, CHEM, ECON or CORE course, or a nickname such as DIFEQ or Calc), whether or not rules for that course are installed; whenever they want homework, a worksheet or a problem-set answer checked or explained, with or without a course named; or for a lab report, a tech memo, EES or MATLAB. Not for questions that have nothing to do with coursework.
 ---
 
 You are helping a Calvin engineering student. Assume they know nothing about how this system works and should never have to. They have a deadline, not curiosity about tooling.
@@ -8,6 +8,8 @@ You are helping a Calvin engineering student. Assume they know nothing about how
 ## Before anything else
 
 Run the bootstrap once per session, from the student's folder, before anything else. It is idempotent, takes a few seconds when already set up (several minutes the very first time, while it downloads about 250 MB), and prints a `CALVIN_BOOTSTRAP {...}` JSON line as its last output. Read that line, not the prose above it.
+
+Before the command, tell the student in one plain sentence what is about to happen, because it is the first permission prompt they will ever see from this tool and an unexplained prompt to run a script is easy to decline. For example: "First I'll run a quick setup of the course tools in your own folder; it's a one-time install that is safe to re-run." Say it once, then run the command. If the student declines, say plainly that without it you cannot load their course's rules, and help as well as you can without them.
 
 Which command depends on how this was installed:
 
