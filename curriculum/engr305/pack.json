@@ -12,7 +12,7 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "Absence claims in this pack describe one search, not the world: a listing of this course's folders in the student's iCloud term archive and his university OneDrive, in September 2026. The FEA report is well covered. The instructor wrote a model report with placeholder values that sets its sections, its agreement target and its length. The lab-exercise prompts survive, and one completed report with its paired workbook survives. Everything else is thin. The test-correction memo has two instances and no prompt; one of the two is readable. The cantilever beam lab survives as a workbook plus a report that is almost all images. All 13 chapter problem sets are scanned handwriting with no text layer, so the homework format is not covered at all. There is no syllabus. Methods rest on the instructor's typed study guide, the FEA prompts and the student's test corrections. A second pass through the OneDrive copies found no new instructor-written material, so no level is raised. Those copies include five SolidWorks study folders (the plate, the axial and torsional wedding cake, and a class copy), which are native results files: they show what the student ran (mesh, displacement, strain and stress exports, solver output), not what a deliverable must show. The submitted report carries one result plot per exercise and no mesh or boundary-condition plots. The report and its workbook, not the study folders, are the source of the pressure-vessel pitfall (a sharper way the hand and FEA numbers can disagree without either being wrong), and the cantilever workbook and report are the source of the additions to the cantilever lab. All of it is observed once in one student's work."
+    "notes": "Absence claims in this pack describe one search, not the world: a listing of this course's folders in the student's iCloud term archive and his university OneDrive, in September 2026. The FEA report is well covered. The instructor wrote a model report with placeholder values that sets its sections, its agreement target and its length. The lab-exercise prompts survive, and one completed report with its paired workbook survives. Everything else is thin. The test-correction memo has two instances and no prompt; one of the two is readable. The cantilever beam lab survives as a workbook plus a report that is almost all images. The chapter problem sets are not scans: there are 14 of them, worked in digital ink on the student's own typed template, and text extraction sees only the typed header, so an earlier pass read them as having no content and counted 13. All 73 pages were read as page images in September 2026. Two sets are also filed as an un-inked copy, and the inked copy is the one read. The pages show how the student laid out a solution, which format.observed_practice records as observed practice, not a requirement. No page carries a grader mark, a score or feedback, so what the grader accepted is still unknown. One of the 14 sets, and no other, carries the instructor's assignment text with a listed final value for each problem, pasted in after the last problem. Where a page's final value matched that list, its layout agrees with the observed practice. These pages support format, not method: no method node rests on them. There is no syllabus. Methods rest on the instructor's typed study guide, the FEA prompts and the student's test corrections. A second pass through the OneDrive copies found no new instructor-written material, so no level is raised. Those copies include five SolidWorks study folders (the plate, the axial and torsional wedding cake, and a class copy), which are native results files: they show what the student ran (mesh, displacement, strain and stress exports, solver output), not what a deliverable must show. The submitted report carries one result plot per exercise and no mesh or boundary-condition plots. The report and its workbook, not the study folders, are the source of the pressure-vessel pitfall (a sharper way the hand and FEA numbers can disagree without either being wrong), and the cantilever workbook and report are the source of the additions to the cantilever lab. All of it is observed once in one student's work."
   },
   "course_policy": {
     "source": "none found",
@@ -129,8 +129,21 @@
       "source": "two instances, one readable; no prompt"
     },
     "homework": {
-      "rule": "Not covered. The chapter problem sets are scanned handwriting with no text layer. A Word homework template in the archive is the student's own (their name and section in the header), not an instructor requirement.",
+      "rule": "No instructor document states a homework layout. The student's worked chapter problem sets survive, and observed_practice records their layout as practice, not a rule. A Word homework template in the archive is the student's own (their name and section in the header), not an instructor requirement.",
+      "unknown": [
+        "whether the instructor requires any of the observed practice, or would accept a different layout",
+        "how the work is submitted: the archive holds the inked PDF, but no page shows whether that file is what was handed in, or how",
+        "what the grader accepted: none of the 73 pages of the 14 chapter problem sets, read as page images in September 2026, carries a grader mark, a score or feedback"
+      ],
       "source": "observed"
+    },
+    "observed_practice": {
+      "status": "OBSERVED STUDENT PRACTICE in the archived chapter problem sets, not an instructor requirement. No instructor document states a homework layout for this course.",
+      "medium": "Worked by hand in digital ink on the student's own typed template. The textbook's problem statement and figure are pasted in as an image, and the work is written beside and below it and on the figure itself, in several ink colours.",
+      "layout": "A typed header on every page carries the student's name, section and page number. There is usually one problem per page, with the part labels written in the margin. Loads, reactions and dimensions are marked on the pasted figure, and a free-body sketch or simplified figure is often redrawn beside it. Parts the assignment excluded are struck through on the page.",
+      "method": "The governing relation is written first, then the substitution, then the final value, usually boxed with its unit. Symbols are sometimes listed with their meanings before the numbers.",
+      "assembly": "Each set is one PDF, named by chapter and problem numbers. In one set, the instructor's assignment text with its listed final answers is pasted in after the last problem.",
+      "basis": "all 73 pages of the 14 chapter problem sets, read as page images in September 2026; the text layer carries only the typed header, so the ink is invisible to text extraction"
     }
   },
   "methods": [
@@ -266,10 +279,10 @@
       "id": "chapter-problem-sets",
       "title": "Chapter problem sets",
       "stages": ["assigned by chapter"],
-      "deliverables": ["handwritten solutions"],
+      "deliverables": ["solutions worked by hand in digital ink on the pasted problems, one PDF per set"],
       "what_good_looks_like": [],
       "exemplars": [],
-      "basis": "13 sets, all scanned handwriting with no text layer. Nothing about their format is covered, and none is inferred."
+      "basis": "14 sets, worked in digital ink and read as page images in September 2026. They show the student's layout, which format.observed_practice records as practice. None carries a grader mark, so they show a layout, not what earned credit, and no exemplar is given: completed student work is never shipped. One set carries the instructor's listed final answers for its problems, so a student can check a final value against the instructor's own list."
     }
   ],
   "magnitudes": [

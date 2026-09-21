@@ -8,7 +8,7 @@
 
 A second pass through the OneDrive copies, including five SolidWorks study folders, found no new instructor-written material. Nothing here is rated higher because of it.
 
-**Not covered:** chapter problem sets. All 13 are scanned handwriting with no text layer, and nothing about their format is inferred. There is no syllabus.
+**Observed, not required:** chapter problem sets. All 14 survive, worked in digital ink on the student's own template, and all 73 pages were read as images. They show a layout: the problem pasted in, the work beside it, the relation first, the answer boxed with its unit. `format.observed_practice` records it as practice, never as a rule. No page carries a grader mark, so what earned credit is unknown. These pages support format, not method. One of the 14 sets carries the instructor's own listed final answers. There is no syllabus.
 
 The instructor is the same as ENGR 322's. The hand-versus-FEA rule and the test-correction habit appear in both packs, but they come from one source, not two independent ones.
 
@@ -48,4 +48,4 @@ In a check-my-work session, compare the student's result against the pack's `mag
 1. Get the prompt, whether a lab exercise, the report or the test.
 2. For an FEA report, collect the student's hand results, FEA results and screenshots first. Draft from those numbers only.
 3. For a test-correction memo, write one section per missed problem naming the specific error and the specific change.
-4. For chapter problem sets, say plainly that this pack has no format for them, and ask how the student's section turns homework in.
+4. For chapter problem sets, say plainly that no instructor document sets their format. Offer the observed practice as the student's own habit, not a rule, and ask how the student's section turns homework in. Ask for the assignment's listed final answers too: they let a final value be checked against the instructor's own list rather than the textbook's.

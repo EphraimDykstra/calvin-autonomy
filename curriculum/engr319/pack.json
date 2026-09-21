@@ -11,7 +11,7 @@
     "format": "high",
     "methods": "high",
     "assignments": "partial",
-    "notes": "Lab memos and computer-problem reports are covered by a written instructor memo spec, two readable lab prompts, both computer-problem prompts, and completed examples. The first computer-problem prompt is an image-only scan with no text layer; it was read as an image, so its tool rules are now confirmed rather than inferred from the second. Homework survives only as prompts with bare answers in the location searched. Exams and equation sheets are image-only scans and are out of scope."
+    "notes": "Lab memos and computer-problem reports are covered by a written instructor memo spec, two readable lab prompts, both computer-problem prompts, and completed examples. The first computer-problem prompt is an image-only scan with no text layer; it was read as an image, so its tool rules are now confirmed rather than inferred from the second. The 11 weekly homework files are not bare prompts: each carries the student's own worked solutions in digital ink, written on the prompt pages or on pages appended after them. An earlier pass read only their text layer and missed the ink. All 94 pages were read as page images in September 2026. They show how the student laid out a solution, which the homework family records as observed practice rather than a requirement; the prompts' own text states that the course is focused on hand solutions and sets the rules for equation-solver printouts. No page carries a grader mark, a score or feedback, so what the grader accepted is still unknown. Exams and equation sheets are image-only scans and are out of scope."
   },
   "course_policy": {
     "source": "syllabus (archived)",
@@ -22,7 +22,7 @@
     "prohibited": [],
     "student_asked": null,
     "professor_answer": null,
-    "notes": "Course-wide policy is unknown and stays that way. One assignment family is not unknown: see assignment_families, computer-problem, ai_use, where the prompt itself prohibits AI assistance and the pack requires a hard stop. That is assignment-specific evidence and is not read across to labs or homework. A host reading this block must check that family before helping with a computer problem."
+    "notes": "Course-wide policy is unknown and stays that way. One assignment family is not unknown: see assignment_families, computer-problem, assistance_rules, no-ai-assistance, where the prompt itself prohibits AI assistance and the pack requires a hard stop. That is assignment-specific evidence and is not read across to labs or homework. A host reading this block must check that family before helping with a computer problem."
   },
   "format": {
     "deliverable": "technical memo",
@@ -176,7 +176,8 @@
         "Using the isentropic state as the actual state, or applying the efficiency in the wrong direction for a compressor versus a turbine.",
         "Dropping units partway through; units are expected on every homework and test answer.",
         "Interpolating across a phase boundary instead of switching tables."
-      ]
+      ],
+      "basis": "The instructor memo spec and the lab prompts, read directly, for the deliverable this analysis feeds and for units carried through every line. The weekly homework prompts STATE two parts of the method: table-practice problems ask that the table behind each answer be named and warn against online property calculators, and problems ask for a control-volume sketch with every flow in and out. The numbering-and-fix-each-state procedure itself is not written out in any instructor document in the archive. It does rest, for eleven problems, on the student's own worked homework pages, whose final value matches the answer the prompt itself lists: states numbered to match the prompt's figure; each state fixed by two properties, with the table values written beside it; interpolation between bracketing table rows written out; the phase identified from the table before a value is read; an isentropic exit state found by matching entropy and interpolating; a throttle taken as equal enthalpy in and out; device energy balances written in state enthalpies; and power cycles drawn on a property diagram with the saturation dome and every state placed on it. A student page counts here only where its final value matches the prompt's listed answer, and no value from any page is recorded. The isentropic-efficiency step and the phase-boundary interpolation trap rest on failure modes, not on a handout or a matched page."
     },
     {
       "id": "lab-data-reduction-excel",
@@ -193,7 +194,8 @@
         "An isolated unit-conversion slip in one input cell (a Fahrenheit-to-kelvin factor, for example) that propagates silently into every result; check every converted input against an independent conversion.",
         "Forgetting a gauge zero offset.",
         "Pasting thousands of raw rows into the appendix instead of a digested table."
-      ]
+      ],
+      "basis": "The lab writing-guidelines handout states the rule this method exists to serve: do not do hand calculations, put the repetitive math in a spreadsheet. The gauge-zero-offset and single-formula-filled-across practices are observed in the student's own lab workbooks, not stated by any instructor document. The unit-conversion pitfall is a real failure found in this student's work for another course and is recorded as a check, not as a course rule. The homework pages bear on no step of this method, since it is a lab method."
     },
     {
       "id": "calibration-as-slope",
@@ -208,7 +210,8 @@
       "pitfalls": [
         "Averaging point-by-point ratios instead of taking the slope when the prompt asks for a slope.",
         "Using a published value in the analysis or on the graph when the prompt allows it only as a comparison in the text."
-      ]
+      ],
+      "basis": "A lab prompt asks for the fit and for the constant it yields; that much is instructor-stated. Taking the slope through the origin rather than averaging point-by-point ratios, and treating the lowest-signal points as least trustworthy, are observed in the completed memo. Where the prompt allows a published value only as a comparison in the text, that restriction is the prompt's. The homework pages bear on no step of this method, since it is a lab method."
     },
     {
       "id": "parameter-sweep-fit",
@@ -225,7 +228,8 @@
         "Fitting to a subset of the data instead of every point.",
         "An error-versus-parameter plot whose axis runs negative; a sum of squares cannot be below zero, so that points to a plotting or formula error.",
         "Several model lines on one graph when the prompt asks for only one."
-      ]
+      ],
+      "basis": "The lab prompt and the second computer-problem prompt ask for the optimisation and for a graph that proves the choice; that is instructor-stated. The specific technique, sweeping one parameter and minimising a sum of squared error over every data point, is observed in the completed work rather than prescribed. The negative-axis check is a consistency test this pack adds, since a sum of squares cannot fall below zero. The homework pages bear on no step of this method."
     },
     {
       "id": "radiation-exchange",
@@ -242,7 +246,8 @@
         "Using Celsius or Fahrenheit inside a T^4 term.",
         "Claiming agreement with an uncited or unspecified 'online value'. When the prompt requires a reference value on the graph, it must actually appear there, with its source.",
         "Substituting a handbook value for a different surface finish without saying so; when the exact finish is not tabulated, report the bracketing range instead."
-      ]
+      ],
+      "basis": "A lab prompt states the requirement that a handbook or reference value appear on the graph itself with its source, and that requirement is the pitfall this method is built around; an earlier submission met it only with a vague appeal to online values. The weekly homework prompts STATE that some view factors are to be found from the relations alone, without tables or charts. The rest of the procedure rests, for six problems, on the student's own worked homework pages, whose final value matches the answer the prompt itself lists: view factors from reciprocity, summation and superposition; the absorbed, reflected and transmitted fractions summing to one; the net exchange between two surfaces written as a series of surface and space resistances; and absolute temperature in every fourth-power term. A student page counts here only where its final value matches the prompt's listed answer, and no value from any page is recorded. The bracketing-range instruction, for a surface finish the course text does not tabulate, is this pack's rule and not the course's."
     }
   ],
   "assignment_families": [
@@ -324,7 +329,31 @@
       "id": "weekly-homework",
       "title": "Weekly homework problem sets",
       "stages": ["assigned weekly", "due the following week"],
-      "deliverables": ["worked solutions with units on every quantity"],
+      "deliverables": ["worked hand solutions with units on every quantity", "equation-solver printouts, only for the problems a set requests them for"],
+      "stated_presentation": {
+        "rules": [
+          "The course is focused on submitting hand solutions. Equation-solver work is reserved for the problems a set requests it for, though a student may add it elsewhere.",
+          "Where a set requests equation-solver work: the code annotated and clear, with the student's name at the top; no unit errors left in the solution window; the printout of the equations, the plots and the solution or array window submitted with the rest of the homework; and, where the problem compares the two, the textbook value written beside the solver's value.",
+          "Table-practice problems ask that the table behind each answer be named, and say that online property calculators defeat the purpose of the practice.",
+          "Problems ask for a control-volume sketch with every mass and energy flow in and out, and one prompt says this belongs on every problem.",
+          "At least one problem directs that each area and each resistance be calculated separately before they are combined, because the separate values help understanding and help the graders troubleshoot.",
+          "Answers are withheld on some table-practice problems, which the prompt says is so the student is not tempted to back-solve from the right answer."
+        ],
+        "basis": "the typed text of the weekly prompts, read directly; these are the instructor's own words, not an inference from the worked pages"
+      },
+      "observed_practice": {
+        "status": "OBSERVED STUDENT PRACTICE in the archived homework, not an instructor requirement. The instructor's stated rules are in stated_presentation.",
+        "medium": "Worked by hand in digital ink. In most weeks the work is on blank pages appended after the prompt; in some weeks it is written directly on the prompt pages beside each problem and drawn onto its figure. Short table-lookup answers are written inline beside the question.",
+        "layout": "The problem number at the left margin, then the givens listed with units and the unknown written as equal to a question mark. For a flow device or a process, the inlet state sits on the left and the outlet on the right, with an arrow between them carrying the heat or work interaction. The governing relation is written before any number, often with its terms labelled. Several ink colours are used deliberately: one for givens, one for table lookups and results, one for the rows being interpolated. The final value is boxed with its unit, and the governing relation is sometimes boxed separately in another colour.",
+        "method": "Units are carried through each line and converted in the working. For cycles, the states are numbered to match the prompt's figure, each state's two fixing properties and its looked-up values are listed together, and the cycle is sketched on a property diagram with the saturation dome. The prompts ask for a control-volume sketch and for the tables used to be named, and this layout does both.",
+        "assembly": "Each homework is one PDF: the prompt pages, the worked pages, and inserted pages. The inserted pages include equation-solver printouts where the set requests them, a spreadsheet screen capture for one problem, the prompt's own figure copied onto a work page and annotated, correlation equations pasted in as images, and at least once a photograph of in-class whiteboard work.",
+        "basis": "all 94 pages of the 11 weekly homework PDFs, read as page images in September 2026; the text layer carries only the typed prompt, so the ink is invisible to text extraction"
+      },
+      "unknown": [
+        "whether the instructor requires any of the observed layout, or would accept a different one",
+        "how the work is submitted: the archive holds the assembled PDF, but no page shows whether that file is what was handed in, or how",
+        "what the grader accepted: no page carries a grader mark, a score or feedback"
+      ],
       "what_good_looks_like": [],
       "assistance_rules": [
         {
@@ -341,10 +370,25 @@
             "The supplied answer is a given the student brings from their own current prompt at run time. It is not recorded in this pack and must never be guessed or reconstructed."
           ],
           "basis": "The weekly prompts for the observed term, read directly; the supplied answers are visible on most problems across the set. The behaviour required here is this pack's own rule about what honest checking means when the answer is given, not a rule the course states."
+        },
+        {
+          "id": "no-code-sharing",
+          "kind": "collaboration",
+          "status": "restricted",
+          "severity": "surface_once",
+          "summary": "The homework prompts state that homework, including solver homework, may be done in groups for shared exploration and learning, but that directly sharing or copying code is an integrity violation with serious consequences.",
+          "applies_to": "Any request to write, complete or repair EES code for a homework problem in this course.",
+          "not_generalised": "It is not clear how this applies to code a tool writes for the student, as opposed to code another student wrote. The rule predates the question and does not answer it. It is not resolved in either direction here.",
+          "required_behaviour": [
+            "Surface the rule to the student once, before helping with an EES homework problem, and say plainly that whether it covers tool-written code is a judgement for them and their professor, not for this tool.",
+            "Then follow their decision. Do not repeat it on every request.",
+            "Do not refuse on the strength of an ambiguity the course has not settled; inventing a prohibition substitutes this tool's judgement for the professor's."
+          ],
+          "basis": "The instructor's typed text in the Week 5 homework prompt of the observed term, read directly, where the first solver exercise is set. The unresolved question about tool-written code is this pack's observation, not something the course says. This rule governs homework only; the separate prohibition on computer problems is its own entry and is unchanged."
         }
       ],
       "exemplars": [],
-      "basis": "The weekly prompts, read directly. They carry day-by-day topic structure, full problem statements, instructional asides, and a supplied answer for most problems, so they are richer than the bare-answer sheets an earlier round recorded. No completed submission survives in either archive searched, so how solutions should be presented is still not covered. Units on every answer remains the only stated presentation requirement, and it comes from an archived syllabus whose current terms are unknown."
+      "basis": "The weekly prompts, read directly: they carry day-by-day topic structure, full problem statements, instructional asides, a supplied answer for most problems, and the presentation rules recorded in stated_presentation. The student's own worked pages survive in the same 11 files, in digital ink, and were read as page images; they show a layout, recorded in observed_practice. None carries a grader mark, a score or feedback, so they show a layout rather than what earned credit, and no exemplar is given: completed student work is never shipped. Units on every quantity is also stated by an archived syllabus whose current terms are unknown."
     }
   ]
 }

@@ -13,7 +13,7 @@
     "format": "high",
     "methods": "high",
     "assignments": "partial",
-    "notes": "Coverage is high for the two labs and for report format, and thin for homework: the sets reach across several heat-transfer topics whose instructor problem statements have not been read into this pack, so it states no solution method for any of them (see not_covered). No graded copy, instructor annotation or syllabus was found in either of the student's two document archives, searched by filename and, for every word-processor file, by checking for tracked changes and reviewer comments; none carries any. A syllabus did exist, since the lab schedule refers the student to it, but no copy is held. So every 'what good looks like' entry is derived from the professor's written handouts and lab manuals rather than from a marked-up submission. The student submissions backing them are reported by their author to have scored highly, which is the strongest evidence available here and is weaker than a graded artifact; they also break several written rules (page limits, title-page numbering), and the handout wins where they disagree. Homework format is inferred from handwritten scans, and margin size has no evidence at all."
+    "notes": "Coverage is high for the two labs and for report format, and thin for homework: the sets reach across several heat-transfer topics whose instructor problem statements have not been read into this pack, so it states no solution method for any of them (see not_covered). No graded copy, instructor annotation or syllabus was found in either of the student's two document archives, searched by filename and, for every word-processor file, by checking for tracked changes and reviewer comments; none carries any. A syllabus did exist, since the lab schedule refers the student to it, but no copy is held. So every 'what good looks like' entry is derived from the professor's written handouts and lab manuals rather than from a marked-up submission. The student submissions backing them are reported by their author to have scored highly, which is the strongest evidence available here and is weaker than a graded artifact; they also break several written rules (page limits, title-page numbering), and the handout wins where they disagree. Homework format: two homework files were read as page images in September 2026 and show the student's layout, which the homework family records as observed practice rather than a requirement; the other sets have not been read that way, and no homework page carries a grader mark, a score or feedback. Margin size has no evidence at all."
   },
   "course_policy": {
     "source": "none found (no syllabus in the archive)",
@@ -182,7 +182,8 @@
         "Using a refrigerant gauge pressure (or any refrigerant pressure) as the moist-air pressure.",
         "Treating the inlet air as dry; ambient air already carries water vapour.",
         "Dropping measured atmospheric pressure in favour of a standard atmosphere."
-      ]
+      ],
+      "basis": "The A/C laboratory manual, read directly: it defines the station states and the measured inputs they are fixed from. Passing total pressure explicitly on every moist-air call is a tool-level rule from the shared EES pack, reinforced here because one early version of the student's own model passed a refrigerant-loop pressure instead."
     },
     {
       "id": "dry-air-flow-from-orifice",
@@ -196,7 +197,8 @@
       "pitfalls": [
         "Using the specific volume at the wrong station.",
         "Leaving the correlation constant unitless, which hides unit errors."
-      ]
+      ],
+      "basis": "The A/C laboratory manual, which gives the orifice relation and the manometer reading it takes. Using the specific volume at the exit station is the manual's own choice, not an inference. The Pa-versus-kPa trap inside the square root is observed in the student's working files and is recorded as a check."
     },
     {
       "id": "forcing-versus-response-accounting",
@@ -216,7 +218,8 @@
         "Leaving fan power out of the energy forcing.",
         "Refrigerant heat is energy leaving the air; sign it accordingly.",
         "In section A-B, summer: two control-volume formulations are required and must be compared, giving six error findings in that stage instead of four."
-      ]
+      ],
+      "basis": "The A/C laboratory manual, which is where the whole forcing-versus-response idea comes from, together with the lab schedule's per-stage descriptions of what each submission must account for. The manual supplies the percent-error definition and the sign convention. The rule that a zero percent error is a red flag, meaning the balance was solved for the forcing term, is this pack's reading of what the manual is asking for rather than a sentence the manual contains."
     },
     {
       "id": "steam-generation-rate",
@@ -231,7 +234,8 @@
       "pitfalls": [
         "Using the saturated-liquid state (quality 0) for tap water; tap water enters subcooled at room temperature.",
         "Assuming a boiling temperature instead of evaluating saturation at the measured room pressure."
-      ]
+      ],
+      "basis": "The A/C laboratory manual, which gives the steam-generator sub-model, its electrical input and its convective loss. That tap water is subcooled and not quality zero is the manual's own framing; it is repeated here because treating it as saturated liquid is the obvious slip."
     },
     {
       "id": "vapor-compression-cycle-from-lab-data",
@@ -249,7 +253,8 @@
         "Using gauge pressure directly in a property call.",
         "Reading the float flow meter anywhere but its lowest steady value at the top edge of the float, as the manual directs.",
         "Putting condensate on the condenser side; air-side condensate forms at the evaporator."
-      ]
+      ],
+      "basis": "The A/C laboratory manual for the refrigerant loop, its measured gauge pressures and the states it asks for. The two assumptions that close the cycle, saturated liquid at the condenser outlet and an isenthalpic valve, are the manual's. Converting gauge to absolute before any property call is a check this pack adds, from a failure mode rather than from the manual."
     },
     {
       "id": "evaporator-effectiveness",
@@ -262,7 +267,8 @@
       ],
       "pitfalls": [
         "Assigning a finite refrigerant heat capacity during phase change."
-      ]
+      ],
+      "basis": "The A/C laboratory manual and the lab schedule, which mark this as extra credit rather than required. The capacity-ratio-zero simplification follows from the manual's own description of the evaporator; the effectiveness-NTU treatment itself is standard and is not written out in any instructor document in the archive."
     },
     {
       "id": "combustion-with-unburned-fuel",
@@ -278,7 +284,8 @@
       "pitfalls": [
         "Writing species symbols into the balances; code only the coefficient equations and comment each one.",
         "Not sanity-checking the actual air-fuel ratio against the manual's expected band; being well below theoretical is normal for this engine."
-      ]
+      ],
+      "basis": "The IC engine laboratory manual, read directly, which supplies the coefficient letters this method uses, the expected band for the actual air-fuel ratio, and the instruction to solve the theoretical balance element by element. That exactly one of unburned fuel or excess oxygen is nonzero is the manual's framing. A homework prompt STATES the same approach a second time: let the solver balance the coefficients element by element, as practice for this lab, and never write the overall reaction as a solver equation. Keeping the oxygen and nitrogen fractions as an editable parameter rather than hard-coding the ratio is observed in the student's lab model and in a worked homework page. The balance also rests, for two problems, on the student's own worked homework pages, whose final value matches the answer the prompt itself lists: the reaction balanced species by species with each coefficient tracked by element, the air-fuel ratio from the balanced moles and molecular masses, and the same element balances written as solver equations. A student page counts here only where its final value matches the prompt's listed answer, and no value from any page is recorded."
     },
     {
       "id": "orifice-air-and-exhaust-mass-flow",
@@ -293,7 +300,8 @@
         "Mixing Pa and kPa inside the square root; convert explicitly before the root.",
         "Carrying a negative gauge reading into the square root.",
         "Mislabeling ambient-pressure units, which silently corrupts every downstream property."
-      ]
+      ],
+      "basis": "The IC engine laboratory manual, which gives the orifice relation, the timed-pipette fuel measurement, and exhaust flow as air plus fuel. Using the magnitude of the pressure drop, and the unit trap inside the square root, are checks recorded from observed failure modes."
     },
     {
       "id": "exhaust-cp-calorimeter-check",
@@ -307,7 +315,8 @@
       "pitfalls": [
         "Evaluating a species in the wrong phase.",
         "Ignoring water-vapour condensation in the calorimeter when explaining a large gap."
-      ]
+      ],
+      "basis": "The IC engine laboratory manual, which describes the calorimeter and asks for the predicted mixture specific heat to be compared against the experimental value. The comparison is the manual's requirement; how close the two should land is not stated anywhere in the archive and is not asserted here."
     },
     {
       "id": "engine-energy-balance",
@@ -326,7 +335,8 @@
         "Calling a formation-enthalpy function on real liquids.",
         "Panicking at negative absolute energies; only differences matter.",
         "Torque units that a case-insensitive solver reads as nanometres."
-      ]
+      ],
+      "basis": "The IC engine laboratory manual for the streams and the order they are built in, and the lab schedule, which flags this as the longest analysis and tells students to work well ahead. Two substantive rules are the manual's own: air energy uses the oxygen and nitrogen ideal-gas enthalpies rather than a generic air substance, and liquid-octane formation enthalpy comes from the textbook table adjusted to inlet temperature. That heat loss is the residual, and that negative absolute enthalpies are expected and harmless, are the manual's framing. A homework prompt STATES the formation-enthalpy rules a second time: an ideal-gas enthalpy lookup already includes formation, while a liquid fuel needs its formation enthalpy supplied from the textbook. For two problems the student's own worked homework pages, whose final value matches the answer the prompt itself lists, show an enthalpy of combustion assembled from the formation enthalpies of reactants and products, and an adiabatic energy balance built from ideal-gas product enthalpies and a textbook liquid-fuel formation enthalpy. A student page counts here only where its final value matches the prompt's listed answer, and no value from any page is recorded."
     },
     {
       "id": "power-and-torque-curves",
@@ -340,7 +350,8 @@
       "pitfalls": [
         "Assuming peak torque and peak power share a speed.",
         "Adding a chart title on top of the caption."
-      ]
+      ],
+      "basis": "The IC engine laboratory manual and the lab schedule's description of this pre-submission. That peak power and peak torque need not occur at the same speed is the manual's point, and it is the finding the stage asks for. Excel being acceptable for this plot is stated in the schedule's stage description."
     },
     {
       "id": "thermal-efficiency-versus-power",
@@ -354,7 +365,8 @@
       "pitfalls": [
         "Using the higher heating value.",
         "Plotting against speed when the required plot is against power."
-      ]
+      ],
+      "basis": "The IC engine laboratory manual and the lab schedule. Plotting efficiency against engine power rather than against speed or run number is the stage's stated requirement, and it is the one thing that distinguishes this analysis from the power-curve stage."
     },
     {
       "id": "presubmission-to-final-assembly",
@@ -370,7 +382,8 @@
       "pitfalls": [
         "Stapling the three pre-submissions together.",
         "Blowing the body page limit; both final-report exemplars in the archive ran long, which is not a pattern to copy."
-      ]
+      ],
+      "basis": "The lab schedule, overwhelmingly: it is the document that defines the pre-submission-to-final rhythm, the due order, the per-stage page budgets and what each stage must contain. The observation that the final is a rewrite to a tighter budget rather than the pre-submissions stapled together is drawn from comparing the student's own pre-submissions against the final, and is exemplar-tier."
     },
     {
       "id": "homework-ees-solution",
@@ -385,7 +398,8 @@
       "pitfalls": [
         "Submitting problems out of the assigned order.",
         "Using EES on a set that says it is not an EES set."
-      ]
+      ],
+      "basis": "The per-set header instructions on the weekly homework sheets, read for all eleven available sets: submit in the assigned order, print solver code for the problems that set names with solutions as key variables, and a collaboration rule. Two prompts read in full STATE more: outputs printed in order as key variables with descriptive labels and correct units; a single answer may be circled or highlighted in the solver output; and a spreadsheet printout, where a set assigns one, made professional with units and labels. The layout also rests, for two problems, on the student's own printed solver solutions, whose final value matches the answer the prompt itself lists: a header comment block, the givens with units, a comment naming the source table of each tabulated constant, one block per part or regime, and the requested answers as key variables. A student page counts here only where its final value matches the prompt's listed answer, and no value from any page is recorded. How a homework solution done by hand should be laid out is not established by any instructor document; the observed practice for it is recorded on the homework family as practice, not as the course's method."
     }
   ],
   "assignment_families": [
@@ -577,7 +591,8 @@
       "exemplars": [
         "ac-section-presubmission",
         "ac-final-report"
-      ]
+      ],
+      "basis": "The A/C laboratory manual and the lab schedule, both instructor-written and read directly, for the apparatus, the stage order, the per-stage deliverables and the page budgets. The student's submissions for this lab are exemplar-tier and show shape only; where they and the handouts disagree, the handouts win."
     },
     {
       "id": "ic-lab",
@@ -766,7 +781,8 @@
       "exemplars": [
         "ic-energy-balance-presubmission",
         "ic-final-report"
-      ]
+      ],
+      "basis": "The IC engine laboratory manual and the lab schedule, both read directly, for the three distinct analyses, what each must find, and the page budget for each. The student's submissions are exemplar-tier and show shape only; where they and the handouts disagree, the handouts win."
     },
     {
       "id": "homework",
@@ -797,10 +813,11 @@
           "must_contain": [
             "problems in the assigned order",
             "printed EES code with key answers visible, for the specific problems that set names; which problems require EES is stated per set and is not a blanket rule",
-            "for a problem solved in more than one tool, each solve printed and the results compared rather than one silently replacing the other"
+            "for a problem solved in more than one tool, each solve printed and the results compared rather than one silently replacing the other",
+            "a spreadsheet printout, professional with units and labels, for a problem the set assigns to a spreadsheet"
           ],
-          "tool_note": "Hand work is common for problems the set does not assign to EES, and the archive shows those written directly on the printed prompt. It is not the only alternative to EES, so do not treat the choice as EES-or-hand. The archive also shows a spreadsheet used to tabulate and plot results a solver produced, and a CAD thermal simulation used to re-solve a conduction problem that had already been solved numerically. Follow whatever the set assigns; where it assigns nothing, the tool is the student's choice.",
-          "evidence_note": "The per-set header instructions are the only written spec. Completed non-EES work exists only as handwritten scans with no text layer; the handwriting is the student's own, not instructor feedback. The multi-tool pattern is observed in the student's own files, not stated in any instructor document. One of those files is a simulation of a part that a numerical solve elsewhere in the archive also covers, but it is a steady-state run filed with the following week's set and dated between the two, so which set it was submitted with is ambiguous."
+          "tool_note": "Hand work is common for problems the set does not assign to EES, and the archive shows those written directly on the printed prompt. It is not the only alternative to EES, so do not treat the choice as EES-or-hand. The archive also shows a spreadsheet used to tabulate and plot results a solver produced, and a CAD thermal simulation used to re-solve a conduction problem that had already been solved numerically. At least one set assigns a problem to a spreadsheet in its own words, so a spreadsheet can be the assigned tool and not only the student's choice. Follow whatever the set assigns; where it assigns nothing, the tool is the student's choice.",
+          "evidence_note": "The per-set header instructions, and the full text of two prompts, are the written spec. Completed non-EES work has no text layer; two sets were read as page images and show the student's own ink, with no instructor feedback on any page. The multi-tool pattern is observed in the student's own files, not stated in any instructor document. One of those files is a simulation of a part that a numerical solve elsewhere in the archive also covers, but it is a steady-state run filed with the following week's set and dated between the two, so which set it was submitted with is ambiguous."
         }
       ],
       "deliverables": [
@@ -809,6 +826,29 @@
       "what_good_looks_like": [
         "Each EES problem prints its givens with units, its solution blocks in problem-part order, and the requested answers as key variables.",
         "Where the prompt supplies an answer, the solution reproduces it or explains the difference."
+      ],
+      "stated_presentation": {
+        "rules": [
+          "A set may assign a problem to a spreadsheet. The printed table is then made professional, with units and labels.",
+          "Solver outputs are printed in order as key variables, with descriptive labels and correct units. Where a problem has a single answer, it may be circled or highlighted in the solver output.",
+          "Comparison problems ask for a written comment on the comparison, and for like-for-like quantities and units before comparing.",
+          "Some prompts direct which solver facilities to use: one asks that reaction coefficients be balanced element by element in the solver rather than written as one overall equation, and another asks that a built-in solver function not be relied on because it does not help learning.",
+          "The solver is not available on tests, and one prompt says so while asking for solver work, so that property lookups by hand are worth practising alongside it."
+        ],
+        "basis": "the typed text of two homework prompts, read directly; these are the instructor's own words, not an inference from the worked pages"
+      },
+      "observed_practice": {
+        "status": "OBSERVED STUDENT PRACTICE in two archived homework files, not an instructor requirement. The instructor's stated rules are in stated_presentation and in the weekly set's must_contain.",
+        "medium": "Hand work in digital ink, written below the problem's own text on the prompt page. Problems a set assigns to the solver or to a spreadsheet appear as their printed output.",
+        "layout": "For combustion, the reaction is written out with each coefficient boxed and colour-coded by element as it is balanced. The relation is written before the numbers, and the final value is boxed with its unit.",
+        "method": "Solver printouts open with a header comment block, list the givens with units, name in a comment the table each tabulated constant came from, run one block per part or regime, and end with the requested answers as key variables. The spreadsheet printout carries a header block and colour-codes its formation-enthalpy and sensible-enthalpy columns.",
+        "assembly": "Each homework is one PDF assembled by the student: the prompt pages, the worked pages, and the solver and spreadsheet printouts, in problem order.",
+        "basis": "two homework files, 20 pages, read as page images in September 2026; the text layer carries only the typed prompt and the printouts, so the ink is invisible to text extraction; the other homework sets have not been read this way"
+      },
+      "unknown": [
+        "whether the instructor requires any of the observed layout, or would accept a different one",
+        "what the grader accepted: no page carries a grader mark, a score or feedback",
+        "the layout of the other homework sets, which have not been read as page images"
       ],
       "textbook_references": {
         "book_identified": false,
@@ -823,7 +863,8 @@
         "chapters_seen": "Homework sets span radiation surface properties, two-dimensional conduction, boiling, and radiation enclosure networks; the chapter numbers attached to those topics in the course's own files are 10 for boiling and 13 for radiation.",
         "basis": "Labels quoted in the course's own working files. The labels are recorded as the course wrote them; no textbook was opened to check them, and no value was copied from one."
       },
-      "exemplars": []
+      "exemplars": [],
+      "basis": "The per-set header instructions on the weekly homework sheets, read directly for all eleven available sets, give submission order, which problems require the solver and in what printed form, and a collaboration rule; two prompts read in full add the rules in stated_presentation. Two homework files were also read as page images and show the student's worked pages in digital ink and printed solver and spreadsheet output, recorded in observed_practice. No page carries a grader mark, a score or feedback, so they show a layout rather than what earned credit, and no exemplar is given: completed student work is never shipped. The other sets have not been read as page images."
     }
   ],
   "related_packs": {
@@ -831,7 +872,7 @@
   },
   "not_covered": [
     "Exams: only scope sheets exist in the archive and exams produce no take-home deliverable.",
-    "Homework page format: no written specification and no machine-readable completed hand solutions.",
+    "Homework page format: beyond the per-set header instructions and two prompts read in full, no written specification. Completed hand solutions have no text layer; two sets have been read as page images, and the rest have not.",
     "Homework solution methods: the sets range well beyond the two labs, over radiation surface properties, two-dimensional steady and transient conduction, boiling, and radiation enclosure networks. Every method entry in this pack is a lab method or the general shape of an EES homework solution, so this pack states no method for those topics. Treat that as absent, not as covered by the lab methods. The gap is unmined rather than unfillable: instructor problem statements for most weeks of the term do exist in the student's course archive, with readable text, and have not been read into this pack yet.",
     "Instructor feedback or grades on any submission."
   ],

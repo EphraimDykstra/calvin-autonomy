@@ -89,7 +89,11 @@ EES is the expected tool for any lab analysis beyond simple plots. The manuals a
 
 ## Homework
 
-Weekly sets are submitted in the assigned order. Each set names which of its problems require EES; that is stated per set, not once for the course, so read the set rather than assuming. Some prompts supply the expected answer; reproduce it or explain the difference. There is no written page-format specification for homework, so do not invent one.
+Weekly sets are submitted in the assigned order. Each set names which of its problems require EES; that is stated per set, not once for the course, so read the set rather than assuming. Some prompts supply the expected answer; reproduce it or explain the difference. There is no written page-format specification for homework beyond the per-set headers and a few prompt-level rules, so do not invent one.
+
+**What the prompts do state** (`stated_presentation` on the homework family): a set may assign a problem to a **spreadsheet**, and the printed table is then made professional with units and labels; solver outputs are printed in order as key variables with descriptive labels and units, and a single answer may be circled or highlighted; comparison problems want a written comment and like-for-like units; and some prompts say which solver facilities to use, including balancing reaction coefficients element by element rather than writing the overall reaction as one equation.
+
+**What two worked sets show** (`observed_practice`, read as page images): hand work in ink below the problem's own text, reaction coefficients boxed and colour-coded by element, the relation before the numbers and the final value boxed, and solver printouts that open with a header block, name the source table of each tabulated constant, and end with the requested answers as key variables. That is **observed practice, not a requirement**, and no page carries a grader mark, so it shows a layout rather than what earned credit. The other sets have not been read as images.
 
 **Working together is allowed; sharing code is not.** The sets say so in the course's own words. Whether that covers code a tool writes, as opposed to code another student wrote, is a question the rule predates and does not answer. Surface it to the student once before helping with an EES homework problem, say that the judgement is theirs and their professor's rather than this tool's, and then follow their decision. Do not resolve it here, and do not refuse on the strength of an ambiguity the course has not settled.
 
