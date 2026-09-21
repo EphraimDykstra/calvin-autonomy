@@ -9,18 +9,18 @@
 ## Known, from the instructor's own worked keys
 
 - The pack carries fourteen methods, one per technique the prompts set, each with its own `basis` saying whether a prompt **states** it or a key **shows** it. Fetch one with `pack get engr204 methods.<id>`.
-- Eight rest on a prompt and a key together. Mesh analysis, transients, diodes and three-phase rest on the prompts alone: no surviving key covers them, and each of those four says so.
+- Eight rest on a prompt and a key together. Mesh analysis, transients, diodes and three-phase have no key. Each also rests on the student's worked homework pages, but only on the problems whose final value matches the prompt's listed answer. That is a weaker kind of evidence than a key: one problem each for mesh and diodes, four for transients, and all ten for three-phase. Each basis says so.
 - The keys are camera scans of handwriting, read by eye. A misread of a handwritten mark is possible in a way it is not for extracted text.
 
 ## Unknown
 
-- How a solution should be laid out on a homework page, whether it is handwritten or typed, and how it is submitted. No completed homework exists.
+- Whether the instructor requires any particular homework layout, how the work is submitted, and what the grader accepted. The student's own worked pages survive for all 11 sets, written by hand on the prompt pages, but none carries a grader mark. So the pack records their layout as observed practice (`format.observed_practice`), never as a rule.
 - Anything about the final in the instructor's own hand beyond the study guide. No final paper and no final key are in this course's folder.
 - The course policy. There is no syllabus.
 
 ## What to tell the student
 
-"I know how this course's homework is graded: show the method, because the final answers are already given. I know the techniques this course sets, and for most of them how your instructor's own worked solutions are laid out. I know the shape of your two in-class tests and what the study guide says about the final. I don't know how your instructor wants a homework page laid out. If you have a graded problem set, send it."
+"I know how this course's homework is graded: show the method, because the final answers are already given. I know the techniques this course sets, and for most of them how your instructor's own worked solutions are laid out. I know the shape of your two in-class tests and what the study guide says about the final. Your archived homework shows how you have been laying solutions out, worked by hand on the prompt pages. Nothing in it shows what your instructor accepted, because none of it carries a grade. If you have a graded problem set, send it."
 
 ## Exam shape
 
@@ -36,7 +36,7 @@ Fetch before advising. `pack get engr204 exam_profile` answers `over_budget` and
 
 Lay out the ground first. Say what the test covers and how the points fall, from `assessments`, and what the study guide says in `instructor_remarks`. Then say what is **not** known, from `not_documented`: the in-class time limit, the calculator policy, the formula-sheet size, how partial credit fell. Name those as unknown instead of filling them with a plausible guess.
 
-Teach in the course's own method. Each `methods.<id>` carries the steps, the pitfalls, and a `basis` saying whether a prompt stated it or an instructor's key showed it; four of them rest on prompts alone and say so. Give the chapter pointer in `reading` for what to study.
+Teach in the course's own method. Each `methods.<id>` carries the steps, the pitfalls, and a `basis` saying whether a prompt stated it, an instructor's key showed it, or a student's answer-matched homework page corroborates it; the last is the weakest and the four key-less methods say how little of it they have. Give the chapter pointer in `reading` for what to study.
 
 Write new problems when practice is wanted. Match the recorded shape loosely: the problem count, topics from the recorded labels, the recorded point split if you like, the same mix of forms in `question_shape`, the header rules restated as instructions. Then vary which topic sits in which slot and which sub-skills each problem tests. A practice test modelled on the shape must not shadow a real paper slot for slot, because slot-for-slot tracking is what makes a common textbook value land in the same place as a real one. The labels are course topics and deliberately say nothing about what a real problem asked, so build from the method and the chapter. Produce the worked key separately, in the form this course's keys take: technique named first, substitution shown, answer boxed with its unit.
 

@@ -14,7 +14,7 @@
     "format": "partial",
     "methods": "partial",
     "assignments": "partial",
-    "notes": "Absence claims in this pack describe one search, not the world: a listing of this course's folders in the student's iCloud term archive and his university OneDrive, in September 2026. All 11 weekly homework prompts survive, and each states the same grading rule, so the problem-set format and what earns credit are known from instructor documents. No completed homework survives anywhere, so nothing shows how a solution was laid out or what the grader accepted. One test paper and two keys are present as camera scans; an earlier pass counted two test papers. Those three documents were opened, under the student's explicit instruction, for exam SHAPE and for the method and presentation conventions the keys show, and for nothing else: no question, number, figure or answer from a real problem is recorded anywhere in this pack. The cheat sheets are the student's own and their contents stay out. No syllabus was found in either of the student's two archives as of September 2026. Methods now cover fourteen techniques, one per topic the prompts set: reduction, node and mesh analysis, Thevenin and Norton equivalents, capacitor and inductor relations, transients, phasor analysis, AC power, filters and resonance, op-amps, diodes, three-phase and safety, decibels and frequency ratios, and how a solution is presented. Eight of those rest on a prompt and a key together; mesh analysis, transients, diodes, and three-phase rest on the prompts alone, because no key covering them survives, and each says so in its own basis. Nothing here covers the chapters the course reached after Test 2 in the instructor's own worked hand. The prompts name topics and circuit-simulator tasks but contain no worked solution, and the selected answers at the end of each prompt are final values only. The lab has its own pack (engr204-lab). A lecture writing handout on audience, abstracts, graphing, and conclusions sits in this folder; it bears on the lab reports, and Test 2 carried a technical-writing short answer, so it reaches the lecture test too."
+    "notes": "Absence claims in this pack describe one search, not the world: a listing of this course's folders in the student's iCloud term archive and his university OneDrive, in September 2026. All 11 weekly homework prompts survive, and each states the same grading rule, so the problem-set format and what earns credit are known from instructor documents. The 11 homework files are not bare prompts: each carries the student's own worked solutions, written by hand in digital ink on the prompt pages. An earlier pass read only their text layer and missed the ink. All 60 pages were read as images in September 2026. They show how the student laid out a solution, which the format block records as observed practice rather than a requirement. No page carries a grader mark, a score or feedback, so what the grader accepted is still unknown. One test paper and two keys are present as camera scans; an earlier pass counted two test papers. Those three documents were opened, under the student's explicit instruction, for exam SHAPE and for the method and presentation conventions the keys show, and for nothing else: no question, number, figure or answer from a real problem is recorded anywhere in this pack. The cheat sheets are the student's own and their contents stay out. No syllabus was found in either of the student's two archives as of September 2026. Methods now cover fourteen techniques, one per topic the prompts set: reduction, node and mesh analysis, Thevenin and Norton equivalents, capacitor and inductor relations, transients, phasor analysis, AC power, filters and resonance, op-amps, diodes, three-phase and safety, decibels and frequency ratios, and how a solution is presented. Eight of those rest on a prompt and a key together. Mesh analysis, transients, diodes and three-phase have no key; each now also rests on the student's worked pages, but only on the problems whose final value matches the prompt's listed answer, and each basis says how narrow that is. Nothing here covers the chapters the course reached after Test 2 in the instructor's own worked hand. The prompts' own text contains no worked solution, and the selected answers at the end of each are final values only. The lab has its own pack (engr204-lab). A lecture writing handout on audience, abstracts, graphing, and conclusions sits in this folder; it bears on the lab reports, and Test 2 carried a technical-writing short answer, so it reaches the lecture test too."
   },
   "course_policy": {
     "source": "none found",
@@ -40,13 +40,20 @@
       "comparison": "Several problems ask for written comments on the printout comparing the simulated values with the hand-calculated ones.",
       "source": "homework prompts"
     },
+    "observed_practice": {
+      "status": "OBSERVED STUDENT PRACTICE in the archived homework, not an instructor requirement. The instructor's only stated rule is the grading rule above.",
+      "medium": "Worked by hand on the prompt pages themselves, in digital ink written directly beside each problem and on its figure. Prose answers to the writing problems are typed onto the page.",
+      "layout": "No separate solution sheet, cover or header: the prompt's own numbering separates the problems, and the work sits in the space beside or below each one. Currents, loop directions, polarities and node labels are marked on the printed figure, often in a different colour per loop or node, and a redrawn or simplified circuit is sketched beside the original.",
+      "method": "The governing relation is written first, then the substitution, then the final value, which is usually boxed. This is the student's layout, and it agrees with the instructor's worked keys.",
+      "assembly": "Each homework is one PDF: the annotated prompt, with simulator and spreadsheet screen captures inserted as extra pages after the page they belong to, sometimes labelled with the problem number.",
+      "basis": "all 60 pages of the 11 homework PDFs, read as page images in September 2026; the text layer carries only the prompt, so the ink is invisible to text extraction"
+    },
     "unknown": [
-      "whether homework is handwritten or typed",
-      "page layout, headers, and how problems are separated",
-      "how solutions should present a method (the given-find-solution form or otherwise)",
-      "how the work is submitted (paper or upload)"
+      "whether the instructor requires any of the observed practice, or would accept a different layout",
+      "how the work is submitted: the archive holds the annotated PDF, but no page shows whether that file is what was handed in, or how",
+      "what the grader accepted: no page carries a grader mark, a score or feedback"
     ],
-    "basis": "11 homework prompts (readable text)"
+    "basis": "11 homework prompts (readable text), and the student's completed pages of the same 11 files, read as page images"
   },
   "methods": [
     {
@@ -107,7 +114,7 @@
         "Reporting a mesh current where a branch current was asked for.",
         "Giving a magnitude with no direction when the prompt asks which way the current flows."
       ],
-      "basis": "Homework 3 STATES the mesh problems, including one that asks only for the meshes and their marked currents and one that asks for the direction of a current. No surviving key shows a worked mesh solution, so the presentation conventions here are carried over from the node method; that carry-over is an inference, not something a key shows."
+      "basis": "Homework 3 STATES the mesh problems, including one that asks only for the meshes and their marked currents and one that asks for the direction of a current. No surviving key shows a worked mesh solution, so the presentation conventions here are carried over from the node method; that carry-over is an inference, not something a key shows. Also, for one problem only: a student's own worked page in the archived homework, whose final value matches that prompt's Selected Answers list. It marks each mesh current as a circulating arrow on the figure, lets a current source on an outer branch fix that mesh's current directly, writes the shared element's current as the difference of the two mesh currents, and states the direction of the result. A student page counts here only where its final value matches the prompt's listed answer, and no value from any page is recorded."
     },
     {
       "id": "thevenin-norton-equivalents",
@@ -166,7 +173,7 @@
         "Assuming a resistor voltage is continuous across the switching instant. It is not; only the capacitor voltage and the inductor current are.",
         "Solving a second quantity from scratch when one line of KVL gives it."
       ],
-      "basis": "Homework 11 STATES all of this, including the before-and-after instants, the derivations from a switched circuit, and the damping classification. No surviving key shows a transient solution, so nothing here rests on an instructor's worked example."
+      "basis": "Homework 11 STATES all of this, including the before-and-after instants, the derivations from a switched circuit, and the damping classification. No surviving key shows a transient solution, so nothing here rests on an instructor's worked example. It does rest, for four problems, on a student's own worked page in the archived homework, whose final value matches that prompt's Selected Answers list: the first-order form assembled from the final value, the initial value and the time constant; the values just before and just after switching given separately; a second quantity recovered from the first by KVL; and damping classified from the roots of the characteristic equation. A student page counts here only where its final value matches the prompt's listed answer, and no value from any page is recorded."
     },
     {
       "id": "phasor-analysis",
@@ -266,7 +273,7 @@
         "Using one model where the prompt directs the other, or answering with one when both were asked for.",
         "Sketching the output with no input drawn against it, so the comparison the problem wants cannot be read."
       ],
-      "basis": "Homework 9 STATES the two models, directs which to use where, and sets the waveform-sketching problems. No surviving key covers diodes, so nothing here rests on an instructor's worked solution."
+      "basis": "Homework 9 STATES the two models, directs which to use where, and sets the waveform-sketching problems. No surviving key covers diodes, so nothing here rests on an instructor's worked solution. One problem rests on a student's own worked page in the archived homework, whose final value matches that prompt's Selected Answers list: the diode assumed on, replaced by its constant voltage drop written on the figure, and the branch currents closed with KCL. A student page counts here only where its final value matches the prompt's listed answer, and no value from any page is recorded."
     },
     {
       "id": "three-phase-and-electrical-safety",
@@ -286,7 +293,7 @@
         "Multiplying the per-phase power by the square root of three instead of by three.",
         "Answering a safety question with the voltage when the hazard is set by the current."
       ],
-      "basis": "Homework 10 STATES the wye and delta problems, the power problems, the wye-delta conversions and the two body-resistance questions. No surviving key covers three-phase."
+      "basis": "Homework 10 STATES the wye and delta problems, the power problems, the wye-delta conversions and the two body-resistance questions. No surviving key covers three-phase. Every problem of that homework rests also on a student's own worked page in the archived homework, whose final value matches that prompt's Selected Answers list: the wye and delta line-to-phase relations written before the numbers, total power taken as three times the per-phase product with the power-factor term shown, the wye-delta conversion scaling inductance and capacitance in opposite directions, and the shock current taken as voltage over body resistance, each answer boxed with its unit. A student page counts here only where its final value matches the prompt's listed answer, and no value from any page is recorded."
     },
     {
       "id": "decibels-and-frequency-ratios",
@@ -324,23 +331,23 @@
         "Units only on the last line, or missing altogether; one test states outright that missing units will cost points.",
         "Leaving an assumed direction unstated, so a negative answer cannot be interpreted."
       ],
-      "basis": "All 11 homework prompts STATE the grading rule in the same words: credit is for an honest shown attempt, and work must be shown because the answers are given. Both test headers STATE their own presentation rules, one asking that work be shown clearly and the answer highlighted by underlining, circling or boxing, the other that units be placed behind quantities; both close by telling the student to check units and the clarity of the work, and one adds that missing units will cost points. Both keys SHOW the same pattern: the technique named first, the substitution shown, the final answer boxed or underlined with its unit. The keys are camera scans of handwriting, read by eye."
+      "basis": "All 11 homework prompts STATE the grading rule in the same words: credit is for an honest shown attempt, and work must be shown because the answers are given. Both test headers STATE their own presentation rules, one asking that work be shown clearly and the answer highlighted by underlining, circling or boxing, the other that units be placed behind quantities; both close by telling the student to check units and the clarity of the work, and one adds that missing units will cost points. Both keys SHOW the same pattern: the technique named first, the substitution shown, the final answer boxed or underlined with its unit. The keys are camera scans of handwriting, read by eye. The same order (relation first, substitution shown, final value boxed, the figure annotated with currents and polarities) appears on a student's own worked page in the archived homework, whose final value matches that prompt's Selected Answers list, in every homework where such pages exist. That is observed practice agreeing with the keys, not a further requirement. A student page counts here only where its final value matches the prompt's listed answer, and no value from any page is recorded."
     }
   ],
   "gaps": {
     "archive_holds": [
-      "11 homework prompts with selected final answers",
+      "11 homework prompts with selected final answers, and the student's worked pages of the same files",
       "a lecture writing handout",
       "the Test 1 paper and the Test 1 and Test 2 keys, as camera scans read by eye; the Test 2 key carries the printed problems, and no Test 2 paper of its own is in this folder",
       "the instructor's final-exam study guide, as extractable text",
       "the student's own cheat sheets, which stay out of the pack"
     ],
-    "missing": ["syllabus", "any completed or graded homework", "a worked solution for mesh analysis, transients, diodes or three-phase, which no surviving key covers", "the final's paper and key"],
+    "missing": ["syllabus", "any graded homework: none of the 11 worked sets carries a grader mark, a score or feedback", "an instructor's worked solution for mesh analysis, transients, diodes or three-phase, which no surviving key covers", "the final's paper and key"],
     "student_can_supply": [
-      "one graded, returned problem set, to fix how solutions should be laid out",
+      "one graded, returned problem set: the worked sets show a layout but no grader marks, so only a graded one can say what earned credit",
       "the syllabus, for the AI-use policy and how homework is submitted"
     ],
-    "basis": "direct listing and text extraction of the course folder, plus a reading by eye of the one test paper and two keys it holds"
+    "basis": "direct listing and text extraction of the course folder, a reading by eye of the one test paper and two keys it holds, and all 60 homework pages read as page images"
   },
   "assignment_families": [
     {
@@ -355,7 +362,7 @@
         "Every plot has a title, axis labels with units, and a legend."
       ],
       "exemplars": [],
-      "basis": "The grading rule and simulator instructions stated in the 11 prompts. No completed homework exists, so the layout of a good solution is unknown and no exemplar is given."
+      "basis": "The grading rule and simulator instructions stated in the 11 prompts. The student's own worked pages survive for all 11 sets, but none carries a grader mark, so they show a layout, not what earned credit, and no exemplar is given: completed student work is never shipped."
     }
   ],
   "exam_profile": {
