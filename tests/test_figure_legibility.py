@@ -20,6 +20,8 @@ Two instruments do all the work:
 None of these assertions pin a pixel dimension, a font size, or a margin, so
 tuning the layout does not break them; only regressing legibility does.
 """
+from __future__ import annotations
+
 import re
 import tempfile
 import unittest

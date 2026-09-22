@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "calvin-autonomy"
 version = "0.1.0"
 description = "Course-grounded assignment workflows for Claude Code and Codex"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 license = {text = "MIT"}
 dependencies = ["pypdf>=5,<7", "openpyxl>=3.1,<4", "reportlab>=4,<6", "pillow>=10,<13", "python-docx>=1.1,<2"]
 

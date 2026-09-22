@@ -57,8 +57,8 @@ say() { printf '%s\n' "$1"; }
 json_str() { if [ -n "$1" ]; then printf '"%s"' "$1"; else printf 'null'; fi; }
 
 # --- find an interpreter new enough to run this project ---------------------
-# pyproject requires >=3.10. macOS ships 3.9, so the system python is usually
-# too old. 3.10-3.12 come first: the OCR engine's current release (1.4.x)
+# pyproject requires >=3.9, and 3.9 is what macOS ships, but 3.10-3.12 are
+# preferred and 3.9 is only a last resort (see below). 3.10-3.12 come first: the OCR engine's current release (1.4.x)
 # ships for those only, and on 3.13+ pip can only resolve an older 1.2.x
 # release. A newer interpreter is still used when it is all there is, and the
 # engine version that actually landed is reported below.
@@ -87,15 +87,30 @@ if [ -z "$PY" ] && command -v uv >/dev/null 2>&1; then
   fi
 fi
 
+# Last resort: the Python 3.9 that macOS ships. Everything runs on it; only
+# the optional OCR engine resolves to an older, slightly weaker release.
+if [ -z "$PY" ]; then
+  for candidate in python3.9 python3; do
+    if command -v "$candidate" >/dev/null 2>&1; then
+      v="$("$candidate" -c 'import sys;print("%d.%d"%sys.version_info[:2])' 2>/dev/null)" || continue
+      if [ "$v" = "3.9" ]; then
+        PY="$candidate"; PY_VERSION="$v"
+        say "Using Python 3.9. It works; a newer Python reads scanned pages a little better."
+        break
+      fi
+    fi
+  done
+fi
+
 # An existing venv keeps its interpreter; report that one, not the candidate.
 if [ -x "$VPY" ]; then
   PY_VERSION="$("$VPY" -c 'import sys;print("%d.%d"%sys.version_info[:2])' 2>/dev/null || printf '%s' "$PY_VERSION")"
 fi
 
 if [ -z "$PY" ] && [ ! -x "$VPY" ]; then
-  say "Could not find Python 3.10 or newer."
+  say "Could not find Python 3.9 or newer."
   say "The quickest fix on a Mac is:  brew install python@3.12"
-  NEEDS+=('"python3.10+"')
+  NEEDS+=('"python3.9+"')
   printf '\nCALVIN_BOOTSTRAP {"mode":"%s","python":null,"venv":false,"deps":false,"cli":false,"pdf_rasterizer":false,"tesseract":false,"ocr_engine":null,"ocr_engine_version":null,"needs":[%s]}\n' "$MODE" "$(IFS=,; echo "${NEEDS[*]}")"
   exit 1
 fi

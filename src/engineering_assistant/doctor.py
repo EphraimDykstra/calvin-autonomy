@@ -67,9 +67,9 @@ def diagnose(project_root: Path, workspace: Path) -> dict[str, Any]:
     warnings: list[str] = []
     mode = install_mode(workspace)
 
-    python_ok = sys.version_info >= (3, 10)
+    python_ok = sys.version_info >= (3, 9)
     if not python_ok:
-        blockers.append("Python 3.10 or newer is required")
+        blockers.append("Python 3.9 or newer is required")
 
     dependencies = {}
     for module, purpose in REQUIRED_MODULES.items():

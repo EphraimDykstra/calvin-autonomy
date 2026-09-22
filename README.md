@@ -7,7 +7,7 @@ It is not a grader and it does not know every course equally well. Ask it "which
 ## What you need
 
 - **Claude Code**, with a Claude account that includes it. Install it from [claude.com/claude-code](https://claude.com/claude-code).
-- **Python 3.10 or newer.** On a Mac, the simplest way is to install it from [python.org](https://www.python.org/downloads/). On Windows, install it from the same page and tick **"Add python.exe to PATH"** on the first screen of the installer.
+- **Python 3.9 or newer.** A Mac already has 3.9, so there is nothing to install; if the Mac asks to install its developer tools the first time, accept. A newer Python from [python.org](https://www.python.org/downloads/) is used when present and reads scanned pages a little better. On Windows, install it from the same page and tick **"Add python.exe to PATH"** on the first screen of the installer.
 - **Access to this repository on GitHub.** It is private for now. If you were invited as a tester, accept the GitHub invitation first. Claude Code uses your computer's GitHub login to download it; if the install below says it cannot find or clone the repository, that login is the missing piece.
 
 ## Install
